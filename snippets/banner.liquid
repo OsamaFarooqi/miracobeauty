@@ -1,0 +1,140 @@
+{%- comment -%}
+  Renders banner section
+
+  Accepts:
+  - image: {Image} Banner image,
+  - mobile_image: {Image} Banner image on mobile,
+  - desktop_height: {String} Banner height class,
+  - mobile_height: {String} Banner height class on mobile,
+  - transparent_header: {Boolean},
+  - subheading: {String} Subheading text,
+  - heading: {String} Heading text,
+  - text: {String} Content text,
+  - text_position: {String} Text position,
+  - image_position: {String} Image position,
+  - color_text: {Color} Text color,
+  - color_overlay: {Color} Overlay color,
+  - overlay_opacity: {Number} Overlay opacity,
+  - unique: {String} Section id
+  - loading: {String} 'lazy' or 'eager' (Default: 'lazy')
+
+  Usage:
+  {% render 'banner',
+    image: section.settings.banner_image,
+    mobile_image: section.settings.mobile_image,
+    desktop_height: section.settings.height,
+    mobile_height: section.settings.mobile_height,
+    transparent_header: true,
+    subheading: section.settings.subheading,
+    heading: section.settings.title,
+    text: section.settings.text,
+    text_position: section.settings.text_position,
+    image_position: section.settings.image_position,
+    color_text: section.settings.color_text,
+    color_overlay: section.settings.color_overlay,
+    overlay_opacity: section.settings.overlay_opacity,
+    unique: section.id,
+    loading: loading
+  %}
+{%- endcomment -%}
+
+{%- liquid
+  if image != blank
+    assign image_aspect_ratio = image.aspect_ratio
+  else
+    assign image_aspect_ratio = mobile_image.aspect_ratio | default: 2.63
+  endif
+
+  if mobile_image != blank
+    assign mobile_image_aspect_ratio = mobile_image.aspect_ratio
+  endif
+-%}
+
+{%- style -%}
+  #Banner--{{ unique }} {
+    --overlay-color: {{ color_overlay }};
+    --overlay-opacity: {{ overlay_opacity | times: 0.01 | round: 2 }};
+
+    {%- if color_text != 'rgba(0,0,0,0)' and color_text != '' -%}
+      --text: {{ color_text }};
+    {%- endif -%}
+  }
+
+  {%- if desktop_height == 'image-height' -%}
+    #Banner--{{ unique }} { padding-top: {{ 100 | divided_by: image_aspect_ratio | append: '%' }}; }
+  {%- endif -%}
+
+  {%- if mobile_height == 'image-height' and mobile_image != blank -%}
+    @media screen and (max-width: 767px) {
+      #Banner--{{ unique }} { padding-top: {{ 100 | divided_by: mobile_image_aspect_ratio | append: '%' }}; }
+    }
+    {%- endif -%}
+
+  {%- comment -%} Styles for Collection template only {%- endcomment -%}
+  {%- if template == 'collection' -%}
+    {%- if settings.color_header_bg_home == 'rgba(0,0,0,0)' -%}
+      .site-header:not(.header--megamenu-visible):not(.header--has-scrolled) {
+        --text: {{ color_text }};
+      }
+    {%- endif -%}
+
+    .logo__image .logo__image--transparent { position: relative; visibility: visible; }
+    .logo__image .logo__image--default:not(.logo__image--single) { position: absolute; visibility: hidden; }
+  {%- endif -%}
+{%- endstyle -%}
+
+{%- capture banner_content -%}
+  {%- unless heading == blank and subheading == blank and text == blank -%}
+    <div class="page-title" data-banner-content>
+      <div class="container">
+        {%- if subheading != blank -%}
+          <p class="page-title__subheading subheading-text">{{ subheading }}</p>
+        {%- endif -%}
+        {%- if heading != blank -%}
+          <h1 class="page-title__heading">{{ heading }}</h1>
+        {%- endif -%}
+        {%- if text != blank -%}
+          <div class="page-title__text">{{ text }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endunless -%}
+{%- endcapture -%}
+
+<section id="Banner--{{ unique }}" class="banner {{ desktop_height }} {{ mobile_height }}{% if transparent_header %} banner--transparent-header{% endif %}"{% if transparent_header %} data-header-style="transparent"{% endif %} data-banner-container>
+  <div class="banner__inner banner__inner--text-{{ text_position }}">
+    {%- if image or mobile_image -%}
+      {%- liquid
+        if image != blank
+          capture modifier
+            echo 'banner__image'
+          
+            if mobile_image == blank
+              echo ' banner__image--single'
+            endif
+          endcapture
+
+          render 'image-hero' image: image, aspect_ratio: image_aspect_ratio, modifier: modifier, loading: loading
+        endif
+
+        if mobile_image != blank
+          capture modifier
+            echo 'banner__image banner__image--mobile'
+
+            if image == blank
+              echo ' banner__image--single'
+            endif
+          endcapture
+
+          render 'image-hero' image: mobile_image, aspect_ratio: mobile_image_aspect_ratio, modifier: modifier, loading: loading
+        endif
+      -%}
+    {%- else -%}
+      <div class="banner__image banner__image--placeholder svg-placeholder">
+        {{- 'lifestyle-1' | placeholder_svg_tag -}}
+      </div>
+    {%- endif -%}
+
+    {{- banner_content -}}
+  </div>
+</section>

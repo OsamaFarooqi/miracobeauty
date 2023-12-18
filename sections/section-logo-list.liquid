@@ -1,0 +1,118 @@
+{%- comment -%} Logos List {%- endcomment -%}
+<div data-section-id="{{ section.id }}" data-section-type="logo-list">
+  <div class="logo-list"{% if section.settings.color_logos_bg != blank %} style="background-color: {{ section.settings.color_logos_bg }};"{% endif %}>
+    <div class="logo-list__slider" data-logo-list-slider>
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign image = block.settings.logo_image
+          assign logo_url = block.settings.logo_url
+          assign logo_width = block.settings.logo_width
+          assign logo_width_x2 = logo_width | times: 2
+          assign widths = logo_width | append: ', ' | append: logo_width_x2
+          assign sizes = logo_width | append: 'px'
+        -%}
+
+        {%- capture logo_image -%}
+          {%- if image != blank -%}
+            {%- render 'image' image: image, widths: widths, sizes: sizes, width: logo_width_x2 -%}
+          {%- else -%}
+            <div class="image-wrapper" style="--aspect-ratio: 1.3333;">
+              <div class="svg-placeholder">
+                {{- 'logo' | placeholder_svg_tag -}}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endcapture -%}
+
+        <div class="logo-list__slide"
+          data-logo-list-slide="{{- block.id -}}"
+          data-slide-index="{{ forloop.index0 }}"
+          {{ block.shopify_attributes }}>
+          <div class="logo-list__item" style="width: {{ logo_width }}px">
+            <div class="logo-list__item-container">
+              {%- if logo_url != blank -%}
+                <a href="{{ logo_url }}" class="logo-list__item-link" title="{{ image.alt | escape }}">
+                  {{- logo_image -}}
+                </a>
+              {%- else -%}
+                {{- logo_image -}}
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Logo list",
+  "class": "shopify-section--logo-list",
+  "max_blocks": 25,
+  "settings": [
+    {
+      "type": "color",
+      "id": "color_logos_bg",
+      "label": "Background color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Width",
+          "min": 100,
+          "max": 180,
+          "step": 10,
+          "unit": "px",
+          "default": 120
+        },
+        {
+          "type": "url",
+          "id": "logo_url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo list",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

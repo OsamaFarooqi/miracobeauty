@@ -1,0 +1,33 @@
+#gift-card-outer-container {
+  background-color: #F4F4F4;
+}
+
+.template-giftcard body {
+  font-family: var(--BODY-FONT-FAMILY);
+  font-weight: var(--BODY-FONT-WEIGHT);
+  font-style: var(--BODY-FONT-STYLE);
+}
+
+.header-logo {
+  text-align: center;
+  font-family: var(--HEADING-FONT-FAMILY);
+  font-weight: var(--HEADING-FONT-WEIGHT);
+  font-style: var(--HEADING-FONT-STYLE);
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.logo-text {
+  color: #222;
+  font-size: 2em;
+}
+
+.giftcard__footer {
+  text-align: center;
+}
+
+.giftcard__footer a {
+  display: inline-block;
+}

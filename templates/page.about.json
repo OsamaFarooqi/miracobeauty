@@ -1,0 +1,223 @@
+{
+  "sections": {
+    "image-with-text-overlay-0": {
+      "type": "section-image-with-text-overlay",
+      "custom_css": [
+        "p {line-height: 30px; font-size: 20px;}"
+      ],
+      "settings": {
+        "banner_image": "shopify:\/\/shop_images\/banner-about-us-page.jpg",
+        "height": "seven-fifty-height-hero",
+        "banner_image_mobile": "shopify:\/\/shop_images\/banner-about-us-page-mobile_513e48dc-6771-425c-91f6-a2351e128786.jpg",
+        "height_mobile": "five-fifty-height-hero--mobile",
+        "subheading": "Advanced, Innovative, Accessible.",
+        "title": "About MIRACO Beauty",
+        "text": "",
+        "text_position": "left",
+        "color_text": "#606161",
+        "color_overlay": "#ffffff",
+        "overlay_opacity": 0
+      }
+    },
+    "rich-text": {
+      "type": "section-rich-text",
+      "settings": {
+        "layout": "split",
+        "subheading": "At MIRACO Beauty",
+        "title": "",
+        "content": "<p>Our mission is to deliver exceptional skincare solutions that nourish, rejuvenate, and elevate your skin health to new heights. We take great pride in our expert team, a group of dedicated individuals who possess an in-depth understanding of skin and the cutting-edge science behind effective skincare. Driven by an unwavering passion for improving overall skin health, they constantly push the boundaries of innovation.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "8317a50c-2641-42f0-9737-3a04a8ef7dd0": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "template--15846280265911__8317a50c-2641-42f0-9737-3a04a8ef7dd0-16860246106efb25a7-0": {
+          "type": "gallery_image",
+          "settings": {
+          }
+        },
+        "template--15846280265911__8317a50c-2641-42f0-9737-3a04a8ef7dd0-16860246106efb25a7-1": {
+          "type": "gallery_image",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "template--15846280265911__8317a50c-2641-42f0-9737-3a04a8ef7dd0-16860246106efb25a7-0",
+        "template--15846280265911__8317a50c-2641-42f0-9737-3a04a8ef7dd0-16860246106efb25a7-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "five-fifty-height-hero",
+        "slide_image_position": "left",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "Advanced skincare inspired by nature, backed by science.",
+        "title": "Advanced skincare inspired by nature, backed by science.",
+        "content": "<p>MIRACO BEAUTY's products are developed by professional scientists and skin experts. We are continuously committed to discovering highly effective, natural ingredients and combining them with latest scientific research.<\/p>",
+        "cta": "",
+        "link": "",
+        "button_style": "primary"
+      }
+    },
+    "product-features": {
+      "type": "section-product-features",
+      "blocks": {
+        "section-product-features-0": {
+          "type": "text",
+          "settings": {
+            "title": "Advanced Skincare Inspired by Nature, Backed by Science",
+            "description": "<p>Inspired by the seamless fusion of nature, science, and biotechnology, we create skincare solutions that harness the power of these elements. Our team of experts delves into the wonders of nature, exploring botanical extracts and natural ingredients that have stood the test of time. Simultaneously, we leverage cutting-edge scientific research and biotechnological advancements to craft formulations that bring out the best in your skin.<\/p>",
+            "image": "shopify:\/\/shop_images\/image1.png",
+            "image_position": "left",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "6a076a29-af90-44bc-b8e4-1b9772f8a912": {
+          "type": "text",
+          "settings": {
+            "title": "Mindfully Formulated",
+            "description": "<p>MIRACO Beauty works closely with our lab to ensure our products are formulated to being solution-oriented skincare for our customers.<\/p>",
+            "image": "shopify:\/\/shop_images\/about-formulaed_70kb.jpg",
+            "image_position": "right",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "19cbfb1e-dd74-48ae-a39f-5a10a0663c7a": {
+          "type": "text",
+          "settings": {
+            "title": "Made in the USA, Trusted by Doctors",
+            "description": "<p>Proudly made in the USA, our products are used by dermatologists, plastic surgeons and in medical spas across the US and Asia as a complement to dermatologic and aesthetic procedures.<\/p>",
+            "image": "shopify:\/\/shop_images\/model-image-2.jpg",
+            "image_position": "left",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "section-product-features-0",
+        "6a076a29-af90-44bc-b8e4-1b9772f8a912",
+        "19cbfb1e-dd74-48ae-a39f-5a10a0663c7a"
+      ],
+      "settings": {
+        "blocks_alignment": "center",
+        "image_aspect_ratio": 0.7
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true
+      }
+    },
+    "8641e886-741d-4203-93d8-993427c166d3": {
+      "type": "section-image-with-text-overlay",
+      "settings": {
+        "banner_image": "shopify:\/\/shop_images\/product-backdrop-empty-wooden-table-with-concrete-wall-plant-shadow.jpg",
+        "height": "four-fifty-height-hero",
+        "banner_image_mobile": "shopify:\/\/shop_images\/banner-about-page.jpg",
+        "height_mobile": "five-fifty-height-hero--mobile",
+        "subheading": "",
+        "title": "Comitted to Our Promise",
+        "text": "<p>We are meticulous in our research and development of each skin care product and our formulas meet our standards to ensure the safety and excellent efficacy of each product.<\/p>",
+        "text_position": "center",
+        "color_text": "#606161",
+        "color_overlay": "#333333",
+        "overlay_opacity": 0
+      }
+    },
+    "d33b9bcc-b40f-4011-88aa-a466788c7dde": {
+      "type": "section-icons-row",
+      "blocks": {
+        "template--15813410422967__d33b9bcc-b40f-4011-88aa-a466788c7dde-1682297863aab4943a-0": {
+          "type": "text",
+          "settings": {
+            "icon_name": "none",
+            "icon_image": "shopify:\/\/shop_images\/icon-no_animal.png",
+            "title": "",
+            "text": "<p>Not Tested on Animals<\/p>"
+          }
+        },
+        "template--15813410422967__d33b9bcc-b40f-4011-88aa-a466788c7dde-1682297863aab4943a-1": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-parabhenfree.png",
+            "title": "",
+            "text": "<p>No Parabens or Phthalates<\/p>"
+          }
+        },
+        "template--15813410422967__d33b9bcc-b40f-4011-88aa-a466788c7dde-1682297863aab4943a-2": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-no_mineral_oil.png",
+            "title": "",
+            "text": "<p>No Mineral Oil<\/p>"
+          }
+        },
+        "166a6db7-9778-4276-9962-b2b599b2248f": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-all_skin_type.png",
+            "title": "",
+            "text": "<p>All Skin Types<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15813410422967__d33b9bcc-b40f-4011-88aa-a466788c7dde-1682297863aab4943a-0",
+        "template--15813410422967__d33b9bcc-b40f-4011-88aa-a466788c7dde-1682297863aab4943a-1",
+        "template--15813410422967__d33b9bcc-b40f-4011-88aa-a466788c7dde-1682297863aab4943a-2",
+        "166a6db7-9778-4276-9962-b2b599b2248f"
+      ],
+      "settings": {
+        "title": "",
+        "alignment": "center",
+        "color_icons_bg": "#fafafa",
+        "color_icons_text": "#333333"
+      }
+    },
+    "89fa29e6-9f1f-40fe-a2ea-a63b255fa8fd": {
+      "type": "section-collection",
+      "settings": {
+        "title": "Shop Our Best Sellers",
+        "show_description": false,
+        "featured_collection": "best-sellers",
+        "products_layout": "grid",
+        "products_rows": 2,
+        "show_button": false,
+        "button_style": "primary",
+        "color_style": "white"
+      }
+    }
+  },
+  "order": [
+    "image-with-text-overlay-0",
+    "rich-text",
+    "8317a50c-2641-42f0-9737-3a04a8ef7dd0",
+    "product-features",
+    "main",
+    "8641e886-741d-4203-93d8-993427c166d3",
+    "d33b9bcc-b40f-4011-88aa-a466788c7dde",
+    "89fa29e6-9f1f-40fe-a2ea-a63b255fa8fd"
+  ]
+}

@@ -1,0 +1,257 @@
+{% comment %} Product template {% endcomment %}
+
+<section data-section-id="{{ section.id }}" data-section-type="product" data-product-handle="{{ product.handle }}" data-product-template>
+
+  {%- render 'product', section_type: 'product-template', shipping_text: {{ section.settings.shipping-text }} -%}
+</section>
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "url": {{ shop.url | append: product.url | json }},
+  {%- if product.featured_media -%}
+    {%- assign media_size = product.featured_media.preview_image.width | append: 'x' -%}
+    "image": [
+      {{ product.featured_media | img_url: media_size | prepend: "https:" | json }}
+    ],
+  {%- endif -%}
+  "description": {{ product.description | strip_html | json }},
+  {%- if current_variant.sku != blank -%}
+    "sku": {{ current_variant.sku | json }},
+  {%- endif -%}
+  "brand": {
+    "@type": "Thing",
+    "name": {{ product.vendor | json }}
+  },
+  {%- if current_variant.barcode -%}
+    "gtin8": "{{ product.variants.first.barcode }}",
+  {%- endif -%}
+  {%- if current_variant.barcode.size == 12 -%}
+    "gtin12": "{{ product.variants.first.barcode }}",
+  {%- endif -%}
+  {%- if current_variant.barcode.size == 13 -%}
+    "gtin13": "{{ product.variants.first.barcode }}",
+  {%- endif -%}
+  {%- if current_variant.barcode.size == 14 -%}
+    "gtin14": "{{ product.variants.first.barcode }}",
+  {%- endif -%}
+  "offers": [
+    {%- for variant in product.variants -%}
+      {
+        "@type" : "Offer",
+        {%- if variant.sku != blank -%}
+          "sku": {{ variant.sku | json }},
+        {%- endif -%}
+        "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+        "price" : {{ variant.price | divided_by: 100.00 | json }},
+        "priceCurrency" : {{ cart.currency.iso_code | json }},
+        "url" : {{ shop.url | append: variant.url | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "Product page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "product_layout",
+      "label": "Image layout",
+      "options": [
+        {
+          "value": "slideshow",
+          "label": "Slideshow"
+        },
+        {
+          "value": "scrollable",
+          "label": "Scrollable"
+        }
+      ],
+      "default": "slideshow"
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "label": "Image size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "checkbox",
+      "id": "lightbox",
+      "label": "Show lightbox",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_bar",
+      "label": "Show Add to Cart bar",
+      "info": "Add to Cart bar will be hidden if the product has a selling plan",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Media",
+      "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Enable video looping",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "price-and-title",
+      "name": "Price and title",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "label": "Show vendor",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Star rating",
+          "info": "Requires an app to set the metafield value for reviews.rating"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show star rating",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating_count",
+          "label": "Show rating count",
+          "default": false
+        }
+      ],
+      "limit": 1
+    },
+    {
+      "type": "form",
+      "name": "Form",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_quantity",
+          "label": "Show quantity picker",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_payment_button",
+          "label": "Show dynamic checkout button",
+          "info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+          "default": true
+        }
+      ],
+      "limit": 1
+    },
+    {
+      "type": "product-description",
+      "name": "Product description",
+      "limit": 1
+    },
+    {
+      "type": "shipping-text",
+      "name": "Shipping text",
+      "settings":[
+        {
+          "type":"richtext",
+          "label":"Text",
+          "id":"shipping-text"
+        }
+      ]
+    },
+     {
+      "type": "kik-text-with-icon",
+      "name": "Kik text with icon",
+       "limit": 1,
+      "settings":[
+        {
+          "type":"text",
+          "label":"Text 1",
+          "id":"text_1"
+        },
+        {
+          "type":"image_picker",
+          "label":"Icon 1",
+          "id":"icon_image_1"
+        },
+           {
+          "type":"text",
+          "label":"Text 2",
+          "id":"text_2"
+        },
+        {
+          "type":"image_picker",
+          "label":"Icon 2",
+          "id":"icon_image_2"
+        },
+           {
+          "type":"text",
+          "label":"Text 3",
+          "id":"text_3"
+        },
+        {
+          "type":"image_picker",
+          "label":"Icon 3",
+          "id":"icon_image_3"
+        }
+      ]
+    },
+    {
+      "type": "social-share",
+      "name": "Social share",
+      "limit": 1
+    },
+    {
+      "type": "store-availability",
+      "name": "Store availability",
+      "limit": 1
+    },
+    {
+      "type": "complementary-products",
+      "name": "Complementary products",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "To select complementary products, add the Search & Discovery app. [Learn more](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations)"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,43 @@
+{%- if template contains 'article' or template contains 'blog' -%}
+	{%- capture permalinkURL -%}{{ shop.url }}{{ article.url }}{%- endcapture -%}
+	{%- capture shareTitle -%}{{ article.title | append: ' - ' | append: shop.name | url_param_escape }}{%- endcapture -%}
+	{%- if article.image -%}
+		{%- assign src = article.image | img_url: 'master' -%}
+	{%- else -%}
+		{%- assign img_tag = '<' | append: 'img' -%}
+		{%- if article.content contains img_tag -%}
+			{%- assign src = article.content | split: 'src="' -%}
+			{%- assign src = src[1] | split: '"' | first -%}
+			{%- assign src = src | replace: '_small', '' | replace: '_compact', '' | replace: '_medium', '' | replace: '_large', '' | replace: '_grande', '' -%}
+		{%- endif -%}
+	{%- endif -%}
+{%- elsif template contains 'product' or product != blank -%}
+	{%- capture permalinkURL -%}{{ shop.url }}{{ product.url }}{%- endcapture -%}
+	{%- capture shareTitle -%}{{ product.title | strip_html | append: ' - ' | append: shop.name | url_param_escape }}{%- endcapture -%}
+	{%- if product.featured_media.preview_image -%}
+		{%- assign src = product.featured_media.preview_image | img_url: 'master' -%}
+	{%- endif -%}
+{%- endif -%}
+
+{%- capture twitterShareURL -%}//twitter.com/intent/tweet?text={{ shareTitle }}&amp;url={{ permalinkURL }}{% if settings.twitter_via != '' %}&amp;via={{ settings.twitter_via | replace: '@','' }}{% endif %}{%- endcapture -%}
+
+{%- if settings.share_on_twitter -%}
+	<a aria-label="{{ 'general.footer.twitter' | t }}" title="{{ 'general.footer.twitter' | t }}" target="_blank" rel="noopener" href="{{ twitterShareURL }}" class="share-link" data-network="twitter">
+		{%- render 'icon-twitter-share' -%}
+		{{- 'general.share.tweet' | t -}}
+	</a>
+{%- endif -%}
+
+{%- if settings.share_on_facebook -%}
+	<a aria-label="{{ 'general.footer.facebook' | t }}" title="{{ 'general.footer.facebook' | t }}" target="_blank" rel="noopener" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" class="share-link" data-network="facebook">
+		{%- render 'icon-facebook-share' -%}
+		{{- 'general.share.share' | t -}}
+	</a>
+{%- endif -%}
+
+{%- if settings.share_on_pinterest -%}
+	<a aria-label="{{ 'general.footer.pinterest' | t }}" title="{{ 'general.footer.pinterest' | t }}" target="_blank" rel="noopener" href="//pinterest.com/pin/create/button/?description={{ shareTitle }}&amp;url={{ permalinkURL }}&amp;media={{ src }}" class="share-link" data-network="pinterest">
+		{%- render 'icon-pinterest-share' -%}
+		{{- 'general.share.pin' | t -}}
+	</a>
+{%- endif -%}

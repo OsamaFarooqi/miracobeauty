@@ -1,0 +1,22 @@
+{%- liquid
+  assign image = media.preview_image
+  assign widths = '86, 98, 172, 196, 258, 294'
+  assign sizes = '(min-width: 480px) 98px, 86px'
+  assign loading = loading | default: 'lazy'
+-%}
+
+<div class="product-single__media-thumb" data-id="{{ section.id }}-{{ media.id }}" data-thumbnail>
+  <a href="{{ media.preview_image | img_url: product_image_zoom_size, scale: product_image_scale }}"
+    class="product-single__thumbnail product-single__thumbnail--{{ section.id }}"
+    data-thumbnail-id="{{ section.id }}-{{ media.id }}">
+    {%- liquid
+      render 'image' image: image, widths: widths, sizes: sizes, loading: loading, modifier: 'product-single__thumbnail-img'
+
+      if media.media_type == 'video' or media.media_type == 'external_video'
+        render 'icon-media-video'
+      elsif media.media_type == 'model'
+        render 'icon-media-model'
+      endif
+    -%}
+  </a>
+</div>

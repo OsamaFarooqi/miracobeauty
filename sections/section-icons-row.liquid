@@ -1,0 +1,242 @@
+{% comment %}
+  Icons row
+{% endcomment %}
+
+{%- liquid
+  assign background = section.settings.color_icons_bg
+  assign color = section.settings.color_icons_text
+  assign alignment = section.settings.alignment
+-%}
+{%- style -%}
+  [data-section-id="{{ section.id }}"] { color: {{ color }}; }
+  [data-section-id="{{ section.id }}"] .icons-row__item .icon path { fill: {{ color }}; }
+  [data-section-id="{{ section.id }}"] .icons-row--background { background-color: {{ background }}; }
+{%- endstyle -%}
+
+<style>
+  @media only screen and (max-width: 479px) {
+  .kik-icons-row__item {
+    width: 50%;
+  }
+}
+</style>
+
+<section data-section-id="{{ section.id }}" data-section-type="icons-row">
+  <div class="icons-row--background pad-sm">
+    <div class="container">
+      {% if  section.settings.title %}
+       <div class="row" style="text-align:center; margin-bottom:20px;">
+        <h2>{{ section.settings.title }}</h2>
+       </div>
+        {% endif %}
+      <div class="row">
+        <div class="icons-row-wrapper icons-row-wrapper--{{ alignment }}">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign title = block.settings.title
+              assign text = block.settings.text
+              assign image = block.settings.icon_image
+              assign icon = block.settings.icon_name
+            -%}
+
+            <div class="icons-row__item kik-icons-row__item" {{ block.shopify_attributes }}>
+              {%- if image != blank -%}
+                <div class="icons-row__image">
+                  {%- liquid
+                    assign sizes = '45px'
+                    assign widths = '45, 60, 90, 120, 180'
+                    render 'image' image: image, widths: widths, width: 90, sizes: sizes
+                  -%}
+                </div>
+              {%- elsif icon != blank -%}
+                {%- case icon -%}
+                  {%- when 'award' -%}
+                    {%- render 'icon-award' -%}
+                  {%- when 'basket' -%}
+                    {%- render 'icon-basket' -%}
+                  {%- when 'ball' -%}
+                    {%- render 'icon-ball' -%}
+                  {%- when 'calendar' -%}
+                    {%- render 'icon-calendar' -%}
+                  {%- when 'camera' -%}
+                    {%- render 'icon-camera' -%}
+                  {%- when 'comment' -%}
+                    {%- render 'icon-comment' -%}
+                  {%- when 'data' -%}
+                    {%- render 'icon-data' -%}
+                  {%- when 'dollar' -%}
+                    {%- render 'icon-dollar' -%}
+                  {%- when 'email' -%}
+                    {%- render 'icon-email' -%}
+                  {%- when 'eye' -%}
+                    {%- render 'icon-eye' -%}
+                  {%- when 'fruits' -%}
+                    {%- render 'icon-fruits' -%}
+                  {%- when 'house' -%}
+                    {%- render 'icon-house' -%}
+                  {%- when 'lock' -%}
+                    {%- render 'icon-lock' -%}
+                  {%- when 'money' -%}
+                    {%- render 'icon-money' -%}
+                  {%- when 'phone' -%}
+                    {%- render 'icon-phone' -%}
+                  {%- when 'reload' -%}
+                    {%- render 'icon-reload' -%}
+                  {%- when 'shop' -%}
+                    {%- render 'icon-shop' -%}
+                  {%- when 'sync' -%}
+                    {%- render 'icon-sync' -%}
+                  {%- when 'target' -%}
+                    {%- render 'icon-target' -%}
+                  {%- when 'wallet' -%}
+                    {%- render 'icon-wallet' -%}
+            
+                {%- endcase -%}
+              {%- else -%}
+                <div class="icons-row__image">
+                  <div class="icon-svg-placeholder">
+                    {{- 'image' | placeholder_svg_tag: 'placeholder-svg-filled' -}}
+                  </div>
+                </div>
+              {%- endif -%}
+            
+              {%- if title != blank -%}
+                <h3 class="icons-row__title">{{ title }}</h3>
+              {%- endif -%}
+            
+              {%- if text != blank -%}
+                <p class="icons-row__content">{{ text }}</p>
+              {%- endif -%}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media screen and (min-width: 768px){
+  .kik-icons-row__item{width:25%;}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Icons row",
+  "max_blocks": 6,
+  "class": "shopify-section--icons-row icons-row",
+  "settings": [
+    {
+			"type": "text",
+            "id":"title",
+            "label":"Title"
+		},
+    {
+			"type": "header",
+			"content": "Layout"
+		},
+    {
+			"type": "select",
+			"id": "alignment",
+			"label": "Alignment",
+      "default": "center",
+			"options": [
+				{ "label": "Center", "value": "center" },
+				{ "label": "Left", "value": "left" }
+			]
+    },
+    {
+			"type": "header",
+			"content": "Colors"
+		},
+    {
+      "type": "color",
+      "id": "color_icons_bg",
+      "label": "Background",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "color_icons_text",
+      "label": "Text",
+      "default": "#333"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_name",
+          "label": "Icon",
+          "default": "shop",
+          "options": [
+            { "value": "award", "label": "Award" },
+            { "value": "basket", "label": "Basket" },
+            { "value": "ball", "label": "Ball" },
+            { "value": "calendar", "label": "Calendar" },
+            { "value": "camera", "label": "Camera" },
+            { "value": "comment", "label": "Comment" },
+            { "value": "data", "label": "Data" },
+            { "value": "dollar", "label": "Dollar" },
+            { "value": "email", "label": "Email" },
+            { "value": "eye", "label": "Eye" },
+            { "value": "fruits", "label": "Fruits" },
+            { "value": "house", "label": "House" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "money", "label": "Money" },
+            { "value": "phone", "label": "Phone" },
+            { "value": "reload", "label": "Reload" },
+            { "value": "shop", "label": "Shop" },
+            { "value": "sync", "label": "Sync" },
+            { "value": "target", "label": "Target" },
+            { "value": "wallet", "label": "Wallet" },
+						{ "value": "none", "label": "None" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon image",
+          "info": "If image set it will override the icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Feature"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Modular is a powerful Shopify theme that will set you apart from the rest with Mosaic, Image with text, and Slideshow sections.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icons row",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

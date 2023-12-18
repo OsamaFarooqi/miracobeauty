@@ -1,0 +1,224 @@
+{%- comment -%} Settings {%- endcomment -%}
+{%- liquid
+  assign title = section.settings.title
+  assign text = section.settings.text
+
+  comment
+    Layout
+  endcomment
+  assign collections_columns = section.blocks.size
+  assign layout_class = collections_columns | append: '-blocks'
+  assign blocks_height = section.settings.blocks_height
+
+  comment
+    Colors
+  endcomment
+  assign text_color = section.settings.text_color
+-%}
+
+{%- style -%}
+#CollectionModule--{{ section.id }} .collection-block__info { color: {{ text_color }}; }
+{%- for block in section.blocks -%}
+  {%- assign overlay_color = block.settings.overlay_color -%}
+  {%- assign overlay_opacity = block.settings.overlay_opacity | times: 0.01 | round: 2 -%}
+  #CollectionBlock--{{ section.id }}-{{ block.id }} .collection-block__image::after { background-color: {{ overlay_color }}; opacity: {{ overlay_opacity }}; }
+{%- endfor -%}
+{%- endstyle -%}
+
+{% comment %} Section {% endcomment %}
+<section class="collection-list container-wrap" id="CollectionModule--{{ section.id }}" data-section-type="collection-grid" data-section-id="{{ section.id }}">
+  {%- unless title == blank and text == blank -%}
+    <div class="collection-list__header row row-sm">
+      <div class="block s1">
+        {%- if title != blank -%}
+          <h2 class="collection-list__title">{{ title }}</h2>
+        {%- endif -%}
+
+        {%- if text != blank -%}
+          <p>{{ text }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  {% endunless %}
+
+  <div class="collection-list__wrapper">
+    <div class="collection-list__inner">
+      <div class="collection-list__row row--mosaic{% if section.settings.enable_slider %} row--slider{% endif %} row--{{ layout_class }} row--{{ blocks_height }}">
+        {%- comment -%} Collection Block, contains .js-quickView {%- endcomment -%}
+
+        {%- liquid
+          for block in section.blocks
+            assign collection = collections[block.settings.collection]
+            assign image = block.settings.image
+            assign mobile_image = block.settings.mobile_image
+
+            if image == blank and mobile_image == blank
+              unless collection.image == blank
+                assign image = collection.image
+              else
+                assign image = collection.products.first.featured_media.preview_image
+              endunless
+            endif
+
+            render 'kik-collection-grid-item', collection: collection, block_shopify_attributes: block.shopify_attributes, image: image, mobile_image: mobile_image, unique: block.id, mosaic: forloop.index
+          endfor
+        -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+{
+  "name": "Kik Collections list",
+  "class": "shopify-section--collections-list shopify-section--mosaic",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "header",
+      "content": "Blocks layout"
+    },
+    {
+      "type": "select",
+      "id": "blocks_height",
+      "label": "Height",
+      "default": "default-height",
+      "options": [
+        { "label": "Full height", "value": "full-height" },
+        { "label": "3/4 height", "value": "default-height" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "coll_text_position",
+      "label": "Text position",
+      "default": "center",
+      "options": [
+        { "label": "Top left", "value": "top_left" },
+        { "label": "Top right", "value": "top_right" },
+        { "label": "Center", "value": "center" },
+        { "label": "Bottom left", "value": "bottom_left" },
+        { "label": "Bottom right", "value": "bottom_right" }
+      ],
+      "info": "Desktop only"
+    },
+     {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show descriptions",
+      "default": true,
+      "info": "Hidden on mobile"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button label",
+      "default":"Shop Now"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "default": "primary",
+      "options": [
+        { "label": "Primary", "value": "primary" },
+        { "label": "Secondary", "value": "secondary" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Enable slider",
+      "info": "Horizontal slider in mobile layout",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Replacement image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Replacement mobile image"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Overlay",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay opacity",
+          "step": 5,
+          "max": 95,
+          "min": 0,
+          "unit": "%",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [ 
+    {
+      "category": "Collection",
+      "name": "Kik Collections list"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

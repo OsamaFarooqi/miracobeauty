@@ -1,0 +1,99 @@
+{%- liquid
+  assign show_comments = section.settings.show_comments
+  assign show_author = section.settings.author
+  assign show_date = section.settings.date
+  assign columns_size = article_columns | replace: '1', '' | prepend: 'lg_s1'
+  assign image_aspect_ratio = 1 | divided_by: section.settings.image_aspect_ratio
+-%}
+
+{%- capture article_excerpt -%}
+  {{- article.excerpt_or_content | strip_html | strip | truncatewords: 50 -}}
+{%- endcapture -%}
+
+{%- capture article_image -%}
+  {%- if article.image -%}
+    <a href="{{ article.url }}" title="{{ article.title }}" aria-label="{{ article.title }}" class="post__image">
+      {%- liquid
+        assign sizes = '(min-width: 1024px) calc((100vw - 80px) / ' | append: article_columns | append: ' - 10px), (min-width: 768px) calc((100vw - 80px) / 2 - 10px), (min-width: 480px) calc(100vw - 80px), calc(100vw - 40px)'
+
+        render 'image' image: article.image, sizes: sizes, aspect_ratio: image_aspect_ratio
+      -%}
+    </a>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture article_image_onboarding -%}
+  <div class="post__image svg-placeholder" style="--aspect-ratio: {{ image_aspect_ratio }};">
+    {{- 'image' | placeholder_svg_tag -}}
+  </div>
+{%- endcapture -%}
+
+{%- capture article_tags -%}
+  {%- for tag in article.tags -%}
+    <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="post__tags__tag">{{ tag | downcase }}</a>
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture article_tags_onboarding -%}
+  {%- for tag in (1..2) -%}
+    <span class="post__tags__tag">{{ 'blog.article.onboarding.tag' | t }}</span>
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- liquid
+  unless onboarding
+    assign article_url = article.url
+    assign article_image = article_image
+    assign article_title = article.title | strip_html
+    assign article_excerpt = article_excerpt
+    assign article_tags = article_tags
+    assign author = 'blog.article.by_author' | t: author: article.author
+    assign published_at = article.published_at | date: format: 'month_day_year'
+    assign datetime = article.published_at | date: '%Y-%m-%d'
+    assign comments_count = 'blog.blog_list_view.comment_count' | t: count: article.comments_count
+  else
+    assign article_url = '#'
+    assign article_image = article_image_onboarding
+    assign article_title = 'blog.article.onboarding.title' | t
+    assign article_excerpt = 'blog.article.onboarding.excerpt' | t
+    assign article_tags = article_tags_onboarding
+    assign author_name = 'blog.article.onboarding.author' | t
+    assign author = 'blog.article.by_author' | t: author: author_name
+    assign published_at = 'now' | date: format: 'month_day_year'
+    assign datetime = 'now' | date: '%Y-%m-%d'
+    assign comments_count = 'blog.blog_list_view.comment_count' | t: count: 0
+  endunless
+-%}
+
+{%- capture article_class -%}blogModule-posts__post block s1 med_s12 {{ columns_size }} {% unless article_image %}blogModule-posts__post--no-image{% else %}blogModule-posts__post--has-image{% endunless %}{%- endcapture -%}
+
+<article class="{{ article_class }}"{% if settings.transition_grid_items %} data-aos="zoom-in-up"{% endif %} data-blog-post>
+  <div class="blogModule-posts__post-block">
+    {{- article_image -}}
+
+    {%- if section.settings.tags and article_tags != blank -%}
+      <div class="post__tags">
+        {{- article_tags -}}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <a href="{{ article_url }}" title="{{ article_title }}" aria-label="{{ article_title }}" class="article__info">
+    {%- if show_date or show_author or show_comments and blog.comments_enabled? -%}
+      <div class="article__meta">
+        {%- if show_author -%}
+          <span class="article__meta__author">{{ author }}</span>
+        {%- endif -%}
+        {%- if show_date -%}
+          <span class="article__meta__date"><time datetime="{{ datetime }}">{{ published_at }}</time></span>
+        {%- endif -%}
+        {%- if show_comments and blog.comments_enabled? -%}
+          <span class="article__meta__comment-count">{{ comments_count }}</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <h3 class="article__title" data-post-title>{{ article_title }}</h3>
+    <p class="article__excerpt" data-post-excerpt>{{ article_excerpt }}</p>
+  </a>
+</article>

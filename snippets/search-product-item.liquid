@@ -1,0 +1,221 @@
+{%- comment -%}
+  Renders list of products in search
+
+  Accepts:
+  - product: {Object} product (required)
+  - index: {Number} Index of the item in products loop
+
+  Usage:
+  {% render 'search-product-item', product: product, index: forloop.index %}
+{%- endcomment -%}
+
+{%- liquid
+  assign show_sale_badge = false
+  unless settings.product_badge_style == 'none'
+    assign show_sale_badge = true
+  endunless
+
+  assign widths = '244, 268, 300, 348, 370, 488, 536, 740, 976, 1072, 1480, 1952, 2144, 2960, 3904'
+  assign modifier = 'image-wrapper--cover'
+  assign featured_image = product.featured_media.preview_image
+
+  if settings.image_size == 'contain'
+    assign modifier = 'image-wrapper--contain'
+    assign container_aspect_ratio = 1 | divided_by: settings.image_aspect_ratio
+
+    if featured_image.aspect_ratio < container_aspect_ratio
+      assign modifier = modifier | append: ' image-wrapper--portrait'
+    endif
+  endif
+-%}
+
+{%- liquid
+  assign first_variant = product.selected_or_first_available_variant
+
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+    assign on_sale_class = ' is-sale'
+  endif
+
+  assign sold_out = true
+  if product.available
+    assign sold_out = false
+  endif
+
+  unless show_sale_badge
+    assign on_sale = false
+  endunless
+
+  comment
+    Product tags
+  endcomment
+
+  assign product_tags = product.tags | join: ',' | append: ','
+  assign preorder = false
+  assign on_sale = false
+  assign sold_out = false
+  assign custom_badge = false
+
+  if product_tags contains '_badge_'
+    assign custom_badge = true
+    assign custom_badge_text = product_tags | split: '_badge_'
+    assign custom_badge_text = custom_badge_text[1] | split: ',' | first | replace: '_', ' '
+  endif
+
+  if product_tags contains '_preorder'
+    assign preorder = true
+  endif
+
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+
+  unless product.available
+    assign sold_out = true
+  endunless
+-%}
+
+{%- capture product_image_link -%}
+  <a class="product-block__image__link" href="{{ product.url | within: collection }}" title="{{ product.title | strip_html | escape }}" data-product-link tabindex="-1">
+    {%- if product.media[1].preview_image != blank and settings.hover_image -%}
+      <div class="product-block__image-hover">
+        {%- assign image_hover_modifier = modifier | append: ' product-block__image-hover__image' -%}
+        {%- render 'image' image: product.media[1].preview_image, widths: widths, sizes: sizes, modifier: image_hover_modifier -%}
+      </div>
+    {%- endif -%}
+
+    {%- liquid
+  assign show_badge = settings.show_badge
+  assign show_sold_badge = settings.show_sold_badge
+  assign show_saving_badge = settings.show_saving_badge
+  assign sold_out_text = 'products.labels.sold_out' | t
+  assign sale_text = 'products.labels.on_sale' | t
+  assign preorder_text = 'products.labels.preorder' | t
+
+  if settings.show_saving_badge
+    assign price = product.price
+    assign price_compare = product.compare_at_price
+    assign price_difference = price_compare | minus: price
+
+    if product.variants.size > 1
+      for variant in product.variants
+        assign variant_price_difference = variant.compare_at_price | minus: variant.price
+
+        if variant_price_difference > price_difference
+          assign price = variant.price
+          assign price_compare = variant.compare_at_price
+          assign price_difference = variant_price_difference
+        endif
+      endfor
+    endif
+
+    assign discount = price_difference | money_with_currency
+
+    if settings.saving_badge_type == 'percentage'
+      assign discount = price | times: -100.0 | divided_by: price_compare | plus: 100 | round: 0 | append: '%'
+    endif
+
+    if product.variants.size == 1 and price_difference > 0
+      assign saving_badge_text = 'products.labels.save_badge_html' | t: discount: discount
+    endif
+
+    if product.variants.size > 1 and price_difference > 0
+      assign saving_badge_text = 'products.labels.save_badge_up_to_html' | t: discount: discount
+    endif
+
+    if saving_badge_text == blank
+      assign show_saving_badge = false
+    endif
+  endif
+-%}
+
+{%- capture product_badges -%}
+  {%- if custom_badge and show_badge -%}
+    <div class="product__badge__item"><span>{{ custom_badge_text }}</span></div>
+  {%- endif -%}
+
+  {%- if sold_out and show_sold_badge -%}
+    <div class="product__badge__item product__badge__item--sold"><span>{{ sold_out_text }}</span></div>
+  {%- endif -%}
+
+  {%- if preorder and show_badge and sold_out == false -%}
+    <div class="product__badge__item"><span>{{ preorder_text }}</span></div>
+  {%- elsif on_sale and show_badge and sold_out == false and show_saving_badge == false -%}
+    <div class="product__badge__item product__badge__item--sale"><span>{{ sale_text }}</span></div>
+  {%- endif -%}
+
+  {%- if show_saving_badge -%}
+    <div class="product__badge__item product__badge__item--saving"><span>{{ saving_badge_text }}</span></div>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- unless product_badges == blank -%}
+  <div class="product__badge">
+    {{ product_badges }}
+  </div>
+{%- endunless -%}
+  </a>
+{%- endcapture -%}
+
+<div class="product-block block"
+  role="option"
+  aria-selected="false"
+  data-product-block>
+  <div class="product-block__inner"{% if settings.transition_grid_items %} data-aos="zoom-in-up"{% endif %}>
+    {%- if product.media.size > 0 -%}
+      <div class="product-block__image{% if product.media[1].preview_image != blank and settings.hover_image %} has-second-image{% endif %}" data-product-image>
+        <div class="product-block__image-container"{% if settings.image_size == 'contain' %} style="--container-aspect-ratio: {{ container_aspect_ratio }}"{% endif %}>
+          {%- render 'image' image: featured_image, widths: widths, sizes: sizes, modifier: modifier, inner_html: product_image_link -%}
+        </div>
+      </div>
+    {%- else -%}
+      <div class="product-block__image product-block__image--empty" data-product-image>
+        <div class="product-block__image-container">
+          {{- product_image_link -}}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="product-block__info product-block__info--{{ settings.product_title_position }}">
+      <div class="product-block__top">
+        <h3 class="product-block__title"><a href="{{ product.url | within: collection }}" tabindex="-1">{{ product.title | strip_html }}</a></h3>
+      </div>
+
+      <div class="product-block__price">
+        <p class="price{% if on_sale %} sale{% endif %}">
+          {%- if product.price_varies -%}
+            {{ 'products.labels.price_from' | t }} {{ product.price_min | money }}
+          {%- else -%}
+            {%- if product.price == 0 -%}
+              {{ 'products.labels.free' | t }}
+            {%- else -%}
+              {{ product.price | money }}
+            {%- endif -%}
+            {% if on_sale %}
+              <strike>{{ product.compare_at_price | money }}</strike>
+            {% endif %}
+          {%- endif -%}
+
+          {%- if first_variant.unit_price_measurement -%}
+            {%- capture unit_price_separator -%}
+              <span aria-hidden="true">/</span>
+              <span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}</span>
+            {%- endcapture -%}
+
+            {%- capture unit_price_base_unit -%}
+              {% if first_variant.unit_price_measurement.reference_value != 1 %}
+                {{ first_variant.unit_price_measurement.reference_value }}
+              {% endif %}
+              {{ first_variant.unit_price_measurement.reference_unit }}
+            {%- endcapture -%}
+            <span class="product__unit-price">
+              <span class="visually-hidden">{{ 'products.labels.unit_price_label' | t }}</span>
+              <span>{{ first_variant.unit_price | money }} {{ unit_price_separator }} {{ unit_price_base_unit }}</span>
+            </span>
+          {%- endif -%}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

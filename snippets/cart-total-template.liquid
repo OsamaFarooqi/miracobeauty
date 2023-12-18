@@ -1,0 +1,13 @@
+  <script data-cart-total-discount type="text/x-template">
+    {% raw %}
+    <div class="cart__total">
+      <span>
+        {{it.discount_title}}
+      </span>
+
+      <span>
+        -{{it.discount_total_allocated_amount | safe}}
+      </span>
+    </div>
+    {% endraw %}
+  </script>

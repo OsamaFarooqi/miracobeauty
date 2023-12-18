@@ -1,0 +1,7 @@
+{%- unless shop.enabled_payment_types == empty -%}
+<ul class="payment-icons__list">
+	{%- for type in shop.enabled_payment_types -%}
+		<li class="payment-icons__item">{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
+	{%- endfor -%}
+</ul>
+{%- endunless -%}

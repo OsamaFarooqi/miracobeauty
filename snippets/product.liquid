@@ -1,0 +1,443 @@
+{%- comment -%}
+  Renders product section and page
+
+  Accepts:
+  - product: {Object} product (required for Featured product section)
+  - section_type: {String} Used for Featured product section
+
+  Usage:
+  {% render 'product', product: product, image_position: image_position, section_type: section_type %}
+{%- endcomment -%}
+
+<style>
+  .kik-container .kik-icon-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .kik-container .kik-icon-item img {
+    width: 32px;
+    margin-right: 16px;
+  }
+  .kik-container .kik-icon-item p {
+    margin-bottom: 0px;
+  }
+</style>
+
+{% comment %} Settings {% endcomment %}
+{%- liquid
+  assign image_size = section.settings.image_size
+  assign image_position = section.settings.image_position
+  assign lightbox = section.settings.lightbox
+  assign arrows = settings.show_slideshow_arrows
+  assign dots = settings.show_slideshow_dots
+  assign dots_style = settings.dots_style
+  assign enable_video_looping = section.settings.enable_video_looping
+  assign is_product_template = false
+  if section_type == 'product-template'
+    assign is_product_template = true
+  endif
+
+  assign onboarding = false
+  if product == blank
+    assign onboarding = true
+  endif
+
+  if dots_style == 'hidden'
+    assign dots = false
+  endif
+
+  assign product_layout = section.settings.product_layout
+  assign show_reviews = settings.show_reviews
+  assign first_3d_model = product.media | where: 'media_type', 'model' | first
+  assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media
+  assign featured_media_id = featured_media.id
+  assign featured_media_aspect_ratio = featured_media.aspect_ratio | default: 1
+  assign preorder = false
+  assign has_form_block = false
+  assign is_single_media = true
+  assign product_tags = product.tags | join: ',' | append: ','
+
+  if product.media.size > 1
+    assign is_single_media = false
+  endif
+
+  if product_tags contains '_preorder'
+    assign preorder = true 
+  endif
+
+  assign sold_out = true
+  if product.available or product == blank
+    assign sold_out = false
+  endif
+-%}
+
+{%- capture product_images -%}
+  {%- unless onboarding -%}
+    {%- if product.media.size > 0 -%}
+      {%- comment -%} Show Featured media first {%- endcomment -%}
+      {%- render 'media', media: featured_media, featured_media: featured_media, is_single_media: is_single_media, enable_video_looping: enable_video_looping, unique: section.id, loading: 'eager' -%}
+
+      {%- comment -%} Loop product media skipping the featured {%- endcomment -%}
+      {%- for media in product.media -%}
+        {%- if media.id != featured_media_id -%}
+          {%- render 'media', media: media, featured_media: featured_media, is_single_media: is_single_media, enable_video_looping: enable_video_looping, unique: section.id -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- comment -%} Show blank image if product has no media {%- endcomment -%}
+      <div class="product-image product-image--empty"></div>
+    {%- endif -%}
+  {%- else -%}
+    <div class="product-image product-image--onboarding">
+      {{ 'product-5' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endunless -%}
+{%- endcapture -%}
+
+{%- comment -%} Prevent CLS on flickity init {%- endcomment -%}
+{%- if product_layout == 'slideshow' or is_product_template == false %}
+  {%- style -%}
+    #Product--{{ section.id }} .product__images__slider .flickity-viewport::after { aspect-ratio: {{ featured_media_aspect_ratio | round: 2 }}; }
+  {%- endstyle -%}
+{%- endif -%}
+
+<div class="product product--layout-{{ product_layout }} container-wrap{% unless is_product-template %} featured-product featured-product--{{ section.id }}{% if onboarding %} onboarding-product{% endif %}{% endunless %}"
+  id="Product--{{ section.id }}"
+  data-show-reviews="{{ show_reviews }}"
+  data-lightbox="{{ lightbox }}"
+  data-product-container>
+  <div class="container">
+    {%- if settings.show_breadcrumbs and is_product_template -%}
+      <div class="breadcrumbs">
+        {%- render 'site-breadcrumbs' -%}
+      </div>
+    {%- endif -%}
+
+    <div class="product__container{% if image_position == 'top' %} product__container--vertical{% endif %}">
+      <div class="product__images product__images--{{ image_size }}">
+        {%- if product_layout == 'slideshow' or is_product_template == false %}
+          <div class="product__images__container" data-product-single-media-group>
+            <div
+              id="product__images__slider--{{ section.id }}"
+              class="product__images__slider{% if is_single_media %} product__images__slider--single{% endif %}"
+              data-dots="{{ dots }}"
+              data-dots-style="{{ dots_style }}"
+              data-arrows="{{ arrows }}"
+              data-product-slideshow>
+              {{ product_images }}
+            </div>
+
+            {%- if first_3d_model -%}
+              <button
+                aria-label="{{ 'products.product_page.view_in_space_label' | t }}"
+                class="btn btn--ar product-single__view-in-space"
+                data-shopify-xr
+                data-shopify-model3d-id="{{ first_3d_model.id }}"
+                data-shopify-title="{{ product.title | strip_html }}"
+                data-shopify-xr-hidden>
+                {%- render 'icon-media-model' -%}
+                <span class='product-single__view-in-space-text'>{{ 'products.product_page.view_in_space' | t }}</span>
+              </button>
+            {%- endif -%}
+          </div>
+
+          {%- unless is_single_media or onboarding -%}
+            <div class="product__images__slider-nav" data-product-single-media-thumbs>
+              {%- comment -%} Show Featured media thumbnail first {%- endcomment -%}
+              {%- render 'media-thumb', media: featured_media, featured_media: featured_media, index: forloop.index -%}
+
+              {%- comment -%} Loop product media thumbnails skipping the featured {%- endcomment -%}
+              {%- for media in product.media -%}
+                {%- if media.id != featured_media_id -%}
+                  {%- render 'media-thumb', media: media, featured_media: featured_media, index: forloop.index -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+        {%- else -%}
+          <div class="product__images__container" data-product-single-media-group>
+            <div class="product__images__scroller{% if is_single_media %} product__images__scroller--single{% endif %}" data-lightbox="{{ lightbox }}" data-custom-scrollbar-items>
+              {{ product_images }}
+            </div>
+
+            {%- if product.media.size > 1 -%}
+              <div class="custom-scrollbar" data-custom-scrollbar>
+                <div class="custom-scrollbar__track" data-custom-scrollbar-track></div>
+              </div>
+            {%- endif -%}
+
+            {%- if first_3d_model -%}
+              <button
+                aria-label="{{ 'products.product_page.view_in_space_label' | t }}"
+                class="btn btn--ar product-single__view-in-space"
+                data-shopify-xr
+                data-shopify-model3d-id="{{ first_3d_model.id }}"
+                data-shopify-title="{{ product.title | strip_html }}"
+                data-shopify-xr-hidden>
+                {%- render 'icon-media-model' -%}
+                <span class='product-single__view-in-space-text'>{{ 'products.product_page.view_in_space' | t }}</span>
+              </button>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+      <!-- end product-images -->
+
+      
+      
+      <div class="product__info">
+        <div class="product__info__wrapper">
+                    {%- unless onboarding -%}
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when '@app' -%}
+                  {%- render block -%}
+
+                {%- when 'price-and-title' -%}
+                  {%- assign product_title = product.title | strip_html -%}
+
+                  <div class="product__title__wrapper{% unless block.settings.show_vendor %} product__title__wrapper--no-subheading{% endunless %}" data-product__title {{ block.shopify_attributes }}>
+                    {%- if block.settings.show_vendor -%}
+                      <p class="product__vendor subheading-text">{{ product.vendor }}</p>
+                    {%- endif -%}
+
+                    <h1 class="product__title">
+                      {%- if section_type == 'featured-product' -%}
+                        <a href="{{ product.url }}" title="{{ product.title | strip_html }}">
+                          {{- product_title -}}
+                        </a>
+                      {%- else -%}
+                        {{- product_title -}}
+                      {%- endif -%}
+                    </h1>
+
+                    {%- liquid
+  assign first_variant = product.selected_or_first_available_variant
+  assign on_sale = false
+  if first_variant.compare_at_price > first_variant.price
+    assign on_sale = true
+  endif
+-%}
+
+<div class="product__price" data-price-wrapper>
+  <span data-product-price>
+    {%- if first_variant.price == 0 -%}
+      {{ 'products.labels.free' | t }}
+    {%-  else -%}
+      {{ first_variant.price | money }}
+    {%- endif -%}
+  </span>
+  <s class="product__price__sale" data-compare-price>
+    {%- if on_sale -%}
+      {{- first_variant.compare_at_price | money -}}
+    {%- endif -%}
+  </s>
+
+  {%- liquid
+    assign units = product.variants | map: 'unit_price' | compact
+    if units[0]
+      assign has_units = true
+    else
+      assign has_units = false
+    endif
+  -%}
+
+  {%- if has_units -%}
+    
+    {%- unless first_variant.unit_price -%}
+      {%- assign hide_units = ' hidden' -%}
+    {%- endunless -%}
+
+    {%- capture unit_price_separator -%}
+      <span aria-hidden="true">/</span>
+      <span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}</span>
+    {%- endcapture -%}
+
+    {%- capture unit_price_base_unit -%}
+      <span>
+        {%- if first_variant.unit_price_measurement -%}
+          {%- if first_variant.unit_price_measurement.reference_value != 1 -%}
+            {{ first_variant.unit_price_measurement.reference_value }}
+          {%- endif -%}
+          {{- first_variant.unit_price_measurement.reference_unit -}}
+        {% endif %}
+      </span>
+    {%- endcapture -%}
+    <div class="product__price__meta">
+      <span class="product__unit-price{{ hide_units }}" data-product-unit>
+        <span class="visually-hidden">{{ 'products.labels.unit_price_label' | t }}</span>
+        <span data-product-unit-price id="unit-price-{{ section.id }}">{{ first_variant.unit_price | money }}</span>
+        {{ unit_price_separator }}
+        <span data-product-base id="unit-price-base-{{ section.id }}">{{ unit_price_base_unit }}</span>
+      </span>
+      <span data-price-each class="product__price--unit visually-hidden">
+        {{ 'products.labels.each' | t }}
+        <span data-price-each-amount></span>
+      </span>
+    </div>
+  {% endif %}
+</div>
+
+                    {%- if block.settings.show_rating -%}
+                      {%- render 'rating', show_rating_count: block.settings.show_rating_count, single_star: true, reviews: product.metafields.reviews -%}
+                    {%- endif -%}
+                  </div>
+
+                {%- when 'product-description' -%}
+                  <div class="product__description rte" data-product-description {{ block.shopify_attributes }}>
+                    {{- product.description -}}
+                </div>
+                {%- when 'shipping-text' -%}
+                    <div class="product__description rte" data-product-description {{ block.shopify_attributes }}>
+                      {{ block.settings.shipping-text }}
+                   </div>
+                {%- when 'form' -%}
+                  {%- assign enable_payment_button = block.settings.enable_payment_button -%}
+                  {%- assign show_newsletter = settings.show_newsletter -%}
+                  {%- assign text_newsletter = settings.text_newsletter -%}
+
+                  <div class="product__form" data-show-quantity="{{ block.settings.show_quantity }}" {{ block.shopify_attributes }}>
+                    <div data-product-form-container>
+                      {%- render 'product-form', product: product, preorder: preorder, enable_payment_button: enable_payment_button -%}
+                      {%- render 'notification-form', variant_available: product.selected_or_first_available_variant.available, product_title: product.title, show_newsletter: show_newsletter, text_newsletter: text_newsletter -%}
+                    </div>
+                  </div>
+                  {%- assign has_form_block = true -%}
+
+                {%- when 'store-availability' -%}
+                  <div class="product-single__store-availability-container" data-store-availability-container {{ block.shopify_attributes }}></div>
+
+                {%- when 'kik-text-with-icon' -%}
+            
+<div class="kik-container">
+  {% if block.settings.icon_image_1 or block.settings.text_1 != '' %}
+    <div class="kik-icon-item">
+      {% if block.settings.icon_image_1 %}
+        <img
+          src="{{block.settings.icon_image_1 | img_url: '32x32'}}"
+          width="32px"
+          height="32px" />
+      {% endif %}
+      <p>{{ block.settings.text_1 }}</p>
+    </div>
+  {% endif %}
+
+  {% if block.settings.icon_image_2 or block.settings.text_2 != '' %}
+    <div class="kik-icon-item">
+      {% if block.settings.icon_image_2 %}
+        <img
+          src="{{block.settings.icon_image_2 | img_url: '32x32'}}"
+          width="32px"
+          height="32px" />
+      {% endif %}
+      <p>{{ block.settings.text_2 }}</p>
+    </div>
+  {% endif %}
+
+  {% if block.settings.icon_image_3 or block.settings.text_3 != '' %}
+    <div class="kik-icon-item">
+      {% if block.settings.icon_image_3 %}
+        <img
+          src="{{block.settings.icon_image_3 | img_url: '32x32'}}"
+          width="32px"
+          height="32px" />
+      {% endif %}
+      <p>{{ block.settings.text_3 }}</p>
+    </div>
+  {% endif %}
+</div>
+
+                {%- when 'social-share' -%}
+                  <div class="product__share" {{ block.shopify_attributes }}>
+                    {%- if settings.share_on_facebook or settings.share_on_twitter or settings.share_on_pinterest -%}
+                      <div class="share-links">
+                        {%- render 'site-shareLinks' -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+
+                {%- when 'complementary-products' -%}
+                  <div class="product__complementary" {{ block.shopify_attributes }}>
+                    <complementary-products class="complementary-products" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=10&intent=complementary">
+                      {%- if recommendations.performed and recommendations.products_count > 0 -%}
+                        {%- assign complementary_products_title = 'products.labels.complementary_products_title' | t -%}
+                        {%- if complementary_products_title != blank -%}
+                          <p class="complementary-products__title">{{ complementary_products_title }}</p>
+                        {%- endif -%}
+
+                        {%- for product_complementary in recommendations.products -%}
+                          {%- render 'product-grid-item', product: product_complementary -%}
+                        {%- endfor -%}
+                      {%- endif -%}
+                    </complementary-products>
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
+
+            {%- unless has_form_block -%}
+              {%- assign text_newsletter = 'general.footer.newsletter.default_text_html' | t -%}
+              <div class="product__form">
+                <div data-product-form-container>
+                  {%- render 'product-form', product: product, preorder: preorder -%}
+                  {%- render 'notification-form', variant_available: product.selected_or_first_available_variant.available, product_title: product.title, show_newsletter: true, text_newsletter: text_newsletter -%}
+                </div>
+              </div>
+            {%- endunless -%}
+          {%- else -%}
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when '@app' -%}
+                  {%- render block -%}
+
+                {%- when 'price-and-title' -%}
+                  <div class="product__title__wrapper{% unless block.settings.show_vendor %} product__title__wrapper--no-subheading{% endunless %}" {{ block.shopify_attributes }}>
+                    {%- if block.settings.show_vendor -%}
+                      <p class="product__vendor subheading-text">{{ shop.name }}</p>
+                    {%- endif -%}
+
+                    <h1 class="product__title">{{ 'onboarding.product_title' | t }}</h1>
+
+                    <div class="product__price">{{ 9900 | money }}</div>
+
+                    {%- if block.settings.show_rating -%}
+                      {%- render 'rating', show_rating_count: block.settings.show_rating_count, single_star: true, onboarding: true -%}
+                    {%- endif -%}
+                  </div>
+
+                {%- when 'form' -%}
+                  <div class="product__form" data-show-quantity="{{ block.settings.show_quantity }}" {{ block.shopify_attributes }}>
+                    {%- render 'pseudoform', enable_payment_button: enable_payment_button -%}
+                  </div>
+
+                {%- when 'product-description' -%}
+                  <div class="product__description rte">{{ 'onboarding.product_description' | t }}</div>
+
+                {%- when 'social-share' -%}
+                  <div class="product__share" {{ block.shopify_attributes }}>
+                    {%- if settings.share_on_facebook or settings.share_on_twitter or settings.share_on_pinterest -%}
+                      <span class="share-links p">
+                        {%- render 'site-shareLinks' -%}
+                      </span>
+                    {%- endif -%}
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
+          {%- endunless -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} We should hide the sticky shop bar if product has selling plans {%- endcomment -%}
+{%- if is_product_template -%}
+  {%- if section.settings.show_cart_bar and product.selling_plan_groups.size == 0 -%}
+    {%- render 'shop-bar', product: product, featured_media: featured_media -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- unless onboarding -%}
+  <script type="application/json" id="ProductJson--{{ section.id }}" data-product-json hidden>{{ product | json }}</script>
+  <script type="application/json" id="ModelJson-{{ section.id }}" hidden>{{ product.media | where: 'media_type', 'model' | json }}</script>
+{%- endunless -%}

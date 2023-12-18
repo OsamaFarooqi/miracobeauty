@@ -1,0 +1,62 @@
+{%- liquid
+  assign transition_text = settings.transition_text
+  assign transition_images_fade = settings.transition_images_fade
+  assign animation_delay = 0
+  assign heading = block.settings.title
+  assign description = block.settings.description
+  assign image = block.settings.image
+  assign image_link = block.settings.image_link
+  assign button_text = block.settings.button_text
+  assign button_link = block.settings.button_link | default: '#'
+  assign button_style = block.settings.button_style
+  assign animation_anchor = '#feature-item--' | append: block.id
+  assign image_right = false
+  if block.settings.image_position == 'right'
+    assign image_right = true
+  endif
+-%}
+
+<div class="feature-item {% if image_right %}feature-item--reversed{% endif %}" data-alignment="{{ blocks_alignment }}" id="feature-item--{{ block.id }}">
+  <div class="feature-image"{% if transition_images_fade %} data-aos="fade" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %} {{ block.shopify_attributes }}>
+    {%- if image_link != blank -%}<a href="{{ image_link }}">{%- endif -%}
+      {%- if image != blank -%}
+        <div class="feature-image-bg" style="padding-top: {{ image_height }};">
+          {%- liquid
+            assign sizes = '(min-width: 1024px) calc((100vw - 160px) / 2 - 30px), (min-width: 768px) calc((100vw - 80px) / 2 - 30px), calc(100vw - 20px)'
+            render 'image' image: image, sizes: sizes
+          -%}
+        </div>
+      {%- else -%}
+        <div class="feature-image-bg" style="padding-top: {{ image_height }};">
+          <div class="svg-placeholder">
+            {%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%}
+            {{- 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' -}}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- if image_link != blank -%}</a>{%- endif -%}
+  </div>
+  <div class="feature-text">
+    <div class="feature-text-wrap">
+      {%- if heading != blank -%}
+        <h2{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+          {{- heading | escape -}}
+        </h2>
+        {%- assign animation_delay = animation_delay | plus: 250 -%}
+      {%- endif -%}
+
+      {%- if description != blank -%}
+        <div class="feature-text__p"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+          {{- description -}}
+        </div>
+        {%- assign animation_delay = animation_delay | plus: 250 -%}
+      {%- endif -%}
+
+      {%- if button_text != blank -%}
+        <div class="feature-text__button"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+          <a href="{{ button_link }}" class="button button--{{ button_style }}">{{ button_text }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

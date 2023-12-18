@@ -1,0 +1,112 @@
+{
+  "sections": {
+    "main": {
+      "type": "list-collections",
+      "blocks": {
+        "71eda3d5-8fc8-410f-a1eb-b48e1080f1e9": {
+          "type": "collection",
+          "settings": {
+            "collection": "all-products",
+            "image": "shopify:\/\/shop_images\/2022-2-28.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "51c9ec44-f16f-42de-bcde-95ba138f0a7f": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "image": "shopify:\/\/shop_images\/2023-3-17-2_a1016d39-00f3-41fb-a54f-03c27ba6935e.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "6ad50ecf-f32d-4264-af8d-db8d51e4a51d": {
+          "type": "collection",
+          "settings": {
+            "collection": "hydra",
+            "image": "shopify:\/\/shop_images\/collection-banner_list_-_hydra_693c8551-a629-4677-a207-ea3029b41446.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "6e5e4685-c266-4d61-ad6f-f973ba269dfd": {
+          "type": "collection",
+          "settings": {
+            "collection": "s-cell",
+            "image": "shopify:\/\/shop_images\/2023-7-4-full.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "03a82d6e-35b7-491e-8fd2-a479d2db259d": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "cleansers",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "3065e66b-a231-4cd8-8c78-1ac1313dbb09": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "moisturizers",
+            "image": "shopify:\/\/shop_images\/collection-banner_list_-_moisturizers_0e4ac10b-5974-457c-a9c7-112fdc8e53d9.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "4e23e693-a0b3-426d-936b-def6095a95ce": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "serums",
+            "image": "shopify:\/\/shop_images\/collection-banner_list_-_serums_oil_1dc0cfac-8dad-4439-9f74-8b86c5f16b4a.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "ab488396-fee2-4139-9d23-e29cccdd7356": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "masks",
+            "image": "shopify:\/\/shop_images\/collection-banner_list_-_masks_abc07c02-a9f8-4ccf-8926-1f47c299ab76.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "71eda3d5-8fc8-410f-a1eb-b48e1080f1e9",
+        "51c9ec44-f16f-42de-bcde-95ba138f0a7f",
+        "6ad50ecf-f32d-4264-af8d-db8d51e4a51d",
+        "6e5e4685-c266-4d61-ad6f-f973ba269dfd",
+        "03a82d6e-35b7-491e-8fd2-a479d2db259d",
+        "3065e66b-a231-4cd8-8c78-1ac1313dbb09",
+        "4e23e693-a0b3-426d-936b-def6095a95ce",
+        "ab488396-fee2-4139-9d23-e29cccdd7356"
+      ],
+      "custom_css": [
+        "{margin-bottom: 96px;}"
+      ],
+      "settings": {
+        "heading": "Collections",
+        "display_type": "selected",
+        "show_description": false,
+        "collections_columns": 2,
+        "coll_text_position": "bottom_left",
+        "button_text": "VIEW COLLECTION",
+        "button_style": "primary",
+        "text_color": "#ffffff",
+        "overlay_color": "#606161",
+        "overlay_opacity": 20
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

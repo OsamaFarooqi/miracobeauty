@@ -1,0 +1,76 @@
+{%- assign heading = section.settings.title -%}
+
+{% comment %}
+  Set collectionBlock size classes
+  These are applied in the collection-grid__block.liquid file
+{% endcomment %}
+{%- assign products_rows = settings.products_rows | plus: 0 -%}
+{%- assign products_columns = settings.products_columns | plus: 0 -%}
+{%- assign products_columns_mobile = settings.products_columns_mobile | plus: 0 -%}
+{%- assign products_limit = products_columns | times: products_rows -%}
+{%- assign columns_size = products_columns | replace: '1', '' -%}
+{%- assign columns_size_mobile = products_columns_mobile | replace: '1', '' -%}
+{%- assign grid_block_size = 'lg_s1' | append: columns_size -%}
+{%- assign grid_block_size_mobile = 's1' | append: columns_size_mobile -%}
+
+{% comment %} Set tablet size to be one-half {% endcomment %}
+{%- if products_columns > 2 -%}
+	{%- assign grid_block_size = 'lg_s1' | append: columns_size | append: ' med_s13' -%}
+{%- endif -%}
+
+<section class="related-products container-wrap collection-grid"
+  data-columns="{{ products_columns }}"
+  data-section-type="related-products"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-show-quantity="{{ settings.show_quantity }}"
+  data-limit="{{ settings.products_columns }}">
+  {%- if section.settings.related_products_enable -%}
+    {%- if recommendations.performed -%}
+      {%- if recommendations.products_count > 0 -%}
+
+        {%- assign align_center = false -%}
+        {%- if recommendations.products_count < products_columns -%}
+          {%- assign align_center = true -%}
+        {%- endif -%}
+
+        {%- if heading != blank -%}
+          <div class="page-title">
+            <div class="container">
+              <h2>{{ heading }}</h2>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="collection-grid__row collection-grid__row--grid{% if align_center %} row--center{% endif %}">
+          {%- for product in recommendations.products -%}
+            {%- render 'product-grid-item', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="related__placeholder"></div>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Product recommendations",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "related_products_enable",
+      "label": "Show related products",
+      "info": "Use the [Search & Discovery](https://apps.shopify.com/search-and-discovery) app from Shopify to customize the list of related products. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Related products"
+    }
+  ]
+}
+{% endschema %}

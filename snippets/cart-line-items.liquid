@@ -1,0 +1,126 @@
+{%- for line_item in cart.items -%}
+  <div class="cart__table-row" data-item>
+
+    <div class="cart__table-cell cart__table-cell--product">
+      <div class="cart-product">
+        <a class="cart-product__thumb" href="{{ collection_url }}{{ line_item.url }}">
+          {%- liquid
+            assign image = line_item.image
+            assign widths = '110, 180, 220, 330, 360, 440'
+            assign width = '360'
+            assign sizes = '(min-width: 768px) 110px, 180px'
+            assign alt = image.alt | default: line_item.title
+
+            render 'image' image: image, width: width, sizes: sizes, widths: widths, alt: alt, loading: 'eager', modifier: 'cart-product__thumb-img'
+          -%}
+        </a>
+
+        <div class="cart-product__desc">
+          <a href="{{ collection_url }}{{ line_item.url }}" class="cart-product__title">{{ line_item.product.title | strip_html }}</a>
+          {%- if line_item.variant.title != 'Default Title' -%}
+            <span class="cart-product__variant">{{ line_item.variant.title }}</span>
+          {%- endif -%}
+
+          {%- unless line_item.selling_plan_allocation == nil -%}
+            <div class="cart-product__selling-plan-name">
+              {{- line_item.selling_plan_allocation.selling_plan.name -}}
+            </div>
+          {%- endunless -%}
+
+          {%- assign property_size = line_item.properties | size -%}
+          {%- if property_size > 0 -%}
+            {%- for p in line_item.properties -%}
+              {%- assign property_first_char = p.first | slice: 0 -%}
+              {%- if p.last != blank and property_first_char != '_' -%} 
+                <p class="cart-product__property">
+                  <span>{{ p.first }}: </span>
+                  <span>
+                    {%- if p.last contains '/uploads/' -%}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                    {%- else -%}
+                      {{ p.last }}
+                    {%- endif -%}
+                  </span>
+                </p>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="cart__table-cell cart__table-cell--price">
+      <div class="cart-product__price" data-price="{{ line_item.price }}">
+        {% if line_item.original_price > line_item.final_price %}
+          <s>{{ line_item.original_price | money }}</s>
+        {% endif %}
+
+        <span>
+          {%- if line_item.original_price == 0 -%}
+            {{ 'products.labels.free' | t }}
+          {%- else -%}
+            {{ line_item.final_price | money }}
+          {%- endif -%}
+        </span>
+
+        {%- if line_item.unit_price_measurement -%}
+          <span class="product__unit-price">
+            <span>{{- line_item.unit_price | money -}}</span>
+            <span aria-hidden="true">/</span><span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}</span>
+            {%- if line_item.unit_price_measurement.reference_value != 1 -%}
+              {{ line_item.unit_price_measurement.reference_value }}
+            {%- endif -%}
+            {{- line_item.unit_price_measurement.reference_unit -}}
+          </span>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="cart__table-cell cart__table-cell--quantity">
+      <div class="cart-product__quantity">
+        <div class="counter inputGroup" data-quantity-holder>
+          <input type="number" name="updates[]" id="updates_{{ line_item.key }}" class="inputCounter" data-quantity-field
+        data-id="{{- line_item.key -}}" value="{{- line_item.quantity -}}" title="{{- 'products.form.quantity' | t }} - {{ line_item.product.title | strip_html -}}">
+          <button class="inputCounter__btn inputCounter__btn--down" data-quantity-minus data-quantity-button type="button" aria-label="{{ 'general.accessibility.decrease' | t }}">
+            {%- render 'icon-minus' -%}
+          </button>
+          <button class="inputCounter__btn inputCounter__btn--up" type="button" data-quantity-plus data-quantity-button aria-label="{{ 'general.accessibility.increase' | t }}">
+            {%- render 'icon-plus' -%}
+          </button>
+        </div>
+      </div>
+      <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" data-item-remove data-id="{{- line_item.key -}}" class="cart-product__remove">{{ 'cart.labels.remove' | t }}</a>
+    </div>
+
+    <div class="cart__table-cell cart__table-cell--total med_hide">
+      <div class="cart-product__total-price">
+        {% if line_item.original_line_price > line_item.final_line_price %}
+          <s>{{ line_item.original_line_price | money }}</s>
+        {% endif %}
+
+        {% if line_item.original_line_price == 0 %}
+          {{ 'products.labels.free' | t }}
+        {% else %}
+          {{ line_item.final_line_price | money }}
+        {% endif %}
+      </div>
+
+      {% comment %}
+        Display the specific line item discount
+      {% endcomment %}
+      {%- if line_item.line_level_discount_allocations.size > 0 -%}
+        <div class="cart-product__discounts">
+          {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+            <p>{{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})</p>
+          {%- endfor -%}
+        </div>
+      {% elsif line_item.discount_allocations.size > 0 %}
+        <div class="cart-product__discounts">
+          {%- for discount_allocation in line_item.discount_allocations -%}
+            <p>{{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})</p>
+          {%- endfor -%}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{%- endfor -%}

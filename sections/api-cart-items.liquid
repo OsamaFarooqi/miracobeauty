@@ -1,0 +1,7 @@
+<div data-api-content>
+  <span class="visually-hidden" aria-live="polite">
+    {{- 'cart.labels.add_message' | t -}} "{{- cart.items[0].title -}}" {{ 'cart.labels.total_message' | t: count: cart.item_count }}
+  </span>
+
+  {%- render 'cart-line-items' -%}
+</div>

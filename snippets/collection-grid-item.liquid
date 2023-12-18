@@ -1,0 +1,112 @@
+{% comment %}
+    Renders list of collections in grid layout
+
+    Accepts:
+    - collection: {Object} collection
+    - image: {Object} image
+    - mobile_image: {Object} mobile_image
+    - unique: {String} id
+    - overlay_color: {Color} Overlay color
+    - overlay_opacity: {Number} Overlay opacity
+    - shopify_attributes: {Object} block.shopify_attributes
+
+    Usage:
+    {% render 'collection-grid-item', collection: collection, image: image, unique: unique, overlay_color: overlay_color, overlay_opacity: overlay_opacity, shopify_attributes: shopify_attributes %}
+{% endcomment %}
+
+{%- liquid
+  assign button_text = section.settings.button_text
+  assign button_style = section.settings.button_style
+  assign collections_columns = section.settings.collections_columns | plus: 0
+  assign columns_size = collections_columns | replace: '1', ''
+  assign grid_block_size = 'block s1 lg_s1' | append: columns_size | append: ' med_s12'
+  assign transition_grid_items = settings.transition_grid_items
+  assign animation_anchor = '#CollectionModule--' | append: section.id
+
+  assign widths = '195, 205, 245, 275, 400, 500, 565, 750, 800, 1000, 1130, 1500, 1600, 2000, 2260, 3000, 3200, 4000'
+
+  if section.blocks.size == 1
+    assign sizes = 'calc(100vw - 20px)'  
+  else
+    assign sizes = '(min-width: 1024px) calc((100vw - 20px) / 2 - 5px), calc(100vw - 20px)'
+  endif
+
+  unless collection == empty
+    assign title = collection.title | strip_html | truncate: 150
+    assign description = collection.description | strip_html | truncate: 250
+    assign url = collection.url
+  else
+    assign title = 'onboarding.collection' | t
+    assign description = 'onboarding.collection_description' | t
+    assign url = '#'
+  endunless
+
+  if image == blank and mobile_image == blank
+    assign image = collection.products.first.featured_image
+  endif
+-%}
+
+{%- if overlay_color != blank -%}
+  {%- style -%}
+    #CollectionBlock--{{ section.id }}-{{ unique }} { --overlay-color: {{ overlay_color }}; --overlay-opacity: {{ overlay_opacity }}; }
+  {%- endstyle -%}
+{%- endif -%}
+
+<div id="CollectionBlock--{{ section.id }}-{{ unique }}" class="collection-block {{ grid_block_size }}"{% if transition_grid_items and mosaic %} data-aos="zoom-in-up" data-aos-anchor="{{ animation_anchor }}" data-aos-order="{{ mosaic }}"{% elsif transition_grid_items %} data-aos="zoom-in-up"{% endif %}{% if shopify_attributes != blank %} {{ shopify_attributes }}{% endif %}>
+  <a href="{{ url }}" aria-label="{{ title }}" class="collection-block__link">
+    {%- if collection != empty -%}
+      <div class="collection-block__image{% if settings.transition_collections_list %} collection-block__image--zoom{% endif %}">
+        {%- liquid
+          if image != blank
+            capture modifier
+              echo 'collection-block__image-bg'
+              if mobile_image == blank
+                echo ' collection-block__image-bg--single'
+              endif
+            endcapture
+
+            render 'image' image: image, sizes: sizes, widths: widths, modifier: modifier
+          endif
+
+          if mobile_image != blank
+            capture modifier
+              echo 'collection-block__image-bg collection-block__image-bg--mobile'
+              if image == blank
+                echo ' collection-block__image-bg--single'
+              endif
+            endcapture
+
+            render 'image' image: mobile_image, sizes: sizes, widths: widths, modifier: modifier
+          endif
+
+          if image == blank and mobile_image == blank
+            echo '<div class="collection-block__image-bg collection-block__image-bg--placeholder"></div>'
+          endif
+        -%}
+      </div>
+    {%- else -%}
+      {%- if collection == empty -%}
+        <div class="collection-block__image{% if settings.transition_collections_list %} collection-block__image--zoom{% endif %}">
+          <div class="collection-block__image-bg collection-block__image-bg--placeholder svg-placeholder">
+            {%- capture current -%}{% cycle 1, 2, 3, 4, 5 %}{%- endcapture -%}
+            {{- 'collection-' | append: current | placeholder_svg_tag -}}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="collection-block__info text-position--{{ section.settings.coll_text_position }}">
+      <div>
+        <h3 class="collection-block__title">{{ title }}</h3>
+        {%- if section.settings.show_description and description != blank -%}
+          <p class="collection-block__description">
+            {{- description -}}
+          </p>
+        {%- endif -%}
+        {%- if button_text != blank -%}
+          <span class="button button--{{ button_style }}">{{ button_text }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </a>
+</div>

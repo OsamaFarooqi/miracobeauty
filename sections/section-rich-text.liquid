@@ -1,0 +1,97 @@
+{% comment %} /sections/rich-text.liquid {% endcomment %}
+{%- render 'rich-text' -%}
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+	{
+		"name": "Rich text",
+		"class": "shopify-section--rich-text",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Layout"
+			},
+			{
+				"type": "select",
+				"id": "layout",
+				"label": "Text position",
+				"default": "split",
+				"options": [
+					{ "label": "Stacked", "value": "default" },
+					{ "label": "Split", "value": "split" }
+				]
+			},
+			{
+				"type": "header",
+				"content": "Content"
+			},
+			{
+				"type": "text",
+				"id": "subheading",
+				"label": "Subheading",
+				"default": "Humble Beginnings"
+			},
+			{
+				"type": "textarea",
+				"id": "title",
+				"label": "Heading",
+				"default":"Describe your products or brand in detail here"
+			},
+			{
+				"type": "richtext",
+				"id": "content",
+				"label": "Text",
+				"default": "<p>It features ample space to showcase your imagery with Mosaic, Image with text, and Slideshow sections ... and even this Rich Text section itself.</p>"
+			},
+			{
+				"type": "header",
+				"content": "Button"
+			},
+			{
+				"type": "text",
+				"id": "button_text",
+				"label": "Label",
+				"default": "Learn More"
+			},
+			{
+				"type": "url",
+				"id": "button_link",
+				"label": "Link"
+			},
+            {
+				"type": "header",
+				"content": "Redeem Button"
+			},
+            {
+				"type": "checkbox",
+				"id": "checkbox_redeem",
+				"label": "Show redeem points button"
+			},
+            {
+				"type": "text",
+				"id": "redeem_button_text",
+				"label": "Redeem button text",
+				"default": "REDEEM POINTS"
+			},
+			{
+				"type": "select",
+				"id": "button_style",
+				"label": "Style",
+				"default": "primary",
+				"options": [
+					{ "label": "Primary", "value": "primary" },
+					{ "label": "Secondary", "value": "secondary" }
+				]
+			}
+		],
+		"presets": [
+			{
+				"category": "Text",
+				"name": "Rich text"
+			}
+		],
+		"disabled_on": {
+      "groups": ["header", "footer"]
+    }
+	}
+{% endschema %}

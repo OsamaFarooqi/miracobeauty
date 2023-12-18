@@ -1,0 +1,8 @@
+{%- assign accent_line = settings.accent_line -%}
+{%- unless accent_line == 'none' -%}
+<div class="accent-line accent-line--{{ accent_line }}">
+	{%- if accent_line == 'curved' -%}
+		{%- render 'icon-curved-line' -%}
+	{%- endif -%}
+</div>
+{%- endunless -%}

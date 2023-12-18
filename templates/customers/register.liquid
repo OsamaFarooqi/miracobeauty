@@ -1,0 +1,48 @@
+{%- comment -%} /templates/customers/register.liquid {%- endcomment -%}
+<section class="account-page">
+	<div class="container">
+		<div class="row inline u-center">
+
+			<div class="account-form registerFrom block s1 med_s12">
+				<p class="block s1 size--heading-1 pad-xs">{{ 'customer.register.title' | t }}</p>
+				{%- form 'create_customer' -%}
+					<div class="row inline">
+
+						<div class="block s1 p c-error">
+							{{- form.errors | default_errors -}}
+						</div>
+
+						<div class="inputGroup block s1 med_s12">
+							<label for="FirstName" class="c-gray">{{ 'customer.register.first_name' | t }}</label>
+							<input type="text" name="customer[first_name]" id="FirstName" class="input-full" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus>
+						</div>
+
+						<div class="inputGroup block s1 med_s12">
+							<label for="LastName" class="c-gray">{{ 'customer.register.last_name' | t }}</label>
+							<input type="text" name="customer[last_name]" id="LastName" class="input-full" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words">
+						</div>
+
+						<div class="inputGroup block s1 med_s12">
+							<label for="Email" class="c-gray">{{ 'customer.register.email' | t }}</label>
+							<input type="email" name="customer[email]" id="Email" class="input-full{% if form.errors contains 'email' %} error{% endif %}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
+						</div>
+
+						<div class="inputGroup block s1 med_s12">
+							<label for="CreatePassword" class="c-gray">{{ 'customer.register.password' | t }}</label>
+							<input type="password" name="customer[password]" id="CreatePassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}">
+						</div>
+
+					</div>
+					<div class="row inline">
+						<input type="submit" value="{{ 'customer.register.submit' | t }}" class="account-form__submit button block">
+
+						<div class="account-form__links block s1 row inline">
+							<a href="{{ shop.url }}" class="account-form__link">{{ 'customer.register.cancel' | t }}</a>
+						</div>
+					</div>
+				{%- endform -%}
+			</div>
+
+		</div>
+	</div>
+</section>

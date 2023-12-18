@@ -1,0 +1,186 @@
+{
+  "sections": {
+    "d436f54d-66f0-40e6-ada8-406cc2385e22": {
+      "type": "section-rich-text",
+      "disabled": true,
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Normal Skin",
+        "content": "<p>Normal Skin is balanced by neither being too oily nor too dry. Not prone to acne breakouts, flakiness, or feeling slick or tight. Pores are not enlarged, skin texture is smooth, and less likely to become sensitive. <\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "hero": {
+      "type": "collection-image-with-title",
+      "disabled": true,
+      "custom_css": [
+        "h1 {font-size: 40px;}"
+      ],
+      "settings": {
+        "show_banner": false,
+        "height": "four-fifty-height-hero",
+        "height_mobile": "one-hundred-height-hero--mobile",
+        "banner_text_position": "left",
+        "banner_color_text": "#606161",
+        "banner_color_overlay": "#333333",
+        "banner_overlay_opacity": 0
+      }
+    },
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-oily-skin-type_-_Desktop.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/collection-oily-skin-type_-_Mobile.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "",
+            "title": "{{ collection.title }}",
+            "text": "<p>{{ collection.metafields.custom.brief_description | metafield_tag }}<\/p>",
+            "cta": "",
+            "link": "shopify:\/\/collections\/all",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0"
+      ],
+      "custom_css": [
+        "h1 {color: #656464;}",
+        "p {color: #656464; font-size: 17px;}"
+      ],
+      "settings": {
+        "enable_custom_css": true,
+        "slide_height": "five-fifty-height-hero",
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": true,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "five-fifty-height-hero--mobile"
+      }
+    },
+    "main": {
+      "type": "collection",
+      "settings": {
+        "show_sort_filter": true,
+        "enable_filters": true,
+        "filter_mode": "default",
+        "position_filters": "left",
+        "show_featured_image": false,
+        "featured_heading": "Use this image showcase promotional content.",
+        "featured_text": "<p>Elaborate on it with rich text<\/p>",
+        "featured_button_text": "Learn More",
+        "featured_button_link": "",
+        "featured_button_style": "primary",
+        "featured_color_text": "#ffffff",
+        "featured_color_overlay": "#333333",
+        "featured_overlay_opacity": 30
+      }
+    },
+    "f9c6a4ed-415d-482a-8ee5-267ea5532c72": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: -24px;}"
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Routine",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "fed7c219-ed2b-4283-ab82-75e92cad863d": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Control oil production",
+        "content": "<p><a href=\"\/blogs\/articles\/best-ingredients-for-all-skin-types\" title=\"What Are the Best Ingredients for All Skin Types\">Oily skin<\/a> produces excess sebum, which can lead to clogged pores and acne breakouts. There are a number of ways to control oil production, including using oil-free cosmetics, washing your face twice a day, and using a toner to remove excess oil.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "882afa6f-bafd-4f2e-809c-278922d9c5fd": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Exfoliate",
+        "content": "<p>Exfoliating once or twice a week can help to remove dead skin cells and unclog pores. Use a gentle exfoliator that is designed for oily skin.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "47bdfc28-f5bd-4fd9-998f-ed056ad68496": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Moisturize",
+        "content": "<p>Contrary to popular belief, most of the time oily skin is caused by lack of <a href=\"\/blogs\/articles\/skin-hydration-vs-moisture\" title=\"Skin Hydration Vs. Moisture: Which Do I Need?\">hydration<\/a>. If the skin is dehydrated, it will cause an excess of oil production. The key is using lightweight, non-comedogenic skincare products.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "7d38a3be-9794-48f3-a807-c83a833bbfbb": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: 280px;}",
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Face wash routine",
+        "content": "<p>Wash your face twice a day with a cleanser that’s not harsh on the skin. Using harsh soaps and detergents can strip away the natural oils from your skin, leaving it dry and irritated. Instead, use a gentle cleanser that is designed for oily skin. <\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    }
+  },
+  "order": [
+    "d436f54d-66f0-40e6-ada8-406cc2385e22",
+    "hero",
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2",
+    "main",
+    "f9c6a4ed-415d-482a-8ee5-267ea5532c72",
+    "fed7c219-ed2b-4283-ab82-75e92cad863d",
+    "882afa6f-bafd-4f2e-809c-278922d9c5fd",
+    "47bdfc28-f5bd-4fd9-998f-ed056ad68496",
+    "7d38a3be-9794-48f3-a807-c83a833bbfbb"
+  ]
+}

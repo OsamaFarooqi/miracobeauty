@@ -1,0 +1,12 @@
+{%- if settings.enable_color_swatches -%}
+  <script data-swatch-template type="text/x-template">
+    {% raw %}
+      <div class="swatch__element" data-swatch-button data-value="{{ it.color }}">
+        <div class="swatch__label" data-swatch="{{ it.color }}" data-swatch-variant="{{ it.variant }}">
+          <span class="swatch__color swatch__color--{{ it.color | handle }}" data-swatch-color></span>
+        </div>
+        <a href="{{ it.variantUrl }}" class="swatch__link">{{ it.color }}</a>
+      </div>
+    {% endraw %}
+  </script>
+{%- endif -%}

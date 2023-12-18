@@ -1,0 +1,97 @@
+{%- assign number_of_comments = article.comments_count -%}
+
+{%- comment -%}If a comment was just submitted, and it has no blank fields.{%- endcomment -%}
+{%- if comment and comment.created_at -%}
+  {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+{%- endif -%}
+
+<div id="comments">
+  {%- assign success_message = '' -%}
+
+  {%- comment -%}If a comment was just submitted with no blank field.{%- endcomment -%}
+  {% paginate article.comments by 4 %}
+    {%- if number_of_comments > 0 -%}
+      <ul>
+        {%- comment -%}If a comment was just submitted with no blank field, let's show it.{%- endcomment -%}
+        {%- if comment and comment.created_at and comment.status=="published" -%}
+          <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+            <p class="comment-author">{{ comment.author }} {{ 'blog.article.comment_date_on' | t }} {{ comment.created_at | date: format: 'month_day_year' }}</p>
+
+            <div class="comment-content">
+              {{- comment.content -}}
+            </div>
+          </li>
+        {%- endif -%}
+        {%- comment -%}Showing the rest of the comments.{%- endcomment -%}
+        {%- for article_comment in article.comments -%}
+          {%- if article_comment != comment -%}
+            <li id="{{ article_comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last{% endif %}">
+              <p class="comment-author">{{ article_comment.author }} {{ 'blog.article.comment_date_on' | t }} {{ article_comment.created_at | date: format: 'month_day_year' }}</p>
+
+              <div class="comment-content">
+                {{- article_comment.content -}}
+              </div>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- comment -%}Comments are paginated.{%- endcomment -%}
+    {%- if paginate.pages > 1 -%}
+      <div class="pagination pagination--comments">
+        {{- paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' -}}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%}Comment submission form.{%- endcomment -%}
+    {%- form "new_comment", article -%}
+
+      {%- if form.posted_successfully? -%}
+        {%- assign success_message = 'blog.article.comment_post_success' | t -%}
+        {%- if blog.moderated? and comment.status == 'pending' -%}
+          {%- assign success_message = 'blog.article.comment_post_notification' | t -%}
+        {%- elsif comment.status == 'unapproved' or comment.status == 'spam' -%}
+          {%- assign success_message = 'blog.article.comment_post_unapproved' | t -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      <h4 id="add-comment-title">{{ 'blog.article.comment_post_title' | t }}</h4>
+
+      {%- if form.errors -%}
+        <div class="feedback error p">
+          {{- form.errors | default_errors -}}
+        </div>
+      {%- endif -%}
+
+      {%- if success_message != '' -%}
+        <p class="success feedback">
+          {{ success_message }}
+        </p>
+      {%- endif -%}
+
+      <p>
+        <label for="comment-author">{{ 'blog.article.comment_author' | t }}</label>
+
+        <input required{% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" id="comment-author" value="{{ form.author }}" />
+      </p>
+
+      <p>
+        <label for="comment-email">{{ 'blog.article.comment_email' | t }}</label>
+
+        <input required{% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" id="comment-email" value="{{ form.email }}" />
+      </p>
+
+      <p>
+        <label for="comment-body">{{ 'blog.article.comment_message' | t }}</label>
+
+        <textarea required{% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body">{{ form.body }}</textarea>
+      </p>
+
+      <input type="submit" class="button" value="{{ 'blog.article.comment_post_button_title' | t }}" />
+
+    {%- endform -%}
+  {% endpaginate %}
+</div>
+
+

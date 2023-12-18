@@ -1,0 +1,27 @@
+{%- comment -%}
+  Renders a pagination bar
+  Accepts:
+
+  - paginate: {Object} Paginate Liquid object (required)
+
+  Usage:
+  {%- render 'pagination', paginate: paginate -%}
+{%- endcomment -%}
+{%- if settings.enable_infinity_scroll -%}
+  {%- if paginate.next -%}
+    <div class="pagination pagination--infinity" data-pagination>
+      <a href="{{ paginate.next.url }}" class="loadMore visually-hidden">{{ 'collections.pagination.load_more' | t }}</a>
+      <div class="icon-load-more"></div>
+
+      <noscript>
+        <a href="{{ paginate.next.url }}">{{ 'collections.pagination.load_more' | t }}</a>
+      </noscript>
+    </div>
+  {%- endif -%}
+{%- else -%}
+  {%- if paginate.pages > 1 -%}
+    <div class="pagination" data-pagination>
+      {{- paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' -}}
+    </div>
+  {%- endif -%}
+{%- endif -%}

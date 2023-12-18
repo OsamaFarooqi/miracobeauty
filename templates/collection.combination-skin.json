@@ -1,0 +1,186 @@
+{
+  "sections": {
+    "d436f54d-66f0-40e6-ada8-406cc2385e22": {
+      "type": "section-rich-text",
+      "disabled": true,
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Normal Skin",
+        "content": "<p>Normal Skin is balanced by neither being too oily nor too dry. Not prone to acne breakouts, flakiness, or feeling slick or tight. Pores are not enlarged, skin texture is smooth, and less likely to become sensitive. <\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "hero": {
+      "type": "collection-image-with-title",
+      "disabled": true,
+      "custom_css": [
+        "h1 {font-size: 40px;}"
+      ],
+      "settings": {
+        "show_banner": false,
+        "height": "four-fifty-height-hero",
+        "height_mobile": "one-hundred-height-hero--mobile",
+        "banner_text_position": "left",
+        "banner_color_text": "#606161",
+        "banner_color_overlay": "#333333",
+        "banner_overlay_opacity": 0
+      }
+    },
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/combination-skin-banner-new-stock-desktop.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/combinationl-skin-banner-new-stock-mobile.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "",
+            "title": "{{ collection.title }}",
+            "text": "<p>{{ collection.metafields.custom.brief_description | metafield_tag }}<\/p>",
+            "cta": "",
+            "link": "shopify:\/\/collections\/all",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0"
+      ],
+      "custom_css": [
+        "h1 {color: #656464;}",
+        "p {font-size: 17px; color: #656464;}"
+      ],
+      "settings": {
+        "enable_custom_css": true,
+        "slide_height": "five-fifty-height-hero",
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": true,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "five-fifty-height-hero--mobile"
+      }
+    },
+    "main": {
+      "type": "collection",
+      "settings": {
+        "show_sort_filter": true,
+        "enable_filters": true,
+        "filter_mode": "default",
+        "position_filters": "left",
+        "show_featured_image": false,
+        "featured_heading": "Use this image showcase promotional content.",
+        "featured_text": "<p>Elaborate on it with rich text<\/p>",
+        "featured_button_text": "Learn More",
+        "featured_button_link": "",
+        "featured_button_style": "primary",
+        "featured_color_text": "#ffffff",
+        "featured_color_overlay": "#333333",
+        "featured_overlay_opacity": 30
+      }
+    },
+    "e216bde6-c7b2-4af2-9bb5-36fc88fee386": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: -24px;}"
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Routine",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "fed7c219-ed2b-4283-ab82-75e92cad863d": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Customize your skincare routine",
+        "content": "<p><a href=\"\/blogs\/articles\/best-ingredients-for-all-skin-types\" title=\"What Are the Best Ingredients for All Skin Types\">Combination skin<\/a> can be tricky to care for, but it's important to customize your skincare routine to meet the needs of both the dry and oily areas of your face. Use a gentle cleanser and moisturizer that is designed for combination skin.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "5aef0137-7020-4a8d-83d5-336282ab6c5a": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Exfoliate",
+        "content": "<p>Exfoliate once or twice a week to remove dead skin cells and unclog pores. Use a gentle exfoliator that is designed for <a href=\"\/blogs\/articles\/skincare-routine-guide-for-busy-women\" title=\"Ultimate Skincare Routine Guide For Busy Women\">combination skin<\/a>.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "17b11e99-1aac-4a95-ac13-75403588bdb1": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Moisturize your skin every day",
+        "content": "<p>Moisturize both the dry and oily areas of your face. Use a <a href=\"\/products\/hydra-deep-water-cream\" title=\"Hydra+ Deep Water Moisturizer Cream with Collagen and Hyaluronic Acid\">lightweight moisturizer<\/a> for dry areas and a mattifying moisturizer for oily areas.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "a9431745-9b08-49aa-81ba-e668f085cb22": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: 280px;}",
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Face wash routine",
+        "content": "<p>Wash your face twice a day with a gentle cleanser. Using harsh soaps and detergents can strip away the natural oils from your skin, leaving it dry and irritated. Instead, use a gentle cleanser that is designed for sensitive skin.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    }
+  },
+  "order": [
+    "d436f54d-66f0-40e6-ada8-406cc2385e22",
+    "hero",
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2",
+    "main",
+    "e216bde6-c7b2-4af2-9bb5-36fc88fee386",
+    "fed7c219-ed2b-4283-ab82-75e92cad863d",
+    "5aef0137-7020-4a8d-83d5-336282ab6c5a",
+    "17b11e99-1aac-4a95-ac13-75403588bdb1",
+    "a9431745-9b08-49aa-81ba-e668f085cb22"
+  ]
+}

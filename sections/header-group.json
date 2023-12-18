@@ -1,0 +1,101 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": {
+      "type": "announcement",
+      "blocks": {
+        "aec8e798-6a5e-49a3-925c-8894bb6e78f4": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Get 15% off your first order<\/strong><\/p>",
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "5d289e37-c692-4f72-bab4-64fb85c55cf7": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Enjoy free shipping on orders over $50<\/strong><\/p>",
+            "target_url_enabled": false,
+            "target_url": "shopify:\/\/policies\/shipping-policy",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "8e670d79-904d-4dcf-927d-033af12f2ad3": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p><strong>2 free samples of choice with every order!<\/strong><\/p>",
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        }
+      },
+      "block_order": [
+        "aec8e798-6a5e-49a3-925c-8894bb6e78f4",
+        "5d289e37-c692-4f72-bab4-64fb85c55cf7",
+        "8e670d79-904d-4dcf-927d-033af12f2ad3"
+      ],
+      "settings": {
+        "bg_color": "#606161",
+        "color": "#ffffff",
+        "layout": "slider",
+        "speed": 5
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "header_transparent": true,
+        "header_text_color": "black",
+        "logo_transparent": "shopify:\/\/shop_images\/Logo_Dark_-_1.png",
+        "logo": "shopify:\/\/shop_images\/Logo_Dark_-_1.png",
+        "logo_max_width": 100,
+        "show_site_name": false,
+        "menu_list": "main-menu-version-3",
+        "links_position": "links_left",
+        "logo_position": "logo_center",
+        "meganav_image_1": "shopify:\/\/shop_images\/mega-menu-02.jpg",
+        "image_aspect_ratio_1": 1,
+        "meganav_image_heading_1": "",
+        "meganav_image_link_1": "",
+        "meganav_image_2": "shopify:\/\/shop_images\/all-products-square.jpg",
+        "image_aspect_ratio_2": 1,
+        "meganav_image_heading_2": "",
+        "meganav_image_link_2": "",
+        "meganav_image_3": "shopify:\/\/shop_images\/about-proven_70kb.jpg",
+        "image_aspect_ratio_3": 1,
+        "meganav_image_heading_3": "",
+        "meganav_image_link_3": "",
+        "meganav_image_4": "shopify:\/\/shop_images\/Copy_of_CN8A4665-Edit_1.jpg",
+        "image_aspect_ratio_4": 1,
+        "meganav_image_heading_4": "",
+        "meganav_image_link_4": "",
+        "meganav_image_5": "shopify:\/\/shop_images\/about-us-megamenu.jpg",
+        "image_aspect_ratio_5": 1,
+        "meganav_image_heading_5": "",
+        "meganav_image_link_5": "",
+        "meganav_image_6": "shopify:\/\/shop_images\/CN8A7196-2.jpg",
+        "image_aspect_ratio_6": 1,
+        "meganav_image_heading_6": "",
+        "meganav_image_link_6": ""
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header"
+  ]
+}

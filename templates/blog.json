@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "110d2e2b-b0e1-4ebc-aa88-43562f965de7": {
+      "type": "section-rich-text",
+      "settings": {
+        "layout": "default",
+        "subheading": "Welcome to",
+        "title": "MIRACO Beauty Blog",
+        "content": "<p>Your guide to all things skincare, beauty, and wellness. Dive into a wealth of curated articles, expert tips, and illuminating insights that unveil the synergy of science, nature, and technology in the pursuit of radiant and confident skin.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "main": {
+      "type": "blog",
+      "settings": {
+        "show_blog_name": false,
+        "show_rss": false,
+        "show_featured_post": true,
+        "tags": true,
+        "author": true,
+        "date": true,
+        "show_comments": false,
+        "image_aspect_ratio": 0.6,
+        "article_rows": 2,
+        "article_columns": 3
+      }
+    },
+    "61cefe5d-ed60-405c-a3c9-ac748e2dd309": {
+      "type": "section-newsletter",
+      "custom_css": [
+        "{margin-bottom: 64px;}"
+      ],
+      "settings": {
+        "color": "#656464",
+        "background": "#f2f2f2",
+        "title": "Subscribe to Our Newsletter",
+        "content": "<p>Stay informed with our latest blog posts, skincare revelations, and beauty trends. Be part of our radiant skin community, where the synergy of science, nature, and technology unveils your skin's true potential. <\/p>"
+      }
+    }
+  },
+  "order": [
+    "110d2e2b-b0e1-4ebc-aa88-43562f965de7",
+    "main",
+    "61cefe5d-ed60-405c-a3c9-ac748e2dd309"
+  ]
+}

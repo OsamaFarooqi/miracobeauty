@@ -1,0 +1,46 @@
+{%- liquid
+  assign unique = block.id | default: section.id
+  capture form_id
+    echo 'NewsletterForm--' | append: unique
+  endcapture
+-%}
+{%- form 'customer', id: form_id, data-newsletter-form: '' -%}
+  <div class="sign-up-form">
+    <input type="hidden" id="contact_tags--{{ unique }}" name="contact[tags]" value="newsletter"/>
+    <div class="inputGroup mc-field-group">
+      <label for="Newsletter-email--{{ unique }}" class="accessible-label">{{ 'general.slide_out_navigation.search_label' | t }}</label>
+      <input
+        class="sign-up-input required email"
+        type="email"
+        name="contact[email]"
+        id="Newsletter-email--{{ unique }}"
+        placeholder="{{ 'general.newsletter_signup.email_placeholder' | t }}"
+        {% if form.errors %}
+          autofocus
+          aria-invalid="true"
+          aria-describedby="Newsletter-error--{{ unique }}"
+        {% elsif form.posted_successfully? %}
+          aria-describedby="Newsletter-success--{{ unique }}"
+        {% endif %}
+        required>
+      <input type="hidden" id="newsletter-first-name--{{ unique }}" name="contact[first_name]" value="Newsletter" />
+      <input type="hidden" id="newsletter-last-name--{{ unique }}" name="contact[last_name]" value="Subscriber" />
+      <input type="hidden" name="contact[accepts_marketing]" value="true">
+      <button type="submit" class="sign-up-submit" name="commit" aria-label="{{ 'general.accessibility.submit' | t }}">
+        {%- render 'icon-submit' -%}
+      </button>
+    </div>
+  </div>
+
+  {%- if form.posted_successfully? -%}
+    <div class="sign-up-confirmation p" id="Newsletter-success--{{ unique }}" tabindex="-1" autofocus>{{ 'general.newsletter_signup.success_message' | t }}</div>
+  {%- endif -%}
+
+  <div class="sign-up-error p errors" id="Newsletter-error--{{ unique }}">
+    {%- if form.errors -%}
+      {{ form.errors | default_errors }}
+    {%- else -%}
+      {{- 'general.newsletter_signup.error_message' | t -}}
+    {%- endif -%}    
+  </div>
+{%- endform -%}

@@ -1,0 +1,75 @@
+{%- comment -%} Section {%- endcomment -%}
+{%- liquid
+  assign id = section.id
+  assign layout = section.settings.layout
+  assign subheading = section.settings.subheading
+  assign title = section.settings.title
+  assign content = section.settings.content
+  assign button_text = section.settings.button_text
+  assign button_link = section.settings.button_link | default: '#'
+  assign button_style = section.settings.button_style
+  assign checkbox_redeem = section.settings.checkbox_redeem
+  assign redeem_button_text = section.settings.redeem_button_text
+
+  assign row_split = false
+  if layout == 'split' and title != blank and content != blank
+    assign row_split = true
+  endif
+  assign transition_text = settings.transition_text
+  assign animation_delay = 0
+  assign animation_anchor = '#title-module--' | append: id
+-%}
+
+{%- if title != blank or content != blank or button_text != blank or checkbox_redeem or redeem_button_text != blank -%}
+  <section class="title-module container-wrap" id="title-module--{{ id }}" data-section-type="rich-text">
+    <div class="container pad-sm">
+      <div class="{% if row_split %}row--split{% else %}row row-sm{% endif %}">
+        {%- if title != blank or subheading != blank -%}
+          <div class="rich-heading">
+            {%- if subheading != blank -%}
+              <p class="rich__subheading subheading-text"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                {{- subheading -}}
+              </p>
+              {%- assign animation_delay = animation_delay | plus: 250 -%}
+            {%- endif -%}
+
+            {%- if title != blank -%}
+              <h2 class="rich__heading"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                {{- title -}}
+              </h2>
+              {%- assign animation_delay = animation_delay | plus: 250 -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- unless settings.accent_line == 'none' -%}
+          <div class="rich-text__accent-line"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+            {%- render 'accent-line' -%}
+          </div>
+          {%- assign animation_delay = animation_delay | plus: 250 -%}
+        {%- endunless -%}
+
+        {%- if content != blank or button_text != blank  or checkbox_redeem or redeem_button_text != blank -%}
+          <div class="rich-content{% if button_text == blank %} no-button{% endif %}">
+            <div{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+              {{- content -}}
+            </div>
+
+            {%- assign animation_delay = animation_delay | plus: 250 -%}
+
+            {%- if button_text != blank -%}
+              <div class="button-wrapper"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                <a href="{{ button_link }}" class="button button--{{ button_style }}" title="{{ button_text }}" aria-label="{{ button_text }}" tabindex="0">{{ button_text }}</a>
+              </div>
+            {%- endif -%}
+           {%- if checkbox_redeem -%}
+              <div class="button-wrapper"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                <a  onclick="launchLoyalty(); loyaltyLauncher.blur()" class="button button--{{ button_style }}" title="{{ redeem_button_text }}" aria-label="{{ redeem_button_text }}" tabindex="0">{{ redeem_button_text }}</a>
+              </div>
+           {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}

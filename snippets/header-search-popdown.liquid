@@ -1,0 +1,65 @@
+  <div class="search-popdown" role="dialog" aria-modal="true" aria-label="{{ 'search.search' | t }}" data-popdown>
+    <div class="container">
+      <div class="search-popdown__main">
+        {%- if settings.predictive_search_enabled -%}
+          <predictive-search>
+        {%- else -%}
+          <header-search-form>
+        {%- endif -%}
+
+          <form class="search-form"
+            action="{{ routes.search_url }}"
+            method="get"
+            role="search">
+            <input name="options[prefix]" type="hidden" value="last">
+
+            <button class="search-popdown__submit" type="submit" aria-label="{{ 'search.search' | t }}">
+              {%- render 'icon-search' -%}
+            </button>
+
+            <div class="input-holder">
+              <label for="SearchInput" class="visually-hidden">{{ 'search.search' | t }}</label>
+              <input type="search"
+                id="SearchInput"
+                data-predictive-search-input="search-popdown-results"
+                name="q"
+                value="{{ search.terms | escape }}"
+                placeholder="{{ 'search.search' | t }}"
+                role="combobox"
+                aria-label="{{ 'search.placeholder' | t }}"
+                aria-owns="predictive-search-results"
+                aria-controls="predictive-search-results"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-autocomplete="list"
+                autocorrect="off"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false">
+
+              <button type="reset" class="search-reset{% if search.terms == blank %} hidden{% endif %}" aria-label="{{ 'search.reset' | t }}">
+                {{- 'search.clear' | t -}}
+              </button>
+            </div>
+
+            {%- if settings.predictive_search_enabled -%}
+              <div class="predictive-search" tabindex="-1" data-predictive-search-results></div>
+
+              <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true" data-predictive-search-status></span>
+            {%- endif -%}
+          </form>
+
+        {%- if settings.predictive_search_enabled -%}
+          </predictive-search>
+        {%- else -%}
+          </header-search-form>
+        {%- endif -%}
+
+        <div class="search-popdown__close">
+          <button type="button" class="search-popdown__close__button" title="{{ 'general.accessibility.close' | t }}" data-popdown-close>
+            {%- render 'icon-cancel' -%}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

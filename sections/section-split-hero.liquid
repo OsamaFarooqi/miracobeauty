@@ -1,0 +1,365 @@
+{%- comment -%} Layout {%- endcomment -%}
+{%- assign content_alignment = section.settings.content_alignment -%}
+
+{%- comment -%} Settings {%- endcomment -%}
+{%- liquid
+	assign transition_text = settings.transition_text
+	assign animation_delay = 0
+	assign animation_anchor = '#split-hero--' | append: section.id
+-%}
+
+{%- comment -%} Colors {%- endcomment -%}
+{%- liquid
+	unless section.settings.overlay_color == blank
+		assign overlay_color = section.settings.overlay_color
+	else
+		assign overlay_color = 'none'
+	endunless
+	assign overlay_opacity = section.settings.overlay_opacity | times: 0.01 | round: 2
+	assign color_style = section.settings.color_style
+
+	assign button_size = section.settings.button_size
+	assign button_primary_style = section.settings.button_primary_style
+	assign button_secondary_style = section.settings.button_secondary_style
+-%}
+
+{%- comment -%} Content {%- endcomment -%}
+{%- liquid
+	assign heading = section.settings.title
+	assign subheading = section.settings.subheading
+	assign text = section.settings.text
+	assign cta = section.settings.cta
+	assign link = section.settings.link
+	assign cta_2 = section.settings.cta_2
+	assign link_2 = section.settings.link_2
+-%}
+
+{%- capture image_overlay -%}
+  <div
+    class="split-hero__overlay"
+    data-overlay-opacity="{{ overlay_opacity }}"
+    style="background-color: {{ overlay_color }}; opacity: {{ overlay_opacity }};"></div>
+{%- endcapture -%}
+
+<section
+  data-section-type="split-hero"
+  data-section-id="{{ section.id }}"
+  id="split-hero--{{ section.id }}">
+  <div class="split-hero {{ section.settings.image_height }} {{ section.settings.image_height }}--mobile" data-style="{{ color_style }}">
+    <div class="split-hero__half split-hero__half--left">
+      {%- assign image = section.settings.image_desktop_left -%}
+      {%- assign image_mobile = section.settings.image_mobile_left -%}
+
+      {%- render 'split-hero-image', image: image, image_mobile: image_mobile -%}
+      {{- image_overlay -}}
+    </div>
+    <div class="split-hero__half split-hero__half--right">
+      {%- assign image = section.settings.image_desktop_right -%}
+      {%- assign image_mobile = section.settings.image_mobile_right -%}
+
+      {%- render 'split-hero-image', image: image, image_mobile: image_mobile -%}
+      {{- image_overlay -}}
+    </div>
+
+    <div class="split-hero__content split-hero__content--{{ content_alignment }}">
+      <div class="container">
+        <div class="row">
+          <div class="split-hero__text">
+            {%- if subheading != blank -%}
+              <p
+                class="split-hero__subheading subheading-text"
+                {% if transition_text %}
+                data-aos="fade-up"
+                data-aos-delay="{{ animation_delay }}"
+                data-aos-anchor="{{ animation_anchor }}"
+                {% endif %}>
+                {{- subheading -}}
+              </p>
+              {%- assign animation_delay = animation_delay | plus: 250 -%}
+            {%- endif -%}
+
+            {%- if heading != blank -%}
+              <h2
+                class="split-hero__heading size--heading-1"
+                {% if transition_text %}
+                data-aos="fade-up"
+                data-aos-delay="{{ animation_delay }}"
+                data-aos-anchor="{{ animation_anchor }}"
+                {% endif %}>
+                {{- heading -}}
+              </h2>
+              {%- assign animation_delay = animation_delay | plus: 250 -%}
+            {%- endif -%}
+
+            {%- if text != blank -%}
+              <div
+                class="split-hero__richtext"
+                {% if transition_text %}
+                data-aos="fade-up"
+                data-aos-delay="{{ animation_delay }}"
+                data-aos-anchor="{{ animation_anchor }}"
+                {% endif %}>
+                {{- text -}}
+              </div>
+              {%- assign animation_delay = animation_delay | plus: 250 -%}
+            {%- endif -%}
+
+            {%- if cta != blank or cta_2 != blank -%}
+              <div class="split-hero__buttons{% if cta != blank and cta_2 != blank %} split-hero__buttons--inline{% endif %}"{% if transition_text %}data-aos="fade-up"data-aos-delay="{{ animation_delay }}"data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                {%- if cta != blank -%}
+                  <a
+                    tabindex="0"
+                    {% if link != blank %}href="{{ link }}"{% endif %}
+                    class="button button--{{ button_size }} button--{{ button_primary_style }}"
+                    aria-label="{{ cta }}"
+                    title="{{ cta }}">{{ cta }}</a>
+                {%- endif -%}
+
+                {%- if cta_2 != blank -%}
+                  <a
+                    tabindex="0"
+                    {% if link_2 != blank %}href="{{ link_2 }}"{% endif %}
+                    class="button button--{{ button_size }} button--{{ button_secondary_style }}"
+                    aria-label="{{ cta_2 }}"
+                    title="{{ cta_2 }}">{{ cta_2 }}</a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+  {
+    "name": "Split hero",
+    "class": "shopify-section--split-hero",
+    "settings": [
+      {
+        "type": "select",
+        "id": "image_height",
+        "label": "Section height",
+        "default": "five-fifty-height-hero",
+        "options": [
+          {
+            "value": "one-hundred-height-hero",
+            "label": "Full screen"
+          },
+          {
+            "value": "seven-fifty-height-hero",
+            "label": "750px"
+          },
+          {
+            "value": "sixty-fifty-height-hero",
+            "label": "650px"
+          },
+          {
+            "value": "five-fifty-height-hero",
+            "label": "550px"
+          },
+          {
+            "value": "four-fifty-height-hero",
+            "label": "450px"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Image left"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_desktop_left",
+        "label": "Image desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile_left",
+        "label": "Image mobile",
+        "info": "Desktop image will be used if not set"
+      },
+      {
+        "type": "header",
+        "content": "Image right"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_desktop_right",
+        "label": "Image desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile_right",
+        "label": "Image mobile",
+        "info": "Desktop image will be used if not set"
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "select",
+        "id": "content_alignment",
+        "label": "Alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "bottom-left",
+            "label": "Bottom left"
+          },
+          {
+            "value": "bottom-right",
+            "label": "Bottom right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "color_style",
+        "label": "Color",
+        "default": "white",
+        "options": [
+          {
+            "value": "white",
+            "label": "Light"
+          },
+          {
+            "value": "black",
+            "label": "Dark"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Welcome to Modular"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>A unique layout with a striking design</p>"
+      },
+      {
+        "type": "text",
+        "id": "cta",
+        "label": "Button label",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button link",
+        "default": "/collections/all"
+      },
+      {
+        "type": "text",
+        "id": "cta_2",
+        "label": "Second button label"
+      },
+      {
+        "type": "url",
+        "id": "link_2",
+        "label": "Second button link"
+      },
+      {
+        "type": "header",
+        "content": "Overlay"
+      },
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Color",
+        "default": "#333333"
+      },
+      {
+        "type": "range",
+        "id": "overlay_opacity",
+        "label": "Opacity",
+        "min": 0,
+        "max": 95,
+        "step": 5,
+        "unit": "%",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Buttons style"
+      },
+      {
+        "type": "select",
+        "id": "button_size",
+        "label": "Size",
+        "default": "normal",
+        "options": [
+          {
+            "label": "Normal",
+            "value": "normal"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "button_primary_style",
+        "label": "Primary button",
+        "default": "primary",
+        "options": [
+          {
+            "label": "Primary",
+            "value": "primary"
+          },
+          {
+            "label": "Secondary",
+            "value": "secondary"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "button_secondary_style",
+        "label": "Secondary button",
+        "default": "secondary",
+        "options": [
+          {
+            "label": "Primary",
+            "value": "primary"
+          },
+          {
+            "label": "Secondary",
+            "value": "secondary"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Split hero",
+        "category": "Image"
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    }
+  }
+{% endschema %}

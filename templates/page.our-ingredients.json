@@ -1,0 +1,199 @@
+{
+  "sections": {
+    "a13f0050-568b-4bd8-a4bd-137e61e47cea": {
+      "type": "section-image-with-text-overlay",
+      "settings": {
+        "banner_image": "shopify:\/\/shop_images\/our-ingredients-banner-n_1.jpg",
+        "height": "four-fifty-height-hero",
+        "height_mobile": "four-fifty-height-hero--mobile",
+        "subheading": "",
+        "title": "Our Ingredients",
+        "text": "",
+        "text_position": "center",
+        "color_text": "#656464",
+        "color_overlay": "#ffffff",
+        "overlay_opacity": 35
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false
+      }
+    },
+    "d025def2-2866-46b4-92d0-348cddb95b08": {
+      "type": "section-custom-html",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "html": ""
+      }
+    },
+    "d5fe35d1-fde9-4d57-828f-7eafec34ebe4": {
+      "type": "section-product-features",
+      "blocks": {
+        "template--15716761403575__d5fe35d1-fde9-4d57-828f-7eafec34ebe4-1668197955371b68e4-0": {
+          "type": "text",
+          "settings": {
+            "title": "Pseudoalteromonas Ferment Extract",
+            "description": "<p>A Spanish expedition team from Antarctica conducted a study of glaciers in Antarctica and found that there are microorganisms that can survive harsh environments at –50°C. After analysis, they found a new species of bacteria \"Pseudoalteromonas Antarctica NF3\". It has many benefits including:<br\/><\/p><p>- Highly effective in skin healing<br\/>- Increase collagen level by 66% in 7 days and 114% in 15 days<br\/>- Increase elastin level by 7% in 7 days and 17% by 15 days<br\/>- Effectively reduce skin wrinkles<\/p>",
+            "image": "shopify:\/\/shop_images\/Antarcticine_test.jpg",
+            "image_position": "left",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "template--15716761403575__d5fe35d1-fde9-4d57-828f-7eafec34ebe4-1668197955371b68e4-1": {
+          "type": "text",
+          "settings": {
+            "title": "Jellyfish Extract",
+            "description": "<p>Jellyfish have high levels of collagen as they are built up of water, proteins (one of which is collagen) and glycoproteins (a molecule built from protein and saccharide). The molecules produced by Jellyfish are not only beneficial to maintaining the condition of skin but also can give out hydrating benefits:<br\/><\/p><p>- Long-lasting moisturising effect<br\/>- Easy to to absorbed by skin with its small molecule structure<br\/>- Restore skin elasticity<br\/>- Fast skin repairing and regeneration<br\/>- Smooth fine lines<\/p>",
+            "image": "shopify:\/\/shop_images\/ingredients-jellyfish_optimize.webp",
+            "image_position": "right",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "template--15716761403575__d5fe35d1-fde9-4d57-828f-7eafec34ebe4-1668197955371b68e4-2": {
+          "type": "text",
+          "settings": {
+            "title": "Hyaluronic Acid",
+            "description": "<p>Hyaluronic acid is a sugar molecule that occurs naturally in the skin, and it helps to bind water to collagen, trapping it in the skin, so that skin can appear plumper, dewier, and more hydrated.<\/p>",
+            "image": "shopify:\/\/shop_images\/ingredients-acid_optimize.webp",
+            "image_position": "left",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "c1068bc0-930e-434b-ac5f-7010e2be1b91": {
+          "type": "text",
+          "settings": {
+            "title": "Cladosiphon Novae-Caledoniae Extract",
+            "description": "<p>It can form a protective film for your skin, thereby preventing your skin from dehyration, with moisturizing, repairing and anti-allergy effects.<\/p>",
+            "image": "shopify:\/\/shop_images\/ingredients-algaes_test.webp",
+            "image_position": "right",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "template--15716761403575__d5fe35d1-fde9-4d57-828f-7eafec34ebe4-1668197955371b68e4-0",
+        "template--15716761403575__d5fe35d1-fde9-4d57-828f-7eafec34ebe4-1668197955371b68e4-1",
+        "template--15716761403575__d5fe35d1-fde9-4d57-828f-7eafec34ebe4-1668197955371b68e4-2",
+        "c1068bc0-930e-434b-ac5f-7010e2be1b91"
+      ],
+      "settings": {
+        "blocks_alignment": "center",
+        "image_aspect_ratio": 1
+      }
+    },
+    "6c6cc406-7245-466c-a8be-f6202038a916": {
+      "type": "section-product-features",
+      "blocks": {
+        "template--15716761403575__6c6cc406-7245-466c-a8be-f6202038a916-1668197955371b68e4-0": {
+          "type": "text",
+          "settings": {
+            "title": "Collagen",
+            "description": "<p>Collagen is a major component of your skin and the most abundant protein in your body. It strengthens skin and increase skin elasticity and hydration level, which smooths and reduces the appearances of wrinkles.<\/p>",
+            "image": "shopify:\/\/shop_images\/ingredients-collagen.jpg",
+            "image_position": "left",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "template--15716761403575__6c6cc406-7245-466c-a8be-f6202038a916-1668197955371b68e4-1": {
+          "type": "text",
+          "settings": {
+            "title": "Alteromonas Ferment Extract",
+            "description": "<p>It is a microbial extracellular polysaccharide from the French Polynesian Islands in the eastern South Pacific.<br\/><\/p><p>It has natural anti-inflammatory properties so helps improve rosacea, minimizes the sensitivity of skin, and soothes the skin. It also improves hydration of the skin and makes skin supple. It also rejuvenates the skin cells.<\/p>",
+            "image": "shopify:\/\/shop_images\/ingredients-island-4.webp",
+            "image_position": "right",
+            "image_link": "",
+            "button_text": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "template--15716761403575__6c6cc406-7245-466c-a8be-f6202038a916-1668197955371b68e4-0",
+        "template--15716761403575__6c6cc406-7245-466c-a8be-f6202038a916-1668197955371b68e4-1"
+      ],
+      "settings": {
+        "blocks_alignment": "center",
+        "image_aspect_ratio": 1
+      }
+    },
+    "86b8d2b3-0b37-4662-9d2e-30acd61f75ca": {
+      "type": "section-custom-html",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "html": ""
+      }
+    },
+    "d9c6fc4b-0afe-4ae7-b888-2f269fe7ebb9": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15716761403575__d9c6fc4b-0afe-4ae7-b888-2f269fe7ebb9-1667605036d46e8470-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-banner_-_all_products_-_Desktop_d90230dc-7cfa-4d14-8dc9-7ccf03882fd3.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "",
+            "title": "Miraco Beauty Collections",
+            "text": "<p>Pamper your skin with the most magical Ocean power<\/p>",
+            "cta": "SHOP NOW",
+            "link": "shopify:\/\/collections\/all",
+            "cta_primary_btn_style": "secondary",
+            "cta_2": "",
+            "link_2": "shopify:\/\/collections",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#086ca5",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--15716761403575__d9c6fc4b-0afe-4ae7-b888-2f269fe7ebb9-1667605036d46e8470-0"
+      ],
+      "custom_css": [
+        "{margin-bottom: 104px;}"
+      ],
+      "settings": {
+        "enable_custom_css": false,
+        "slide_height": "four-fifty-height-hero",
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": false,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "four-fifty-height-hero--mobile"
+      }
+    }
+  },
+  "order": [
+    "a13f0050-568b-4bd8-a4bd-137e61e47cea",
+    "main",
+    "d025def2-2866-46b4-92d0-348cddb95b08",
+    "d5fe35d1-fde9-4d57-828f-7eafec34ebe4",
+    "6c6cc406-7245-466c-a8be-f6202038a916",
+    "86b8d2b3-0b37-4662-9d2e-30acd61f75ca",
+    "d9c6fc4b-0afe-4ae7-b888-2f269fe7ebb9"
+  ]
+}

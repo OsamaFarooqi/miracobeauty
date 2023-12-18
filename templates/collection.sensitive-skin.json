@@ -1,0 +1,171 @@
+{
+  "sections": {
+    "hero": {
+      "type": "collection-image-with-title",
+      "disabled": true,
+      "custom_css": [
+        "h1 {font-size: 40px;}"
+      ],
+      "settings": {
+        "show_banner": false,
+        "height": "four-fifty-height-hero",
+        "height_mobile": "one-hundred-height-hero--mobile",
+        "banner_text_position": "left",
+        "banner_color_text": "#606161",
+        "banner_color_overlay": "#333333",
+        "banner_overlay_opacity": 0
+      }
+    },
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hero-image-4.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "",
+            "title": "{{ collection.title }}",
+            "text": "<p>{{ collection.metafields.custom.brief_description | metafield_tag }}<\/p>",
+            "cta": "",
+            "link": "shopify:\/\/collections\/all",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0"
+      ],
+      "custom_css": [
+        "h1 {color: #656464;}",
+        "p {font-size: 17px; color: #656464;}"
+      ],
+      "settings": {
+        "enable_custom_css": true,
+        "slide_height": "five-fifty-height-hero",
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": true,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "five-fifty-height-hero--mobile"
+      }
+    },
+    "main": {
+      "type": "collection",
+      "settings": {
+        "show_sort_filter": true,
+        "enable_filters": true,
+        "filter_mode": "default",
+        "position_filters": "left",
+        "show_featured_image": false,
+        "featured_heading": "Use this image showcase promotional content.",
+        "featured_text": "<p>Elaborate on it with rich text<\/p>",
+        "featured_button_text": "Learn More",
+        "featured_button_link": "",
+        "featured_button_style": "primary",
+        "featured_color_text": "#ffffff",
+        "featured_color_overlay": "#333333",
+        "featured_overlay_opacity": 30
+      }
+    },
+    "0cb4b8d8-91be-4adc-aad1-55d4578abd48": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: -24px;}"
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Routine",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "fed7c219-ed2b-4283-ab82-75e92cad863d": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Avoid irritants",
+        "content": "<p><a href=\"\/blogs\/articles\/best-ingredients-for-all-skin-types\" title=\"What Are the Best Ingredients for All Skin Types\">Sensitive skin<\/a> is easily irritated by harsh soaps, detergents, and cosmetics. It's important to avoid these irritants and use products that are designed for sensitive skin.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "b3ae225a-ff3e-4a49-8484-a3ffa671333e": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Hydrate your skin",
+        "content": "<p>Sensitive skin can become dry and irritated, so it's important to <a href=\"\/blogs\/articles\/skin-hydration-vs-moisture\" title=\"Skin Hydration Vs. Moisture: Which Do I Need?\">hydrate<\/a> it regularly. Use a gentle cleanser and moisturizer that is designed for sensitive skin.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "b76427af-a0e2-418a-b30d-5cf6886a8e95": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Wear sunscreen",
+        "content": "<p>Sensitive skin is more susceptible to sun damage, so it's important to wear sunscreen every day, even on cloudy days.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "3cbd048a-8307-4c99-8b65-8b8c75e4598e": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: 280px;}",
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Face wash routine",
+        "content": "<p>Wash your face twice a day with a gentle cleanser. Using harsh soaps and detergents can strip away the natural oils from your skin, leaving it dry and irritated. Instead, use a gentle cleanser that is designed for sensitive skin. Wash your face twice a day, morning and night.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2",
+    "main",
+    "0cb4b8d8-91be-4adc-aad1-55d4578abd48",
+    "fed7c219-ed2b-4283-ab82-75e92cad863d",
+    "b3ae225a-ff3e-4a49-8484-a3ffa671333e",
+    "b76427af-a0e2-418a-b30d-5cf6886a8e95",
+    "3cbd048a-8307-4c99-8b65-8b8c75e4598e"
+  ]
+}

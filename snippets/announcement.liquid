@@ -1,0 +1,352 @@
+{%- if section.blocks.size > 0 -%}
+  {%- assign bar_markup = '' -%}
+
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign classes = ''
+      assign target_device_enable = false
+      assign color = ''
+
+      if section.settings.layout == 'slider'
+        assign classes = 'announcement__bar'
+      endif
+
+      if block.settings.target_device_enabled
+        assign target_device_enable = true
+
+        if block.settings.target_device == 'mobile'
+          assign classes = classes | append: ' mobile'
+        endif
+
+        if block.settings.target_device == 'desktop'
+          assign classes = classes | append: ' desktop'
+        endif
+      endif
+
+      assign show_bar = true
+
+      if block.settings.target_url_enabled or block.settings.target_referrer_enabled
+        assign show_bar = false
+      endif
+
+      if block.settings.target_url_enabled and block.settings.target_url != blank
+        if block.settings.target_url == request.path
+          assign show_bar = true
+        endif
+      endif
+
+      if block.settings.target_referrer_enabled and block.settings.target_referrer != blank
+        capture target_refferer_attribute
+          echo ' data-target-referrer="' | append: block.settings.target_referrer | append: '"'
+        endcapture
+
+        assign show_bar = true
+      endif
+
+      capture block_attributes
+        echo ' data-slide="' | append: block.id | append: '"'
+        echo ' data-slide-index="' | append: forloop.index0 | append: '"'
+        echo ' data-block-id="' | append: block.id | append: '"'
+        echo target_refferer_attribute
+
+        if target_device_enable
+          echo ' data-target-device="true"'
+        endif
+
+        if classes != ''
+          echo ' class="' | append: classes | append: '"'
+        endif
+
+        echo block.shopify_attributes
+      endcapture
+    -%}
+
+    {%- if show_bar -%}
+      {%- capture bar_html -%}
+        {%- case block.type -%}
+          {%- when 'text' -%}
+            {%- if block.settings.text != blank -%}
+              {%- if section.settings.layout == 'slider' -%}
+                <div {{ block_attributes }}>
+                  <div data-ticker-frame class="announcement__message">
+                    <div data-ticker-scale class="ticker--unloaded announcement__scale">
+                      <div data-ticker-text class="announcement__text">
+                        <div>{{ block.settings.text | replace: '|', '<span class="announcement__divider"></span>' }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.layout == 'marquee' -%}
+                <div {{ block_attributes }}>
+                  <div>{{ block.settings.text | replace: '|', '<span class="announcement__divider"></span>' }}</div>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+          {%- when 'message' -%}
+            {%- if block.settings.message -%}
+              {%- if section.settings.layout == 'slider' -%}
+                <div {{ block_attributes }}>
+                  <div data-ticker-frame class="announcement__message">
+                    <div data-ticker-scale class="ticker--unloaded announcement__scale">
+                      <div data-ticker-text class="announcement__text">
+                        {%- liquid
+  assign free_shipping_text = block.settings.message | default: settings.message
+  assign show_message = false
+  assign show_wheel = true
+
+  if block.settings.show_wheel == false
+    assign show_wheel = false
+  endif
+
+  if block.settings.message != blank
+    assign show_message = true
+  endif
+
+  if settings.show_free_shipping_message and settings.free_shipping_limit != blank and free_shipping_text != blank
+    assign show_message = true
+  endif
+-%}
+
+{%- if show_message -%}
+  {%- liquid
+    assign limit = settings.free_shipping_limit | plus: 0
+    assign limit_currency = limit | times: 100
+    assign cart_total_price = cart.total_price
+    assign subtotal_without_currency = cart_total_price | plus: 0 | divided_by: 100
+
+    if settings.currency_code_enable
+      assign left_to_spend_value = limit_currency | minus: cart_total_price | money_with_currency | remove: '.00' | remove: ',00'
+    else
+      assign left_to_spend_value = limit_currency | minus: cart_total_price | money_without_trailing_zeros
+    endif
+    capture left_to_spend
+      echo '<span data-left-to-spend>' | append: left_to_spend_value | append: '</span>'
+    endcapture
+
+    assign free_shipping_message = free_shipping_text | replace: '||amount||', left_to_spend
+    assign qualified_shipping_message = 'cart.labels.qualified_shipping_message' | t
+    assign class_message = ''
+
+    if subtotal_without_currency >= limit
+      if qualified_shipping_message != blank
+        assign class_message = 'is-success'
+      else
+        assign class_message = 'is-hidden'
+      endif
+    elsif subtotal_without_currency == 0
+      assign class_message = 'is-hidden'
+    endif
+  -%}
+
+  <p class="cart-dropdown__message cart__message {{ class_message }}" {{ block_attibutes }} data-cart-message="{% if qualified_shipping_message != blank %}true{% else %}false{% endif %}" data-limit="{{ limit_currency }}" data-cart-total-price="{{ cart_total_price }}">
+    {%- if show_wheel -%}
+      {%- assign percent = limit | minus: subtotal_without_currency | times: 100 | divided_by: limit -%}
+      {%- assign percent = 100 | minus: percent -%}
+
+      {%- if percent > 100 -%}
+        {%- assign percent = 100 -%}
+      {%- endif -%}
+
+      <small class="cart__graph">
+        <small class="cart__graph-dot cart__graph-dot--1"></small>
+        <small class="cart__graph-dot cart__graph-dot--2"></small>
+        <small class="cart__graph-dot cart__graph-dot--3"></small>
+        <small class="cart__graph-dot cart__graph-dot--4"></small>
+        <small class="cart__graph-dot cart__graph-dot--5"></small>
+        <small class="cart__graph-dot cart__graph-dot--6"></small>
+
+        <svg height="18" width="18">
+          <circle r="7" cx="9" cy="9" />
+          <circle class="cart__graph-progress"
+            r="7" cx="9" cy="9"
+            stroke-dasharray="87.96459430051421 87.96459430051421"
+            data-cart-progress
+            data-percent="{{ percent }}" />
+        </svg>
+      </small>
+    {%- endif -%}
+
+    {%- if qualified_shipping_message != blank -%}
+      <span class="cart__message-success">{{ qualified_shipping_message }}</span>
+    {%- endif -%}
+
+    <span class="cart__message-default">
+      {{ free_shipping_message }}
+    </span>
+  </p>
+{%- endif -%}
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.layout == 'marquee' -%}
+                <div {{ block_attributes }}>
+                  {%- liquid
+  assign free_shipping_text = block.settings.message | default: settings.message
+  assign show_message = false
+  assign show_wheel = true
+
+  if block.settings.show_wheel == false
+    assign show_wheel = false
+  endif
+
+  if block.settings.message != blank
+    assign show_message = true
+  endif
+
+  if settings.show_free_shipping_message and settings.free_shipping_limit != blank and free_shipping_text != blank
+    assign show_message = true
+  endif
+-%}
+
+{%- if show_message -%}
+  {%- liquid
+    assign limit = settings.free_shipping_limit | plus: 0
+    assign limit_currency = limit | times: 100
+    assign cart_total_price = cart.total_price
+    assign subtotal_without_currency = cart_total_price | plus: 0 | divided_by: 100
+
+    if settings.currency_code_enable
+      assign left_to_spend_value = limit_currency | minus: cart_total_price | money_with_currency | remove: '.00' | remove: ',00'
+    else
+      assign left_to_spend_value = limit_currency | minus: cart_total_price | money_without_trailing_zeros
+    endif
+    capture left_to_spend
+      echo '<span data-left-to-spend>' | append: left_to_spend_value | append: '</span>'
+    endcapture
+
+    assign free_shipping_message = free_shipping_text | replace: '||amount||', left_to_spend
+    assign qualified_shipping_message = 'cart.labels.qualified_shipping_message' | t
+    assign class_message = ''
+
+    if subtotal_without_currency >= limit
+      if qualified_shipping_message != blank
+        assign class_message = 'is-success'
+      else
+        assign class_message = 'is-hidden'
+      endif
+    elsif subtotal_without_currency == 0
+      assign class_message = 'is-hidden'
+    endif
+  -%}
+
+  <p class="cart-dropdown__message cart__message {{ class_message }}" {{ block_attibutes }} data-cart-message="{% if qualified_shipping_message != blank %}true{% else %}false{% endif %}" data-limit="{{ limit_currency }}" data-cart-total-price="{{ cart_total_price }}">
+    {%- if show_wheel -%}
+      {%- assign percent = limit | minus: subtotal_without_currency | times: 100 | divided_by: limit -%}
+      {%- assign percent = 100 | minus: percent -%}
+
+      {%- if percent > 100 -%}
+        {%- assign percent = 100 -%}
+      {%- endif -%}
+
+      <small class="cart__graph">
+        <small class="cart__graph-dot cart__graph-dot--1"></small>
+        <small class="cart__graph-dot cart__graph-dot--2"></small>
+        <small class="cart__graph-dot cart__graph-dot--3"></small>
+        <small class="cart__graph-dot cart__graph-dot--4"></small>
+        <small class="cart__graph-dot cart__graph-dot--5"></small>
+        <small class="cart__graph-dot cart__graph-dot--6"></small>
+
+        <svg height="18" width="18">
+          <circle r="7" cx="9" cy="9" />
+          <circle class="cart__graph-progress"
+            r="7" cx="9" cy="9"
+            stroke-dasharray="87.96459430051421 87.96459430051421"
+            data-cart-progress
+            data-percent="{{ percent }}" />
+        </svg>
+      </small>
+    {%- endif -%}
+
+    {%- if qualified_shipping_message != blank -%}
+      <span class="cart__message-success">{{ qualified_shipping_message }}</span>
+    {%- endif -%}
+
+    <span class="cart__message-default">
+      {{ free_shipping_message }}
+    </span>
+  </p>
+{%- endif -%}
+
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          {%- when 'custom' -%}
+            {%- if block.settings.text != blank -%}
+              {%- if section.settings.layout == 'slider' -%}
+                <div {{ block_attributes }}>
+                  <div data-ticker-frame class="announcement__message">
+                    <div data-ticker-scale class="ticker--unloaded announcement__scale">
+                      <div data-ticker-text class="announcement__text">
+                        <span>{{ block.settings.text }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if section.settings.layout == 'marquee' -%}
+              <div {{ block_attributes }}>
+                <span>{{ block.settings.text }}</span>
+              </div>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endcapture -%}
+
+      {%- assign bar_markup = bar_markup | append: bar_html -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  <div class="announcement__wrapper{% if is_top %} announcement__wrapper--top{% endif %}"
+    data-announcement-wrapper
+    data-section-id="{{ section.id }}"
+    data-section-type="announcement">
+    <div>
+      {%- if show_browser_error -%}
+        <div class="announcement__bar announcement__bar--error">
+          <div class="announcement__message">
+            <div class="announcement__text">
+              <span class="announcement__main">{{- 'general.ie11_support_message' | t -}}</span>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if bar_markup != '' -%}
+        <div class="announcement__bar-outer" data-bar {% if is_top %}data-bar-top{% endif %} style="--bg: {{ section.settings.bg_color | default: '#fff' }}; --text: {{ section.settings.color }};">
+          {%- if section.settings.layout == 'slider' -%}
+            <div class="announcement__bar-holder"
+              data-slider data-fade="true"
+              data-dots="hidden"
+              data-draggable="true"
+              data-autoplay="true"
+              data-speed="{{ section.settings.speed | times: 1000 }}">
+              {{ bar_markup }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.layout == 'marquee' -%}
+            <div class="announcement__bar-holder">
+              <div class="announcement__bar">
+                <div data-ticker-frame class="announcement__message">
+                  <div data-ticker-scale class="ticker--unloaded announcement__scale">
+                    <div data-ticker-text class="announcement__text">
+                      {{ bar_markup }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

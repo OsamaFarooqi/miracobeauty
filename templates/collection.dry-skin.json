@@ -1,0 +1,172 @@
+{
+  "sections": {
+    "hero": {
+      "type": "collection-image-with-title",
+      "disabled": true,
+      "custom_css": [
+        "h1 {font-size: 40px;}"
+      ],
+      "settings": {
+        "show_banner": false,
+        "height": "four-fifty-height-hero",
+        "height_mobile": "one-hundred-height-hero--mobile",
+        "banner_text_position": "left",
+        "banner_color_text": "#606161",
+        "banner_color_overlay": "#333333",
+        "banner_overlay_opacity": 0
+      }
+    },
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-banner_-_dry-skin_-_Desktop.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/collection-banner_-_dry-skin_-_Mobile_2.jpg",
+            "alignment": "left",
+            "color_style": "black",
+            "subheading": "",
+            "title": "{{ collection.title }}",
+            "text": "<p>{{ collection.metafields.custom.brief_description | metafield_tag }}<\/p>",
+            "cta": "",
+            "link": "shopify:\/\/collections\/all",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0"
+      ],
+      "custom_css": [
+        "h1 {color: #656464;}",
+        "p {font-size: 17px; color: #656464;}"
+      ],
+      "settings": {
+        "enable_custom_css": true,
+        "slide_height": "five-fifty-height-hero",
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": false,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "five-fifty-height-hero--mobile"
+      }
+    },
+    "main": {
+      "type": "collection",
+      "settings": {
+        "show_sort_filter": true,
+        "enable_filters": true,
+        "filter_mode": "default",
+        "position_filters": "left",
+        "show_featured_image": false,
+        "featured_heading": "Use this image showcase promotional content.",
+        "featured_text": "<p>Elaborate on it with rich text<\/p>",
+        "featured_button_text": "Learn More",
+        "featured_button_link": "",
+        "featured_button_style": "primary",
+        "featured_color_text": "#ffffff",
+        "featured_color_overlay": "#333333",
+        "featured_overlay_opacity": 30
+      }
+    },
+    "fed7c219-ed2b-4283-ab82-75e92cad863d": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: -24px; margin-top: -32px;}"
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Routine",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "b2e1d323-bfd5-4c79-a7c8-9180d9960310": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Moisturize your skin every day",
+        "content": "<p>Dry skin needs to be moisturized regularly to prevent it from becoming flaky, tight, and uncomfortable. Look for serums that contain <a href=\"\/blogs\/articles\/how-to-choose-the-best-hyaluronic-acid-serum-for-skin\" title=\"How to Choose the Best Hyaluronic Acid Serum for Your Skin\">hyaluronic acid<\/a> or marine collagen, which are humectants that draw moisture into the skin. Follow up with moisturizers that contain ceramides, lecithin, oils, and butters to properly lock in moisture while repairing the skin's moisture barrier.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "81628cac-c94f-4866-82a7-a37eec446200": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Exfoliate",
+        "content": "<p>Exfoliating once or twice a week can help to remove dead skin cells and improve the appearance of dry skin. Use a gentle exfoliator that is designed for dry skin, such as enzymatic exfoliators, AHAs, and PHAs.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "968686e6-0373-4f99-b3c7-a2484b52ac42": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Avoid harsh soaps and detergents",
+        "content": "<p>Harsh soaps and detergents can strip away the natural oils from the skin, making it even drier. Use gentle soaps and detergents that are designed for <a href=\"\/blogs\/articles\/skin-hydration-vs-moisture\" title=\"Skin Hydration Vs. Moisture: Which Do I Need?\">sensitive skin<\/a>.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "8967572d-6d88-406c-9e60-49843384230b": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: 280px;}",
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Face wash routine",
+        "content": "<p>Wash your face twice a day with a gentle, hydrating cleanser. Using harsh soaps and detergents can strip away the natural oils from your skin, leaving it dry and irritated. Instead, use a cleanser designed for dry skin.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2",
+    "main",
+    "fed7c219-ed2b-4283-ab82-75e92cad863d",
+    "b2e1d323-bfd5-4c79-a7c8-9180d9960310",
+    "81628cac-c94f-4866-82a7-a37eec446200",
+    "968686e6-0373-4f99-b3c7-a2484b52ac42",
+    "8967572d-6d88-406c-9e60-49843384230b"
+  ]
+}

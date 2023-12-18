@@ -1,0 +1,276 @@
+{
+  "sections": {
+    "0ee1d272-b48b-4aa1-b404-8e7f48702b57": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15880486781111__0ee1d272-b48b-4aa1-b404-8e7f48702b57-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/banner_-_reward-page-desktop.jpg",
+            "alignment": "center",
+            "color_style": "black",
+            "subheading": "",
+            "title": "MIRACO Beauty Rewards",
+            "text": "<p>Unlock radiant rewards with MIRACO Beauty<\/p>",
+            "cta": "JOIN NOW",
+            "link": "https:\/\/miracobeauty.com\/account\/register",
+            "cta_primary_btn_style": "secondary",
+            "cta_2": "LOG IN",
+            "link_2": "https:\/\/miracobeauty.com\/account\/login",
+            "cta_secondary_btn_style": "primary",
+            "overlay_color": "#ffffff",
+            "overlay_opacity": 50
+          }
+        }
+      },
+      "block_order": [
+        "template--15880486781111__0ee1d272-b48b-4aa1-b404-8e7f48702b57-image-1"
+      ],
+      "custom_css": [
+        "h1 {color: #656464;}",
+        "p {color: #656464;}"
+      ],
+      "settings": {
+        "enable_custom_css": false,
+        "slide_height": "four-fifty-height-hero",
+        "show_nav_arrows": true,
+        "show_arrow_down": false,
+        "autoplay": true,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "five-fifty-height-hero--mobile"
+      }
+    },
+    "1fa7592e-f672-4827-85b0-58ca52792ad0": {
+      "type": "section-icons-row",
+      "blocks": {
+        "template--15880486781111__1fa7592e-f672-4827-85b0-58ca52792ad0-text-1": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-number-1_5bb14f28-c771-4894-b1aa-795a4962fd81.png",
+            "title": "Sign Up",
+            "text": "<p>Create an account and get 25 points<\/p>"
+          }
+        },
+        "template--15880486781111__1fa7592e-f672-4827-85b0-58ca52792ad0-text-2": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-number-2.png",
+            "title": "Earn Points",
+            "text": "<p>Earn points every time you shop<\/p>"
+          }
+        },
+        "template--15880486781111__1fa7592e-f672-4827-85b0-58ca52792ad0-text-3": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-number-3.png",
+            "title": "Redeem Points",
+            "text": "<p>Redeem points for store credit<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15880486781111__1fa7592e-f672-4827-85b0-58ca52792ad0-text-1",
+        "template--15880486781111__1fa7592e-f672-4827-85b0-58ca52792ad0-text-2",
+        "template--15880486781111__1fa7592e-f672-4827-85b0-58ca52792ad0-text-3"
+      ],
+      "settings": {
+        "title": "How it Works",
+        "alignment": "center",
+        "color_icons_bg": "#ffffff",
+        "color_icons_text": "#656464"
+      }
+    },
+    "4d24e67e-69c8-40e6-aa7b-bb16a0b0096d": {
+      "type": "section-icons-row",
+      "blocks": {
+        "219eaeeb-e6ab-4e37-aab4-f4e607420caa": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-signup.png",
+            "title": "100 Points",
+            "text": "<p>Sign Up<\/p>"
+          }
+        },
+        "cf1fa4cc-b4a6-4c0c-a2d8-35ef25d272e3": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-place_an_order.png",
+            "title": "10 Points \/USD",
+            "text": "<p>Place an Order<\/p>"
+          }
+        },
+        "a136f3ec-7efc-4252-aa75-15f8caa13384": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-birthday.png",
+            "title": "100 Points",
+            "text": "<p>Have a Birthday<\/p>"
+          }
+        },
+        "23d79707-3190-4c2f-986d-7021f6efd73b": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-refer.png",
+            "title": "100 Points",
+            "text": "<p>Refer a Friend<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "219eaeeb-e6ab-4e37-aab4-f4e607420caa",
+        "cf1fa4cc-b4a6-4c0c-a2d8-35ef25d272e3",
+        "a136f3ec-7efc-4252-aa75-15f8caa13384",
+        "23d79707-3190-4c2f-986d-7021f6efd73b"
+      ],
+      "settings": {
+        "title": "Ways to Earn Points",
+        "alignment": "center",
+        "color_icons_bg": "#fffdf7",
+        "color_icons_text": "#656464"
+      }
+    },
+    "41db0432-c36e-4893-8880-64c2d4b281c3": {
+      "type": "section-rich-text",
+      "custom_css": [
+
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Use Your Points",
+        "content": "<p>Your loyalty shines, and now it's time to reap the rewards. Redeeming your points is easy! Click Redeem to earn store credit to use at checkout.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "checkbox_redeem": true,
+        "redeem_button_text": "REDEEM POINTS",
+        "button_style": "primary"
+      }
+    },
+    "0069c03c-459a-4104-9b34-20b47eeea6d5": {
+      "type": "section-icons-row",
+      "blocks": {
+        "cfbf6b14-3365-49c0-97aa-73aec18ac767": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-coupon.png",
+            "title": "$5 Off Coupon",
+            "text": "<p><strong>500 Points<\/strong><\/p>"
+          }
+        },
+        "7e69f5b2-b3a5-4e3a-8966-bf3ca1926da1": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-coupon.png",
+            "title": "$10 Off Coupon",
+            "text": "<p><strong>1000 Points<\/strong><\/p>"
+          }
+        },
+        "8c2a9d4e-f872-47f2-b2a1-b141d4a73f15": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-coupon.png",
+            "title": "$20 Off Coupon",
+            "text": "<p><strong>3000 Points<\/strong><\/p>"
+          }
+        },
+        "bf12ebcd-70a0-4bdf-b9eb-68ffdf4101b0": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-skincare.png",
+            "title": "Free HYDRA+ Replenishing Face Cleanser",
+            "text": "<p><strong>3500 Points<\/strong><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "cfbf6b14-3365-49c0-97aa-73aec18ac767",
+        "7e69f5b2-b3a5-4e3a-8966-bf3ca1926da1",
+        "8c2a9d4e-f872-47f2-b2a1-b141d4a73f15",
+        "bf12ebcd-70a0-4bdf-b9eb-68ffdf4101b0"
+      ],
+      "custom_css": [
+        "{margin-top: -96px;}",
+        "h3 {font-size: 24px;}"
+      ],
+      "settings": {
+        "title": "",
+        "alignment": "center",
+        "color_icons_bg": "#ffffff",
+        "color_icons_text": "#656464"
+      }
+    },
+    "9b29ac15-9039-44c0-9372-c3dc54a3f770": {
+      "type": "section-slideshow",
+      "blocks": {
+        "bdd58d88-c3c3-4b2d-9a28-10e164a32f2e": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/banner_-_reward-page-desktop-2.jpg",
+            "alignment": "left",
+            "color_style": "black",
+            "subheading": "",
+            "title": "Embrace Radiant Rewards",
+            "text": "<p>Join our Reward Program and dive into a world of exclusive perks, discounts, and surprises. Sign up now and elevate your skincare experience with MIRACO Beauty!<\/p>",
+            "cta": "JOIN NOW",
+            "link": "https:\/\/miracobeauty.com\/account\/register",
+            "cta_primary_btn_style": "secondary",
+            "cta_2": "LOG IN",
+            "link_2": "https:\/\/miracobeauty.com\/account\/login",
+            "cta_secondary_btn_style": "primary",
+            "overlay_color": "#ffffff",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "bdd58d88-c3c3-4b2d-9a28-10e164a32f2e"
+      ],
+      "custom_css": [
+        "h1 {color: #656464;}",
+        "p {color: #656464;}"
+      ],
+      "settings": {
+        "enable_custom_css": false,
+        "slide_height": "four-fifty-height-hero",
+        "show_nav_arrows": true,
+        "show_arrow_down": false,
+        "autoplay": true,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "five-fifty-height-hero--mobile"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true
+      }
+    }
+  },
+  "order": [
+    "0ee1d272-b48b-4aa1-b404-8e7f48702b57",
+    "1fa7592e-f672-4827-85b0-58ca52792ad0",
+    "4d24e67e-69c8-40e6-aa7b-bb16a0b0096d",
+    "41db0432-c36e-4893-8880-64c2d4b281c3",
+    "0069c03c-459a-4104-9b34-20b47eeea6d5",
+    "9b29ac15-9039-44c0-9372-c3dc54a3f770",
+    "main"
+  ]
+}

@@ -1,0 +1,700 @@
+{%- comment -%} Settings {%- endcomment -%}
+
+{%- liquid
+  assign mosaic_blocks_layout = section.settings.blocks_layout
+  assign mosaic_blocks_height = section.settings.blocks_height
+  assign text_color = section.settings.text_color
+  assign mosaic_blocks_size = 0
+  assign mosaic_has_text = false
+  assign mosaic_hide_image_mobile = section.settings.hide_image_mobile
+  assign image_position = section.settings.image_position
+  assign image_blocks_count = 0
+  assign transition_text = settings.transition_text
+  assign transition_grid_items = settings.transition_grid_items
+  assign animation_delay = 0
+  assign overlay_color = section.settings.overlay_color
+  assign overlay_opacity = section.settings.overlay_opacity | times: 0.01 | round: 2
+  assign animation_anchor = '#section-mosaic--' | append: section.id
+
+  if section.blocks.size < 3
+    assign sizes = '(min-width: 1024px) calc((100vw - 20px) / 2 - 5px), calc(100vw - 20px)'
+  else
+    assign sizes = '(min-width: 1024px) calc((100vw - 20px) / 4 - 5px), calc(100vw - 20px)'
+  endif 
+
+  assign widths = '195, 205, 245, 275, 400, 500, 565, 750, 800, 1000, 1130, 1500, 1600, 2000, 2260, 3000, 3200, 4000'
+-%}
+
+{%- style -%}
+  .section-mosaic[data-section-id="{{ section.id }}"] {
+    --overlay-color: {{ overlay_color }};
+    --overlay-opacity: {{ overlay_opacity }};
+  }
+
+  {%- for block in section.blocks -%}
+    {%- unless block.type == 'text' -%}
+      {%- assign overlay_color = block.settings.overlay_color -%}
+      {%- assign overlay_opacity = block.settings.overlay_opacity | times: 0.01 | round: 2 -%}
+
+      .mosaic__block--{{ block.id }} {
+        --overlay-color: {{ overlay_color }};
+        --overlay-opacity: {{ overlay_opacity }};
+      }
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endstyle -%}
+
+{%- unless section.blocks.size == 0 -%}
+  {%- capture mosaic_blocks_content -%}
+    {%- assign index = 0 -%}
+    {%- for block in section.blocks -%}
+
+      {%- case block.type -%}
+        {%- when 'image' -%}
+          {%- liquid
+            assign mosaic_blocks_size = mosaic_blocks_size | plus: 1
+            assign image_blocks_count = image_blocks_count | plus: 1
+            assign image = block.settings.image
+            assign link = block.settings.link
+          -%}
+
+          {%- capture image_link -%}
+            {%- unless link == blank -%}
+              <a href="{{ link }}" class="mosaic__block-link" aria-label="{{ image.alt | strip_html | escape }}"></a>
+            {%- endunless -%}
+          {%- endcapture -%}
+
+          <div class="mosaic__block mosaic__block--{{ block.id }} mosaic__block--image" data-slide="{{ block.id }}" data-slide-index="{{ index }}" {{ block.shopify_attributes }}>
+            <div class="mosaic__block__inner" {% if transition_grid_items %} data-aos="zoom-in-up" data-aos-anchor="{{ animation_anchor }}" data-aos-order="{{ index | plus: 1 }}"{% endif %}>
+              {%- unless image == blank -%}
+                {%- render 'image' image: image, widths: widths, sizes: sizes, modifier: 'mosaic__block-bg', inner_html: image_link -%}
+              {%- else -%}
+                <div class="mosaic__block-bg mosaic__block-bg--no-image">
+                  <div class="svg-placeholder">
+                    {{- 'image' | placeholder_svg_tag -}}
+                    {{- image_link -}}
+                  </div>
+                </div>
+              {%- endunless -%}
+            </div>
+          </div>
+
+        {%- when 'video' -%}
+          {%- liquid
+            assign mosaic_blocks_size = mosaic_blocks_size | plus: 1
+            assign image_blocks_count = image_blocks_count | plus: 1
+            assign image = block.settings.image
+            assign link = block.settings.link
+          -%}
+
+          {%- capture image_link -%}
+            {%- unless link == blank -%}
+              {%- if link.type == 'youtube' -%}
+                {%- capture video_link -%}https://www.youtube.com/watch?v={{ link.id }}{%- endcapture -%}
+              {%- elsif link.type == 'vimeo' -%}
+                {%- capture video_link -%}https://vimeo.com/{{ link.id }}{%- endcapture -%}
+              {%- endif -%}
+
+              {%- assign video_parent_id = 'item-video-' | append: block.id -%}
+              <a href="{{ video_link }}" class="mosaic__block-link mosaic__block-link--video" data-video-play="{% render 'photoswipe-video-html' item_link: link, item_id: video_parent_id %}" aria-label="{{ 'general.accessibility.play_video' | t }}">
+                {%- render 'icon-play' -%}
+              </a>
+            {%- endunless -%}
+          {%- endcapture -%}
+
+          <div class="mosaic__block mosaic__block--{{ block.id }} mosaic__block--image mosaic__block--video" data-slide="{{ block.id }}" data-slide-index="{{ index }}" {{ block.shopify_attributes }}>
+            <div class="mosaic__block__inner"{% if transition_grid_items %} data-aos="zoom-in-up" data-aos-anchor="{{ animation_anchor }}" data-aos-order="{{ index | plus: 1 }}"{% endif %}>
+              {%- unless image == blank -%}
+                {%- render 'image' image: image, widths: widths, sizes: sizes, modifier: 'mosaic__block-bg', inner_html: image_link -%}
+              {%- else -%}
+                <div class="mosaic__block-bg mosaic__block-bg--no-image">
+                  <div class="svg-placeholder">
+                    {{- 'image' | placeholder_svg_tag -}}
+                    {{- image_link -}}
+                  </div>
+                </div>
+              {%- endunless -%}
+            </div>
+          </div>
+
+        {%- when 'product' -%}
+          {%- liquid
+            assign mosaic_blocks_size = mosaic_blocks_size | plus: 1
+            assign image_blocks_count = image_blocks_count | plus: 1
+            assign product_handle = block.settings.product
+            assign product = all_products[product_handle]
+          -%}
+
+          <div class="mosaic__block mosaic__block--{{ block.id }} mosaic__block--product" data-slide="{{ block.id }}" data-slide-index="{{ index }}" {{ block.shopify_attributes }}>
+            <div class="mosaic__block__inner" {% if transition_grid_items %} data-aos="zoom-in-up" data-aos-anchor="{{ animation_anchor }}" data-aos-order="{{ index | plus: 1 }}"{% endif %}>
+              {%- unless product.empty? -%}
+                {%- capture product_text -%}
+                  <div class="mosaic__block-text">
+                    <div class="mosaic__block-text-title">
+                      <span class="mosaic__product__title">{{ product.title | strip_html }}</span>
+                      <small class="mosaic__product__price">
+                        {%- if product.price == 0 -%}
+                          {{ 'products.labels.free' | t }}
+                        {%- else -%}
+                          {{ product.price | money }}
+                        {%- endif -%}
+                      </small>
+                    </div>
+                  </div>
+                {%- endcapture -%}
+
+                {%- assign image = product.featured_media.preview_image -%}
+                {%- unless image == blank -%}
+                  <a href="{{ product.url }}" title="{{ product.title | strip_html }}" class="mosaic__block-link">
+                    {%- render 'image' image: image, widths: widths, sizes: sizes, modifier: 'mosaic__block-bg', inner_html: product_text -%}
+                  </a>
+                {%- else -%}
+                  <a href="{{ product.url }}" title="{{ product.title | strip_html }}" class="mosaic__block-bg mosaic__block-bg--no-image">
+                    <div class="svg-placeholder">
+                      {{- 'product-1' | placeholder_svg_tag -}}
+                    </div>
+                    {{- product_text -}}
+                  </a>
+                {%- endunless -%}
+              {%- else -%}
+                <div class="mosaic__block-bg mosaic__block-bg--no-image">
+                  <div class="svg-placeholder">
+                    {{- 'product-1' | placeholder_svg_tag -}}
+                  </div>
+                  <div class="mosaic__block-text">
+                    <div class="mosaic__block-text-title">
+                      <span class="mosaic__product__title">{{- 'onboarding.product_title' | t -}}</span>
+                      <small class="mosaic__product__price">{{ '9900' | money }}</small>
+                    </div>
+                  </div>
+                </div>
+              {%- endunless -%}
+            </div>
+          </div>
+
+        {%- when 'collection' -%}
+          {%- liquid
+            assign mosaic_blocks_size = mosaic_blocks_size | plus: 1
+            assign image_blocks_count = image_blocks_count | plus: 1
+            assign collection_handle = block.settings.collection
+            assign collection = collections[collection_handle]
+            assign image = block.settings.image
+          -%}
+
+          <div class="mosaic__block mosaic__block--{{ block.id }} mosaic__block--collection" data-slide="{{ block.id }}" data-slide-index="{{ index }}" {{ block.shopify_attributes }}>
+            <div class="mosaic__block__inner" {% if transition_grid_items %} data-aos="zoom-in-up" data-aos-anchor="{{ animation_anchor }}" data-aos-order="{{ index | plus: 1 }}"{% endif %} >
+              {%- unless collection.empty? -%}
+                {%- capture collection_title -%}
+                  <div class="mosaic__block-text">
+                    <div class="mosaic__block-text-title">{{ collection.title }}</div>
+                  </div>
+                {%- endcapture-%}
+
+                {%- if image == blank -%}
+                  {%- assign image = collection.image | default: collection.products.first.featured_media.preview_image -%}
+                {%- endif -%}
+
+                {%- unless image == blank -%}
+                  <a href="{{ collection.url }}" title="{{ collection.title }}" class="mosaic__block-link">
+                    {%- render 'image' image: image, widths: widths, sizes: sizes, modifier: 'mosaic__block-bg', inner_html: collection_title -%}
+                  </a>
+                {%- else -%}
+                  <a href="{{ collection.url }}" title="{{ collection.title }}" class="mosaic__block-bg mosaic__block-bg--no-image">
+                    <div class="svg-placeholder">
+                      {{- 'collection-1' | placeholder_svg_tag -}}
+                    </div>
+                    {{- collection_title -}}
+                  </a>
+                {%- endunless -%}
+              {%- else -%}
+                {%- capture collection_title -%}
+                  <div class="mosaic__block-text">
+                    <div class="mosaic__block-text-title">{{ 'onboarding.collection' | t }}</div>
+                  </div>
+                {%- endcapture-%}
+
+                {%- unless image == blank -%}
+                  {%- render 'image' image: image, widths: widths, sizes: sizes, modifier: 'mosaic__block-bg', inner_html: collection_title -%}
+                {%- else -%}
+                  <div class="mosaic__block-bg mosaic__block-bg--no-image">
+                    <div class="svg-placeholder">
+                      {{- 'collection-1' | placeholder_svg_tag -}}
+                    </div>
+                    {{- collection_title -}}
+                  </div>
+                {%- endunless -%}
+              {%- endunless -%}
+            </div>
+          </div>
+      {%- endcase -%}
+
+      {%- unless block.type == 'text' -%}
+        {%- assign index = index | plus: 1 -%}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+{%- endunless -%}
+
+{%- liquid
+  assign blocks_count = 'no-blocks'
+  if mosaic_blocks_size == 1
+    assign blocks_count = 'one'
+  elsif mosaic_blocks_size == 2
+    assign blocks_count = 'two'
+  elsif mosaic_blocks_size == 3
+    assign blocks_count = 'three'
+  elsif mosaic_blocks_size == 4
+    assign blocks_count = 'four'
+  elsif mosaic_blocks_size == 5
+    assign blocks_count = 'five'
+  endif
+-%}
+
+{%- capture mosaic_blocks -%}
+  {%- unless mosaic_blocks_content == blank -%}
+    <div class="mosaic__blocks mosaic__blocks--{{ mosaic_blocks_layout }}">
+      <div class="mosaic__blocks-inner" data-mosaic-blocks>
+        {{- mosaic_blocks_content -}}
+      </div>
+      {%- unless mosaic_blocks_size == 1 -%}
+        <button class="slider-arrow slider-arrow--prev slider-arrow--mosaic" aria-label="{{ 'slideshow.previous' | t }}" type="button" data-prev-arrow>{% render 'icon-submit' %}</button>
+        <button class="slider-arrow slider-arrow--next slider-arrow--mosaic" aria-label="{{ 'slideshow.next' | t }}" type="button" data-next-arrow>{% render 'icon-submit' %}</button>
+      {%- endunless -%}
+    </div>
+  {%- endunless -%}
+{%- endcapture -%}
+
+{%- unless section.blocks.size == 0 -%}
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'text' -%}
+        {%- capture mosaic_text -%}
+          {%- liquid
+            assign heading = block.settings.title
+            assign subheading = block.settings.subheading
+            assign text = block.settings.text
+            assign button_label = block.settings.button_label
+          -%}
+
+          {%- unless heading == blank and subheading == blank and text == blank and button_label == blank -%}
+            {%- assign mosaic_has_text = true -%}
+            <div class="mosaic__content" data-block="mosaic" {{ block.shopify_attributes }}>
+              <div class="mosaic__content-container">
+                {%- unless subheading == blank -%}
+                  <p class="mosaic__subheading subheading-text"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                    {{- subheading -}}
+                  </p>
+                  {%- assign animation_delay = animation_delay | plus: 250 -%}
+                {%- endunless -%}
+
+                {%- unless heading == blank -%}
+                  <h2 class="mosaic__heading"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                    {{- heading -}}
+                  </h2>
+                  {%- assign animation_delay = animation_delay | plus: 250 -%}
+                {%- endunless -%}
+
+                {%- unless text == blank -%}
+                  <p class="mosaic__text"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                    {{- text -}}
+                  </p>
+                  {%- assign animation_delay = animation_delay | plus: 250 -%}
+                {%- endunless -%}
+                {%- unless button_label == blank -%}
+                  {%- assign button_link = block.settings.button_link | default: '#' -%}
+                  <div class="mosaic__button"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+                    <a href="{{ button_link }}" class="button button--{{ block.settings.button_style }}">{{ button_label }}</a>
+                  </div>
+                {%- endunless -%}
+              </div>
+            </div>
+          {%- endunless -%}
+        {%- endcapture -%}
+
+    {%- endcase -%}
+  {%- endfor -%}
+{%- endunless -%}
+
+{%- capture mosaic_banner -%}
+  {%- liquid
+    assign image = section.settings.image
+    assign image_text = section.settings.image_text
+    assign image_link = section.settings.image_link
+  -%}
+
+  <div class="mosaic__image mosaic__image--{{ blocks_count }} mosaic__image--{{ image_position }}" {% if transition_grid_items %} data-aos="zoom-in-up" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+    {%- unless image == blank -%}
+      {%- assign sizes = '(min-width: 1024px) calc((100vw - 20px) / 2 - 5px), calc(100vw - 20px)' -%}
+      {%- render 'image' image: image, widths: widths, sizes: sizes, modifier: 'mosaic__block-bg' -%}
+    {%- else -%}
+      <div class="mosaic__image-bg mosaic__image-bg--no-image">
+        <div class="svg-placeholder">
+          {{- 'image' | placeholder_svg_tag -}}
+        </div>
+      </div>
+    {%- endunless -%}
+
+    {%- unless image_text == blank -%}
+      {%- if image_link == blank -%}
+        <div class="mosaic__image-text">
+          {%- unless image_text == blank -%}
+            <p>{{- image_text -}}</p>
+          {%- endunless -%}
+        </div>
+      {%- else -%}
+        <a class="mosaic__image-text" href="{{ image_link }}">
+          <p>{{- image_text -}}</p>
+        </a>
+      {%- endif -%}
+    {%- endunless -%}
+  </div>
+{%- endcapture -%}
+
+<section class="section-mosaic" data-section-type="mosaic" data-section-id="{{ section.id }}" data-text-color="{{ text_color }}" id="section-mosaic--{{ section.id }}">
+  <div class="mosaic__wrapper">
+    <div class="mosaic__inner">
+      {%- if image_position == 'left' -%}
+        <div class="block block--{{ mosaic_blocks_height }} s1{% unless section.blocks.size == 0 %} lg_s12{% endunless %}{% if mosaic_hide_image_mobile %} med_hide{% endif %}">
+          {{- mosaic_banner -}}
+        </div>
+      {%- endif -%}
+
+      {%- unless section.blocks.size == 0 -%}
+        <div class="block{% if mosaic_has_text == false %} block--no-text{% endif %}{% if image_blocks_count >= 4 %} block--images-only{% endif %} block--left block--{{ mosaic_blocks_height }} s1 lg_s12">
+          <div class="mosaic__blocks-wrapper mosaic__blocks--{{ blocks_count }}">
+            {{- mosaic_text -}}
+            {{- mosaic_blocks -}}
+          </div>
+        </div>
+      {%- endunless -%}
+
+      {%- if image_position == 'right' -%}
+        <div class="block block--{{ mosaic_blocks_height }} s1{% unless section.blocks.size == 0 %} lg_s12{% endunless %}{% if mosaic_hide_image_mobile %} med_hide{% endif %}">
+          {{- mosaic_banner -}}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+  {
+    "name": "Mosaic",
+    "class": "shopify-section--mosaic",
+    "max_blocks": 5,
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fixed image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "Position",
+        "default": "right",
+        "options": [
+          { "label": "Left", "value": "left" },
+          { "label": "Right", "value": "right" }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_image_mobile",
+        "label": "Hide on mobile",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Overlay"
+      },
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Color",
+        "default": "#333333"
+      },
+      {
+        "type": "range",
+        "id": "overlay_opacity",
+        "label": "Opacity",
+        "min": 0,
+        "max": 95,
+        "step": 5,
+        "unit": "%",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "text",
+        "id": "image_text",
+        "label": "Text"
+      },
+      {
+        "type": "url",
+        "id": "image_link",
+        "label": "Link"
+      },
+      {
+        "type": "header",
+        "content": "Blocks layout"
+      },
+      {
+        "type": "select",
+        "id": "blocks_height",
+        "label": "Height",
+        "default": "default-height",
+        "options": [
+          { "label": "Full height", "value": "full-height" },
+          { "label": "3/4 height", "value": "default-height" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "blocks_layout",
+        "label": "Layout",
+        "default": "offset",
+        "options": [
+          { "label": "Split", "value": "split" },
+          { "label": "Offset", "value": "offset" }
+        ],
+        "info": "Works when all 5/5 blocks are added and there is no product block included"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "select",
+        "id": "text_color",
+        "label": "Overlay text and arrows",
+        "default": "white",
+        "options": [
+          { "label": "White", "value": "white" },
+          { "label": "Black", "value": "black" }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Text",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Modular"
+          },
+          {
+            "type": "text",
+            "id": "subheading",
+            "label": "Subheading",
+            "default": "Best Seller"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Showcase a two of your best products, video, a collection, or text with the blocks in this section.</p>"
+          },
+          {
+            "type": "header",
+            "content": "Button"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Label",
+            "default": "Shop now"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Link"
+          },
+          {
+            "type": "select",
+            "id": "button_style",
+            "label": "Style",
+            "default": "primary",
+            "options": [
+              { "label": "Primary", "value": "primary" },
+              { "label": "Secondary", "value": "secondary" }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "color",
+            "id": "overlay_color",
+            "label": "Color",
+            "default": "#333333"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Opacity",
+            "min": 0,
+            "max": 95,
+            "step": 5,
+            "unit": "%",
+            "default": 0
+          }
+        ]
+      },
+      {
+        "type": "video",
+        "name": "Video",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "id": "link",
+            "type": "video_url",
+            "label": "Link",
+            "accept": ["youtube", "vimeo"],
+            "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "color",
+            "id": "overlay_color",
+            "label": "Color",
+            "default": "#333333"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Opacity",
+            "min": 0,
+            "max": 95,
+            "step": 5,
+            "unit": "%",
+            "default": 0
+          }
+        ]
+      },
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "color",
+            "id": "overlay_color",
+            "label": "Color",
+            "default": "#333333"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Opacity",
+            "min": 0,
+            "max": 95,
+            "step": 5,
+            "unit": "%",
+            "default": 0
+          }
+        ]
+      },
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Choose collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Replacement image"
+          },
+          {
+            "type": "header",
+            "content": "Overlay"
+          },
+          {
+            "type": "color",
+            "id": "overlay_color",
+            "label": "Color",
+            "default": "#333333"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Opacity",
+            "min": 0,
+            "max": 95,
+            "step": 5,
+            "unit": "%",
+            "default": 0
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Mosaic",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "text"
+          },
+          {
+            "type": "product"
+          },
+          {
+            "type": "product"
+          }
+        ]
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    }
+  }
+{% endschema %}

@@ -1,0 +1,519 @@
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "price-and-title": {
+          "type": "price-and-title",
+          "settings": {
+            "show_vendor": false,
+            "show_rating": false,
+            "show_rating_count": false
+          }
+        },
+        "eed42655-6b92-4fce-9c3a-a405aa780333": {
+          "type": "shopify:\/\/apps\/klaviyo-reviews\/blocks\/average-rating\/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "ad7b9f16-27f5-4ed7-a80a-6af32b9ebd7a": {
+          "type": "shopify:\/\/apps\/loox-product-reviews-photos\/blocks\/loox-rating\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
+        "product-description": {
+          "type": "product-description",
+          "settings": {
+          }
+        },
+        "b5ca2086-3ead-4bbe-9723-3e73e1f55ff1": {
+          "type": "shipping-text",
+          "settings": {
+            "shipping-text": "<h5>Free shipping on orders over $50<\/h5>"
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "show_quantity": true,
+            "enable_payment_button": false
+          }
+        },
+        "social-share": {
+          "type": "social-share",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "e82798da-0bcb-45ef-be1c-bf814c966a15": {
+          "type": "store-availability",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "c812bd8a-f854-4198-91ce-734412f3c051": {
+          "type": "kik-text-with-icon",
+          "settings": {
+            "text_1": "30 days free exchanges or returns (return shipping cost not included)",
+            "icon_image_1": "shopify:\/\/shop_images\/icon-1.png",
+            "text_2": "Upcycled ingredients, beneficial to skin, reducing environmental waste and harm to precious marine life",
+            "icon_image_2": "shopify:\/\/shop_images\/icon-2.png",
+            "text_3": "Single lab origin, ocean farming not to disrupt marine ecosystem",
+            "icon_image_3": "shopify:\/\/shop_images\/icon-3.png"
+          }
+        }
+      },
+      "block_order": [
+        "price-and-title",
+        "eed42655-6b92-4fce-9c3a-a405aa780333",
+        "ad7b9f16-27f5-4ed7-a80a-6af32b9ebd7a",
+        "product-description",
+        "b5ca2086-3ead-4bbe-9723-3e73e1f55ff1",
+        "form",
+        "social-share",
+        "e82798da-0bcb-45ef-be1c-bf814c966a15",
+        "c812bd8a-f854-4198-91ce-734412f3c051"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "product_layout": "slideshow",
+        "image_size": "medium",
+        "lightbox": true,
+        "show_cart_bar": true,
+        "enable_video_looping": false
+      }
+    },
+    "faq": {
+      "type": "section-faq",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "title": "Key Ingredients and Benefits",
+            "answer": "<p>{{ product.metafields.custom.tab_key_ingredients_benefits | metafield_tag }}<\/p>"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "title": "How to Use",
+            "answer": "<p>{{ product.metafields.custom.tab_how_to_use | metafield_tag }}<\/p>"
+          }
+        },
+        "4201a137-f49b-432f-a106-9e8df5ec6a92": {
+          "type": "item",
+          "settings": {
+            "title": "FAQs",
+            "answer": "<p>{{ product.metafields.custom.tab_faqs | metafield_tag }}<\/p>"
+          }
+        },
+        "3aa0ab01-017a-4b16-8967-d5cee6b74658": {
+          "type": "item",
+          "settings": {
+            "title": "Ingredients",
+            "answer": "<p>{{ product.metafields.custom.tab_ingredients | metafield_tag }}<\/p>"
+          }
+        },
+        "5b8b2d18-8732-4bb3-aec8-2bbcc4d04f8f": {
+          "type": "item",
+          "settings": {
+            "title": "What Else You Should Know",
+            "answer": "<p>{{ product.metafields.custom.tab_what_else_you_should_know | metafield_tag }}<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-2",
+        "4201a137-f49b-432f-a106-9e8df5ec6a92",
+        "3aa0ab01-017a-4b16-8967-d5cee6b74658",
+        "5b8b2d18-8732-4bb3-aec8-2bbcc4d04f8f"
+      ],
+      "custom_css": [
+        "{margin-top: -32px;}"
+      ],
+      "settings": {
+        "title": "",
+        "subheading": "",
+        "layout_split": false
+      }
+    },
+    "richtext": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-top: -8px;}",
+        "h2 {font-size: 28px; margin-bottom: -16px;}"
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Skincare Concerns",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "checkbox_redeem": false,
+        "redeem_button_text": "REDEEM POINTS",
+        "button_style": "primary"
+      }
+    },
+    "ce8babaa-4627-477c-93de-7de5a27b2bb0": {
+      "type": "section-icons-row",
+      "blocks": {
+        "template--15813410554039__ce8babaa-4627-477c-93de-7de5a27b2bb0-1682297863aab4943a-0": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/concern-dryness.png",
+            "title": "",
+            "text": "<p>Dryness<\/p>"
+          }
+        },
+        "template--15813410554039__ce8babaa-4627-477c-93de-7de5a27b2bb0-1682297863aab4943a-1": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/concern-dullness_1d1cce0c-be5a-4ab7-92bf-a040538952ec.png",
+            "title": "",
+            "text": "<p>Dullness<\/p>"
+          }
+        },
+        "template--15813410554039__ce8babaa-4627-477c-93de-7de5a27b2bb0-1682297863aab4943a-2": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/concern-finelines_4f7ea9bb-afd7-40db-97fa-73cecbfdb643.png",
+            "title": "",
+            "text": "<p>Fine Lines<\/p>"
+          }
+        },
+        "5e12a619-da97-490f-9eca-e5e99e039a70": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/concern-uneven.png",
+            "title": "",
+            "text": "<p>Uneven Textures<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15813410554039__ce8babaa-4627-477c-93de-7de5a27b2bb0-1682297863aab4943a-0",
+        "template--15813410554039__ce8babaa-4627-477c-93de-7de5a27b2bb0-1682297863aab4943a-1",
+        "template--15813410554039__ce8babaa-4627-477c-93de-7de5a27b2bb0-1682297863aab4943a-2",
+        "5e12a619-da97-490f-9eca-e5e99e039a70"
+      ],
+      "custom_css": [
+        "{margin-top: -72px; margin-bottom: 48px;}"
+      ],
+      "settings": {
+        "title": "",
+        "alignment": "center",
+        "color_icons_bg": "#ffffff",
+        "color_icons_text": "#606161"
+      }
+    },
+    "4d0e91eb-1e69-4c33-80a6-f124a0d253ca": {
+      "type": "section-video",
+      "disabled": true,
+      "settings": {
+        "video_link_bg": "{{ product.metafields.custom.video_link.value }}",
+        "video_link": "",
+        "height": "four-fifty-height-hero",
+        "height_mobile": "four-fifty-height-hero--mobile",
+        "overlay_opacity": 0,
+        "overlay_color": "#333333",
+        "title": "",
+        "description": "",
+        "flex_align": "align--middle-center",
+        "text_color": "text-light",
+        "transparent": true,
+        "link_text": "",
+        "link": "",
+        "button_style": "primary"
+      }
+    },
+    "16959948792f945a21": {
+      "type": "apps",
+      "blocks": {
+        "55275835-2820-448e-a071-6d4b6a8ccc49": {
+          "type": "shopify:\/\/apps\/vidjet\/blocks\/vidjet\/1642cd1f-229f-4539-b11b-4ae03703519d",
+          "settings": {
+            "vidjet_code": "<div class=\"vidjet-carousel-wrapper carousel-inline\" style=\"max-height: 445px; margin: 0 16px; height: 100vw; position: relative; overflow: hidden;\"> <iframe class=\"vidjet-embed-iframe\" data-vidjet-campaign-id=\"1bdabb56-4b5b-4b08-bcca-64a59250d29f\" src=\"https:\/\/player.vidjet.io\/eabdecc0-29d4-47a2-b745-fce0b052244a\/1bdabb56-4b5b-4b08-bcca-64a59250d29f\" style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\" allow=\"clipboard-read; clipboard-write; fullscreen\" frameborder=\"0\"> <\/iframe> <\/div>",
+            "vidjet_desktop_width": 100
+          }
+        }
+      },
+      "block_order": [
+        "55275835-2820-448e-a071-6d4b6a8ccc49"
+      ],
+      "custom_css": [
+        "{margin-top: -32px;}"
+      ],
+      "settings": {
+      }
+    },
+    "aa85acf9-2904-4565-97af-92a04a3cf520": {
+      "type": "section-icons-row",
+      "blocks": {
+        "d626a237-21c7-43bc-b9cf-d41bc06ba836": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-no_animal.png",
+            "title": "",
+            "text": "<p>Not Tested on Animals<\/p>"
+          }
+        },
+        "9ffc04f0-6964-40d0-be6c-73deb72bf8b5": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-parabhenfree.png",
+            "title": "",
+            "text": "<p>No Parabens or Phthalates<\/p>"
+          }
+        },
+        "8007b0f6-a5c0-4bbf-800c-760ab56ed646": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-no_mineral_oil.png",
+            "title": "",
+            "text": "<p>No Mineral Oil<\/p>"
+          }
+        },
+        "696332da-5352-4adf-b39f-fa942a0d9ebf": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-all_skin_type.png",
+            "title": "",
+            "text": "<p>Made for All Skin Types<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "d626a237-21c7-43bc-b9cf-d41bc06ba836",
+        "9ffc04f0-6964-40d0-be6c-73deb72bf8b5",
+        "8007b0f6-a5c0-4bbf-800c-760ab56ed646",
+        "696332da-5352-4adf-b39f-fa942a0d9ebf"
+      ],
+      "custom_css": [
+        "{margin-top: 0px;}",
+        "h2 {font-size: 30px; margin-bottom: 16px;}"
+      ],
+      "settings": {
+        "title": "The Intersection of Nature, Science & Technology",
+        "alignment": "center",
+        "color_icons_bg": "#fafafa",
+        "color_icons_text": "#606161"
+      }
+    },
+    "recent": {
+      "type": "section-recently-viewed-products",
+      "disabled": true,
+      "settings": {
+        "title": "Recently viewed products"
+      }
+    },
+    "78304202-c9cb-4cdb-a723-cd1ad9a5c27a": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: -24px; margin-top: -24px;}"
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Key Ingredients",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "checkbox_redeem": false,
+        "redeem_button_text": "REDEEM POINTS",
+        "button_style": "primary"
+      }
+    },
+    "ad3f9861-5980-4953-8fae-1f7bc3f7de0b": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "template--15846280560823__ad3f9861-5980-4953-8fae-1f7bc3f7de0b-16867120812baf0119-0": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "{{ product.metafields.custom.key_ingredients_1_image.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "template--15846280560823__ad3f9861-5980-4953-8fae-1f7bc3f7de0b-16867120812baf0119-0"
+      ],
+      "custom_css": [
+        "{margin-top: -48px;}"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "four-fifty-height-hero",
+        "slide_image_position": "left",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "{{ product.metafields.custom.key_ingredients_1_heading.value }}",
+        "title": "",
+        "content": "<p>{{ product.metafields.custom.key_ingredients_1_text | metafield_tag }}<\/p>",
+        "cta": "",
+        "link": "",
+        "button_style": "primary"
+      }
+    },
+    "1d699dc1-f316-4689-81a3-fdc9c527b9ab": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "3e97ee7b-bac0-475b-a769-c604f21364d7": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "{{ product.metafields.custom.key_ingredients_2_image.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "3e97ee7b-bac0-475b-a769-c604f21364d7"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "four-fifty-height-hero",
+        "slide_image_position": "right",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "{{ product.metafields.custom.key_ingredients_2_heading.value }}",
+        "title": "",
+        "content": "<p>{{ product.metafields.custom.key_ingredients_2_text | metafield_tag }}<\/p>",
+        "cta": "",
+        "link": "",
+        "button_style": "primary"
+      }
+    },
+    "14f860c0-ae2b-461f-9b66-dee66831c273": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "1ca005d0-33d9-4c0a-af65-dba6b3fe10d3": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "{{ product.metafields.custom.key_ingredients_3_image.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "1ca005d0-33d9-4c0a-af65-dba6b3fe10d3"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "four-fifty-height-hero",
+        "slide_image_position": "left",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "{{ product.metafields.custom.key_ingredients_3_heading.value }}",
+        "title": "",
+        "content": "<p>{{ product.metafields.custom.key_ingredients_3_text | metafield_tag }}<\/p>",
+        "cta": "",
+        "link": "",
+        "button_style": "primary"
+      }
+    },
+    "d0da00c9-8041-47c8-87ab-4d08000bdbd1": {
+      "type": "section-rich-text",
+      "disabled": true,
+      "custom_css": [
+        "{margin-bottom: -48px;}"
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Customer Reviews",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "checkbox_redeem": false,
+        "redeem_button_text": "REDEEM POINTS",
+        "button_style": "primary"
+      }
+    },
+    "loox-product-reviews-app-section": {
+      "type": "apps",
+      "blocks": {
+        "2a0e85c7-395c-409a-808a-da20c8c58946": {
+          "type": "shopify:\/\/apps\/klaviyo-reviews\/blocks\/product-reviews\/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "7961676c-4676-4782-845d-7ae31013462d": {
+          "type": "shopify:\/\/apps\/loox-product-reviews-photos\/blocks\/loox-dynamic-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1120
+          }
+        }
+      },
+      "block_order": [
+        "2a0e85c7-395c-409a-808a-da20c8c58946",
+        "7961676c-4676-4782-845d-7ae31013462d"
+      ],
+      "custom_css": [
+        "{margin-top: 96px;}"
+      ],
+      "settings": {
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "custom_css": [
+
+      ],
+      "settings": {
+        "related_products_enable": true,
+        "title": "You May Also Like"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq",
+    "richtext",
+    "ce8babaa-4627-477c-93de-7de5a27b2bb0",
+    "4d0e91eb-1e69-4c33-80a6-f124a0d253ca",
+    "16959948792f945a21",
+    "aa85acf9-2904-4565-97af-92a04a3cf520",
+    "recent",
+    "78304202-c9cb-4cdb-a723-cd1ad9a5c27a",
+    "ad3f9861-5980-4953-8fae-1f7bc3f7de0b",
+    "1d699dc1-f316-4689-81a3-fdc9c527b9ab",
+    "14f860c0-ae2b-461f-9b66-dee66831c273",
+    "d0da00c9-8041-47c8-87ab-4d08000bdbd1",
+    "loox-product-reviews-app-section",
+    "related"
+  ]
+}

@@ -1,0 +1,205 @@
+{%- liquid
+  assign current_collection = '||product-handle||'
+  assign uniq_id = 'product-' | append: product.id | append: '-' | append: current_collection
+  assign arrows = settings.show_slideshow_arrows
+  assign dots = settings.show_slideshow_dots
+  assign dots_style = settings.dots_style
+  if dots_style == 'hidden'
+    assign dots = false
+  endif
+
+  assign is_single_media = true
+  if product.media.size > 1
+    assign is_single_media = false
+  endif
+  assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media
+  assign featured_media_id = featured_media.id
+  assign first_3d_model = product.media | where: 'media_type', 'model' | first
+  assign preorder = false
+  assign product_tags = product.tags | join: ',' | append: ','
+
+  if product_tags contains '_preorder'
+    assign preorder = true
+  endif
+-%}
+ {% assign alredyAddedToCart = false %}
+{% for item in cart.items %}
+    {% if item.product.id == product.id %}
+       {% assign alredyAddedToCart = true %}
+    {% endif %} 
+{% endfor %}
+
+{% comment %}
+{% for item in cart.items %}
+    {% if item.product.id != product.id %}
+       {% assign alredyAddedToCart = true %}
+    {% endif %} 
+{% endfor %}
+{% endcomment %}
+
+<div data-api-content>
+  <div class="quickView">
+    <div class="quickView-wrap" data-quickview-wrap data-quickview-id="{{ uniq_id }}">
+      <div class="quickView-inner-wrap" data-product-container>
+        <div class="container">
+          <div class="row">
+            <div class="quickView-img block">
+              <div class="product__images__slider{% if is_single_media %} product__images__slider--single{% endif %}" data-product-single-media-group>
+                <div class="product__images__container" id="product__images__slider--{{ section.id }}" data-dots="{{ dots }}" data-dots-style="{{ dots_style }}" data-arrows="{{ arrows }}" data-product-slideshow>
+                  {%- if product.media.size > 0 -%}
+                    {%- comment -%} Show Featured media first {%- endcomment -%}
+                    {%- render 'media', media: featured_media, featured_media: featured_media, is_single_media: is_single_media, unique: uniq_id -%}
+
+                    {%- comment -%} Loop product media skipping the featured {%- endcomment -%}
+                    {%- for media in product.media -%}
+                      {%- if media.id != featured_media_id -%}
+                        {%- render 'media', media: media, featured_media: featured_media, is_single_media: is_single_media, unique: uniq_id -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- else -%}
+                    {%- comment -%} Show blank box if product has no media {%- endcomment -%}
+                    <div class="product-image product-image--empty"></div>
+                  {%- endif -%}
+                </div>
+
+                {%- if first_3d_model -%}
+                  <button
+                    aria-label="{{ 'products.product_page.view_in_space_label' | t }}"
+                    class="btn btn--ar product-single__view-in-space"
+                    data-shopify-xr
+                    data-shopify-model3d-id="{{ first_3d_model.id }}"
+                    data-shopify-title="{{ product.title | strip_html }}"
+                    data-shopify-xr-hidden>
+                    {%- render 'icon-media-model' -%}
+                    <span class='product-single__view-in-space-text'>{{ 'products.product_page.view_in_space' | t }}</span>
+                  </button>
+                {%- endif -%}
+              </div>
+              {%- unless is_single_media -%}
+                <div class="product__images__slider-nav" data-product-single-media-thumbs>
+                  {%- comment -%} Show Featured media thumbnail first {%- endcomment -%}
+                  {%- render 'media-thumb', media: featured_media, index: forloop.index -%}
+
+                  {%- comment -%} Loop product media thumbnails skipping the featured {%- endcomment -%}
+                  {%- for media in product.media -%}
+                    {%- if media.id != featured_media_id -%}
+                      {%- render 'media-thumb', media: media, index: forloop.index -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              {%- endunless -%}
+            </div>
+            <div class="quickView-info block">
+              <a href="#" class="quickView-close" aria-label="{{ 'general.accessibility.close' | t }}" data-quickview-close>
+                {%- render 'icon-close' -%}
+              </a>
+              <div class="product__info">
+                <div class="product__info__wrapper">
+                  <div class="product__title__wrapper" data-product__title>
+                    {%- if product.vendor != blank -%}
+                      <p class="product__vendor subheading-text">{{ product.vendor }}</p>
+                    {%- endif -%}
+
+                    <h1 class="product__title"><a href="{{ product.url }}" title="{{ product.title | strip_html | escape }}">{{ product.title | strip_html }}</a></h1>
+
+                    {%- if settings.show_rating -%}
+                      {%- render 'rating', show_rating_count: block.settings.show_rating_count, single_star: true, reviews: product.metafields.reviews -%}
+                    {%- endif -%}
+
+                    {%- liquid
+  assign first_variant = product.selected_or_first_available_variant
+  assign on_sale = false
+  if first_variant.compare_at_price > first_variant.price
+    assign on_sale = true
+  endif
+-%}
+
+<div class="product__price" data-price-wrapper>
+  <span data-product-price>
+    {%- if first_variant.price == 0 -%}
+      {{ 'products.labels.free' | t }}
+    {%-  else -%}
+      {{ first_variant.price | money }}
+    {%- endif -%}
+  </span>
+  <s class="product__price__sale" data-compare-price>
+    {%- if on_sale -%}
+      {{- first_variant.compare_at_price | money -}}
+    {%- endif -%}
+  </s>
+
+  {%- liquid
+    assign units = product.variants | map: 'unit_price' | compact
+    if units[0]
+      assign has_units = true
+    else
+      assign has_units = false
+    endif
+  -%}
+
+  {%- if has_units -%}
+    
+    {%- unless first_variant.unit_price -%}
+      {%- assign hide_units = ' hidden' -%}
+    {%- endunless -%}
+
+    {%- capture unit_price_separator -%}
+      <span aria-hidden="true">/</span>
+      <span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}</span>
+    {%- endcapture -%}
+
+    {%- capture unit_price_base_unit -%}
+      <span>
+        {%- if first_variant.unit_price_measurement -%}
+          {%- if first_variant.unit_price_measurement.reference_value != 1 -%}
+            {{ first_variant.unit_price_measurement.reference_value }}
+          {%- endif -%}
+          {{- first_variant.unit_price_measurement.reference_unit -}}
+        {% endif %}
+      </span>
+    {%- endcapture -%}
+    <div class="product__price__meta">
+      <span class="product__unit-price{{ hide_units }}" data-product-unit>
+        <span class="visually-hidden">{{ 'products.labels.unit_price_label' | t }}</span>
+        <span data-product-unit-price id="unit-price-{{ section.id }}">{{ first_variant.unit_price | money }}</span>
+        {{ unit_price_separator }}
+        <span data-product-base id="unit-price-base-{{ section.id }}">{{ unit_price_base_unit }}</span>
+      </span>
+      <span data-price-each class="product__price--unit visually-hidden">
+        {{ 'products.labels.each' | t }}
+        <span data-price-each-amount></span>
+      </span>
+    </div>
+  {% endif %}
+</div>
+                  </div>
+                  <div class="product__form k-preorder">
+                    <div data-product-form-container>
+                       {%- render 'product-form', alredyAddedToCart: alredyAddedToCart,  preorder: preorder -%}
+                  {% comment %} 
+              {% if alredyAddedToCart %}
+                      {%- render 'product-form', alredyAddedToCart: alredyAddedToCart,  preorder: preorder -%}
+                        {% else %}
+                        <p>Already added to cart (only 1 item can be purchased per person).</p>
+                        {% endif %}
+                        {% endcomment %} 
+                      {%- render 'notification-form', variant_available: product.selected_or_first_available_variant.available, product_title: product.title -%}
+                    </div>
+                  </div>
+
+                  {%- if product.description != blank and settings.show_quick_view_description -%}
+                  <div class="product__description rte">
+                    {{- product.description -}}
+                  </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script type="application/json" id="ProductJson--{{ uniq_id }}" data-product-json hidden>{{ product | json }}</script>
+    <script type="application/json" id="ModelJson-{{ uniq_id }}" hidden>{{ product.media | where: 'media_type', 'model' | json }}</script>
+    </div>
+  </div>
+</div>

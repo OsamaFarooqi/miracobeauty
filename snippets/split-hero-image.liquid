@@ -1,0 +1,23 @@
+<div class="split-hero__box{% if image_mobile != blank %} split-hero__box--has-mobile{% endif %}">
+  {%- unless image == blank -%}
+    <div class="split-hero__image split-hero__image--desktop">
+      {%- liquid
+        assign sizes = '(min-width: 768px) calc((100vw - 20px) / 2 - 5px), calc(100vw - 20px)'
+        render 'image' image: image, sizes: sizes
+      -%}
+    </div>
+  {%- else -%}
+    <div class="split-hero__image split-hero__image--desktop split-hero__image--onboarding">
+      {{- 'image' | placeholder_svg_tag: 'placeholder-svg' -}}
+    </div>
+  {%- endunless -%}
+
+  {%- unless image_mobile == blank -%}
+    <div class="split-hero__image split-hero__image--mobile">
+      {%- liquid
+        assign sizes = '(min-width: 768px) calc((100vw - 20px) / 2 - 5px), calc(100vw - 20px)'
+        render 'image' image: image_mobile, sizes: sizes
+      -%}
+    </div>
+  {%- endunless -%}
+</div>

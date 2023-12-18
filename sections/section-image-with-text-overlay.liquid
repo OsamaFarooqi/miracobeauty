@@ -1,0 +1,172 @@
+{%- render 'banner',
+  image: section.settings.banner_image,
+  mobile_image: section.settings.banner_image_mobile,
+  desktop_height: section.settings.height,
+  mobile_height: section.settings.height_mobile,
+  transparent_header: true,
+  subheading: section.settings.subheading,
+  heading: section.settings.title,
+  text: section.settings.text,
+  text_position: section.settings.text_position,
+  image_position: section.settings.image_position,
+  color_text: section.settings.color_text,
+  color_overlay: section.settings.color_overlay,
+  overlay_opacity: section.settings.overlay_opacity,
+  unique: section.id
+-%}
+
+{% schema %}
+{
+  "name": "Image with text overlay",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "options": [
+        {
+          "value": "one-hundred",
+          "label": "Full screen"
+        },
+        {
+          "value": "image-height",
+          "label": "Image height"
+        },
+        {
+          "value": "seven-fifty-height-hero",
+          "label": "750px"
+        },
+        {
+          "value": "sixty-fifty-height-hero",
+          "label": "650px"
+        },
+        {
+          "value": "five-fifty-height-hero",
+          "label": "550px"
+        },
+        {
+          "value": "four-fifty-height-hero",
+          "label": "450px"
+        }
+      ],
+      "default": "five-fifty-height-hero"
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_mobile",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "height_mobile",
+      "label": "Height",
+      "default": "one-hundred-height-hero--mobile",
+      "options": [
+        {
+          "value": "one-hundred-height-hero--mobile",
+          "label": "Full screen"
+        },
+        {
+          "value": "image-height--mobile",
+          "label": "Image height"
+        },
+        {
+          "value": "seven-fifty-height-hero--mobile",
+          "label": "750px"
+        },
+        {
+          "value": "sixty-fifty-height-hero--mobile",
+          "label": "650px"
+        },
+        {
+          "value": "five-fifty-height-hero--mobile",
+          "label": "550px"
+        },
+        {
+          "value": "four-fifty-height-hero--mobile",
+          "label": "450px"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Introducing"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Text block"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "default": "center",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Center", "value": "center" },
+        { "label": "Right", "value": "right" },
+        { "label": "Bottom left", "value": "bottom-left" },
+        { "label": "Bottom right", "value": "bottom-right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_overlay",
+      "label": "Overlay",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "step": 5,
+      "max": 95,
+      "min": 0,
+      "unit": "%",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Image with text overlay"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

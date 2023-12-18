@@ -1,0 +1,92 @@
+{% comment %} Settings {% endcomment %}
+{%- liquid
+  assign title = section.settings.title
+  assign content = section.settings.content
+  assign color = section.settings.color
+  assign background = section.settings.background
+-%}
+
+{% comment %} Section {% endcomment %}
+{%- style -%}
+  .section-newsletter[data-section-id="{{ section.id }}"] { background-color: {{ background }}; color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] h2 { color: {{ color }} !important; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input::-webkit-input-placeholder { color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input::-moz-placeholder { color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input:-ms-input-placeholder { color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input:-moz-placeholder { color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input,
+  .section-newsletter[data-section-id="{{ section.id }}"] button.sign-up-submit { color: {{ color }} !important; }
+  .section-newsletter[data-section-id="{{ section.id }}"] .sign-up-form .inputGroup { border-color: {{ color }}; }
+{%- endstyle -%}
+
+<section class="section-newsletter container-wrap" data-section-type="newsletter" data-section-id="{{ section.id }}">
+  <div class="container sign-up">
+    <div class="row">
+      {%- if title != blank -%}
+        <h2>{{ title }}</h2>
+      {%- endif -%}
+
+      {%- if content != blank -%}
+        <div class="sign-up-body">{{ content }}</div>
+      {%- endif -%}
+
+      {%- render 'newsletter' -%}
+    </div>
+  </div>
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+{
+  "name": "Newsletter",
+  "class": "shopify-section--newsletter",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Newsletter"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Subheading",
+      "default": "<p>Let's keep in touch</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "Text",
+      "settings":
+      {
+        "title": "Newsletter",
+        "content": "<p>Let's keep in touch</p>"
+      }
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

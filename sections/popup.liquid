@@ -1,0 +1,166 @@
+<!-- /snippets/popup.liquid -->
+{%- liquid
+  assign show_popup = section.settings.show_popup
+  assign testmode = false
+  assign delay = section.settings.popup_delay
+  assign reappear_time = section.settings.popup_reappear_time
+  assign image = section.settings.popup_image
+  assign popup_header = section.settings.popup_header
+  assign popup_content = section.settings.popup_content
+  assign popup_position = section.settings.popup_position
+  assign text_alignment = section.settings.text_alignment
+
+  if show_popup == 'testmode'
+    assign testmode = true
+  endif
+-%}
+
+<div data-section-id="{{ section.id }}" data-section-type="popup">
+  {%- unless show_popup == 'disabled' -%}
+    <section class="popup popup--{{ popup_position }} u-{{ text_alignment }}{% if image == blank%} popup--no-image{% endif %}"
+      data-popup
+      data-testmode="{{ testmode }}"
+      data-delay="{{ delay }}"
+      data-reappear_time="{{ reappear_time }}">
+      <div class="popup__container">
+        <button class="popup__close" type="button" data-popup-close aria-label="{{ 'general.accessibility.close' | t }}">{% render 'icon-close' %}</button>
+        <div class="popup__wrap">
+          {%- if image != blank -%}
+            <div class="popup__column popup__column--image">
+              <div class="popup__image">
+                {%- liquid
+                  assign sizes = '360px'
+                  assign widths = '360, 400, 440, 480, 520, 560, 640, 720'
+
+                  render 'image' image: image, width: 720, widths: widths, sizes: sizes
+                -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="popup__column">
+            <div class="popup__column-content">
+              {%- if popup_content != blank or popup_header != "" -%}
+                <p class="popup__heading">{{ popup_header | truncatewords: 10 }}</p>
+                {{ popup_content | truncate: 300  }}
+              {%- endif -%}
+              {%- if section.settings.show_popup_newsletter -%}
+                {%- render 'newsletter' -%}
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {%- endunless -%}
+</div>
+
+{% schema %}
+{
+  "name": "Popup",
+  "settings": [
+    {
+      "type": "select",
+      "id": "show_popup",
+      "label": "Display mode",
+      "default": "disabled",
+      "options": [
+        {
+          "value": "enabled",
+          "label": "Enabled"
+        },
+        {
+          "value": "disabled",
+          "label": "Disabled"
+        },
+        {
+          "value": "testmode",
+          "label": "Test mode"
+        }
+      ],
+      "info": "Popups will not be shown on mobile devices due to [Google’s mobile friendly requirements](https://webmasters.googleblog.com/2016/08/helping-users-easily-access-content-on.html)"
+    },
+    {
+      "type": "select",
+      "id": "popup_position",
+      "label": "Position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "label": "Heading",
+      "type": "text",
+      "id": "popup_header",
+      "default":"Use the popup to catch emails and showcase promotions"
+    },
+    {
+      "label": "Text",
+      "type": "richtext",
+      "id": "popup_content",
+      "default":"<p>Popups can detract from a user's experience, so try to limit how often they appear.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ]
+    },
+    {
+      "label": "Show newsletter form",
+      "type": "checkbox",
+      "id": "show_popup_newsletter",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "popup_delay",
+      "label": "Delay until the popup appears",
+      "unit": "sec",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "popup_reappear_time",
+      "label": "Number of weeks before the popup re-appears",
+      "default": "7",
+      "options": [
+        {
+          "value": "0",
+          "label": "None"
+        },
+        {
+          "value": "7",
+          "label": "1 week"
+        },
+        {
+          "value": "14",
+          "label": "2 weeks"
+        },
+        {
+          "value": "21",
+          "label": "3 weeks"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "popup_image",
+      "label": "Image"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
+}
+{% endschema %}

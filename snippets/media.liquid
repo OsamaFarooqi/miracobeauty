@@ -1,0 +1,131 @@
+{% comment %}
+  Renders a media element for the product gallery.
+  Media types include: image, video, external_video and model.
+  Accepts:
+  - media: {Object} Media Liquid object (required)
+  - featured_media: {Object} Media Liquid object (required) - featured media of a given product or variant
+  - is_single_media: {Boolean} If there is only one product media
+
+  Usage:
+  {%- for media in product.media -%}
+    {%- render 'media', media: media, featured_media: featured_media, is_single_media: is_single_media, enable_video_looping: enable_video_looping, unique: section.id -%}
+  {%- endfor -%}
+{% endcomment %}
+
+{%- liquid
+  assign media_aspect_ratio = media.aspect_ratio
+  unless media_aspect_ratio
+    assign media_aspect_ratio = 1
+  endunless
+  assign media_padding_top = 1 | divided_by: media_aspect_ratio | times: 100 | round: 2
+  assign loading = loading | default: 'lazy'
+  assign image_width = media.preview_image.width
+-%}
+
+{%- capture image -%}
+  <div class="lazy-image image-wrapper" style="--aspect-ratio: {{ media.aspect_ratio }}">
+    <img
+      class="is-loading"
+      data-image-id="{{ media.id }}"
+      srcset="{% if image_width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w,{% endif %}
+              {% if image_width >= 365 %}{{ media.preview_image | image_url: width: 525 }} 525w,{% endif %}
+              {% if image_width >= 525 %}{{ media.preview_image | image_url: width: 525 }} 525w,{% endif %}
+              {% if image_width >= 770 %}{{ media.preview_image | image_url: width: 770 }} 770w,{% endif %}
+              {% if image_width >= 970 %}{{ media.preview_image | image_url: width: 970 }} 970w,{% endif %}
+              {% if image_width >= 1400 %}{{ media.preview_image | image_url: width: 1400 }} 1400w,{% endif %}
+              {{ media.preview_image | image_url }} {{ image_width }}w"
+      src="{{ media | image_url: width: image_width }}"
+      sizes="(min-width: 1024px) calc((100vw - 160px - 40px) / 2), (min-width: 768px) calc((100vw - 80px - 40px) / 2), (min-width: 480px) calc(100vw - 80px), calc(100vw - 20px)"
+      loading="{{ loading }}"
+      width="{{ image_width }}"
+      height="{{ image_width | divided_by: media_aspect_ratio }}"
+      alt="{{ media.preview_image.alt | escape }}"
+      {% if featured_media == media %}
+        fetchpriority="high"
+      {% endif %}
+    >
+  </div>
+{%- endcapture -%}
+
+<div
+  class="product-media--{{ media.media_type }} product-image{% if is_single_media %} product-image--single{% endif %}{% unless featured_media == media %} media--hidden{% endunless %}"
+  data-id="{{ section.id }}-{{ media.id }}"
+  data-type="{{ media.media_type }}"
+  {% if media.media_type == 'video' or media.media_type == 'external_video' %}
+    data-video
+    data-video-id="{{ media.id }}"
+  {% endif %}
+  {% if media.media_type == 'model' %}
+    data-model
+    data-model-id="{{ media.id }}"
+  {% endif %}
+  {% if media.media_type == 'external_video' %}
+    data-youtube-id="{{ media.external_id }}"
+  {% endif %}
+  data-product-single-media-wrapper
+  data-media-id="{{ unique }}-{{ media.id }}">
+
+  {%- case media.media_type -%}
+    {%- when 'image' -%}
+      <div class="product-single__media product-single__media--image">
+        {{ image }}
+      </div>
+
+      {%- if section.settings.lightbox -%}
+        <a href="{{ media | image_url: width: 3000 }}" class="product-image__lightbox-link" rel="lightbox" data-zoom-wrapper data-image-width="{{ media.width }}" data-image-height="{{ media.height }}">
+          <span class="visually-hidden">{{ 'general.accessibility.product_image_lightbox' | t }}</span>
+        </a>
+      {%- endif -%}
+
+    {%- when 'external_video' -%}
+      <deferred-media class="product-single__media product-single__media--video deferred-media" data-deferred-media style="padding-top: {{ media_padding_top }}%;">
+        <button type="button" class="deferred-media__poster" aria-label="{{ 'general.accessibility.view' | t }} {{ media.alt | strip_html | escape }}" data-deferred-media-button>
+          <span class="deferred-media__poster-button">
+            {%- render 'icon-media-video' -%}
+          </span>
+
+         {{ image }}
+        </button>
+
+        <template>
+          {%- if media.host == 'youtube' -%}
+            {{ media | external_video_url: autoplay: true, mute: true, playsinline: true, loop: enable_video_looping, playlist: media.external_id | external_video_tag: loading: 'lazy' }}
+          {%- else -%}
+            {{ media | external_video_url: autoplay: true, mute: true, playsinline: true, loop: enable_video_looping | external_video_tag: loading: 'lazy' }}
+          {%- endif -%}
+        </template>
+      </deferred-media>
+    {%- when 'video' -%}
+      <deferred-media class="product-single__media product-single__media--video product-single__media--{{ media.id }} deferred-media" data-deferred-media style="padding-top: {{ media_padding_top }}%;">
+        <button type="button" class="deferred-media__poster" aria-label="{{ 'general.accessibility.view' | t }} {{ media.alt | strip_html | escape }}" data-deferred-media-button>
+          <span class="deferred-media__poster-button">
+            {%- render 'icon-media-video' -%}
+          </span>
+
+         {{ image }}
+        </button>
+
+        <template>
+          {{ media | media_tag: image_size: image_size, class: 'media-video', autoplay: true, muted: true, loop: enable_video_looping, controls: true, preload: 'auto' }}
+        </template>
+      </deferred-media>
+    {%- when 'model' -%}
+      <deferred-media class="product-single__media product-single__media--model product-single__media--{{ media.id }} deferred-media" data-deferred-media style="padding-top: {{ media_padding_top }}%;">
+        <button type="button" class="deferred-media__poster" aria-label="{{ 'general.accessibility.view' | t }} {{ media.alt | strip_html | escape }}" data-deferred-media-button>
+          <span class="deferred-media__poster-button">
+            {%- render 'icon-media-model' -%}
+          </span>
+
+         {{ image }}
+        </button>
+
+        <template>
+          {{ media | model_viewer_tag: image_size: image_size, toggleable: true, data-model-id: media.id }}
+        </template>
+      </deferred-media>
+    {%- else -%}
+      <div class="product-single__media" style="padding-top: {{ media_padding_top }}%;">
+        {{ media | media_tag: class: 'media-item', image_size: image_size }}
+      </div>
+  {%- endcase -%}
+</div>

@@ -1,0 +1,348 @@
+{% comment %} Settings {% endcomment %}
+{%- liquid
+  assign show_nav_arrows = section.settings.show_nav_arrows
+  assign dots_style = settings.dots_style
+  if dots_style == 'hidden' or section.blocks.size < 2
+    assign dots = false
+  else
+    assign dots = true
+  endif
+  assign transition = section.settings.transition
+  assign autoplay = section.settings.autoplay
+  assign duration = section.settings.duration | times:1000
+  unless autoplay
+    assign duration = false
+  endunless
+  assign fade_mode = true
+  if transition == 'slide'
+    assign fade_mode = false
+  endif
+  assign hover = true
+  assign transition_text = settings.transition_text
+  assign animation_delay = 0
+  assign animation_anchor = '#gallery-module--' | append: section.id
+
+  assign image_position = section.settings.slide_image_position
+  assign image_width = section.settings.slide_image_width | split: '|' | first | default: 'med_s35'
+  assign content_width = section.settings.slide_image_width | split: '|' | last | default: 'med_s25'
+  assign desktop_height = section.settings.slide_height
+  assign gallery_layout = 'gallery--image-left'
+  if image_position == 'right'
+    assign gallery_layout = 'gallery--image-right'
+  endif
+-%}
+
+{% comment %} Check if Image Height setting is selected {% endcomment %}
+{%- liquid
+  assign image_height = false
+  if section.settings.slide_height == 'image-height'
+    assign image_height = true
+  endif
+-%}
+
+{% comment %} Content {% endcomment %}
+{%- liquid
+  assign title = section.settings.title
+  assign subheading = section.settings.subheading
+  assign text = section.settings.content | truncatewords: 70
+  assign button_text = section.settings.cta
+  assign button_link = section.settings.link | default: '#'
+  assign button_style = section.settings.button_style
+-%}
+
+{%- comment -%} Section {%- endcomment -%}
+<section class="gallery-wrap container-wrap" id="gallery-module--{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="gallery"
+  data-dots-style="{{ dots_style }}">
+  <div class="gallery {{ desktop_height }} {{ gallery_layout }}">
+    <div class="gallery-slider {{ image_width }}{% if transition == 'zoom-out' %} gallery--zoom-out{% endif %}" style="--text: {{ section.settings.color_style }};" data-gallery-slider>
+      <div class="gallery-slider__inner" data-slider
+      data-options="{ 'prevNextButtons': false, 'pageDots':{{ dots }}, 'autoPlay':{{ duration }}, 'adaptiveHeight':{{ image_height }}, 'pauseAutoPlayOnHover':{{ hover }}, 'fade':{{ fade_mode }}, 'setGallerySize':{{ image_height }}, 'wrapAround': true }">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign image = block.settings.image
+            assign image_mobile = block.settings.mobile_image
+            assign sizes = '(min-width: 768px) calc(50vw - 10px), calc(100vw - 20px)'
+          -%}
+          <div class="gallery-slide{% if image_mobile != blank %} slide-image--has-mobile{% endif %}"
+            data-slide="{{ block.id }}"
+            data-slide-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}>
+            {%- if image != blank -%}
+              <div class="slide-image slide-image--desktop">
+                {%- render 'image-hero' image: image, sizes: sizes, desktop_height: desktop_height -%}
+              </div>
+            {%- else -%}
+              <div class="image__hero__frame slide-image slide-image--desktop slide-image--blank {{ desktop_height }}" data-parallax-wrapper>
+                <div class="image__hero__pane">
+                  <div class="image__hero__scale" data-parallax-img>
+                    {%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%}
+                    {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if image_mobile != blank -%}
+              <div class="slide-image slide-image--mobile">
+                {%- render 'image-hero' image: image_mobile, sizes: sizes -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if show_nav_arrows and section.blocks.size > 1 -%}
+        <button class="slider-arrow slider-arrow--prev" aria-label="{{ 'slideshow.previous' | t }}" type="button" data-prev-arrow>{% render "icon-submit" %}</button>
+        <button class="slider-arrow slider-arrow--next" aria-label="{{ 'slideshow.next' | t }}" type="button" data-next-arrow>{% render "icon-submit" %}</button>
+      {%- endif -%}
+    </div>
+
+    {%- if title != blank or subheading != blank or text != blank or button_text != blank -%}
+      <div class="gallery-content {{ content_width }}">
+        <div class="gallery-content-inner">
+          {%- if subheading != blank -%}
+            <p class="subheading-text"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+              {{- subheading -}}
+            </p>
+            {%- assign animation_delay = animation_delay | plus: 250 -%}
+          {%- endif -%}
+
+          {%- if title != blank -%}
+            <h2{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+              {{- title -}}
+            </h2>
+            {%- assign animation_delay = animation_delay | plus: 250 -%}
+          {%- endif -%}
+
+          {%- if text != blank -%}
+            <div class="gallery-content__text"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+              {{- text -}}
+            </div>
+            {%- assign animation_delay = animation_delay | plus: 250 -%}
+          {%- endif -%}
+
+          {%- if button_text != blank -%}
+            <div class="gallery-content__button"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+              <a {% if button_link != blank %}href="{{ button_link }}"{% endif %} class="button button--{{ button_style }}">{{ button_text }}</a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+{
+  "name": "Image with text",
+  "class": "shopify-section--image-with-text",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slideshow"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "color_style",
+      "label": "Arrows and dots color",
+      "default": "white",
+      "options": [
+        {
+          "value": "white",
+          "label": "Light"
+        },
+        {
+          "value": "black",
+          "label": "Dark"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "transition",
+      "label": "Transition style",
+      "default": "fade",
+      "options": [
+        { "label": "Slide", "value": "slide" },
+        { "label": "Fade", "value": "fade" },
+        { "label": "Zoom out", "value": "zoom-out" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay slideshow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "duration",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "unit": "sec",
+      "label": "Change slides every",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "slide_height",
+      "label": "Height",
+      "default": "five-fifty-height-hero",
+      "options": [
+        {
+          "value": "one-hundred-height-hero",
+          "label": "Full screen"
+        },
+        {
+          "value": "image-height",
+          "label": "Image height"
+        },
+        {
+          "value": "seven-fifty-height-hero",
+          "label": "750px"
+        },
+        {
+          "value": "sixty-fifty-height-hero",
+          "label": "650px"
+        },
+        {
+          "value": "five-fifty-height-hero",
+          "label": "550px"
+        },
+        {
+          "value": "four-fifty-height-hero",
+          "label": "450px"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "slide_image_position",
+      "label": "Image position",
+      "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "slide_image_width",
+      "label": "Image width",
+      "options": [
+        {
+          "value": "med_s12|med_s12",
+          "label": "50%"
+        },
+        {
+          "value": "med_s35|med_s25",
+          "label": "60%"
+        },
+        {
+          "value": "med_s34|med_s14",
+          "label": "75%"
+        }
+      ],
+      "default": "med_s12|med_s12"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Humble Beginnings"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Tell a Story"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>By showcasing a product, collection, or your brand.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Label"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Style",
+      "default": "primary",
+      "options": [
+        { "label": "Primary", "value": "primary" },
+        { "label": "Secondary", "value": "secondary" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Image with text",
+      "blocks": [
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

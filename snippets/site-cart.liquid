@@ -1,0 +1,219 @@
+{%- liquid
+  assign subtotal = cart.total_price | plus: 0
+  assign original_subtotal = cart.original_total_price | plus: 0
+  assign cart_items_size = cart.item_count | plus: 0
+  assign cart_discount_size = cart.cart_level_discount_applications.size
+
+  assign enable_ajax_cart = settings.enable_ajax_cart
+  assign enable_cart_order_notes = settings.enable_cart_order_notes
+  assign show_continue_shopping = settings.show_continue_shopping
+  assign tax_text = settings.tax_text
+  assign enable_accept_terms = settings.enable_accept_terms
+  assign accept_terms_text = settings.accept_terms_text
+  assign show_free_shipping_message = settings.show_free_shipping_message
+  assign free_shipping_limit = settings.free_shipping_limit
+-%}
+
+
+{%- unless template == 'cart' -%}
+<div class="scroll" data-cart-scroll>
+  <div class="cart-wrapper container" data-cart-container>
+    <template data-cart-template>
+{%- endunless -%}
+
+<div class="cart" data-cart>
+  {%- unless template == 'cart' -%}
+    <button class="cart-close" aria-label="{{ 'general.accessibility.close' | t }}" data-cart-close>
+      {%- render 'icon-close' -%}
+    </button>
+  {%- endunless -%}
+
+  <form action="{{ routes.cart_url }}" method="post" novalidate>
+    <div class="cart__empty{% if cart_items_size > 0 %} is-hidden{% endif %}" data-empty-message>
+      <h1 class="cart__title">{{ 'cart.labels.cart_title' | t }}</h1>
+
+      <p>{{ 'cart.labels.empty_cart' | t }}</p>
+
+      <a href="{{- routes.all_products_collection_url -}}" data-continue class="button">{{ 'cart.labels.continue_shopping' | t }}</a>
+    </div>
+
+    <div class="cart__form">
+      <h1 class="cart__title cart__title--mobile">{{ 'cart.labels.cart_title' | t }}</h1>
+
+      <div class="cart__table">
+        <div class="cart__errors" data-cart-errors>
+          <p class="cart__errors__heading">{{- 'cart.labels.limit_message' | t -}}</p>
+
+          <p class="cart__errors__content" data-error-message></p>
+
+          <button type="button" data-cart-error-close aria-label="{{ 'general.accessibility.close' | t }} {{ 'cart.labels.cart_title' | t }}" class="cart__errors__btn">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-thin" viewBox="0 0 27 27">
+              <path d="M.5.5l26 26M26.5.5l-26 26"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="cart__table-header med_hide">
+          <div class="cart__table-row">
+            <div class="cart__table-cell cart__table-cell--product">
+              {{- 'cart.labels.product' | t -}}
+            </div>
+            <div class="cart__table-cell cart__table-cell--price">
+              {{- 'cart.labels.price' | t -}}
+            </div>
+            <div class="cart__table-cell cart__table-cell--quantity">
+              {{- 'cart.labels.quantity' | t -}}
+            </div>
+            <div class="cart__table-cell cart__table-cell--total">
+              {{- 'cart.labels.total' | t -}}
+            </div>
+          </div>
+        </div>
+
+        <div class="cart__table-body" data-items-holder>
+          {%- render 'cart-line-items' cart: cart -%}
+        </div>
+      </div>
+
+      <div class="checkout-buttons" data-foot-holder>
+        {%- if show_free_shipping_message and free_shipping_limit != blank -%}
+          {%- liquid
+            assign limit = free_shipping_limit | plus: 0
+            assign limit_currency = limit | times: 100
+            assign cart_total_price = cart.total_price
+            assign subtotal_without_currency = cart_total_price | plus: 0 | divided_by: 100
+            if settings.currency_code_enable
+              assign left_to_spend_value = limit_currency | minus: cart_total_price | money_with_currency | remove: '.00' | remove: ',00'
+            else
+              assign left_to_spend_value = limit_currency | minus: cart_total_price | money_without_trailing_zeros
+            endif
+            capture left_to_spend
+              echo '<span data-left-to-spend>' | append: left_to_spend_value | append: '</span>'
+            endcapture
+            assign free_shipping_message = 'cart.labels.free_shipping_message_html' | t: amount: left_to_spend
+            assign qualified_shipping_message = 'cart.labels.qualified_shipping_message' | t
+            assign message_state = ''
+
+            if subtotal_without_currency >= limit
+              if qualified_shipping_message != blank
+                assign message_state = 'is-success'
+              else
+                assign message_state = 'is-hidden'
+              endif
+            endif
+          -%}
+
+          <div class="cart__message {{ message_state }}" data-cart-message="{% if qualified_shipping_message != blank %}true{% else %}false{% endif %}" data-limit="{{ limit_currency }}" data-cart-total-price="{{ cart_total_price }}">
+            {%- assign percent = limit | minus: subtotal_without_currency | times: 100 | divided_by: limit -%}
+            {%- assign percent = 100 | minus: percent -%}
+
+            {%- if percent > 100 -%}
+              {%- assign percent = 100 -%}
+            {%- endif -%}
+
+            {%- if qualified_shipping_message != blank -%}
+              <span class="cart__message-success">{{ qualified_shipping_message }}</span>
+            {%- endif -%}
+
+            <span class="cart__message-default">
+              {{ free_shipping_message }}
+            </span>
+
+            <div class="cart__message-progress">
+              <span data-cart-progress data-percent="{{ percent }}"></span>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="cart-totals-table">
+          {% comment %} Cart level discounts {% endcomment %}
+          <p class="cart-total-price{% if original_subtotal < subtotal or cart_discount_size <= 0 %} is-hidden{% endif %}" data-cart-original-total>
+            <span class="cart-total-price__label">{{- 'cart.labels.subtotal_items' | t -}}</span>
+
+            <span class="cart-total-price__value" data-cart-original-total-price>
+              {%- if original_subtotal == 0 -%}
+                {{ 'products.labels.free' | t }}
+              {%- else -%}
+                {{ original_subtotal | money }}
+              {%- endif -%}
+            </span>
+          </p>
+
+          <div class="{% if cart_discount_size <= 0 %}is-hidden{% endif %}" data-cart-discounts-holder>
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <p class="cart-discounts" data-cart-discount>
+                  <span class="cart-discounts__title" data-cart-discount-title>
+                    {{- discount.title -}}
+                  </span>
+
+                  <span class="cart-discounts__price" data-cart-discount-price>
+                    -{{- discount.total_allocated_amount | money -}}
+                  </span>
+                </p>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+
+          <p class="cart-total-price">
+            <span class="cart-total-price__label">{{- 'cart.labels.subtotal' | t -}}</span>
+
+            <span data-cart-total class="cart-total-price__value">
+              {%- if subtotal == 0 -%}
+                {{- 'products.labels.free' | t -}}
+              {%- else -%}
+                {{- subtotal | money -}}
+              {%- endif -%}
+            </span>
+          </p>
+        </div>
+
+        {%- if tax_text -%}
+          <p class="cart-tax-info">{{ tax_text }}</p>
+        {%- endif -%}
+
+        {%- if enable_cart_order_notes -%}
+          <div class="order-notes">
+            <label class="order-notes__label" for="order-notes">{{ 'cart.labels.add_a_note' | t }}</label>
+            <textarea id="order-notes" class="order-notes__content" name="note"></textarea>
+          </div>
+        {%- endif -%}
+
+        <div class="cart__buttons-wrapper">
+          {%- if enable_accept_terms -%}
+            <input type="checkbox" class="acceptance__input" name="acceptance" id="acceptance" data-cart-acceptance-checkbox>
+            <label for="acceptance" class="acceptance__label" data-cart-acceptance-label>{{ accept_terms_text }}</label>
+            <div class="acceptance__error errors" data-cart-error>{{ 'cart.labels.accept_terms' | t }}</div>
+          {%- endif -%}
+
+          <div class="cart__buttons{% if enable_accept_terms %} cart__buttons--disabled{% endif %}" data-cart-buttons>
+            <fieldset class="cart__button-fieldset" data-cart-buttons-fieldset>
+              <button class="cart__checkout button" type="submit" name="checkout">{{ 'cart.labels.checkout' | t }}</button>
+              <noscript>
+                <span class="cart__checkout cart__checkout--no-js button">{{ 'cart.labels.checkout' | t }}</span>
+              </noscript>
+
+              {%- if settings.enable_additional_buttons and additional_checkout_buttons -%}
+                <div class="additional-checkout-buttons additional-checkout-buttons--vertical">
+                  {{ content_for_additional_checkout_buttons }}
+                </div>
+              {%- endif -%}
+            </fieldset>
+          </div>
+
+          {%- if show_continue_shopping -%}
+            <a href="{{- routes.all_products_collection_url -}}" class="button button--secondary" data-continue>{{ 'cart.labels.continue_shopping' | t }}</a>
+          {%- endif -%}
+
+          <input type="submit" name="update" value="{{ 'cart.labels.update' | t }}" class="cart__update{% unless enable_ajax_cart %} cart__update--visible{% endunless %}" data-update-cart>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{%- unless template == 'cart' -%}
+    </template>
+  </div>
+</div>
+{%- endunless -%}

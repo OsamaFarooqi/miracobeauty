@@ -1,0 +1,205 @@
+{%- liquid
+  assign desktop_height = desktop_height | default: section.settings.height
+  assign mobile_height = mobile_height | default: section.settings.height_mobile
+
+  assign default_image = 'blank.svg' | asset_url
+  assign image = section.settings.image | default: default_image
+  assign image_mobile = section.settings.mobile_image
+  assign aspect_ratio = image.aspect_ratio | default: 2.63
+
+  assign transparency_class = ''
+  if section.settings.transparent
+    assign transparency_class = 'hero__content__wrapper--transparent'
+  endif
+
+  assign animation_anchor = '#video--' | append: section.id
+  assign transition_text = settings.transition_text
+  assign overlay_opacity = section.settings.overlay_opacity | times: 0.01
+  assign animation_delay = 0
+
+  assign link_text = section.settings.link_text
+  assign video_link = section.settings.video_link
+  assign video_link_bg = section.settings.video_link_bg
+-%}
+
+{%- style -%}
+[data-section-id="{{ section.id }}"] {
+  --overlay-color: {{ section.settings.overlay_color }};
+  --overlay-opacity: {{ overlay_opacity }};
+}
+{%- endstyle -%}
+
+<div class="hero__content__wrapper {{ section.settings.flex_align }} {{ transparency_class }}" id="video--{{ section.id }}">
+  <div class="hero__content" data-banner-content>
+    {%- if section.settings.title != blank -%}
+      <h1 class="hero__title"
+        {% if transition_text %}
+        data-aos="fade-up"
+        data-aos-delay="{{ animation_delay }}"
+        data-aos-anchor="{{ animation_anchor }}"
+        {% endif %}>
+        {{ section.settings.title | escape }}
+      </h1>
+      {%- assign animation_delay = animation_delay | plus: 250 -%}
+    {%- endif -%}
+
+    {%- if section.settings.description != blank -%}
+      <p class="hero__description"
+        {% if transition_text %}
+        data-aos="fade-up"
+        data-aos-delay="{{ animation_delay }}"
+        data-aos-anchor="{{ animation_anchor }}"
+        {% endif %}>
+        {{ section.settings.description }}
+      </p>
+      {%- assign animation_delay = animation_delay | plus: 250 -%}
+    {%- endif -%}
+
+    {%- if link_text != blank or video_link != blank -%}
+      <div class="hero__buttons">
+        {%- if link_text != blank -%}
+          <div class="hero__button"
+            {% if transition_text %}
+            data-aos="fade-up"
+            data-aos-delay="{{ animation_delay }}"
+            data-aos-anchor="{{ animation_anchor }}"
+            {% endif %}>
+            <a class="button button--{{ section.settings.button_style }}" href="{{ section.settings.link }}">
+              {{ link_text | escape }}
+            </a>
+          </div>
+          {%- assign animation_delay = animation_delay | plus: 250 -%}
+        {%- endif -%}
+
+        {%- if video_link != blank -%}
+          {%- liquid
+            assign video_link_downcase = video_link | downcase
+            assign video_type = ''
+            assign video_id = ''
+            if video_link contains "vimeo.com"
+              assign video_type = "vimeo"
+            elsif video_link contains "youtube.com"
+              assign video_type = "youtube"
+            elsif video_link contains "youtu.be"
+              assign video_type = "youtube"
+              assign youtubeShortlink = true
+            elsif video_link_downcase contains ".mp4"
+              assign video_type = "native"
+            endif
+            assign link_array = video_link | split: '/'
+            assign id_with_params = link_array | last
+
+            if video_type == "vimeo" or youtubeShortlink
+              comment
+                https://vimeo.com/[ID]?foo=bar&baz=boo
+                https://youtu.be/[ID]?foo=bar&baz=boo
+              endcomment
+              assign starts_with_id = id_with_params | split: '?'
+              assign video_id = starts_with_id | first
+            elsif video_type == "youtube"
+              comment
+                https://youtube.com/watch?v=[ID]?foo=bar&baz=boo
+              endcomment
+              assign first_param = id_with_params | split: '&' | first
+              assign watch_then_id = first_param | split: '?'
+              assign equals_id = watch_then_id[1]
+              assign ends_with_id = equals_id | split: '='
+              assign video_id = ends_with_id | last
+            endif
+          -%}
+
+          {%- if video_type != '' -%}
+            {%- liquid
+              if video_type == 'youtube'
+                assign video_link = 'https://www.youtube.com/watch?v=' | append: video_id
+              elsif video_type == 'vimeo'
+                assign video_link = 'https://vimeo.com/' | append: video_id
+              elsif video_type == 'native'
+                assign video_link = video_link
+              endif
+
+              assign video_parent_id = 'item-video-' | append: section.id
+            -%}
+
+            <div class="hero__button">
+              <a href="{{ video_link }}"
+                class="video-button"
+                {% if transition_text %}
+                data-aos="fade-up"
+                data-aos-delay="{{ animation_delay }}"
+                data-aos-anchor="{{ animation_anchor }}"
+                {% endif %}
+                data-video-play="{%- render 'photoswipe-video-html' item_link: video_link, item_link_type: video_type, item_link_id: video_id, item_id: video_parent_id -%}">
+                  {%- render 'icon-play' -%}
+              </a>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.link != blank -%}
+    {%- unless link_text != blank -%}
+      <a href="{{ section.settings.link }}" class="hero__content__link">&nbsp;</a>
+    {%- endunless -%}
+  {%- endif -%}
+</div>
+
+<div class="image-overlay"></div>
+
+{%- liquid
+  assign video_bg_show = false
+  if video_link_bg != blank
+    assign video_link_bg_downcase = video_link_bg | downcase
+
+    if video_link_bg_downcase contains '.mp4'
+      assign video_bg_show = true
+    endif
+  endif
+-%}
+
+{%- if video_bg_show -%}
+  {%- liquid
+    assign image_height_styles = ''
+    if desktop_height == 'image-height'
+      
+      assign padding_top = 1 | divided_by: aspect_ratio | times: 100 | append: '%'
+      capture image_height_styles
+        echo 'style="padding-top:' | append: padding_top | append: ';"'
+      endcapture
+    endif
+  -%}
+  <div
+    class="video-background {{ desktop_height }} {{ mobile_height }}"
+    data-overflow-background
+    {{ image_height_styles }}>
+    <video
+      {% if image != blank %}poster="{{ image }}"{% endif %}
+      id="{{ section.id }}-video-background"
+      data-video-type="native"
+      data-video-id="{{ section.id }}-video-background"
+      playsinline
+      autoplay
+      loop
+      muted
+      width="320"
+      height="240">
+      <source src="{{ video_link_bg }}" type="video/mp4" />
+    </video>
+  </div>
+{%- else -%}
+  {%- liquid
+    if image_mobile != blank
+      assign desktop_image_modifier = 'desktop'
+
+      capture mobile_image
+        render 'image-hero', image: image_mobile, desktop_height: desktop_height, mobile_height: mobile_height, modifier: 'mobile'
+      endcapture
+    endif
+
+    render 'image-hero', image: image, desktop_height: desktop_height, mobile_height: mobile_height,, modifier: desktop_image_modifier
+
+    echo mobile_image
+  -%}
+{%- endif -%}

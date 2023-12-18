@@ -1,0 +1,53 @@
+{%- liquid
+  assign unique = block.id | default: section.id
+  if variant_available
+    assign sold_out = false
+  else
+    assign sold_out = true
+  endif
+  
+  capture form_id
+    echo 'Newsletter--' | append: unique
+  endcapture
+-%}
+
+{%- if show_newsletter -%}
+  <div class="notification-form{% unless sold_out %} hidden{% endunless %}" data-notification-form>
+    {%- form 'customer', id: form_id, data-newsletter-form: '' -%}
+      {%- if text_newsletter != blank -%}
+        <label for="Newsletter-Contact--{{ unique }}">{{ text_newsletter }}</label>
+      {%- endif -%}
+      <div class="sign-up-form">
+        <input type="hidden" id="contact_tags--{{ unique }}" name="contact[tags]" value="newsletter, out-of-stock-notification--{{ product.handle }}"/>
+        <div class="inputGroup mc-field-group">
+          <input
+            class="sign-up-input required email"
+            type="email"
+            name="contact[email]"
+            id="Newsletter-Contact--{{ unique }}"
+            placeholder="{{ 'general.newsletter_signup.email_placeholder' | t }}"
+            {% if form.errors %}
+              autofocus
+              aria-invalid="true"
+              aria-describedby="Newsletter-error--{{ unique }}"
+            {% elsif form.posted_successfully? %}
+              aria-describedby="Newsletter-success--{{ unique }}"
+            {% endif %}
+            required>
+          <input type="hidden" id="newsletter-first-name--{{ unique }}" name="contact[first_name]" value="Newsletter" />
+          <input type="hidden" id="newsletter-last-name--{{ unique }}" name="contact[last_name]" value="Subscriber" />
+          <button type="submit" class="sign-up-submit" name="commit" aria-label="{{ 'general.accessibility.subscribe' | t }}">
+            {%- render 'icon-submit' -%}
+          </button>
+        </div>
+      </div>
+      {%- if form.posted_successfully? -%}
+        <div class="sign-up-confirmation p" id="Newsletter-success--{{ unique }}" tabindex="-1" autofocus>{{ 'general.newsletter_signup.success_message' | t }}</div>
+      {%- elsif form.errors -%}
+        <div id="Newsletter-error--{{ unique }}">
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+{%- endif -%}

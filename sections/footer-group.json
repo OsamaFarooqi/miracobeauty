@@ -1,0 +1,87 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "673fd560-aae2-4c64-8cc3-2d9b6f10a386": {
+          "type": "menu",
+          "settings": {
+            "menu": "footer-shop-redesign",
+            "title": "SHOP",
+            "mobile_hide_block": false
+          }
+        },
+        "footer-block-menu": {
+          "type": "menu",
+          "settings": {
+            "menu": "footer-menu-customer",
+            "title": "CUSTOMER CARE",
+            "mobile_hide_block": false
+          }
+        },
+        "050a38f9-ee66-46de-9edd-1dccee52add9": {
+          "type": "menu",
+          "settings": {
+            "menu": "footer-menu-information-redesign",
+            "title": "ABOUT US",
+            "mobile_hide_block": false
+          }
+        },
+        "e5589387-42d4-43a1-9ad5-ae239d4e102f": {
+          "type": "menu",
+          "settings": {
+            "menu": "skincare-concerns",
+            "title": "SKIN CONCERNS",
+            "mobile_hide_block": false
+          }
+        },
+        "92e687ec-c3ca-4d5e-b8d3-e1527f52fdd9": {
+          "type": "newsletter",
+          "settings": {
+            "title": "CONNECT WITH US",
+            "content": "Become a MIRACO Beauty Insider. Be the first to receive notifications, updates and exclusive news.",
+            "mobile_hide_block": false
+          }
+        }
+      },
+      "block_order": [
+        "673fd560-aae2-4c64-8cc3-2d9b6f10a386",
+        "footer-block-menu",
+        "050a38f9-ee66-46de-9edd-1dccee52add9",
+        "e5589387-42d4-43a1-9ad5-ae239d4e102f",
+        "92e687ec-c3ca-4d5e-b8d3-e1527f52fdd9"
+      ],
+      "settings": {
+        "color_footer_text": "#606161",
+        "color_footer_bg": "#ffffff",
+        "color_bottom_bar_bg": "#ffffff",
+        "show_payment_icons": true,
+        "show_social_icons": true,
+        "menu": "",
+        "show_locale_selector": true,
+        "show_currency_selector": true,
+        "type": "currency"
+      }
+    },
+    "popup": {
+      "type": "popup",
+      "settings": {
+        "show_popup": "disabled",
+        "popup_position": "right",
+        "popup_header": "Get 15% Off",
+        "popup_content": "<p>Sign up and enjoy 15% off your first purchase. Plus, stay in the loop about exclusive offers and much more.<\/p>",
+        "text_alignment": "left",
+        "show_popup_newsletter": true,
+        "popup_delay": 15,
+        "popup_reappear_time": "7",
+        "popup_image": "shopify:\/\/shop_images\/super-cream_05.jpg"
+      }
+    }
+  },
+  "order": [
+    "footer",
+    "popup"
+  ]
+}

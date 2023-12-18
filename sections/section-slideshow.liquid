@@ -1,0 +1,531 @@
+{% comment %} Custom Style {% endcomment %}
+{%- assign main_section_id = '#shopify-section-' | append: section.id -%}
+{%- assign enable_custom_css = section.settings.enable_custom_css -%}
+{%- capture inlineCSS -%}
+<style>
+  {% comment %} Decrease font-size for mobile devices {% endcomment %}
+  @media only screen and (max-width: 767px) {
+    {{ main_section_id }} .slide-content .slide-content__heading {
+      font-size: 32px !important;
+    }
+
+    {{ main_section_id }} .slide-content__text p{
+      font-size: 18px !important;
+    }
+  }
+</style>
+{%- endcapture -%}
+
+{%- if enable_custom_css -%}
+  {{- inlineCSS | strip | strip_newlines | remove: '  ' | remove: '   ' -}}
+{%- endif -%}
+
+{% comment %} Settings {% endcomment %}
+{%- liquid
+  assign desktop_height = section.settings.slide_height
+  assign mobile_height = section.settings.slide_height_mobile
+  assign show_text_animations = settings.transition_text
+  assign dots_style = settings.dots_style
+  if dots_style == 'hidden' or section.blocks.size < 2
+    assign dots = false
+  else
+    assign dots = true
+  endif
+  assign show_nav_arrows = section.settings.show_nav_arrows
+  assign transition = section.settings.transition
+  assign hover = true
+  assign fade_mode = true
+  if transition == 'slide'
+    assign fade_mode = false
+  endif
+
+  assign autoplay = section.settings.autoplay
+  assign duration = section.settings.duration | times: 1000
+  unless autoplay
+    assign duration = false
+  endunless
+
+  assign dots_position = section.settings.dots_position
+  assign show_arrow_down = section.settings.show_arrow_down
+
+  comment
+    Check if Image Height setting is selected
+  endcomment
+
+  assign original_height = false
+  if desktop_height == 'image-height' or mobile_height == 'image-height--mobile'
+    assign original_height = true
+  endif
+
+  comment
+    Layout
+  endcomment
+
+  assign alignment = section.settings.alignment
+
+  comment
+    Capture slideshow class
+  endcomment
+-%}
+{%- capture slideshow_class -%}hero hero-slider hero--is-loading hero--dots-{{ dots_position }} {{ desktop_height }} {{ mobile_height }} container-wrap{% if transition == 'zoom-out' %} hero--zoom-out{% endif %}{%- endcapture -%}
+
+{%- comment %} Section {% endcomment %}
+<section id="hero--{{ section.id }}"
+  class="{{ slideshow_class }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="slideshow"
+  data-options="{ 'prevNextButtons': false, 'pageDots':{{ dots }}, 'autoPlay':{{ duration }}, 'adaptiveHeight':{{ original_height }}, 'pauseAutoPlayOnHover': {{ hover }}, 'fade':{{ fade_mode }}, 'wrapAround': true }"
+  data-dots-style="{{ dots_style }}"
+  data-down-arrow="{{ show_arrow_down }}">
+
+  {%- for block in section.blocks -%}
+    {%- liquid
+      comment
+        Layout
+      endcomment
+
+      assign alignment = block.settings.alignment
+      assign animation_delay = 250
+
+      comment
+        Colors
+      endcomment
+
+      unless block.settings.overlay_color == blank
+        assign overlay_color = block.settings.overlay_color 
+      else
+        assign overlay_color = 'none'
+      endunless
+      assign overlay_opacity = block.settings.overlay_opacity | times: 0.01 | round: 2
+
+      assign color_style = block.settings.color_style
+
+      assign buttonPrimaryStyle = block.settings.cta_primary_btn_style
+      assign buttonSecondaryStyle = block.settings.cta_secondary_btn_style
+
+      comment
+        Content
+      endcomment
+
+      assign heading = block.settings.title 
+      assign subheading = block.settings.subheading 
+      assign text = block.settings.text
+      assign cta = block.settings.cta
+      assign link = block.settings.link
+      assign cta_2 = block.settings.cta_2
+      assign link_2 = block.settings.link_2
+      assign image = block.settings.image
+      assign image_mobile = block.settings.image_mobile
+
+      if block.settings.image or block.settings.image_mobile
+        assign has_bg = true
+      else
+        assign has_bg = false
+      endif
+
+      comment
+        Make the whole slide clickable if link set but no button text
+      endcomment
+
+      assign image_link = false
+      if link != blank and cta == blank and cta_2 == blank
+        assign image_link = true
+      endif
+    -%}
+    {%- capture slide_class -%}hero-slide hero-slide--{{ alignment }} hero-slide--style-{{ color_style }}{% if forloop.index == 1 %} initial-slide{% endif %}{% if image == blank %} slide--onboarding{% endif %} {{ desktop_height }} {{ mobile_height }}{%- endcapture -%}
+
+    {%- if image_link -%}
+      <a href="{{ link }}" class="{{ slide_class }}" {{ block.shopify_attributes }} data-slide="{{ block.id }}" data-slide-index="{{ forloop.index0 }}" data-style="{{ color_style }}">
+    {%- else -%}
+      <div class="{{ slide_class }}" {{ block.shopify_attributes }} data-slide="{{ block.id }}" data-slide-index="{{ forloop.index0 }}" data-style="{{ color_style }}">
+    {%- endif -%}
+        <div class="overlay" data-overlay-opacity="{{ overlay_opacity }}" style="background-color: {{ overlay_color }}; opacity: {{ overlay_opacity }};"></div>
+        <div class="slide-inner">
+          {%- unless heading == blank and subheading == blank and text == blank and cta == blank -%}
+            <div class="slide-text">
+              <div class="container">
+                <div class="row">
+                  <div class="slide-content {% unless has_bg %}no-background{% endunless %}">
+                    {%- if subheading != blank -%}
+                      <p class="slide-content__subheading subheading-text"{% if show_text_animations %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}"{% endif %}>{{ subheading }}</p>
+                      {%- assign animation_delay = animation_delay | plus: 250 -%}
+                    {%- endif -%}
+
+                    {%- if heading != blank -%}
+                      <h1 class="slide-content__heading"{% if show_text_animations %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}"{% endif %}>{{ heading }}</h1>
+                      {%- assign animation_delay = animation_delay | plus: 250 -%}
+                    {%- endif -%}
+
+                    {%- if text != blank -%}
+                      <div class="slide-content__text"{% if show_text_animations %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}"{% endif %}>{{ text }}</div>
+                      {%- assign animation_delay = animation_delay | plus: 250 -%}
+                    {%- endif -%}
+
+                    {%- if cta != blank or cta_2 != blank -%}
+                      <div class="slide-content__buttons"{% if show_text_animations %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}"{% endif %}>
+                        {%- if cta != blank -%}
+                          <a tabindex="0" {% if link != blank %}href="{{ link }}"{% endif %} class="slide-content__button button button--{{ section.settings.button_size }} button--{{ buttonPrimaryStyle }}" aria-label="{{ cta }}" title="{{ cta }}">{{ cta }}</a>
+                        {%- endif -%}
+
+                        {%- if cta_2 != blank -%}
+                          <a tabindex="0" {% if link_2 != blank %}href="{{ link_2 }}"{% endif %} class="slide-content__button button button--{{ section.settings.button_size }} button--{{ buttonSecondaryStyle }}" aria-label="{{ cta_2 }}" title="{{ cta_2 }}">{{ cta_2 }}</a>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endunless -%}
+
+          <div class="slide-image-container{% if image_mobile != blank %} slide-image--has-mobile{% endif %}"{% if transition == 'zoom-out' %} data-animation="moZoomOut"{% endif %}>
+            {%- if image != blank -%}
+              <div class="slide-image slide-image--desktop">
+                {%- render 'image-hero' image: image, desktop_height: desktop_height, mobile_height: mobile_height -%}
+              </div>
+            {%- else -%}
+              <div class="image__hero__frame slide-image slide-image--desktop slide-image--blank {{ desktop_height }} {{ mobile_height }}"{% if settings.parallax_enable %} data-parallax-wrapper{% endif %}>
+                <div class="image__hero__pane">
+                  <div class="image__hero__scale"{% if settings.parallax_enable %} data-parallax-img{% endif %}>
+                    {%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%}
+                    {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if image_mobile != blank -%}
+              <div class="slide-image slide-image--mobile">
+                {%- render 'image-hero' image: image_mobile, mobile_height: mobile_height -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+    {%- if image_link -%}
+      </a>
+    {%- else -%}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if show_nav_arrows and section.blocks.size > 1 -%}
+    <button class="slider-arrow slider-arrow--prev" aria-label="{{ 'slideshow.previous' | t }}" type="button" data-prev-arrow>{% render "icon-submit" %}</button>
+    <button class="slider-arrow slider-arrow--next" aria-label="{{ 'slideshow.next' | t }}" type="button" data-next-arrow>{% render "icon-submit" %}</button>
+  {%- endif -%}
+
+  {%- if show_arrow_down -%}
+    <a href="#" class="hero-scroll-down" title="{{ 'slideshow.scroll_down' | t }}" data-button-scroll aria-label="{{ 'slideshow.scroll_down' | t }}">
+      {%- render 'icon-arrow-slider' -%}
+    </a>
+  {%- endif -%}
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+{
+  "name": "Slideshow",
+  "max_blocks": 6,
+  "class": "shopify-section--slideshow header--full",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_custom_css",
+      "label": "Enable Custom CSS",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "slide_height",
+      "label": "Height",
+      "default": "one-hundred-height-hero",
+      "options": [
+        {
+          "value": "one-hundred-height-hero",
+          "label": "Full screen"
+        },
+        {
+          "value": "image-height",
+          "label": "Image height"
+        },
+        {
+          "value": "seven-fifty-height-hero",
+          "label": "750px"
+        },
+        {
+          "value": "sixty-fifty-height-hero",
+          "label": "650px"
+        },
+        {
+          "value": "five-fifty-height-hero",
+          "label": "550px"
+        },
+        {
+          "value": "four-fifty-height-hero",
+          "label": "450px"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav_arrows",
+      "label": "Show arrows",
+      "default": true,
+      "info": "Hidden on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow_down",
+      "label": "Show arrow down",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay slideshow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "duration",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "unit": "sec",
+      "label": "Change slides every",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "transition",
+      "label": "Transition style",
+      "default": "slide",
+      "options": [
+        { "label": "Slide", "value": "slide" },
+        { "label": "Fade", "value": "fade" },
+        { "label": "Zoom out", "value": "zoom-out" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "dots_position",
+      "label": "Dots position",
+      "default": "center",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Center", "value": "center" },
+        { "label": "Right", "value": "right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "Button size",
+      "default": "normal",
+      "options": [
+        { "label": "Normal", "value": "normal" },
+        { "label": "Large", "value": "large" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "select",
+      "id": "slide_height_mobile",
+      "label": "Height",
+      "default": "one-hundred-height-hero--mobile",
+      "options": [
+        {
+          "value": "one-hundred-height-hero--mobile",
+          "label": "Full screen"
+        },
+        {
+          "value": "image-height--mobile",
+          "label": "Image height"
+        },
+        {
+          "value": "seven-fifty-height-hero--mobile",
+          "label": "750px"
+        },
+        {
+          "value": "sixty-fifty-height-hero--mobile",
+          "label": "650px"
+        },
+        {
+          "value": "five-fifty-height-hero--mobile",
+          "label": "550px"
+        },
+        {
+          "value": "four-fifty-height-hero--mobile",
+          "label": "450px"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+  {
+    "type": "image",
+    "name": "Slide",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image mobile",
+        "info": "Desktop image will be used if not set"
+      },
+      {
+        "type": "select",
+        "id": "alignment",
+        "label": "Slide content alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "bottom-left",
+            "label": "Bottom left"
+          },
+          {
+            "value": "bottom-right",
+            "label": "Bottom right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "color_style",
+        "label": "Color",
+        "default": "white",
+        "options": [
+          {
+            "value": "white",
+            "label": "Light"
+          },
+          {
+            "value": "black",
+            "label": "Dark"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Welcome to Modular"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>A unique layout with a striking design</p>"
+      },
+      {
+        "type": "text",
+        "id": "cta",
+        "label": "Button label",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button link",
+        "default":"/collections/all"
+      },
+      {
+        "type": "select",
+        "id": "cta_primary_btn_style",
+        "label": "Button style",
+        "default": "primary",
+        "options": [
+          { "label": "Primary", "value": "primary" },
+          { "label": "Secondary", "value": "secondary" }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "cta_2",
+        "label": "Second button label"
+      },
+      {
+        "type": "url",
+        "id": "link_2",
+        "label": "Second button link"
+      },
+      {
+        "type": "select",
+        "id": "cta_secondary_btn_style",
+        "label": "Second button style",
+        "default": "secondary",
+        "options": [
+          { "label": "Primary", "value": "primary" },
+          { "label": "Secondary", "value": "secondary" }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Overlay"
+      },
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Color",
+        "default": "#333333"
+      },
+      {
+        "type": "range",
+        "id": "overlay_opacity",
+        "label": "Opacity",
+        "min": 0,
+        "max": 95,
+        "step": 5,
+        "unit": "%",
+        "default": 0
+      }
+    ]
+  }
+],
+"presets": [
+  {
+    "name": "Slideshow",
+    "category": "Image",
+    "blocks":
+      [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,147 @@
+{% comment %} Settings {% endcomment %}
+{%- assign heading = section.settings.title -%}
+{%- assign heading_position = section.settings.title_position -%}
+{%- assign blocks_text_align = section.settings.blocks_text_align -%}
+{%- assign hide_quotes = section.settings.hide_quotes -%}
+{%- assign columns = section.settings.columns -%}
+
+{%- if columns == 3 -%}
+	{%- assign block_size = 'one-third' -%}
+{%- elsif columns == 2 -%}
+	{%- assign block_size = 'one-half' -%}
+{%- else -%}
+	{%- assign block_size = 'full' -%}
+{%- endif -%}
+
+<section class="testimonials-section" data-section-id="{{ section.id }}" data-section-type="testimonials">
+	<div class="container">
+		<div class="testimonials testimonials--{{ block_size }}">
+			{%- if heading != blank -%}
+				<div class="page-title page-title--{{ heading_position }}">
+					<h2>{{ heading }}</h2>
+				</div>
+			{%- endif -%}
+
+			{%- if section.blocks.size > 0 -%}
+				<div class="testimonials__blocks">
+					{%- for block in section.blocks -%}
+						{%- assign blockquote = block.settings.testimonials_text -%}
+						{%- assign author = block.settings.author -%}
+						{%- if author != blank or blockquote != blank -%}
+							<div class="testimonial testimonial--{{ block_size }} testimonial--{{ blocks_text_align }}"{% if settings.transition_grid_items %} data-aos="zoom-in-up"{% endif %} {{ block.shopify_attributes }}>
+								{%- unless blockquote == blank -%}
+									<blockquote class="testimonial__blockquote">
+										{%- unless hide_quotes -%}
+											<span class="testimonial__blockquote-quotes">{% render 'icon-quotes' %}</span>
+										{%- endunless -%}
+										<p>{{ blockquote }}</p>
+									</blockquote>
+								{%- endunless -%}
+
+								{%- if settings.accent_line != 'none' or author != blank -%}
+									<div class="testimonial__bottom">
+										{%- render 'accent-line' -%}
+
+										{%- unless author == blank -%}
+											<p class="testimonial__author">{{ author }}</p>
+										{%- endunless -%}
+									</div>
+								{%- endif -%}
+							</div>
+						{%- endif -%}
+					{%- endfor -%}
+				</div>
+			{%- endif -%}
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Testimonials",
+	"class": "shopify-section--testimonials",
+	"max_blocks": 8,
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Heading"
+		},
+		{
+			"type": "select",
+			"id": "title_position",
+			"label": "Heading position",
+			"default": "left",
+			"options": [
+				{ "label": "Left", "value": "left" },
+				{ "label": "Center", "value": "center" }
+			]
+		},
+		{
+			"type": "select",
+			"id": "blocks_text_align",
+			"label": "Text alignment",
+			"default": "justify",
+			"options": [
+				{ "label": "Justify", "value": "justify" },
+				{ "label": "Center", "value": "center" }
+			]
+		},
+		{
+			"type": "checkbox",
+			"id": "hide_quotes",
+			"label": "Hide quotes",
+			"default": false
+		},
+		{
+			"type": "range",
+			"id": "columns",
+			"label": "Columns",
+			"min": 1,
+			"max": 3,
+			"step": 1,
+			"default": 3
+		}
+	],
+	"blocks": [
+		{
+			"type": "testimonial",
+			"name": "Testimonial",
+			"settings": [
+				{
+					"type": "richtext",
+					"id": "testimonials_text",
+					"label": "Text",
+					"default": "<p>Use this testimonial as an opportunity for your most valued customer to discuss your brand and what sets you apart from the competition. This section looks best when limited to two or three lines!</p>"
+				},
+				{
+					"type": "text",
+					"id": "author",
+					"label": "Author",
+					"default": "John Doe"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"category": "Text",
+			"name": "Testimonials",
+			"blocks": [
+				{
+					"type": "testimonial"
+				},
+				{
+					"type": "testimonial"
+				},
+				{
+					"type": "testimonial"
+				}
+			]
+		}
+	],
+	"disabled_on": {
+		"groups": ["header", "footer"]
+	}
+}
+{% endschema %}

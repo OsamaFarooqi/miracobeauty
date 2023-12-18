@@ -1,0 +1,206 @@
+{
+  "sections": {
+    "hero": {
+      "type": "collection-image-with-title",
+      "disabled": true,
+      "custom_css": [
+        "h1 {font-size: 40px;}"
+      ],
+      "settings": {
+        "show_banner": false,
+        "height": "four-fifty-height-hero",
+        "height_mobile": "one-hundred-height-hero--mobile",
+        "banner_text_position": "left",
+        "banner_color_text": "#606161",
+        "banner_color_overlay": "#333333",
+        "banner_overlay_opacity": 0
+      }
+    },
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-banner_-_mature-skin_-_Desktop.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/collection-banner_-_mature-skin_-_Mobile_eb7798d4-49c2-4bf0-af27-7a459b8d325a.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "",
+            "title": "{{ collection.title }}",
+            "text": "<p>{{ collection.metafields.custom.brief_description | metafield_tag }}<\/p>",
+            "cta": "",
+            "link": "shopify:\/\/collections\/all",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--15846279905463__6edaefd6-ab74-4251-a1b0-1d724c2f45a2-1686320791a6596c75-0"
+      ],
+      "custom_css": [
+        "h1 {color: #606161;}",
+        "p {font-size: 17px; color: #606161;}"
+      ],
+      "settings": {
+        "enable_custom_css": true,
+        "slide_height": "five-fifty-height-hero",
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": true,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "five-fifty-height-hero--mobile"
+      }
+    },
+    "main": {
+      "type": "collection",
+      "settings": {
+        "show_sort_filter": true,
+        "enable_filters": true,
+        "filter_mode": "default",
+        "position_filters": "left",
+        "show_featured_image": false,
+        "featured_heading": "Use this image showcase promotional content.",
+        "featured_text": "<p>Elaborate on it with rich text<\/p>",
+        "featured_button_text": "Learn More",
+        "featured_button_link": "",
+        "featured_button_style": "primary",
+        "featured_color_text": "#ffffff",
+        "featured_color_overlay": "#333333",
+        "featured_overlay_opacity": 30
+      }
+    },
+    "fb519885-6c7a-433e-90a8-3e91fd3eb57f": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: -24px;}"
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "Routine",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "fed7c219-ed2b-4283-ab82-75e92cad863d": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Protect your skin from the sun",
+        "content": "<p>The sun's harmful UV rays can accelerate <a href=\"\/blogs\/articles\/sunblock-vs-sunscreen\" title=\"Sunblock Vs. Sunscreen: Which One Should I Use?\">skin aging<\/a>, causing wrinkles, age spots, and other signs of aging. To protect your skin from the sun, dermatologists recommend:<\/p><p>- Seek shade during the sun's strongest hours (10 am - 2 pm).<\/p><p>- Cover up with clothing, a wide-brimmed hat, and sunglasses.<\/p><p>- Apply a broad-spectrum sunscreen with SPF 30 or higher every day, even on cloudy days.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "d4aaa626-9c5a-4a32-9cbe-c53da1be10ed": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Moisturize every day",
+        "content": "<p>As we <a href=\"\/blogs\/articles\/how-to-minimize-treat-forehead-wrinkles\" title=\"How to Minimize & Treat Forehead Wrinkles\">age<\/a>, our skin naturally produces less oil, which can lead to dry, itchy skin. To keep your skin looking and feeling its best, it's important to moisturize every day. Look for a moisturizer that is hydrating but non-comedogenic (won't clog pores).<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "17ffbfbe-5463-49a1-b43d-bd7702d6f587": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Face wash routine",
+        "content": "<p>Wash your face twice a day with a gentle cleanser. Using harsh soaps and detergents can strip away the natural oils from your skin, leaving it dry and irritated. Instead, use a gentle cleanser that is designed for sensitive skin. Wash your face twice a day, morning and night.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "52e3ad98-ae22-4c35-a660-ca1df3f74df2": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Stop smoking",
+        "content": "<p>Smoking damages your skin and can accelerate the signs of aging. If you smoke, quitting is the best thing you can do for your skin's health.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "bf210d9a-f00e-4f69-ab67-6c9d6034ac53": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Eat a healthy diet",
+        "content": "<p>A <a href=\"\/blogs\/articles\/your-guide-to-internal-skincare-for-external-beauty\" title=\"Your Guide to Internal Skincare for External Beauty\">healthy diet<\/a> is essential for overall health, including skin health. Make sure to eat plenty of fruits, vegetables, and whole grains. These foods are packed with antioxidants that can help protect your skin from damage.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "f249e778-e1e1-4c9c-809a-d165f86f6d2e": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "{margin-bottom: 280px;}",
+        "p {text-align: left;}",
+        "h2 {font-size: 28px; text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Get enough sleep",
+        "content": "<p>Sleep is when your body repairs itself and rejuvenates. When you don't get enough sleep, it shows on your face. Aim for 7-8 hours of sleep each night.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "button_style": "primary"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "6edaefd6-ab74-4251-a1b0-1d724c2f45a2",
+    "main",
+    "fb519885-6c7a-433e-90a8-3e91fd3eb57f",
+    "fed7c219-ed2b-4283-ab82-75e92cad863d",
+    "d4aaa626-9c5a-4a32-9cbe-c53da1be10ed",
+    "17ffbfbe-5463-49a1-b43d-bd7702d6f587",
+    "52e3ad98-ae22-4c35-a660-ca1df3f74df2",
+    "bf210d9a-f00e-4f69-ab67-6c9d6034ac53",
+    "f249e778-e1e1-4c9c-809a-d165f86f6d2e"
+  ]
+}

@@ -1,0 +1,191 @@
+{%- liquid
+  assign file_extension = 'png'
+
+  assign enable_color_swatches = settings.enable_color_swatches
+  assign enable_variant_boxes = settings.enable_variant_boxes
+
+  assign small = 'onboarding.sizes.small' | t
+  assign medium = 'onboarding.sizes.medium' | t
+  assign large = 'onboarding.sizes.large' | t
+
+  assign white = 'onboarding.colors.white' | t
+  assign grey = 'onboarding.colors.grey' | t
+  assign black = 'onboarding.colors.black' | t
+-%}
+
+<div class="product__form pseudoform">
+  <div class="product__form-block{% unless enable_variant_boxes %} product__form-block--options-inline{% endunless %}{% if enable_color_swatches %} product__form-block--swatches{% endif %}">
+    {%- if enable_color_swatches -%}
+      <div class="variant-wrapper variant-wrapper--color" data-option="option1">
+        <label class="variant-label--color" for="SingleOptionSelector-{{ forloop.index0 }}-{{ section.id }}">
+          {{- 'products.labels.color' | t -}}
+
+          <span class="variant-label__value" data-color-label>
+            {{- white -}}
+          </span>
+        </label>
+
+        <fieldset
+          id="SingleOptionSelector-{{ forloop.index0 }}-{{ section.id }}"
+          class="variant-input-wrap"
+          data-index="option1">
+          <div class="swatch swatch--{{ settings.color_swatches_style }}">
+            {%- for i in (1..3) -%}
+              {%- capture text -%}{%- cycle white, grey, black -%}{%- endcapture -%}
+              {%- capture value -%}{%- cycle 'white', 'grey', 'black' -%}{%- endcapture -%}
+
+              <div data-value="{{ text | capitalize }}" class="swatch__element">
+                <input
+                  class="swatch__input"
+                  id="option-{{ value | handle }}-{{ forloop.index0 }}-{{ section.id }}"
+                  name="color--{{ section.id }}"
+                  type="radio"
+                  value="{{ text | escape }}"
+                  data-index="option0"
+                  data-color-swatch
+                  {% if forloop.index == 1 %}checked{% endif %}>
+                <label class="variant__button-label--color swatch__label" for="option-{{ value | handle }}-{{ forloop.index0 }}-{{ section.id }}" data-swatch="{{ value | escape_once }}">
+                  <span class="swatch__color swatch__color--{{ value | handle }}" data-swatch-color></span>
+
+                  <span class="accessible-label">{{ text }}</span>
+                </label>
+              </div>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+      </div>
+    {%- endif -%}
+
+    {%- if enable_variant_boxes -%}
+      {%- unless enable_color_swatches -%}
+        <div class="variant-wrapper variant-wrapper--boxes" data-option="option1">
+          <label class="variant-label" for="SingleOptionSelector-{{ section.id }}">
+            {{- 'onboarding.colors.label' | t -}}
+          </label>
+
+          <fieldset
+            id="SingleOptionSelector-{{ section.id }}"
+            class="variant-input-wrap variant-input-wrap--boxes"
+            data-index="option1">
+
+            {%- for i in (1..3) -%}
+              {%- capture value -%}{%- cycle white, grey, black -%}{%- endcapture -%}
+              <div class="variant-field">
+                <input
+                  id="option-{{ value }}-{{ forloop.index0 }}-{{ section.id }}"
+                  class="visually-hidden variant-input"
+                  type="radio"
+                  name="color--{{ section.id }}"
+                  value="{{ value | escape }}"
+                  {% if forloop.index == 1 %}checked="checked"{% endif %}>
+                <label class="variant__button-label" for="option-{{ value }}-{{ forloop.index0 }}-{{ section.id }}">
+                  {{- value -}}
+                </label>
+              </div>
+            {%- endfor -%}
+          </fieldset>
+        </div>
+      {%- endunless -%}
+
+      <div class="variant-wrapper variant-wrapper--boxes" data-option="option1">
+        <label class="variant-label" for="SingleOptionSelector-{{ section.id }}">
+          {{- 'onboarding.sizes.label' | t -}}
+        </label>
+
+        <fieldset
+          id="SingleOptionSelector-{{ section.id }}"
+          class="variant-input-wrap variant-input-wrap--boxes"
+          data-index="option1">
+
+          {%- for i in (1..3) -%}
+            {%- capture value -%}{%- cycle small, medium, large -%}{%- endcapture -%}
+            <div class="variant-field">
+              <input
+                id="option-{{ value }}-{{ forloop.index0 }}-{{ section.id }}"
+                class="visually-hidden variant-input"
+                type="radio"
+                name="size--{{ section.id }}"
+                value="{{ value | escape }}"
+                {% if forloop.index == 1 %}checked="checked"{% endif %}>
+              <label class="variant__button-label" for="option-{{ value }}-{{ forloop.index0 }}-{{ section.id }}">
+                {{- value -}}
+              </label>
+            </div>
+          {%- endfor -%}
+        </fieldset>
+      </div>
+    {%- else -%}
+      {%- unless enable_color_swatches -%}
+        {%- capture selector_id -%}Product-SingleOptionSelector-0-{{ section.id }}{%- endcapture -%}
+
+        <div class="selector-wrapper" data-option="option1">
+          <label for="{{ selector_id }}">
+            {{- 'onboarding.colors.label' | t -}}
+          </label>
+
+          <select
+            id="{{ selector_id }}"
+            data-single-option-selector
+            data-index="option1">
+            {%- for i in (1..3) -%}
+              {%- capture value -%}{%- cycle white, grey, black -%}{%- endcapture -%}
+              <option
+                value="{{ value | escape }}"
+                {% if forloop.index == 1 %}selected="selected"{% endif %}>
+                {{- value -}}
+              </option>
+            {%- endfor -%}
+          </select>
+          {%- render 'icon-arrow' -%}
+        </div>
+      {%- endunless -%}
+
+      {%- capture selector_id -%}Product-SingleOptionSelector-1-{{ section.id }}{%- endcapture -%}
+      <div class="selector-wrapper" data-option="option1">
+        <label for="{{ selector_id }}">
+          {{- 'onboarding.sizes.label' | t -}}
+        </label>
+
+        <select
+          id="{{ selector_id }}"
+          data-single-option-selector
+          data-index="option1">
+          {%- for i in (1..3) -%}
+            {%- capture value -%}{%- cycle small, medium, large -%}{%- endcapture -%}
+            <option
+              value="{{ value | escape }}"
+              {% if forloop.index == 1 %}selected="selected"{% endif %}>
+              {{- value -}}
+            </option>
+          {%- endfor -%}
+        </select>
+
+        {%- render 'icon-arrow' -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="product__form-block">
+    <label for="quantity--{{ section.id }}" class="accessible-label">{{ 'general.accessibility.quantity' | t }}</label>
+
+    <div class="qty__adjust">
+      <input type="number" class="qty__adjust-input" name="quantity--{{ section.id }}" id="quantity--{{ section.id }}" value="1" min="1" data-qty>
+      <button type="button" class="qty__adjust-btn qty__adjust-btn--minus" aria-label="{{ 'general.accessibility.decrease' | t }}" data-qty-adjust data-qty-adjust-minus>{% render 'icon-minus' %}</button>
+      <button type="button" class="qty__adjust-btn qty__adjust-btn--plus" aria-label="{{ 'general.accessibility.increase' | t }}" data-qty-adjust data-qty-adjust-plus>{% render 'icon-plus' %}</button>
+    </div>
+
+    <div class="product__form-buttons{% if settings.color_button_primary_bg == settings.color_background_new %} product__form-buttons--alt{% endif %}">
+      <button class="product__form-submit{% if enable_payment_button and settings.enable_accept_terms == false %} button--alt{% endif %}" type="submit" data-handle="{{ 'onboarding.product_title' | t | handle }}">{{ 'products.form.submit' | t }}</button>
+    </div>
+
+    {%- unless settings.enable_accept_terms -%}
+      {%- if enable_payment_button -%}
+        <div class="product__form-buttons{% if settings.color_button_primary_bg == settings.color_background_new %} product__form-buttons--alt{% endif %}">
+          <div class="shopify-payment-button">
+            <button class="shopify-payment-button__button shopify-payment-button__button--unbranded">{{ 'products.labels.buy_it_now' | t }}</button>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endunless -%}
+  </div>
+</div>

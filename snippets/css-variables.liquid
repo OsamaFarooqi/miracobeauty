@@ -1,0 +1,290 @@
+{%- liquid
+  comment
+    Fonts
+  endcomment
+
+  assign heading_font = settings.type_heading_font
+  assign base_font = settings.type_base_font
+  assign nav_font = settings.type_nav_font
+
+  assign heading_font_bold = heading_font | font_modify: 'weight', 'bolder'
+  assign base_font_bold = base_font | font_modify: 'weight', 'bolder'
+
+  assign base_font_100 = base_font | font_modify: 'weight', '+100'
+  assign base_font_200 = base_font | font_modify: 'weight', '+200'
+  assign base_font_300 = base_font | font_modify: 'weight', '+300'
+  assign base_font_400 = base_font | font_modify: 'weight', '+400'
+  if base_font_100 and base_font_100.weight > base_font.weight
+    assign base_font_bold = base_font_100
+  elsif base_font_200 and base_font_200.weight > base_font.weight
+    assign base_font_bold = base_font_200
+  elsif base_font_300 and base_font_300.weight > base_font.weight
+    assign base_font_bold = base_font_300
+  elsif base_font_400 and base_font_400.weight > base_font.weight
+    assign base_font_bold = base_font_400
+  endif
+
+  assign heading_font_100 = heading_font | font_modify: 'weight', '+100'
+  assign heading_font_200 = heading_font | font_modify: 'weight', '+200'
+  assign heading_font_300 = heading_font | font_modify: 'weight', '+300'
+  assign heading_font_400 = heading_font | font_modify: 'weight', '+400'
+  if heading_font_100 and heading_font_100.weight > heading_font.weight
+    assign heading_font_bold = heading_font_100
+  elsif heading_font_200 and heading_font_200.weight > heading_font.weight
+    assign heading_font_bold = heading_font_200
+  elsif heading_font_300 and heading_font_300.weight > heading_font.weight
+    assign heading_font_bold = heading_font_300
+  elsif heading_font_400 and heading_font_400.weight > heading_font.weight
+    assign heading_font_bold = heading_font_400
+  endif
+
+  if nav_font == 'heading'
+    assign nav_font = heading_font
+    assign nav_font_bold = heading_font_bold
+  else
+    assign nav_font = base_font
+    assign nav_font_bold = base_font_bold
+  endif
+
+  assign color_accent = settings.color_accent
+  assign color_accent_text = '#fff'
+  assign color_accent_brightness = color_accent | color_brightness | round
+  if color_accent_brightness > 204
+    assign color_accent_text = '#000'
+  endif
+
+  comment
+    Colors
+  endcomment
+  assign color_text = settings.color_text_new
+  assign color_background = settings.color_background_new
+  assign color_background_brightness = color_background | color_brightness | round
+
+  comment
+    Use black text color if it is set to transparent
+  endcomment
+  if color_text == 'rgba(0,0,0,0)'
+    assign color_text = 'rgba(0,0,0,1)'
+  endif
+
+  comment
+    Use white background if it is set to transparent
+  endcomment
+  if color_background == 'rgba(0,0,0,0)'
+    assign color_background = 'rgba(255,255,255,1)'
+  endif
+
+  comment
+    Button colors
+  endcomment
+  assign color_button_primary_bg = settings.color_button_primary_bg
+  assign color_button_primary_text = '#fff'
+  assign color_button_primary_border = color_button_primary_bg
+  assign color_button_primary_brightness = color_button_primary_bg | color_brightness | round
+
+  comment
+    Maximum color brightness is 255
+    Change button text color to black if brightness is more than 85% ( 85% of 255 is ~215 )
+    Change button border to match button text color in case button background is the same as the page body background
+  endcomment
+  if color_button_primary_brightness > 215
+    assign color_button_primary_text = '#000'
+  endif
+  if color_button_primary_bg == color_background
+    assign color_button_primary_border = color_button_primary_text
+  endif
+
+  assign color_button_secondary_bg = settings.color_button_secondary_bg
+  assign color_button_secondary_text = '#fff'
+  assign color_button_secondary_border = color_button_secondary_bg
+  assign color_button_secondary_brightness = color_button_secondary_bg | color_brightness | round
+  if color_button_secondary_brightness > 215
+    assign color_button_secondary_text = '#000'
+  endif
+  if color_button_secondary_bg == color_background
+    assign color_button_secondary_border = color_button_secondary_text
+  endif
+
+  comment
+    Button alt is used for Dynamic checkout buttons (Buy it now) on PDP
+  endcomment
+  assign color_button_alt_text = color_button_primary_bg
+  assign color_button_alt_border = color_button_primary_border
+  if color_button_primary_bg == color_background
+    if color_button_primary_brightness > 215
+      assign color_button_alt_text = '#000'
+      assign color_button_alt_border = '#000'
+    else
+      assign color_button_alt_text = '#fff'
+      assign color_button_alt_border = '#fff'
+    endif
+  endif
+
+  comment
+    Badge
+  endcomment
+  assign color_badge_bg = settings.color_badge_bg
+  assign color_badge_text = '#fff'
+  assign color_badge_bg_brightness = color_badge_bg | color_brightness | round
+  if color_badge_bg_brightness > 215
+    assign color_badge_text = '#000'
+  endif
+
+  comment
+    Table heading
+  endcomment
+  if color_background_brightness > 122
+    assign color_background_accent = color_background | color_darken: 5
+    assign color_background_table_header = color_background | color_darken: 50
+  else
+    assign color_background_accent = color_background | color_lighten: 5
+    assign color_background_table_header = color_background | color_lighten: 50
+  endif
+
+  comment
+    Search overlay opacity
+  endcomment
+  assign search_overlay_opacity = settings.search_overlay_opacity | times: 0.01 | round: 2
+-%}
+
+{%- style -%}
+
+{%- comment -%} Typography {%- endcomment -%}
+{{ heading_font | font_face: font_display: 'swap' }}
+{{ base_font | font_face: font_display: 'swap' }}
+
+{% if heading_font_bold %}
+  {{ heading_font_bold | font_face: font_display: 'swap' }}
+{% endif %}
+
+{% if base_font_bold %}
+  {{ base_font_bold | font_face: font_display: 'swap' }}
+{% endif %}
+
+{%- assign base_font_italic = base_font | font_modify: 'style', 'italic' -%}
+{%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%}
+
+{% if base_font_italic %}
+  {{ base_font_italic | font_face: font_display: 'swap' }}
+{% endif %}
+
+{% if base_font_bold_italic %}
+  {{ base_font_bold_italic | font_face: font_display: 'swap' }}
+{% endif %}
+
+:root {
+  --COLOR-BACKGROUND: {{ color_background }};
+  --COLOR-BACKGROUND-ACCENT: {{ color_background_accent }};
+  --COLOR-BACKGROUND-ALPHA-25: {{ color_background | color_modify: 'alpha', 0.25 }};
+  --COLOR-BACKGROUND-ALPHA-35: {{ color_background | color_modify: 'alpha', 0.35 }};
+  --COLOR-BACKGROUND-ALPHA-60: {{ color_background | color_modify: 'alpha', 0.6 }};
+  --COLOR-BACKGROUND-OVERLAY: {{ color_background | color_modify: 'alpha', 0.9 }};
+  --COLOR-BACKGROUND-TABLE-HEADER: {{ color_background_table_header }};
+  --COLOR-HEADING: {{ settings.color_heading_new }};
+  --COLOR-TEXT: {{ color_text }};
+  --COLOR-TEXT-DARK: {{ color_text | color_saturate: 10 | color_darken: 15 }};
+  --COLOR-TEXT-LIGHT: {{ color_text | color_mix: color_background, 70 }};
+  --COLOR-TEXT-ALPHA-5: {{ color_text | color_modify: 'alpha', 0.05 }};
+  --COLOR-TEXT-ALPHA-8: {{ color_text | color_modify: 'alpha', 0.08 }};
+  --COLOR-TEXT-ALPHA-10: {{ color_text | color_modify: 'alpha', 0.1 }};
+  --COLOR-TEXT-ALPHA-25: {{ color_text | color_modify: 'alpha', 0.25 }};
+  --COLOR-TEXT-ALPHA-30: {{ color_text | color_modify: 'alpha', 0.3 }};
+  --COLOR-TEXT-ALPHA-55: {{ color_text | color_modify: 'alpha', 0.55 }};
+  --COLOR-TEXT-ALPHA-60: {{ color_text | color_modify: 'alpha', 0.6 }};
+  --COLOR-LABEL: {{ color_text | color_modify: 'alpha', 0.8 }};
+  --COLOR-INPUT-PLACEHOLDER: {{ color_text | color_modify: 'alpha', 0.5 }};
+  --COLOR-CART-TEXT: {{ color_text | color_modify: 'alpha', 0.6 }};
+  --COLOR-BORDER: {{ settings.color_border_new }};
+  --COLOR-BORDER-ALPHA-8: {{ settings.color_border_new | color_modify: 'alpha', 0.08 }};
+  --COLOR-BORDER-DARK: {{ settings.color_border_new | color_darken: 35 }};
+  --COLOR-ERROR-TEXT: {{ settings.color_error_new }};
+  --COLOR-ERROR-BG: {{ settings.color_error_new | color_modify:  'alpha', 0.05 }};
+  --COLOR-ERROR-BORDER: {{ settings.color_error_new | color_modify: 'alpha', 0.25 }};
+  --COLOR-BADGE-TEXT: {{ color_badge_text }};
+  --COLOR-BADGE-BG: {{ color_badge_bg }};
+  --COLOR-BUTTON-PRIMARY-BG: {{ color_button_primary_bg }};
+  --COLOR-BUTTON-PRIMARY-TEXT: {{ color_button_primary_text }};
+  --COLOR-BUTTON-PRIMARY-BORDER: {{ color_button_primary_border }};
+  --COLOR-BUTTON-SECONDARY-BG: {{ color_button_secondary_bg }};
+  --COLOR-BUTTON-SECONDARY-TEXT: {{ color_button_secondary_text }};
+  --COLOR-BUTTON-SECONDARY-BORDER: {{ color_button_secondary_border }};
+  --COLOR-BUTTON-ALT-BG: transparent;
+  --COLOR-BUTTON-ALT-TEXT: {{ color_button_alt_text }};
+  --COLOR-BUTTON-ALT-BORDER: {{ color_button_alt_border }};
+  --COLOR-SEARCH-OVERLAY: {{ settings.search_overlay_color | color_modify: 'alpha', search_overlay_opacity }};
+
+  --COLOR-TAG-SAVING: {{ settings.color_saving_badge }};
+
+  --COLOR-WHITE: #fff;
+  --COLOR-BLACK: #000;
+
+  --BODY-LETTER-SPACING: {{ settings.type_base_letter_spacing | append: 'px' }};
+  --HEADING-LETTER-SPACING: {{ settings.type_heading_letter_spacing | append: 'px' }};
+  --NAV-LETTER-SPACING: {{ settings.type_nav_letter_spacing | append: 'px' }};
+
+  --BODY-FONT-FAMILY: {{ base_font.family }}, {{ base_font.fallback_families }};
+  --HEADING-FONT-FAMILY: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+  --NAV-FONT-FAMILY: {{ nav_font.family }}, {{ nav_font.fallback_families }};
+
+  --BODY-FONT-WEIGHT: {{ base_font.weight | default: 400 }};
+  --HEADING-FONT-WEIGHT: {{ heading_font.weight | default: 400 }};
+  --NAV-FONT-WEIGHT: {{ nav_font.weight | default: 400 }};
+
+  --BODY-FONT-STYLE: {{ base_font.style }};
+  --HEADING-FONT-STYLE: {{ heading_font.style }};
+  --NAV-FONT-STYLE: {{ nav_font.style }};
+
+  --BODY-FONT-WEIGHT-MEDIUM: {{ base_font_medium.weight | default: 400 }};
+  --BODY-FONT-WEIGHT-BOLD: {{ base_font_bold.weight | default: 700 }};
+  --NAV-FONT-WEIGHT-MEDIUM: {{ nav_font_medium.weight | default: 400 }};
+  --NAV-FONT-WEIGHT-BOLD: {{ nav_font_bold.weight | default: 700 }};
+
+  --HEADING-FONT-WEIGHT-BOLD: {{ heading_font_bold.weight | default: 700 }};
+
+  --FONT-ADJUST-BODY: {{ settings.type_base_size | divided_by: 100.0 }};
+  --FONT-ADJUST-HEADING: {{ settings.type_heading_size | divided_by: 100.0 }};
+  --FONT-ADJUST-NAV: {{ settings.type_nav_size | divided_by: 100.0 }};
+
+  --IMAGE-SIZE: {{ settings.image_size | default: 'cover' }};
+  --IMAGE-ASPECT-RATIO: {{ settings.image_aspect_ratio }};
+  --IMAGE-ASPECT-RATIO-PADDING: {{ settings.image_aspect_ratio | times: 100 | append: '%' }};
+
+  --PRODUCT-COLUMNS: {{ settings.products_columns | plus: 0 }};
+
+  --icon-loading: url( "{{ 'loading.svg' | asset_url }}" );
+  --icon-zoom-in: url( "{{ 'icon-zoom-in.svg' | asset_url }}" );
+  --icon-zoom-out: url( "{{ 'icon-zoom-out.svg' | asset_url }}" );
+
+  --header-height: 120px;
+  --header-initial-height: 120px;
+  --scrollbar-width: 0px;
+  --collection-featured-block-height: none;
+  --announcement-height: 0px;
+
+  {% comment %} Static variables {% endcomment %}
+  --color-placeholder-bg: #ABA9A9;
+  --color-placeholder-fill: rgba(246, 247, 255, 0.3);
+
+  --swatch-size: 22px;
+
+  {% comment %} Dynamic variables {% endcomment %}
+  --overlay-color: #000;
+  --overlay-opacity: 0;
+
+  {% comment %} Specify spacing between two inline-block grid elements {% endcomment %}
+  --gutter: 10px;
+  --gap: 10px;
+  --outer: 10px;
+  --outer-offset: calc(var(--outer) * -1);
+
+  {% comment %} Aos animations {% endcomment %}
+  --move-offset: 20px;
+
+  {% comment %} Parallax {% endcomment %}
+  --PARALLAX-STRENGTH-MIN: {{ settings.parallax_strength | plus: 100.0 | append: '%' }};
+  --PARALLAX-STRENGTH-MAX: {{ settings.parallax_strength | plus: 110.0 | append: '%' }};
+
+  {% comment %} Math PI number {% endcomment %}
+  --PI: 3.14159265358979
+}
+{%- endstyle -%}

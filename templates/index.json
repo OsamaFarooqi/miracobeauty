@@ -1,0 +1,885 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "section-slideshow",
+      "blocks": {
+        "62e4c988-1c55-4906-bf02-d1f406c9ad90": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2023-12-18-full.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/2023-12-18-mobile.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "Limited Edition Value Sets",
+            "title": "Save Up to 30%",
+            "text": "<p>Enjoy your holiday shopping with our limited edition skincare sets.<\/p>",
+            "cta": "SHOP NOW",
+            "link": "shopify:\/\/collections\/bundles-sets",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "7eb5c4f2-1af5-489a-934f-f43f742f0c7e": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2023-12-4-full.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/2023-12-4-mobile.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "Ceramides Power Duo",
+            "title": "Better Skincare. Lasting Results.",
+            "text": "<h5>Marine extracts and multi-active peptides for better skin health.<\/h5>",
+            "cta": "SHOP NOW",
+            "link": "shopify:\/\/products\/ceramides-power-duo",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#606161",
+            "overlay_opacity": 0
+          }
+        },
+        "f6649f37-baa4-490c-b4e8-32ad98c2aace": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2023-11-27-BOGO-full.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/2023-11-27-BOGO-mobile.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "",
+            "title": "Dry Skin is Never in Season",
+            "text": "<h5>Shop limited-edition skincare sets. Incredible value. Incredible results.<\/h5>",
+            "cta": "SHOP NOW",
+            "link": "shopify:\/\/collections\/holiday-bundles",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#f2f2f2",
+            "overlay_opacity": 0
+          }
+        },
+        "e1aabde4-6331-4c8b-a50f-044cdd76bbc2": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2023-11-24-blackfriday-full.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/2023-11-24-blackfriday-mobile.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "Black Friday Exclusive",
+            "title": "30% Off Sitewide",
+            "text": "<h4>Save on single priced items now!<\/h4><h4>Offer ends 11\/24 11:59pm PST. <\/h4><h6><em>Excludes limited edition, holiday bundles & value sets. <\/em><\/h6><h6><em>Discount offers cannot be combined.<\/em><\/h6><h6><em>Discount applied automatically. <\/em><\/h6>",
+            "cta": "SHOP NOW",
+            "link": "https:\/\/miracobeauty.com\/collections\/black-friday-cyber-monday-sale",
+            "cta_primary_btn_style": "secondary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#f2f2f2",
+            "overlay_opacity": 0
+          }
+        },
+        "slideshow-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hero-image-1-new.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/hero-image-1-mobile_ce4997c1-1918-4da5-94b0-eba1942a59aa.jpg",
+            "alignment": "left",
+            "color_style": "black",
+            "subheading": "The latest age-defying game changer",
+            "title": "Pseudoalteromonas Ferment Extract",
+            "text": "<h5>Our hero ingredient that stimulates the formation of collagen, improves firmness, reduces wrinkles, and protects the skin from dehydration and barrier damage. <\/h5>",
+            "cta": "SEE DETAILS",
+            "link": "shopify:\/\/collections\/all",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "19298211-f18d-45e3-99e1-fddaaee57904": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2023-10-reward.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/2023-10-reward-mobile.jpg",
+            "alignment": "left",
+            "color_style": "black",
+            "subheading": "",
+            "title": "Embrace Radiant Rewards",
+            "text": "<h5>Join our Reward Program and dive into a world of exclusive perks, discounts, and surprises. <\/h5>",
+            "cta": "JOIN NOW",
+            "link": "https:\/\/miracobeauty.com\/pages\/miraco-beauty-rewards",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "62e4c988-1c55-4906-bf02-d1f406c9ad90",
+        "7eb5c4f2-1af5-489a-934f-f43f742f0c7e",
+        "f6649f37-baa4-490c-b4e8-32ad98c2aace",
+        "e1aabde4-6331-4c8b-a50f-044cdd76bbc2",
+        "slideshow-0",
+        "19298211-f18d-45e3-99e1-fddaaee57904"
+      ],
+      "custom_css": [
+        "h1 {color: #606161; font-size: 44px;}",
+        "p {color: #606161; line-height: 34px; font-size: 20px;}"
+      ],
+      "settings": {
+        "enable_custom_css": true,
+        "slide_height": "seven-fifty-height-hero",
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": false,
+        "duration": 5,
+        "transition": "zoom-out",
+        "dots_position": "center",
+        "button_size": "large",
+        "slide_height_mobile": "seven-fifty-height-hero--mobile"
+      }
+    },
+    "featured-collection": {
+      "type": "section-collection",
+      "custom_css": [
+        "{margin-bottom: 48px;}"
+      ],
+      "settings": {
+        "title": "Our Best Sellers",
+        "show_description": false,
+        "featured_collection": "best-sellers",
+        "products_layout": "grid",
+        "products_rows": 2,
+        "show_button": false,
+        "button_style": "primary",
+        "color_style": "white"
+      }
+    },
+    "36ee3262-24f9-4e7f-97dc-9591fefd0cff": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "fdaa7c56-efeb-4336-888a-8b17fb2a7052": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled_design_47.png"
+          }
+        },
+        "template--15813410586807__36ee3262-24f9-4e7f-97dc-9591fefd0cff-168138340864a69242-0": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/all-products-square.jpg"
+          }
+        },
+        "template--15813410586807__36ee3262-24f9-4e7f-97dc-9591fefd0cff-168138340864a69242-1": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-banner_list_1_-_face_mist_8a6cce5a-eab3-4371-a68c-3f2fa945de3d.jpg"
+          }
+        },
+        "034cbc25-3b4d-4777-8502-71cae69a7f47": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Copy_of_CN8A4665-Edit_1.jpg"
+          }
+        },
+        "b3526576-cf56-4f33-bac6-4b080aba6d4b": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/serum6vials-02-549618.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "fdaa7c56-efeb-4336-888a-8b17fb2a7052",
+        "template--15813410586807__36ee3262-24f9-4e7f-97dc-9591fefd0cff-168138340864a69242-0",
+        "template--15813410586807__36ee3262-24f9-4e7f-97dc-9591fefd0cff-168138340864a69242-1",
+        "034cbc25-3b4d-4777-8502-71cae69a7f47",
+        "b3526576-cf56-4f33-bac6-4b080aba6d4b"
+      ],
+      "custom_css": [
+        "h2 {text-align: left;}",
+        "p {text-align: left;}",
+        ".gallery-content__button {text-align: left;}"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 5,
+        "slide_height": "four-fifty-height-hero",
+        "slide_image_position": "left",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "",
+        "title": "Improving Overall Skin Health For All Skin Types",
+        "content": "<p>MIRACO Beauty's products are developed by professional scientists and skin experts. We are continuously committed to discovering highly effective, natural ingredients and combining them with latest scientific research.<\/p>",
+        "cta": "LEARN MORE",
+        "link": "shopify:\/\/pages\/about-us",
+        "button_style": "secondary"
+      }
+    },
+    "dc2aeb99-bdc0-40ca-95e5-b6141c71af79": {
+      "type": "section-announcement",
+      "blocks": {
+        "d7da3d0c-ebf9-4889-a7fc-52ea58507137": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Non-Toxic Formulas<\/p>"
+          }
+        },
+        "c0abd6d8-bd90-4827-8b69-a1b1c73d7fda": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Made In the USA<\/p>"
+          }
+        },
+        "5544235b-19fe-4752-86ad-eb3fbd0caed4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Powered by Biotechnology<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "d7da3d0c-ebf9-4889-a7fc-52ea58507137",
+        "c0abd6d8-bd90-4827-8b69-a1b1c73d7fda",
+        "5544235b-19fe-4752-86ad-eb3fbd0caed4"
+      ],
+      "custom_css": [
+        "{margin-top: 48px !important;}"
+      ],
+      "settings": {
+        "bg_color": "#f2f2f2",
+        "color": "#606161",
+        "layout": "marquee",
+        "speed": 20
+      }
+    },
+    "daf7819d-5fde-49f1-8b93-ff1bd9a88754": {
+      "type": "section-rich-text",
+      "disabled": true,
+      "custom_css": [
+        "h2 {text-align: left;}",
+        "p {text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "Skincare at the Intersection of Nature, Science and Technology",
+        "content": "<p>Our products are developed by professional scientists and skin experts. We are continuously committed to discovering highly effective, natural ingredients and combining them with latest scientific research.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "checkbox_redeem": false,
+        "redeem_button_text": "REDEEM POINTS",
+        "button_style": "primary"
+      }
+    },
+    "023893af-fa65-4892-a10e-bbba5ebb1db6": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "182296a5-0a58-409b-b8ce-216cc5e63b91": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_39.png"
+          }
+        },
+        "template--15813410586807__023893af-fa65-4892-a10e-bbba5ebb1db6-1681438188a8eb70c4-0": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2023-6-5-hydra-serum-full.jpg"
+          }
+        },
+        "5508c21e-6f6a-40bb-929b-1cefb37d4f3d": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2023-5-22-full_c63f058d-c8be-4123-bb01-05084053e96e.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "182296a5-0a58-409b-b8ce-216cc5e63b91",
+        "template--15813410586807__023893af-fa65-4892-a10e-bbba5ebb1db6-1681438188a8eb70c4-0",
+        "5508c21e-6f6a-40bb-929b-1cefb37d4f3d"
+      ],
+      "custom_css": [
+        "h2 {text-align: left;}",
+        "p {text-align: left;}",
+        ".gallery-content__button {text-align: left;}"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "five-fifty-height-hero",
+        "slide_image_position": "left",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "",
+        "title": "HYDRA+",
+        "content": "<p>Our oceans are a source of healing magic, and we tapped into the freshest, purest and deepest waters to source ingredients for our Hydra+ Collection. Our formulas are gentle, and fast-absorbing and offer many skin-loving nutrients from the ocean that hydrate the skin, improve elasticity, and provide a protective moisture barrier to combat environmental stress, such as pollution and screen fatigue. <\/p>",
+        "cta": "SHOP NOW",
+        "link": "shopify:\/\/collections\/hydra",
+        "button_style": "secondary"
+      }
+    },
+    "572ff2b6-e12b-469c-bc6a-82915258495e": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "6b27a2ed-5864-48db-ba29-71003759773e": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_34.png"
+          }
+        },
+        "17e7a8b6-5012-4204-8a43-98a2e20a0ecf": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_35.png"
+          }
+        },
+        "e67c539d-7442-4d18-825d-e09e20d154f8": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2022-09-12.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "6b27a2ed-5864-48db-ba29-71003759773e",
+        "17e7a8b6-5012-4204-8a43-98a2e20a0ecf",
+        "e67c539d-7442-4d18-825d-e09e20d154f8"
+      ],
+      "custom_css": [
+        "h2 {text-align: left;}",
+        "p {text-align: left;}",
+        ".gallery-content__button {text-align: left;}"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 5,
+        "slide_height": "five-fifty-height-hero",
+        "slide_image_position": "right",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "",
+        "title": "S-CELL",
+        "content": "<p>An unrivaled line of corrective, protective and replenishing skincare treatments that help to recover your skin, encourage collagen synthesis, restore skin radiance and offer superior protection from environmental aggressors. The S-Cell Superstars are incomparable to any other serums or creams on the market today, offering 9 of the top-performing Peptides, collagen proteins, Antarcticine, Ceramides, EGF (Epidermal Growth Factor), and various plant stem cells.<\/p>",
+        "cta": "SHOP NOW",
+        "link": "shopify:\/\/collections\/s-cell",
+        "button_style": "secondary"
+      }
+    },
+    "86b190f8-a1e6-489d-923e-98eec748a831": {
+      "type": "section-list-collections",
+      "blocks": {
+        "template--15813410586807__86b190f8-a1e6-489d-923e-98eec748a831-16813710818217c410-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "moisturizers",
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_41.png",
+            "overlay_color": "#333333",
+            "overlay_opacity": 20
+          }
+        },
+        "template--15813410586807__86b190f8-a1e6-489d-923e-98eec748a831-16813710818217c410-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "masks",
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_42.png",
+            "overlay_color": "#333333",
+            "overlay_opacity": 15
+          }
+        },
+        "38b55a97-bfde-401c-a704-d0c484890163": {
+          "type": "collection",
+          "settings": {
+            "collection": "serums",
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_44.png",
+            "overlay_color": "#333333",
+            "overlay_opacity": 15
+          }
+        }
+      },
+      "block_order": [
+        "template--15813410586807__86b190f8-a1e6-489d-923e-98eec748a831-16813710818217c410-0",
+        "template--15813410586807__86b190f8-a1e6-489d-923e-98eec748a831-16813710818217c410-1",
+        "38b55a97-bfde-401c-a704-d0c484890163"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "{margin-top: 96px;}",
+        "h2 {font-size: 32px; margin-bottom: 0px !important;}"
+      ],
+      "settings": {
+        "title": "Essential Skin Care Categories",
+        "text": "",
+        "blocks_height": "full-height",
+        "coll_text_position": "bottom_left",
+        "show_description": true,
+        "button_text": "SHOP NOW",
+        "button_style": "secondary",
+        "text_color": "#ffffff",
+        "enable_slider": true
+      }
+    },
+    "9e2b8169-f07d-4fd2-9873-ff93608c55ad": {
+      "type": "section-rich-text",
+      "disabled": true,
+      "custom_css": [
+
+      ],
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "What Our Customers are Saying",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "checkbox_redeem": false,
+        "redeem_button_text": "REDEEM POINTS",
+        "button_style": "primary"
+      }
+    },
+    "1688305941afc326bc": {
+      "type": "apps",
+      "blocks": {
+        "2a6484b2-0691-461b-9e3a-6173ac8f676c": {
+          "type": "shopify:\/\/apps\/klaviyo-reviews\/blocks\/featured-reviews-carousel\/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {
+            "heading": "Featured Reviews Carousel",
+            "description": "This widget displays all of your \"featured\" reviews. You can feature published reviews in Klaviyo.com\/reviews. This widget looks best with at least three featured reviews and will not display when no reviews are featured."
+          }
+        }
+      },
+      "block_order": [
+        "2a6484b2-0691-461b-9e3a-6173ac8f676c"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "{margin-top: -88px; margin-bottom: 64px;}"
+      ],
+      "settings": {
+      }
+    },
+    "388faa77-006c-40d7-b91f-879a38318edb": {
+      "type": "kik-section-list-collection",
+      "blocks": {
+        "3092e7db-c324-4311-8770-9198acb2f39d": {
+          "type": "collection",
+          "settings": {
+            "collection": "normal-skin-types",
+            "image": "shopify:\/\/shop_images\/skin-type-1.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "fec97141-4bf6-4ce6-81ce-18cacb42b1cd": {
+          "type": "collection",
+          "settings": {
+            "collection": "dry-skin-types",
+            "image": "shopify:\/\/shop_images\/skin-type-2.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "8f6259d0-3c6e-4da7-b0c9-5ffcde58faf0": {
+          "type": "collection",
+          "settings": {
+            "collection": "oily-skin-types",
+            "image": "shopify:\/\/shop_images\/skin-type-3.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 25
+          }
+        },
+        "6b7bbd04-bb36-426b-9529-a8b6f9b49bab": {
+          "type": "collection",
+          "settings": {
+            "collection": "combination-skin-types",
+            "image": "shopify:\/\/shop_images\/skin-type-4.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "41389735-d5a9-4175-8b93-6f0ef11f52d0": {
+          "type": "collection",
+          "settings": {
+            "collection": "sensitive-skin-types",
+            "image": "shopify:\/\/shop_images\/skin-type-5.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "95190a31-6b9e-4516-9545-b80e77ae9c86": {
+          "type": "collection",
+          "settings": {
+            "collection": "mature-skin-types",
+            "image": "shopify:\/\/shop_images\/skin-type-6.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "3092e7db-c324-4311-8770-9198acb2f39d",
+        "fec97141-4bf6-4ce6-81ce-18cacb42b1cd",
+        "8f6259d0-3c6e-4da7-b0c9-5ffcde58faf0",
+        "6b7bbd04-bb36-426b-9529-a8b6f9b49bab",
+        "41389735-d5a9-4175-8b93-6f0ef11f52d0",
+        "95190a31-6b9e-4516-9545-b80e77ae9c86"
+      ],
+      "settings": {
+        "title": "Shop by Skin Type",
+        "text": "",
+        "blocks_height": "default-height",
+        "coll_text_position": "center",
+        "show_title": true,
+        "show_description": false,
+        "button_text": "",
+        "button_style": "primary",
+        "text_color": "#ffffff",
+        "enable_slider": true
+      }
+    },
+    "32a51a4b-7555-4eb9-9fca-06a74ad63dbc": {
+      "type": "section-mosaic",
+      "blocks": {
+        "template--15846280200375__32a51a4b-7555-4eb9-9fca-06a74ad63dbc-1686199092d6eb6c2d-0": {
+          "type": "text",
+          "settings": {
+            "title": "Trusted by Medical Spas for Post-Treatment Recovery",
+            "subheading": "Unleash the Healing Power of Miraco Beauty",
+            "text": "<p>MIRACO Beauty offers a diverse selection of healing and anti-inflammatory products, trusted and utilized by Medical Spas across the U.S. and Asia after chemical and laser treatments.<\/p>",
+            "button_label": "LEARN MORE",
+            "button_link": "shopify:\/\/pages\/about-us",
+            "button_style": "secondary"
+          }
+        },
+        "8e0a43d3-0438-485e-b098-39c464d64c9e": {
+          "type": "collection",
+          "settings": {
+            "collection": "all-products",
+            "image": "shopify:\/\/shop_images\/all-products-square.jpg",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "40c5dd59-9259-4b6a-ac79-62ed46d35dab": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/6.jpg",
+            "link": "",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        },
+        "c235a74c-62bd-4e62-abd1-99cec28bc723": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/lees.garcia_2022-02-22_03-58-50-969903.jpg",
+            "link": "",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--15846280200375__32a51a4b-7555-4eb9-9fca-06a74ad63dbc-1686199092d6eb6c2d-0",
+        "8e0a43d3-0438-485e-b098-39c464d64c9e",
+        "40c5dd59-9259-4b6a-ac79-62ed46d35dab",
+        "c235a74c-62bd-4e62-abd1-99cec28bc723"
+      ],
+      "custom_css": [
+        "{margin-top: 48px;}",
+        "h2 {text-align: left;}",
+        "p {text-align: left;}",
+        ".mosaic__button {text-align: left;}"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/homepage-image-1-min.jpg",
+        "image_position": "right",
+        "hide_image_mobile": false,
+        "overlay_color": "#333333",
+        "overlay_opacity": 0,
+        "image_text": "",
+        "image_link": "",
+        "blocks_height": "full-height",
+        "blocks_layout": "offset",
+        "text_color": "white"
+      }
+    },
+    "2b8f268c-8e9b-4785-b141-aa63891c72b9": {
+      "type": "section-icons-row",
+      "blocks": {
+        "template--15813410586807__2b8f268c-8e9b-4785-b141-aa63891c72b9-1681367493988f21ca-0": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-no_animal.png",
+            "title": "",
+            "text": "<p>Not Tested on Animals<\/p>"
+          }
+        },
+        "template--15813410586807__2b8f268c-8e9b-4785-b141-aa63891c72b9-1681367493988f21ca-1": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-parabhenfree.png",
+            "title": "",
+            "text": "<p>No Parabens or Phthalates<\/p>"
+          }
+        },
+        "ed65ed2c-c31e-4249-b561-a3695e5ada1b": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-no_mineral_oil.png",
+            "title": "",
+            "text": "<p>No Mineral Oil<\/p>"
+          }
+        },
+        "317e7928-b911-4bb1-8fa9-81c43a84f02d": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-all_skin_type.png",
+            "title": "",
+            "text": "<p>All Skin Types<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15813410586807__2b8f268c-8e9b-4785-b141-aa63891c72b9-1681367493988f21ca-0",
+        "template--15813410586807__2b8f268c-8e9b-4785-b141-aa63891c72b9-1681367493988f21ca-1",
+        "ed65ed2c-c31e-4249-b561-a3695e5ada1b",
+        "317e7928-b911-4bb1-8fa9-81c43a84f02d"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "title": "",
+        "alignment": "center",
+        "color_icons_bg": "#ffffff",
+        "color_icons_text": "#222222"
+      }
+    },
+    "rich-text": {
+      "type": "section-rich-text",
+      "custom_css": [
+        "h2 {text-align: left;}",
+        "p {text-align: left;}"
+      ],
+      "settings": {
+        "layout": "split",
+        "subheading": "",
+        "title": "What Makes Us Different?",
+        "content": "<h4>MIRACO Beauty was ideated from a client-first perspective built by a team of experts: dermatologists, scientists, professional makeup artists\/estheticians, and skin care industry professionals who are dedicated to the notions of creating gentle, efficacious, and effective skincare products that are inclusive to all. <\/h4>",
+        "button_text": "",
+        "button_link": "",
+        "checkbox_redeem": false,
+        "redeem_button_text": "REDEEM POINTS",
+        "button_style": "primary"
+      }
+    },
+    "3ab04ef6-0cd2-427b-b07b-ab9e7b18be4a": {
+      "type": "section-split-hero",
+      "disabled": true,
+      "settings": {
+        "image_height": "sixty-fifty-height-hero",
+        "image_desktop_left": "shopify:\/\/shop_images\/Miraco_Beauty_Images_2.png",
+        "image_mobile_left": "shopify:\/\/shop_images\/Miraco_Beauty_Images_25.png",
+        "image_desktop_right": "shopify:\/\/shop_images\/Miraco_Beauty_Images_19.png",
+        "content_alignment": "left",
+        "color_style": "black",
+        "subheading": "",
+        "title": "Our Promise",
+        "text": "<p>We are meticulous in our research<br\/>and development of each skin care<br\/>product and our formulas meet our<br\/>standards to ensure the safety and<br\/>excellent efficacy of each product.<\/p>",
+        "cta": "LEARN MORE",
+        "link": "shopify:\/\/pages\/about-us",
+        "cta_2": "",
+        "link_2": "",
+        "overlay_color": "#e4e4e4",
+        "overlay_opacity": 0,
+        "button_size": "normal",
+        "button_primary_style": "secondary",
+        "button_secondary_style": "secondary"
+      }
+    },
+    "1e4bdbcb-e8d6-4558-bfc9-9533e10fe24e": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15813410586807__1e4bdbcb-e8d6-4558-bfc9-9533e10fe24e-168138370033c58100-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_15.png",
+            "image_mobile": "shopify:\/\/shop_images\/Miraco_Beauty_Images_26.png",
+            "alignment": "center",
+            "color_style": "white",
+            "subheading": "ANNOUNCEMENT",
+            "title": "NOW AVAILABLE ON AMAZON",
+            "text": "<p>Guess what? You can now shop MIRACO BEAUTY on Amazon! Prime members can also enjoy free 2-day shipping.<\/p>",
+            "cta": "SHOP ON AMAZON",
+            "link": "https:\/\/www.amazon.com\/stores\/MiracoBeauty\/page\/D006D3C5-2AE8-4F50-A7C8-50BAB323A742?ref_=ast_bln",
+            "cta_primary_btn_style": "primary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--15813410586807__1e4bdbcb-e8d6-4558-bfc9-9533e10fe24e-168138370033c58100-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_custom_css": false,
+        "slide_height": "four-fifty-height-hero",
+        "show_nav_arrows": true,
+        "show_arrow_down": false,
+        "autoplay": true,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "four-fifty-height-hero--mobile"
+      }
+    },
+    "testimonials": {
+      "type": "section-testimonials",
+      "blocks": {
+        "testimonials-0": {
+          "type": "testimonial",
+          "settings": {
+            "testimonials_text": "<p>This beauty cream is chock full of tons of extracts that promote moisture and prevent dryness on the skin! If your skin is in need of a intense moisture overhaul, or you have perpetually dry skin, this is the cream for you!<\/p>",
+            "author": "Queen Bee"
+          }
+        },
+        "testimonials-1": {
+          "type": "testimonial",
+          "settings": {
+            "testimonials_text": "<p>This moisturizer is excellent. It seeks to provide hydration and provide firming elements. Good ingredients. Short list, safe, and clean.<\/p>",
+            "author": "Danny"
+          }
+        },
+        "testimonials-2": {
+          "type": "testimonial",
+          "settings": {
+            "testimonials_text": "<p>This moisturizer feels really really nice on the skin, it almost has a buttery feeling to it. I apply it on slightly wet skin because of the hyaluronic acid, which is an acid that is used in many skin care products that amplifies and picks up hydration around it.<\/p>",
+            "author": "Jo"
+          }
+        }
+      },
+      "block_order": [
+        "testimonials-0",
+        "testimonials-1",
+        "testimonials-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "What People Saying",
+        "title_position": "center",
+        "blocks_text_align": "justify",
+        "hide_quotes": false,
+        "columns": 3
+      }
+    },
+    "282b4c7c-7185-4e72-96af-85f4625210ec": {
+      "type": "section-newsletter",
+      "disabled": true,
+      "settings": {
+        "color": "#606161",
+        "background": "#f2f2f2",
+        "title": "Connect with Us",
+        "content": "<p>Become a MIRACO Beauty Insider. Be the first to receive notifications, updates and exclusive news.<\/p>"
+      }
+    },
+    "6b4a9d32-971f-46f0-bb6a-f9abf0f97bf4": {
+      "type": "section-blog",
+      "custom_css": [
+        "{margin-top: 72px;}"
+      ],
+      "settings": {
+        "heading": "MIRACO Beauty Blog",
+        "blog_text": "<p>Fall into skincare with our experts who know and love all things beauty, formulas, beauty trends and well-being. Ranging from reviews, treatments and 'how-to's' for your skin health and needs. We’re your Glow-to Girlfriends who take out the grunt work for you.<\/p>",
+        "blog": "articles",
+        "cta": "VISIT OUR BLOG",
+        "button_style": "secondary",
+        "tags": false,
+        "author": false,
+        "date": false,
+        "show_comments": false,
+        "image_aspect_ratio": 0.5,
+        "article_rows": 1,
+        "article_columns": 3
+      }
+    },
+    "09ead21d-d563-497e-a279-06ed7cdfb8e4": {
+      "type": "section-custom-html",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "html": "<div style=\"margin-top: 50px; margin-bottom: -50px;\">\n<h2>Share Your Skincare Experience<\/h2>\n<\/div>"
+      }
+    },
+    "168138292895daf02a": {
+      "type": "apps",
+      "blocks": {
+        "c0a6f195-085a-4797-9490-ebffdac6a260": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "alignment": "center",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "c0a6f195-085a-4797-9490-ebffdac6a260"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "featured-collection",
+    "36ee3262-24f9-4e7f-97dc-9591fefd0cff",
+    "dc2aeb99-bdc0-40ca-95e5-b6141c71af79",
+    "daf7819d-5fde-49f1-8b93-ff1bd9a88754",
+    "023893af-fa65-4892-a10e-bbba5ebb1db6",
+    "572ff2b6-e12b-469c-bc6a-82915258495e",
+    "86b190f8-a1e6-489d-923e-98eec748a831",
+    "9e2b8169-f07d-4fd2-9873-ff93608c55ad",
+    "1688305941afc326bc",
+    "388faa77-006c-40d7-b91f-879a38318edb",
+    "32a51a4b-7555-4eb9-9fca-06a74ad63dbc",
+    "2b8f268c-8e9b-4785-b141-aa63891c72b9",
+    "rich-text",
+    "3ab04ef6-0cd2-427b-b07b-ab9e7b18be4a",
+    "1e4bdbcb-e8d6-4558-bfc9-9533e10fe24e",
+    "testimonials",
+    "282b4c7c-7185-4e72-96af-85f4625210ec",
+    "6b4a9d32-971f-46f0-bb6a-f9abf0f97bf4",
+    "09ead21d-d563-497e-a279-06ed7cdfb8e4",
+    "168138292895daf02a"
+  ]
+}

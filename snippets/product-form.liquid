@@ -1,0 +1,316 @@
+{%- liquid
+  assign first_variant = product.selected_or_first_available_variant
+  assign variants_count = product.variants.size
+  assign enable_color_swatches = settings.enable_color_swatches
+  assign enable_variant_boxes = settings.enable_variant_boxes
+
+  comment
+    Show payment button if section level setting is true or the global setting for Quick view is true
+    Disable quick buy button if there are subscription options for the product
+  endcomment
+
+  assign show_payment_buttons = false
+  unless settings.enable_accept_terms
+    unless product.selling_plan_groups.size > 0
+      if enable_payment_button or settings.enable_payment_button
+        assign show_payment_buttons = true
+      endif
+    endunless
+  endunless
+
+  if first_variant.available
+    assign sold_out = false
+  else
+    assign sold_out = true
+  endif
+-%}
+
+
+{%- form 'product', product, class: 'product__form', data-enable-color-swatches: enable_color_swatches, data-product-id: product.id, data-product-form: '' -%}
+  <div class="shop-pay-terms">{{ form | payment_terms }}</div>
+
+  <div class="product__form-block{% unless enable_variant_boxes %} product__form-block--options-inline{% endunless %}{% if enable_color_swatches %} product__form-block--swatches{% endif %}">
+    {%- unless product.has_only_default_variant -%}
+      {%- if enable_variant_boxes -%}
+        {%- assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ',' -%}
+{%- assign first_variant = product.selected_or_first_available_variant -%}
+
+{%- for option in product.options_with_values -%}
+	{%- assign option_index = option.position | minus: 1 -%}
+	{%- assign downcased_option = option.name | downcase -%}
+	{%- assign is_color = false -%}
+	{%- if color_label contains downcased_option -%}
+		{%- assign is_color = true -%}
+	{%- endif -%}
+
+	{%- if is_color and enable_color_swatches -%}
+		{%- comment -%} /partials/product-swatch.liquid {%- endcomment -%}
+
+{%- assign file_extension = 'png' -%}
+{%- assign first_variant = product.selected_or_first_available_variant -%}
+
+<div class="variant-wrapper variant-wrapper--color" data-option="option{{ option.position }}">
+	<label class="variant-label--color" for="SingleOptionSelector-{{ forloop.index0 }}-{{ product.id }}">
+		{{- option.name -}}
+		<span class="variant-label__value" data-color-label>
+			{{- option.selected_value -}}
+		</span>
+	</label>
+
+	<fieldset
+		id="SingleOptionSelector-{{ forloop.index0 }}-{{ product.id }}"
+		class="variant-input-wrap"
+		data-index="option{{ option.position }}">
+		<div class="swatch swatch--{{ settings.color_swatches_style }}">
+			{%- for value in option.values -%}
+				{% capture input_id %}{{ section.id }}-{{ product.id }}-{{ option.name | escape_once }}-{{ value | escape_once }}{% endcapture %}
+
+				<div data-value="{{ value | escape_once | capitalize }}" class="swatch__element">
+					<input type="radio"
+						data-single-option-selector
+						data-color-swatch
+						data-index="option{{ option.position }}"
+						name="options[{{ option.name | escape_once }}]"
+						value="{{ value | escape_once }}"
+						id="{{ input_id }}"
+						class="swatch__input"
+						{% if first_variant.options[option_index] == value %}checked="checked"{% endif %}>
+					<label class="variant__button-label--color swatch__label" for="{{ input_id }}" data-swatch="{{ value | escape_once }}">
+						<span class="swatch__color swatch__color--{{ value | handle }}" data-swatch-color></span>
+						<span class="accessible-label">{{ value | escape_once }}</span>
+					</label>
+				</div>
+			{%- endfor -%}
+		</div>
+	</fieldset>
+</div>
+	{%- else -%}
+		<div class="variant-wrapper{% if enable_variant_boxes %} variant-wrapper--boxes{% endif %}" data-option="option{{ option.position }}">
+			<label class="variant-label" for="SingleOptionSelector-{{ forloop.index0 }}-{{ product.id }}">
+				{{- option.name -}}
+			</label>
+
+			<fieldset
+				id="SingleOptionSelector-{{ forloop.index0 }}-{{ product.id }}"
+				class="variant-input-wrap variant-input-wrap--boxes"
+				data-index="option{{ option.position }}">
+				{%- for value in option.values -%}
+					<div class="variant-field">
+						<input
+							id="option-{{ option.position }}-{{ value }}-{{ forloop.index0 }}-{{ section.id }}"
+							class="visually-hidden variant-input"
+							type="radio"
+							name="options[{{ option.name | escape }}]"
+							value="{{ value | escape }}"
+							data-single-option-selector
+							data-index="option{{ option.position }}"
+							{% if first_variant.options[option_index] == value %}checked="checked"{% endif %}>
+						<label class="variant__button-label" for="option-{{ option.position }}-{{ value }}-{{ forloop.index0 }}-{{ section.id }}">
+							{{- value -}}
+						</label>
+					</div>
+				{%- endfor -%}
+			</fieldset>
+		</div>
+	{%- endif -%}
+{%- endfor -%}
+      {%- else -%}
+        {%- for option in product.options_with_values -%}
+          {%- if enable_color_swatches -%}
+            {%- assign option_name_handle_separator = option.name | handle | prepend: ',' | append: ',' -%}
+            {%- assign option_index = option.position | minus: 1 -%}
+
+            {%- if settings.enable_color_swatches -%}
+  {% comment %} Determine if current option matches swatch handle translations {% endcomment %}
+  {%- assign is_swatch_option = false -%}
+  {%- assign swatch_translation = 'general.swatches.color' | t -%}
+  {%- assign translation_string = swatch_translation | remove: '  ' | replace: ', ', ',' | replace: ' ,', ',' | replace: ',', '____' | handle | replace: '____', ',' | append: ',' | prepend: ',' -%}
+
+  {%- if translation_string contains option_name_handle_separator -%}
+    {%- assign is_swatch_option = true -%}
+  {%- endif -%}
+{%- endif -%}
+
+            {%- if is_swatch_option -%}
+              {%- comment -%} /partials/product-swatch.liquid {%- endcomment -%}
+
+{%- assign file_extension = 'png' -%}
+{%- assign first_variant = product.selected_or_first_available_variant -%}
+
+<div class="variant-wrapper variant-wrapper--color" data-option="option{{ option.position }}">
+	<label class="variant-label--color" for="SingleOptionSelector-{{ forloop.index0 }}-{{ product.id }}">
+		{{- option.name -}}
+		<span class="variant-label__value" data-color-label>
+			{{- option.selected_value -}}
+		</span>
+	</label>
+
+	<fieldset
+		id="SingleOptionSelector-{{ forloop.index0 }}-{{ product.id }}"
+		class="variant-input-wrap"
+		data-index="option{{ option.position }}">
+		<div class="swatch swatch--{{ settings.color_swatches_style }}">
+			{%- for value in option.values -%}
+				{% capture input_id %}{{ section.id }}-{{ product.id }}-{{ option.name | escape_once }}-{{ value | escape_once }}{% endcapture %}
+
+				<div data-value="{{ value | escape_once | capitalize }}" class="swatch__element">
+					<input type="radio"
+						data-single-option-selector
+						data-color-swatch
+						data-index="option{{ option.position }}"
+						name="options[{{ option.name | escape_once }}]"
+						value="{{ value | escape_once }}"
+						id="{{ input_id }}"
+						class="swatch__input"
+						{% if first_variant.options[option_index] == value %}checked="checked"{% endif %}>
+					<label class="variant__button-label--color swatch__label" for="{{ input_id }}" data-swatch="{{ value | escape_once }}">
+						<span class="swatch__color swatch__color--{{ value | handle }}" data-swatch-color></span>
+						<span class="accessible-label">{{ value | escape_once }}</span>
+					</label>
+				</div>
+			{%- endfor -%}
+		</div>
+	</fieldset>
+</div>
+            {%- else -%}
+              {%- comment -%} /partials/product-option.liquid {%- endcomment -%}
+{%- capture selector_id -%}
+	{%- if shop_bar -%}
+		ShopBar-
+	{%- else -%}
+		Product-
+	{%- endif -%}
+	SingleOptionSelector-{{- forloop.index0 -}}-{{- product.id -}}
+{%- endcapture -%}
+
+<div class="selector-wrapper" data-option="option{{ option.position }}">
+	<label for="{{ selector_id }}">
+		{{- option.name -}}
+	</label>
+
+	<select
+		id="{{ selector_id }}"
+		name="options[{{ option.name | escape }}]"
+		data-single-option-selector
+		data-index="option{{ option.position }}">
+		{%- for value in option.values -%}
+			<option
+				value="{{ value | escape }}"
+				{% if option.selected_value == value %}selected="selected"{% endif %}>
+				{{- value -}}
+			</option>
+		{%- endfor -%}
+	</select>
+	{%- render 'icon-arrow' -%}
+</div>
+            {%- endif -%}
+          {%- else -%}
+            {%- comment -%} /partials/product-option.liquid {%- endcomment -%}
+{%- capture selector_id -%}
+	{%- if shop_bar -%}
+		ShopBar-
+	{%- else -%}
+		Product-
+	{%- endif -%}
+	SingleOptionSelector-{{- forloop.index0 -}}-{{- product.id -}}
+{%- endcapture -%}
+
+<div class="selector-wrapper" data-option="option{{ option.position }}">
+	<label for="{{ selector_id }}">
+		{{- option.name -}}
+	</label>
+
+	<select
+		id="{{ selector_id }}"
+		name="options[{{ option.name | escape }}]"
+		data-single-option-selector
+		data-index="option{{ option.position }}">
+		{%- for value in option.values -%}
+			<option
+				value="{{ value | escape }}"
+				{% if option.selected_value == value %}selected="selected"{% endif %}>
+				{{- value -}}
+			</option>
+		{%- endfor -%}
+	</select>
+	{%- render 'icon-arrow' -%}
+</div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endunless -%}
+
+    <label for="product-select--{{ section.id }}" class="accessible-label">{{ 'general.accessibility.select_variant' | t }}</label>
+
+    {%- if variants_count > 1 -%}
+      <select
+        name="id"
+        id="product-select--{{ section.id }}"
+        class="product-single__variants"
+        data-product-id="{{ product.id }}"
+        data-product-select>
+        {%- for variant in product.variants -%}
+          <option
+            {% if variant == first_variant %} selected="selected" {% endif %}
+            {% unless variant.available %} disabled="disabled" {% endunless %}
+            data-sku="{{ variant.sku }}"
+            value="{{ variant.id }}">
+            {{ variant.title }} - 
+            {% if variant.available %}
+              {% if variant.price == 0 %}
+                {{ 'products.labels.free' | t }}
+              {%  else %}
+                {{ variant.price | money_with_currency }}
+              {% endif %}
+            {% else %}
+              {{ 'products.labels.sold_out' | t }}
+            {% endif %}
+          </option>
+        {%- endfor -%}
+      </select>
+    {%- else -%}
+      <input name="id" id="product-select--{{ section.id }}" data-product-id="{{ product.id }}" type="hidden" value="{{ first_variant.id }}">
+    {%- endif -%}
+  </div>
+
+  <div class="product__form-block">
+    <div class="qty__adjust" data-quantity-holder>
+      <label for="quantity--{{ section.id }}" class="accessible-label">{{ 'general.accessibility.quantity_selector' | t }}</label>
+      <input type="number" class="qty__adjust-input" name="quantity" id="quantity--{{ section.id }}" value="1" min="1" data-quantity-field>
+
+      <button type="button" class="qty__adjust-btn qty__adjust-btn--minus" aria-label="{{ 'general.accessibility.decrease' | t }}" data-quantity-minus data-quantity-button>{% render 'icon-minus' %}</button>
+      <button type="button" class="qty__adjust-btn qty__adjust-btn--plus" aria-label="{{ 'general.accessibility.increase' | t }}" data-quantity-plus data-quantity-button>{% render 'icon-plus' %}</button>
+    </div>
+
+    <div class="product__form-buttons{% if settings.color_button_primary_bg == settings.color_background_new %} product__form-buttons--alt{% endif %}">
+      <button
+        class="product__form-submit{% if show_payment_buttons %} button--alt{% endif %}"
+        type="submit"
+        name="add"
+        data-ajax="{{ settings.enable_ajax_cart }}"
+        data-handle="{{ product.handle }}"
+        {% if sold_out %}disabled{% endif %}
+        data-focus-element
+        data-add-to-cart>
+        <span data-add-to-cart-text>
+          {%- if sold_out -%}
+            {{- 'products.form.sold_out' | t -}}
+          {%- else -%}
+            {%- if preorder -%}
+              {{- 'products.form.preorder' | t -}}
+            {%- else -%}
+              {{- 'products.form.submit' | t -}}
+            {%- endif -%}
+          {%- endif -%}
+        </span>
+        {%- render 'icon-check' -%}
+      </button>
+    </div>
+
+    {%- if show_payment_buttons -%}
+      <div class="product__form-buttons{% if settings.color_button_primary_bg == settings.color_background_new %} product__form-buttons--alt{% endif %}" data-payment-button="{{ enable_payment_button }}" data-payment-button-quickview="{{ settings.enable_payment_button }}">
+        {{- form | payment_button -}}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endform -%}

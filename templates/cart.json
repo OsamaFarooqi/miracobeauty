@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "main": {
+      "type": "cart",
+      "settings": {
+      }
+    },
+    "168839270184c47071": {
+      "type": "apps",
+      "blocks": {
+        "69cf24d1-2565-4362-aa40-8cfe13b7a953": {
+          "type": "shopify:\/\/apps\/zoorix-product-bundles\/blocks\/zrx-cross-sell\/51fffd07-f9df-4d6a-b901-6d14b243dcad",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "69cf24d1-2565-4362-aa40-8cfe13b7a953"
+      ],
+      "settings": {
+      }
+    },
+    "16114dc7-12f6-4690-8a3f-8804deae83df": {
+      "type": "section-collection",
+      "custom_css": [
+        "{margin-bottom: 64px;}",
+        "h2 {font-size: 24px;}"
+      ],
+      "settings": {
+        "title": "Product Samples",
+        "show_description": true,
+        "featured_collection": "samples",
+        "products_layout": "carousel",
+        "products_rows": 2,
+        "show_button": false,
+        "button_style": "primary",
+        "color_style": "black"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "168839270184c47071",
+    "16114dc7-12f6-4690-8a3f-8804deae83df"
+  ]
+}

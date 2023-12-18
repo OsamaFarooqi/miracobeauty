@@ -1,0 +1,304 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true
+      }
+    },
+    "36eaeb64-1aa2-448d-8d7f-1207aefc18f7": {
+      "type": "section-rich-text",
+      "settings": {
+        "layout": "default",
+        "subheading": "",
+        "title": "AREA OF CONCERNS",
+        "content": "<p><br\/>Understanding and addressing the diverse array of concerns that can affect the skin is essential for maintaining optimal dermatological health. The skin, being the body's largest organ, is susceptible to a myriad of issues ranging from common concerns like acne, aging, and dryness to more complex conditions such as eczema, psoriasis, and hyperpigmentation. Environmental factors, genetics, and lifestyle choices all play significant roles in influencing the health and appearance of our skin. This introduction sets the stage for an exploration into the multifaceted world of skin concerns, where a nuanced understanding of each issue is crucial for implementing effective skincare regimens and seeking appropriate treatments.<\/p>",
+        "button_text": "",
+        "button_link": "",
+        "checkbox_redeem": false,
+        "redeem_button_text": "REDEEM POINTS",
+        "button_style": "primary"
+      }
+    },
+    "3335daa9-4bca-4ca5-8642-cd641f4e2a6f": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--15846280396983__3335daa9-4bca-4ca5-8642-cd641f4e2a6f-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_39.png",
+            "alignment": "center",
+            "color_style": "white",
+            "subheading": "HYDRA+ DEEP WATER CREAM",
+            "title": "LIGHTWEIGHT",
+            "text": "<p>This lightweight, smooth dream cream provides optimal moisture and balanced hydration with water-burst technology.<\/p>",
+            "cta": "SHOP NOW",
+            "link": "shopify:\/\/products\/hydra-deep-water-cream",
+            "cta_primary_btn_style": "secondary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#333333",
+            "overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "template--15846280396983__3335daa9-4bca-4ca5-8642-cd641f4e2a6f-image-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_custom_css": false,
+        "slide_height": "four-fifty-height-hero",
+        "show_nav_arrows": true,
+        "show_arrow_down": false,
+        "autoplay": true,
+        "duration": 4,
+        "transition": "slide",
+        "dots_position": "center",
+        "button_size": "normal",
+        "slide_height_mobile": "one-hundred-height-hero--mobile"
+      }
+    },
+    "1ad8ed98-44c2-48ad-9d19-92785dd34fe4": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "template--15813410750647__1ad8ed98-44c2-48ad-9d19-92785dd34fe4-16819856526111ccdb-1": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_37.png",
+            "mobile_image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_37.png"
+          }
+        }
+      },
+      "block_order": [
+        "template--15813410750647__1ad8ed98-44c2-48ad-9d19-92785dd34fe4-16819856526111ccdb-1"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "five-fifty-height-hero",
+        "slide_image_position": "left",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "",
+        "title": "Wrinkles & Fine Lines",
+        "content": "<p>Combat wrinkles and fine lines and reclaim your skin's youthful vitality with our transformative skincare solutions! <\/p>",
+        "cta": "LEARN MORE",
+        "link": "shopify:\/\/pages\/area-of-concern-wrinkles-fine-lines",
+        "button_style": "primary"
+      }
+    },
+    "4de20c19-3230-4a2f-9993-9f77f85ec8bc": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "template--15813410750647__4de20c19-3230-4a2f-9993-9f77f85ec8bc-16819856526111ccdb-1": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_40.png",
+            "mobile_image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_40.png"
+          }
+        }
+      },
+      "block_order": [
+        "template--15813410750647__4de20c19-3230-4a2f-9993-9f77f85ec8bc-16819856526111ccdb-1"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "five-fifty-height-hero",
+        "slide_image_position": "right",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "",
+        "title": "Acne",
+        "content": "<p>We understand the frustration and impact that acne can have on your confidence, and we're here to offer effective solutions that go beyond surface-level treatment.<\/p>",
+        "cta": "LEARN MORE",
+        "link": "shopify:\/\/pages\/area-of-concern-acne",
+        "button_style": "primary"
+      }
+    },
+    "2d378a3d-6139-4c02-bbed-4934a73e5586": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "8e47eb54-8624-4ebd-9432-2351d98e06dd": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_37.png",
+            "mobile_image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_37.png"
+          }
+        }
+      },
+      "block_order": [
+        "8e47eb54-8624-4ebd-9432-2351d98e06dd"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "five-fifty-height-hero",
+        "slide_image_position": "left",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "",
+        "title": "Skin Pigmentation",
+        "content": "<p>We understand the impact that uneven skin tone can have on your confidence, and we're here to offer transformative solutions that illuminate and restore your natural radiance.<\/p>",
+        "cta": "LEARN MORE",
+        "link": "shopify:\/\/pages\/area-of-concern-skin-pigmentation",
+        "button_style": "primary"
+      }
+    },
+    "407d63fc-06f5-410a-86ce-097f238191b9": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "template--15813410750647__407d63fc-06f5-410a-86ce-097f238191b9-16819856526111ccdb-0": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_39.png",
+            "mobile_image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_39.png"
+          }
+        }
+      },
+      "block_order": [
+        "template--15813410750647__407d63fc-06f5-410a-86ce-097f238191b9-16819856526111ccdb-0"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "five-fifty-height-hero",
+        "slide_image_position": "right",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "",
+        "title": "Enlarged Pores",
+        "content": "<p>We understand the frustration that comes with visible pores, and we're here to provide you with solutions that minimize their appearance and unveil a smoother, more refined complexion.<\/p>",
+        "cta": "LEARN MORE",
+        "link": "shopify:\/\/pages\/area-of-concern-enlarged-pores",
+        "button_style": "primary"
+      }
+    },
+    "3bd589f0-cd3f-4830-8def-ee04ff5323c8": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "880ce674-136a-40dd-bd20-678632d758b3": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_37.png",
+            "mobile_image": "shopify:\/\/shop_images\/Miraco_Beauty_Images_37.png"
+          }
+        }
+      },
+      "block_order": [
+        "880ce674-136a-40dd-bd20-678632d758b3"
+      ],
+      "settings": {
+        "show_nav_arrows": true,
+        "color_style": "white",
+        "transition": "fade",
+        "autoplay": true,
+        "duration": 4,
+        "slide_height": "five-fifty-height-hero",
+        "slide_image_position": "left",
+        "slide_image_width": "med_s12|med_s12",
+        "subheading": "",
+        "title": "Aging Skin",
+        "content": "<p>We're here to offer transformative solutions that embrace the wisdom of age while restoring your skin's youthful vibrancy.<\/p>",
+        "cta": "LEARN MORE",
+        "link": "shopify:\/\/pages\/aging-skin",
+        "button_style": "primary"
+      }
+    },
+    "f0992fd3-f0e1-42cf-b9ff-ede99576d0dc": {
+      "type": "section-image-with-text-overlay",
+      "settings": {
+        "banner_image": "shopify:\/\/shop_images\/CN8A7196-2.jpg",
+        "height": "four-fifty-height-hero",
+        "banner_image_mobile": "shopify:\/\/shop_images\/Miraco_Beauty_Images.png",
+        "height_mobile": "one-hundred-height-hero--mobile",
+        "subheading": "Advanced skincare",
+        "title": "Inspired by Nature, <br>Backed by Science",
+        "text": "",
+        "text_position": "center",
+        "color_text": "#ffffff",
+        "color_overlay": "#222121",
+        "overlay_opacity": 25
+      }
+    },
+    "f8de2eab-5cc7-4f81-8940-504b9470b2aa": {
+      "type": "section-icons-row",
+      "blocks": {
+        "template--15846280396983__f8de2eab-5cc7-4f81-8940-504b9470b2aa-text-1": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-no_animal.png",
+            "title": "",
+            "text": "<p>Not Tested on Animals<\/p>"
+          }
+        },
+        "template--15846280396983__f8de2eab-5cc7-4f81-8940-504b9470b2aa-text-2": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-parabhenfree.png",
+            "title": "",
+            "text": "<p>No Parabens or Phthalates<\/p>"
+          }
+        },
+        "template--15846280396983__f8de2eab-5cc7-4f81-8940-504b9470b2aa-text-3": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-no_mineral_oil.png",
+            "title": "",
+            "text": "<p>No Mineral Oil<\/p>"
+          }
+        },
+        "318fcfb4-7124-40b0-bf21-9c80b0542888": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-all_skin_type.png",
+            "title": "",
+            "text": "<p>All Skin Types<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15846280396983__f8de2eab-5cc7-4f81-8940-504b9470b2aa-text-1",
+        "template--15846280396983__f8de2eab-5cc7-4f81-8940-504b9470b2aa-text-2",
+        "template--15846280396983__f8de2eab-5cc7-4f81-8940-504b9470b2aa-text-3",
+        "318fcfb4-7124-40b0-bf21-9c80b0542888"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "title": "",
+        "alignment": "center",
+        "color_icons_bg": "#ffffff",
+        "color_icons_text": "#333333"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "36eaeb64-1aa2-448d-8d7f-1207aefc18f7",
+    "3335daa9-4bca-4ca5-8642-cd641f4e2a6f",
+    "1ad8ed98-44c2-48ad-9d19-92785dd34fe4",
+    "4de20c19-3230-4a2f-9993-9f77f85ec8bc",
+    "2d378a3d-6139-4c02-bbed-4934a73e5586",
+    "407d63fc-06f5-410a-86ce-097f238191b9",
+    "3bd589f0-cd3f-4830-8def-ee04ff5323c8",
+    "f0992fd3-f0e1-42cf-b9ff-ede99576d0dc",
+    "f8de2eab-5cc7-4f81-8940-504b9470b2aa"
+  ]
+}
