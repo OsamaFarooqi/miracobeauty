@@ -29,6 +29,7 @@
     "predictive_search_enabled": true,
     "products_rows": 4,
     "products_columns": 4,
+    "products_columns_mobile": "2",
     "image_aspect_ratio": 1,
     "image_size": "cover",
     "product_title_position": "center",

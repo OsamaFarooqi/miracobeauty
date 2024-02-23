@@ -1,0 +1,295 @@
+<div class="howtouse">
+  <div class="container">
+   <div class="page-title">
+      {%- if section.settings.htu-title != blank -%}<h2 class="page-title__heading">{{ section.settings.htu-title }}</h2>{%- endif -%}
+  </div>
+<div class="howtouse-wrapper">
+ <div id="tabs-1" class="howtouse-tabs">
+   
+  <ul class="howtouse-tabs-menu">
+    <li><a href="#cleanser"><span class="htu-step-number">1</span><img src="https://cdn.shopify.com/s/files/1/0588/0260/2167/files/icon-cleanser_9201b529-15fb-43e4-90f4-da52f4a8cd71.svg?v=1706627040"><h5>Cleanser</h5></a></li>
+    <li><a href="#toner"><span class="htu-step-number">2</span><img src="https://cdn.shopify.com/s/files/1/0588/0260/2167/files/icon-toner_3c44bb3b-6842-469a-8e58-8fca47399f68.svg?v=1706627041"><h5>Toner</h5></a></li>
+    <li><a href="#essence"><span class="htu-step-number">3</span><img src="https://cdn.shopify.com/s/files/1/0588/0260/2167/files/icon-essence_88ddaaaa-75a7-44da-bf33-a055f60a41be.svg?v=1706627041"><h5>Essence</h5></a></li>
+    <li><a href="#serum"><span class="htu-step-number">4</span><img src="https://cdn.shopify.com/s/files/1/0588/0260/2167/files/icon-serum_beea1e8f-0a6f-4685-8006-f59432ddd24f.svg?v=1706627041"><h5>Serum</h5></a></li>
+    <li><a href="#moisturizer"><span class="htu-step-number">5</span><img src="https://cdn.shopify.com/s/files/1/0588/0260/2167/files/icon-moisturizer_6e62d833-7d4a-4173-9dc8-c68f6cc7fba6.svg?v=1706627041"><h5>Moisturizer</h5></a></li>
+  </ul>
+   
+  <div id="cleanser" class="howtouse-tabs-content">
+    {%  for block in section.blocks %}
+      {% if block.type == "cleanser" %}
+          <div class="htc-step-cont">
+          {%- if block.settings.stp-img != blank -%}<img class="htc-step-img"  src="{{ block.settings.stp-img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.stp-title != blank -%}<h3>{{ block.settings.stp-title }}</h3>{%- endif -%}
+          {%- if block.settings.stp-dsc != blank -%}<p>{{ block.settings.stp-dsc }}</p>{%- endif -%}
+          </div>
+      {%- endif -%}
+    {%  endfor %} 
+  </div>
+  <div id="toner" class="howtouse-tabs-content">
+    {%  for block in section.blocks %}
+      {% if block.type == "toner" %}
+          <div class="htc-step-cont">
+          {%- if block.settings.stp-img != blank -%}<img class="htc-step-img"  src="{{ block.settings.stp-img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.stp-title != blank -%}<h3>{{ block.settings.stp-title }}</h3>{%- endif -%}
+          {%- if block.settings.stp-dsc != blank -%}<p>{{ block.settings.stp-dsc }}</p>{%- endif -%}
+          </div>
+      {%- endif -%}
+    {%  endfor %} 
+  </div>
+  <div id="essence" class="howtouse-tabs-content">
+    {%  for block in section.blocks %}
+      {% if block.type == "essence" %}
+          <div class="htc-step-cont">
+          {%- if block.settings.stp-img != blank -%}<img class="htc-step-img"  src="{{ block.settings.stp-img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.stp-title != blank -%}<h3>{{ block.settings.stp-title }}</h3>{%- endif -%}
+          {%- if block.settings.stp-dsc != blank -%}<p>{{ block.settings.stp-dsc }}</p>{%- endif -%}
+          </div>
+      {%- endif -%}
+    {%  endfor %} 
+  </div>
+  <div id="serum" class="howtouse-tabs-content">
+    {%  for block in section.blocks %}
+      {% if block.type == "serum" %}
+          <div class="htc-step-cont">
+          {%- if block.settings.stp-img != blank -%}<img class="htc-step-img"  src="{{ block.settings.stp-img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.stp-title != blank -%}<h3>{{ block.settings.stp-title }}</h3>{%- endif -%}
+          {%- if block.settings.stp-dsc != blank -%}<p>{{ block.settings.stp-dsc }}</p>{%- endif -%}
+          </div>
+      {%- endif -%}
+    {%  endfor %} 
+  </div>
+  <div id="moisturizer" class="howtouse-tabs-content">
+    {%  for block in section.blocks %}
+      {% if block.type == "moisturizer" %}
+          <div class="htc-step-cont">
+          {%- if block.settings.stp-img != blank -%}<img class="htc-step-img"  src="{{ block.settings.stp-img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.stp-title != blank -%}<h3>{{ block.settings.stp-title }}</h3>{%- endif -%}
+          {%- if block.settings.stp-dsc != blank -%}<p>{{ block.settings.stp-dsc }}</p>{%- endif -%}
+          </div>
+      {%- endif -%}
+    {%  endfor %} 
+  </div>
+   
+ </div>
+</div>  
+
+</div>
+</div>    
+
+
+
+
+<div class="compare">
+  <div class="container">
+    <div class="compare-wrapper">
+      <div class="bfr-aft-block">
+        <figure class="cd-image-container">
+           {%- if section.settings.cmp-aft-img != blank -%}<img src="{{ section.settings.cmp-aft-img | img_url: 'master' }}" alt="Modified Image">{%- else -%}{%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%} {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+             {%- if section.settings.cmp-aft-lbl != blank -%}<span class="cd-image-label" data-type="modified">{{ section.settings.cmp-aft-lbl }}</span>{%- endif -%}
+		   <div class="cd-resize-img"> <!-- the resizable image on top -->
+             {%- if section.settings.cmp-bfr-img != blank -%}<img src="{{ section.settings.cmp-bfr-img | img_url: 'master' }}" alt="Original Image">{%- else -%}{%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%} {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+           {%- if section.settings.cmp-bfr-lbl != blank -%}<span class="cd-image-label" data-type="original">{{ section.settings.cmp-bfr-lbl }}</span>{%- endif -%}
+		   </div>
+		<span class="cd-handle"></span>
+	    </figure> <!-- cd-image-container -->
+      </div>
+      <div class="results-det">
+        {%- if section.settings.cmp-rst-title != blank -%}<h3 class="rslt-tit">{{ section.settings.cmp-rst-title }}</h3>{%- endif -%}
+        {%- if section.settings.cmp-rst-desc != blank -%}<p class="rslt-tit">{{ section.settings.cmp-rst-desc }}</p>{%- endif -%}
+        <div class="rslt-imgs">
+          <div class="rstimgs-img first">
+            {%- if section.settings.aft-rst-img1 != blank -%}<img src="{{ section.settings.aft-rst-img1 | img_url: 'master' }}">{%- else -%}{%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%} {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+            {%- if section.settings.aft-rst-lbl1 != blank -%}<span class="bfr-aft-labl bfr">{{ section.settings.aft-rst-lbl1 }}</span>{%- endif -%}
+          </div>
+          <div class="rstimgs-img second">
+            {%- if section.settings.aft-rst-img2 != blank -%}<img src="{{ section.settings.aft-rst-img2 | img_url: 'master' }}">{%- else -%}{%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%} {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+            {%- if section.settings.aft-rst-lbl2 != blank -%}<span class="bfr-aft-labl bfr">{{ section.settings.aft-rst-lbl2 }}</span>{%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% schema %}
+  {
+    "name": "How to Use & Comaprison",
+    "settings": [
+       {
+        "type": "text",
+        "id": "htu-title",
+        "label": "Title"
+       },
+       {
+        "type": "image_picker",
+        "id": "cmp-bfr-img",
+        "label": "Before Image"
+       },
+       {
+        "type": "text",
+        "id": "cmp-bfr-lbl",
+        "label": "Before label"
+       },
+       {
+        "type": "image_picker",
+        "id": "cmp-aft-img",
+        "label": "After Image"
+       },
+       {
+        "type": "text",
+        "id": "cmp-aft-lbl",
+        "label": "After label"
+       },
+       {
+        "type": "header",
+        "content": "Compare Results"
+       },
+       {
+        "type": "text",
+        "id": "cmp-rst-title",
+        "label": "Results Title"
+       },
+       {
+        "type": "text",
+        "id": "cmp-rst-desc",
+        "label": "Results Description"
+       },
+       {
+        "type": "image_picker",
+        "id": "aft-rst-img1",
+        "label": "Results After Image1"
+       },
+       {
+        "type": "text",
+        "id": "aft-rst-lbl1",
+        "label": "Results After label1"
+       },
+       {
+        "type": "image_picker",
+        "id": "aft-rst-img2",
+        "label": "Results After Image2"
+       },
+       {
+        "type": "text",
+        "id": "aft-rst-lbl2",
+        "label": "Results After label2"
+       }
+    ],
+    "blocks": [
+    {
+      "type": "cleanser",
+      "name": "Cleanser",
+      "settings": [
+      {
+          "type": "image_picker",
+          "id": "stp-img",
+          "label": "Icon"
+      },
+      {
+          "type": "text",
+          "id": "stp-title",
+          "label": "Step Title"
+      },
+      {
+          "type": "text",
+          "id": "stp-dsc",
+          "label": "Step Description"
+      }
+    ]
+    },
+    {
+      "type": "toner",
+      "name": "Toner",
+      "settings": [
+      {
+          "type": "image_picker",
+          "id": "stp-img",
+          "label": "Icon"
+      },
+      {
+          "type": "text",
+          "id": "stp-title",
+          "label": "Step Title"
+      },
+      {
+          "type": "text",
+          "id": "stp-dsc",
+          "label": "Step Description"
+      }
+    ]
+    },
+    {
+      "type": "essence",
+      "name": "Essence",
+      "settings": [
+      {
+          "type": "image_picker",
+          "id": "stp-img",
+          "label": "Icon"
+      },
+      {
+          "type": "text",
+          "id": "stp-title",
+          "label": "Step Title"
+      },
+      {
+          "type": "text",
+          "id": "stp-dsc",
+          "label": "Step Description"
+      }
+    ]
+    },
+    {
+      "type": "serum",
+      "name": "Serum",
+      "settings": [
+      {
+          "type": "image_picker",
+          "id": "stp-img",
+          "label": "Icon"
+      },
+      {
+          "type": "text",
+          "id": "stp-title",
+          "label": "Step Title"
+      },
+      {
+          "type": "text",
+          "id": "stp-dsc",
+          "label": "Step Description"
+      }
+    ]
+    },
+    {
+      "type": "moisturizer",
+      "name": "Moisturizer",
+      "settings": [
+      {
+          "type": "image_picker",
+          "id": "stp-img",
+          "label": "Icon"
+      },
+      {
+          "type": "text",
+          "id": "stp-title",
+          "label": "Step Title"
+      },
+      {
+          "type": "text",
+          "id": "stp-dsc",
+          "label": "Step Description"
+      }
+    ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "How to Use & Comaprison",
+      "blocks": []
+    }
+  ]
+  }
+{% endschema %}

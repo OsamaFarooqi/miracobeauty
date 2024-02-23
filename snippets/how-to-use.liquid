@@ -1,0 +1,98 @@
+{% assign step1 = product.metafields.custom.tab_how_to_use_step_1 | downcase %}
+{% assign step2 = product.metafields.custom.tab_how_to_use_step_2 | downcase %}
+{% assign step3 = product.metafields.custom.tab_how_to_use_step_3 | downcase %}
+{% assign step4 = product.metafields.custom.tab_how_to_use_step_4 | downcase %}
+{% assign step5 = product.metafields.custom.tab_how_to_use_step_5 | downcase %}
+{% assign tags = product.tags | downcase %}
+
+
+
+<div class="howtouse-section"><div class="skincare-steps-section">{%- if product.metafields.custom.tab_how_to_use != blank -%}<p class="title">{{ product.metafields.custom.tab_how_to_use }}</p>{%- endif -%}
+<ul class="skincare-steps">
+{%- if product.metafields.custom.tab_how_to_use_step_1 != blank -%}
+<li {% if tags contains step1 %}class="active"{% endif %}>
+<img src="{{ product.metafields.custom.tab_how_to_use_step_1_image | image_url: width: 500, height: 500 }}" class="step-icon" alt="Step 1: {{ product.metafields.custom.tab_how_to_use_step_1 }}">
+<span class="step-label">{{ product.metafields.custom.tab_how_to_use_step_1 }}</span>
+<span class="step-number">1</span>
+</li>
+{%- endif -%}
+{%- if product.metafields.custom.tab_how_to_use_step_2 != blank -%}
+<li {% if tags contains step2 %}class="active"{% endif %}>
+<img src="{{ product.metafields.custom.tab_how_to_use_step_2_image | image_url: width: 500, height: 500 }}" class="step-icon" alt="Step 1: {{ product.metafields.custom.tab_how_to_use_step_2 }}">
+<span class="step-label">{{ product.metafields.custom.tab_how_to_use_step_2 }}</span>
+<span class="step-number">2</span>
+</li>
+{%- endif -%}
+{%- if product.metafields.custom.tab_how_to_use_step_3 != blank -%}
+<li {% if tags contains step3 %}class="active"{% endif %}>
+<img src="{{ product.metafields.custom.tab_how_to_use_step_3_image | image_url: width: 500, height: 500 }}" class="step-icon" alt="Step 1: {{ product.metafields.custom.tab_how_to_use_step_3 }}">
+<span class="step-label">{{ product.metafields.custom.tab_how_to_use_step_3 }}</span>
+<span class="step-number">3</span>
+</li>
+{%- endif -%}  
+{%- if product.metafields.custom.tab_how_to_use_step_4 != blank -%}  
+<li {% if tags contains step4 %}class="active"{% endif %}>
+<img src="{{ product.metafields.custom.tab_how_to_use_step_4_image | image_url: width: 500, height: 500 }}" class="step-icon" alt="Step 1: {{ product.metafields.custom.tab_how_to_use_step_4 }}">
+<span class="step-label">{{ product.metafields.custom.tab_how_to_use_step_4 }}</span>
+<span class="step-number">4</span>
+</li>
+{%- endif -%}   
+{%- if product.metafields.custom.tab_how_to_use_step_5 != blank -%}    
+<li {% if tags contains step5 %}class="active"{% endif %}>
+<img src="{{ product.metafields.custom.tab_how_to_use_step_5_image | image_url: width: 500, height: 500 }}" class="step-icon" alt="Step 1: {{ product.metafields.custom.tab_how_to_use_step_5 }}">
+<span class="step-label">{{ product.metafields.custom.tab_how_to_use_step_5 }}</span>
+<span class="step-number">5</span>
+</li>
+{%- endif -%}   
+</ul></div><div class="application-tips-section"><p class="primary-text-bold section-heading">Application Tips</p>
+
+{%- if product.metafields.custom.tab_how_to_use_application_tip1 != blank -%}     
+<div class="application-tip">
+{{ product.metafields.custom.tab_how_to_use_application_tip1 }}
+</div>
+{%- endif -%}    
+  
+{%- if product.metafields.custom.tab_how_to_use_application_tip2 != blank -%}     
+<div class="application-tip">
+{{ product.metafields.custom.tab_how_to_use_application_tip2 }}
+</div>
+{%- endif -%} 
+  
+{%- if product.metafields.custom.tab_how_to_use_application_tip3 != blank -%}     
+<div class="application-tip">
+{{ product.metafields.custom.tab_how_to_use_application_tip3 }}
+</div>
+{%- endif -%} 
+  
+{%- if product.metafields.custom.tab_how_to_use_application_tip4 != blank -%}     
+<div class="application-tip">
+{{ product.metafields.custom.tab_how_to_use_application_tip4 }}
+</div>
+{%- endif -%} 
+
+{%- if product.metafields.custom.tab_how_to_use_application_tip5 != blank -%}     
+<div class="application-tip">
+{{ product.metafields.custom.tab_how_to_use_application_tip5 }}
+</div>
+{%- endif -%}   
+
+</div>
+  
+<div class="number-of-applications">
+<p class="primary-text-bold section-heading">Number of Applications</p>
+{%- if product.metafields.custom.tab_how_to_use_number_of_application != blank -%} 
+<p class="primary-text">{{ product.metafields.custom.tab_how_to_use_number_of_application }}</p>
+{%- endif -%} 
+</div></div>
+
+
+{% comment %}
+<--! code to add in application tip -->
+<div class="thumb-section">
+<img src="https://cdn.shopify.com/s/files/1/0588/0260/2167/files/application-tips1_1.png?v=1702882501" alt="Shake It Out">
+</div>
+<div class="content-section">
+<p class="primary-text-bold">Shake It Out</p>
+<p class="primary-text">Pour 2-3 shakes of the lightweight liquid essence formula into palms of hands.</p>
+</div>
+{% endcomment %}

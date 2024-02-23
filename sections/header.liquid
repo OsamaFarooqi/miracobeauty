@@ -57,6 +57,7 @@
     {%- endstyle -%}
   {%- endif -%}
 {%- endcapture -%}
+
 {%- capture logo_transparent -%}
   {%- if logo_transparent != blank -%}
     {%- liquid
@@ -81,20 +82,18 @@
     {%- endstyle -%}
   {%- endif -%}
 {%- endcapture -%}
+
 <style>
-  @media screen and (min-width: 1920px) {
-    .logo__image--transparent,
-    .logo__image--default {
-      width: 128px !important;
+  @media screen and (min-width:1920px){
+    .logo__image--transparent, .logo__image--default{ width:128px !important;}
+    .menu-item--meganav .submenu-item a.submenu-item__title{
+          font-size: calc(1.225rem * var(--FONT-ADJUST-NAV)) !important;
     }
-    .menu-item--meganav .submenu-item a.submenu-item__title {
-      font-size: calc(1.225rem * var(--FONT-ADJUST-NAV)) !important;
-    }
-    .nav-standard .submenu-item {
-      font-size: calc(1.08rem * var(--FONT-ADJUST-NAV)) !important;
-    }
+     .nav-standard .submenu-item{
+           font-size: calc(1.08rem * var(--FONT-ADJUST-NAV)) !important;
+     }
     .nav-standard .menu-item {
-      font-size: calc(1.14rem * var(--FONT-ADJUST-NAV)) !important;
+          font-size: calc(1.14rem * var(--FONT-ADJUST-NAV)) !important;
     }
   }
 </style>
@@ -104,15 +103,14 @@
 {%- endif -%}
 
 {%- capture headerClass -%}site-header header--is-standard header--{{ logo_position }}_{{ links_position }}{% if header_transparent %} header--transparent{% endif %}{% unless logo_default or logo_transparent or show_shop_name %} header--no-logo{% endunless %}{%- endcapture -%}
+
 {%- comment -%} Avoid adding too large padding-top to the first banner section if header is not transparent {%- endcomment -%}
 {%- unless header_transparent -%}
   {%- style -%}
-    @media screen and (max-width: 479px) {
-      .shopify-section:first-child .banner--transparent-header,
-      .template-page .banner--transparent-header {
-        --header-initial-height: 25px;
-      }
-    }
+  @media screen and (max-width: 479px) {
+    .shopify-section:first-child .banner--transparent-header,
+    .template-page .banner--transparent-header { --header-initial-height: 25px; }
+  }
   {%- endstyle -%}
 {%- endunless -%}
 
@@ -130,14 +128,13 @@
     </details>
   </header-search-popdown>
 {%- endcapture -%}
+
 <header
   class="{{ headerClass }}"
   data-section-id="{{ section.id }}"
   data-section-type="header"
   data-transparent="{{ header_transparent }}"
-  {% if header_transparent %}
-  data-text-color="{{ header_text_color }}"
-  {% endif %}
+  {% if header_transparent %}data-text-color="{{ header_text_color }}"{% endif %}
   data-header
   data-header-height
   data-scroll-lock-fill-gap>
@@ -146,12 +143,7 @@
       {%- if has_logo_image or show_shop_name -%}
         <h1 class="nav-item logo{% unless has_logo_image %} logo--text-only{% endunless %}{% if settings.type_nav_caps %} caps{% endif %}">
           {%- if has_logo_image -%}
-            <a
-              href="{{ routes.root_url }}"
-              class="logo__image-link visible-nav-link"
-              data-width="{{ section.settings.logo_max_width }}"
-              aria-label="{{ shop_name }}"
-              data-logo-image>
+            <a href="{{ routes.root_url }}" class="logo__image-link visible-nav-link" data-width="{{ section.settings.logo_max_width }}" aria-label="{{ shop_name }}" data-logo-image>
               {%- if logo_transparent != blank -%}
                 {{- logo_transparent -}}
               {%- endif -%}
@@ -163,11 +155,7 @@
           {%- endif -%}
 
           {%- if show_shop_name -%}
-            <a
-              id="shopName"
-              class="logo__text"
-              href="{{ routes.root_url }}"
-              data-logo-text>{{ shop_name }}</a>
+            <a id="shopName" class="logo__text" href="{{ routes.root_url }}" data-logo-text>{{ shop_name }}</a>
           {%- endif -%}
         </h1>
       {%- endif -%}
@@ -175,32 +163,19 @@
       <div class="header-fix-cont">
         <div class="header-fix-cont-inner">
           <nav class="nav-standard nav-main{% if settings.type_nav_caps %} caps{% endif %}" data-nav-main>
-            {%- render 'navigation'
-              , is_hamburger_nav: false -%}
+            {%- render 'site-nav'-%}
           </nav>
 
           <div class="header__icons" data-header-icons>
-            <a
-              href="#menu"
-              class="menuToggle"
-              data-target="nav"
-              aria-expanded="false"
-              aria-label="{{ 'general.accessibility.menu_toggle' | t }}"
-              data-menu-toggle>
-              <div
-                id="hamburger-menu"
-                class="icon-menu"
-                data-hamburger-icon>
+            <a href="#menu" class="menuToggle" data-target="nav" aria-expanded="false" aria-label="{{ 'general.accessibility.menu_toggle' | t }}" data-menu-toggle>
+              <div id="hamburger-menu" class="icon-menu" data-hamburger-icon>
                 <div class="diamond-bar"></div>
                 <div id="hamburger-bar" class="icon-bar"></div>
               </div>
             </a>
 
             {%- if shop.customer_accounts_enabled -%}
-              <a
-                href="{{ routes.account_url }}"
-                class="nav-item nav-account-link{% unless settings.show_search %} nav-account-link--no-search{% endunless %}"
-                aria-label="{{ 'general.accessibility.account' | t }}">
+              <a href="{{ routes.account_url }}" class="nav-item nav-account-link{% unless settings.show_search %} nav-account-link--no-search{% endunless %}" aria-label="{{ 'general.accessibility.account' | t }}">
                 {%- render 'icon-user' -%}
               </a>
             {%- endif -%}
@@ -209,13 +184,7 @@
               {{ search_popdown }}
             {%- endif -%}
 
-            <a
-              id="cartTotal"
-              href="{{ routes.cart_url }}"
-              class="nav-item cartToggle1{% if settings.cart_icon == 'circle' %} cartToggle--circle{% endif %}{% if cart.item_count == 0 %} cartToggle--empty{% endif %}"
-              data-cart-toggle
-              aria-expanded="false"
-              aria-label="{{ 'general.accessibility.cart' | t }}">
+            <a id="cartTotal" href="{{ routes.cart_url }}" class="nav-item cartToggle1{% if settings.cart_icon == 'circle' %} cartToggle--circle{% endif %}{% if cart.item_count == 0 %} cartToggle--empty{% endif %}" data-cart-toggle aria-expanded="false" aria-label="{{ 'general.accessibility.cart' | t }}">
               {%- if settings.cart_icon == 'cart' -%}
                 {%- render 'icon-cart' -%}
               {%- else -%}
@@ -268,17 +237,12 @@
 
 {% comment %} Site Navigation {% endcomment %}
 <nav class="nav-hamburger nav-main{% if settings.type_nav_caps %} caps{% endif %}" data-nav-main>
-  <button
-    class="nav-mobile-close"
-    aria-expanded="false"
-    aria-label="{{ 'general.accessibility.menu_toggle' | t }}"
-    data-menu-toggle>
+  <button class="nav-mobile-close" aria-expanded="false" aria-label="{{ 'general.accessibility.menu_toggle' | t }}" data-menu-toggle>
     {%- render 'icon-close' -%}
   </button>
   <div class="nav-inner" data-hamburger-scrollable>
     <div class="nav-inner-wrapper">
-      {%- render 'navigation'
-        , is_hamburger_nav: true -%}
+      {%- render 'navigation', is_hamburger_nav: true -%}
     </div>
   </div>
 </nav>
@@ -292,29 +256,31 @@
 {%- endif -%}
 
 <script type="application/ld+json">
-  {
-        "@context": "http://schema.org",
-        "@type": "Organization",
-        "name": {{ shop.name | json }},
-        {%- if section.settings.logo or section.settings.logo_transparent -%}
-      {%- if section.settings.logo -%}
-        {%- assign logo = section.settings.logo -%}
-      {%- elsif section.settings.logo_transparent -%}
-        {%- assign logo = section.settings.logo_transparent -%}
-        {%- endif -%}
-        {%- assign image_size = logo.width | append:'x' -%} "logo": {{ logo | img_url: image_size | prepend: "https:" | json }},
-        {%- endif -%}
-        "sameAs": [
-          {{ settings.instagram_link | json }},
-          {{ settings.facebook_link | json }},
-          {{ settings.twitter_link | json }},
-          {{ settings.youtube_link | json }},
-          {{ settings.vimeo_link | json }},
-          {{ settings.pinterest_link | json }},
-          {{ settings.tumblr_link | json }}
-        ],
-        "url": {{ shop.url | append: page.url | json }}
-      }
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  {%- if section.settings.logo or section.settings.logo_transparent -%}
+    {%- if section.settings.logo -%}
+      {%- assign logo = section.settings.logo -%}
+    {%- elsif section.settings.logo_transparent -%}
+      {%- assign logo = section.settings.logo_transparent -%}
+    {%- endif -%}
+    {%- assign image_size = logo.width | append:'x' -%}
+
+    "logo": {{ logo | img_url: image_size | prepend: "https:" | json }},
+  {%- endif -%}
+  "sameAs": [
+    {{ settings.instagram_link | json }},
+    {{ settings.facebook_link | json }},
+    {{ settings.twitter_link | json }},
+    {{ settings.youtube_link | json }},
+    {{ settings.vimeo_link | json }},
+    {{ settings.pinterest_link | json }},
+    {{ settings.tumblr_link | json }}
+  ],
+  "url": {{ shop.url | append: page.url | json }}
+}
 </script>
 
 {%- if template.name == 'index' -%}
@@ -335,285 +301,821 @@
 {%- endif -%}
 
 {% schema %}
-  {
-    "name": "Header",
-    "class": "shopify-section-header",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "header_transparent",
-        "label": "Enable transparent header",
-        "default": true,
-        "info": "If only the first section has fullscreen background image or video."
-      },
-      {
-        "type": "select",
-        "id": "header_text_color",
-        "label": "Text color",
-        "info": "For transparent header only",
-        "default": "white",
-        "options": [
-          {
-            "label": "White",
-            "value": "white"
-          }, {
-            "label": "Black",
-            "value": "black"
-          }
-        ]
-      },
-      {
-        "type": "image_picker",
-        "id": "logo_transparent",
-        "label": "Custom logo (Transparent header)",
-        "info": "Used on Home and Collection pages when the header is transparent"
-      },
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Custom logo (Default)",
-        "info": "Used on the other pages and on scroll when the header is sticky"
-      }, {
-        "type": "range",
-        "id": "logo_max_width",
-        "label": "Custom logo width (in pixels)",
-        "info": "Max logo height is 100px",
-        "min": 50,
-        "max": 400,
-        "default": 100,
-        "step": 5,
-        "unit": "px"
-      }, {
-        "type": "checkbox",
-        "id": "show_site_name",
-        "label": "Show site name",
-        "default": true
-      }, {
-        "type": "header",
-        "content": "Menus"
-      }, {
-        "type": "link_list",
-        "id": "menu_list",
-        "label": "Primary menu"
-      }, {
-        "type": "header",
-        "content": "Navigation settings"
-      }, {
-        "type": "select",
-        "id": "links_position",
-        "label": "Links position",
-        "default": "links_center",
-        "options": [
-          {
-            "value": "links_left",
-            "label": "Left"
-          }, {
-            "value": "links_right",
-            "label": "Right"
-          }, {
-            "value": "links_center",
-            "label": "Center"
-          }
-        ]
-      }, {
-        "type": "select",
-        "id": "logo_position",
-        "label": "Logo position",
-        "default": "logo_left",
-        "options": [
-          {
-            "value": "logo_left",
-            "label": "Left"
-          }, {
-            "value": "logo_center",
-            "label": "Center"
-          }
-        ]
-      }, {
-        "type": "header",
-        "content": "Mega menu"
-      }, {
-        "type": "image_picker",
-        "id": "meganav_image_1",
-        "label": "Image 1",
-        "info": "Recommended size: 500 x 800 px"
-      }, {
-        "type": "range",
-        "id": "image_aspect_ratio_1",
-        "label": "Image aspect ratio 1",
-        "min": 0.5,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": ":1",
-        "default": 1
-      }, {
-        "type": "text",
-        "id": "meganav_image_heading_1",
-        "label": "Heading 1"
-      }, {
-        "type": "url",
-        "id": "meganav_image_link_1",
-        "label": "Link 1"
-      }, {
-        "type": "image_picker",
-        "id": "meganav_image_2",
-        "label": "Image 2",
-        "info": "Recommended size: 500 x 800 px"
-      }, {
-        "type": "range",
-        "id": "image_aspect_ratio_2",
-        "label": "Image aspect ratio 2",
-        "min": 0.5,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": ":1",
-        "default": 1
-      }, {
-        "type": "text",
-        "id": "meganav_image_heading_2",
-        "label": "Heading 2"
-      }, {
-        "type": "url",
-        "id": "meganav_image_link_2",
-        "label": "Link 2"
-      }, {
-        "type": "image_picker",
-        "id": "meganav_image_3",
-        "label": "Image 3",
-        "info": "Recommended size: 500 x 800 px"
-      }, {
-        "type": "range",
-        "id": "image_aspect_ratio_3",
-        "label": "Image aspect ratio 3",
-        "min": 0.5,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": ":1",
-        "default": 1
-      }, {
-        "type": "text",
-        "id": "meganav_image_heading_3",
-        "label": "Heading 3"
-      }, {
-        "type": "url",
-        "id": "meganav_image_link_3",
-        "label": "Link 3"
-      }, {
-        "type": "image_picker",
-        "id": "meganav_image_4",
-        "label": "Image 4",
-        "info": "Recommended size: 500 x 800 px"
-      }, {
-        "type": "range",
-        "id": "image_aspect_ratio_4",
-        "label": "Image aspect ratio 4",
-        "min": 0.5,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": ":1",
-        "default": 1
-      }, {
-        "type": "text",
-        "id": "meganav_image_heading_4",
-        "label": "Heading 4"
-      }, {
-        "type": "url",
-        "id": "meganav_image_link_4",
-        "label": "Link 4"
-      }, {
-        "type": "image_picker",
-        "id": "meganav_image_5",
-        "label": "Image 5",
-        "info": "Recommended size: 500 x 800 px"
-      }, {
-        "type": "range",
-        "id": "image_aspect_ratio_5",
-        "label": "Image aspect ratio 5",
-        "min": 0.5,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": ":1",
-        "default": 1
-      }, {
-        "type": "text",
-        "id": "meganav_image_heading_5",
-        "label": "Heading 5"
-      }, {
-        "type": "url",
-        "id": "meganav_image_link_5",
-        "label": "Link 5"
-      }, {
-        "type": "image_picker",
-        "id": "meganav_image_6",
-        "label": "Image 6",
-        "info": "Recommended size: 500 x 800 px"
-      }, {
-        "type": "range",
-        "id": "image_aspect_ratio_6",
-        "label": "Image aspect ratio 6",
-        "min": 0.5,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": ":1",
-        "default": 1
-      }, {
-        "type": "text",
-        "id": "meganav_image_heading_6",
-        "label": "Heading 6"
-      }, {
-        "type": "url",
-        "id": "meganav_image_link_6",
-        "label": "Link 6"
-      }, {
-        "type": "image_picker",
-        "id": "meganav_image_7",
-        "label": "Image 7",
-        "info": "Recommended size: 500 x 800 px"
-      }, {
-        "type": "range",
-        "id": "image_aspect_ratio_7",
-        "label": "Image aspect ratio 7",
-        "min": 0.5,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": ":1",
-        "default": 1
-      }, {
-        "type": "text",
-        "id": "meganav_image_heading_7",
-        "label": "Heading 7"
-      }, {
-        "type": "url",
-        "id": "meganav_image_link_7",
-        "label": "Link 7"
-      }, {
-        "type": "image_picker",
-        "id": "meganav_image_8",
-        "label": "Image 8",
-        "info": "Recommended size: 500 x 800 px"
-      }, {
-        "type": "range",
-        "id": "image_aspect_ratio_8",
-        "label": "Image aspect ratio 8",
-        "min": 0.5,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": ":1",
-        "default": 1
-      }, {
-        "type": "text",
-        "id": "meganav_image_heading_8",
-        "label": "Heading 8"
-      }, {
-        "type": "url",
-        "id": "meganav_image_link_8",
-        "label": "Link 8"
-      }
-
-    ],
-
-    "enabled_on": {
-      "groups": ["header"]
+{
+  "name": "Header",
+  "class": "shopify-section-header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "header_transparent",
+      "label": "Enable transparent header",
+      "default": true,
+      "info": "If only the first section has fullscreen background image or video."
+    },
+    {
+      "type": "select",
+      "id": "header_text_color",
+      "label": "Text color",
+      "info": "For transparent header only",
+      "default": "white",
+      "options": [
+        { "label": "White", "value": "white" },
+        { "label": "Black", "value": "black" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_transparent",
+      "label": "Custom logo (Transparent header)",
+      "info": "Used on Home and Collection pages when the header is transparent"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Custom logo (Default)",
+      "info": "Used on the other pages and on scroll when the header is sticky"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "label": "Custom logo width (in pixels)",
+      "info": "Max logo height is 100px",
+      "min": 50,
+      "max": 400,
+      "default": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_site_name",
+      "label": "Show site name",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Menus"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_list",
+      "label": "Primary menu"
+    },
+     {
+      "type": "link_list",
+      "id": "menu_list_mobile",
+      "label": "Mobile menu"
+    },
+    {
+      "type": "header",
+      "content": "Navigation settings"
+    },
+    {
+      "type": "select",
+      "id": "links_position",
+      "label": "Links position",
+      "default": "links_center",
+      "options": [
+        {
+          "value": "links_left",
+          "label": "Left"
+        },
+        {
+          "value": "links_right",
+          "label": "Right"
+        },
+        {
+          "value": "links_center",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "label": "Logo position",
+      "default": "logo_left",
+      "options": [
+        {
+          "value": "logo_left",
+          "label": "Left"
+        },
+        {
+          "value": "logo_center",
+          "label": "Center"
+        }
+      ]
     }
+    
+  ],
+   "blocks":[
+     {
+       "type": "mega-menu1",
+       "name": "Collection List",
+       "settings": [
+         {
+           "type": "text",
+           "id": "menu-name",
+           "label": "Menu Name"
+         },
+        {
+          "type": "header",
+          "content": "Collection list"
+        },
+        {
+          "type": "header",
+          "content": "Collection 1"
+        },
+         
+        {
+          "type": "collection",
+          "id": "collection_1_1",
+          "label": "Collection title link"
+        },
+         {
+           "type": "text",
+           "id": "collection_title1",
+           "label": "Collection Title",
+           "default": "Collection"
+         },
+         {
+          "type": "collection",
+          "id": "collection_1_2",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_1_3",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_1_4",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_1_5",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_1_6",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_1_7",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_1_8",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_1_9",
+          "label": "Collection"
+        },
+        {
+          "type": "header",
+          "content": "Collection 2"
+        },         
+        {
+          "type": "collection",
+          "id": "collection_2_1",
+          "label": "Collection title link"
+        },
+         {
+           "type": "text",
+           "id": "collection_title2",
+           "label": "Collection Title",
+           "default": "Collection"
+         },
+         {
+          "type": "collection",
+          "id": "collection_2_2",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_2_3",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_2_4",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_2_5",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_2_6",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_2_7",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_2_8",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_2_9",
+          "label": "Collection"
+        },
+        {
+          "type": "header",
+          "content": "Collection 3"
+        },
+         
+        {
+          "type": "collection",
+          "id": "collection_3_1",
+          "label": "Collection title link"
+        },
+         {
+           "type": "text",
+           "id": "collection_title3",
+           "label": "Collection Title",
+           "default": "Collection"
+         },
+         {
+          "type": "collection",
+          "id": "collection_3_2",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_3_3",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_3_4",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_3_5",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_3_6",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_3_7",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_3_8",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_3_9",
+          "label": "Collection"
+        },
+        {
+          "type": "header",
+          "content": "Collection 4"
+        },
+         
+        {
+          "type": "collection",
+          "id": "collection_4_1",
+          "label": "Collection title link"
+        },
+         {
+           "type": "text",
+           "id": "collection_title4",
+           "label": "Collection Title",
+           "default": "Collection"
+         },
+         {
+          "type": "collection",
+          "id": "collection_4_2",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_4_3",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_4_4",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_4_5",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_4_6",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_4_7",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_4_8",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_4_9",
+          "label": "Collection"
+        },
+        {
+          "type": "header",
+          "content": "Collection 5"
+        },
+         
+        {
+          "type": "collection",
+          "id": "collection_5_1",
+          "label": "Collection title link"
+        },
+         {
+           "type": "text",
+           "id": "collection_title5",
+           "label": "Collection Title",
+           "default": "Collection"
+         },
+         {
+          "type": "collection",
+          "id": "collection_5_2",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_5_3",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_5_4",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_5_5",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_5_6",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_5_7",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_5_8",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_5_9",
+          "label": "Collection"
+        },
+        {
+          "type": "header",
+          "content": "Collection 6"
+        },        
+        {
+          "type": "collection",
+          "id": "collection_6_1",
+          "label": "Collection title link"
+        },
+         {
+           "type": "text",
+           "id": "collection_title6",
+           "label": "Collection Title",
+           "default": "Collection"
+         },
+         {
+          "type": "collection",
+          "id": "collection_6_2",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_6_3",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_6_4",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_6_5",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_6_6",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_6_7",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_6_8",
+          "label": "Collection"
+        },
+         {
+          "type": "collection",
+          "id": "collection_6_9",
+          "label": "Collection"
+        }     
+       ]
+     },
+     {
+       "type": "mega-menu2",
+       "name": "Link + Image",
+       "settings": [
+         {
+           "type": "text",
+           "id": "menu-name",
+           "label": "Menu Name"
+         },
+        {
+          "type": "range",
+          "id": "columns",
+          "max": 8,
+          "min": 1,
+          "default": 2,
+          "label": "Number of columns"
+        },
+         {
+          "type": "header",
+          "content": "Image and Text 1"
+        },
+         {
+          "type": "text",
+          "id": "title1",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link1",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        }
+         ,
+         {
+          "type": "header",
+          "content": "Image and Text 2"
+        },
+         {
+          "type": "text",
+          "id": "title2",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link2",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },
+         {
+          "type": "header",
+          "content": "Image and Text 3"
+        },
+         {
+          "type": "text",
+          "id": "title3",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link3",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image"
+        },
+         {
+          "type": "header",
+          "content": "Image and Text 4"
+        },
+         {
+          "type": "text",
+          "id": "title4",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link4",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image"
+        },
+         {
+          "type": "header",
+          "content": "Image and Text 5"
+        },
+         {
+          "type": "text",
+          "id": "title5",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link5",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image"
+        },
+         {
+          "type": "header",
+          "content": "Image and Text 6"
+        },
+         {
+          "type": "text",
+          "id": "title6",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link6",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_6",
+          "label": "Image"
+        },
+         {
+          "type": "header",
+          "content": "Image and Text 7"
+        },
+         {
+          "type": "text",
+          "id": "title7",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link7",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_7",
+          "label": "Image"
+        }
+         ,
+         {
+          "type": "header",
+          "content": "Image and Text 8"
+        },
+         {
+          "type": "text",
+          "id": "title8",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link8",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_8",
+          "label": "Image"
+        }
+         ,
+         {
+          "type": "header",
+          "content": "Image and Text 9"
+        },
+         {
+          "type": "text",
+          "id": "title9",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link9",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_9",
+          "label": "Image"
+        }
+         ,
+         {
+          "type": "header",
+          "content": "Image and Text 10"
+        },
+         {
+          "type": "text",
+          "id": "title10",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link10",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_10",
+          "label": "Image"
+        },
+         {
+          "type": "header",
+          "content": "Image and Text 11"
+        },
+         {
+          "type": "text",
+          "id": "title11",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link11",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_11",
+          "label": "Image"
+        },
+         {
+          "type": "header",
+          "content": "Image and Text 12"
+        },
+         {
+          "type": "text",
+          "id": "title12",
+          "label": "Title"
+        },
+         {
+          "type": "url",
+          "id": "link12",
+          "label": "Image link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_12",
+          "label": "Image"
+        }
+       ]
+     },
+     {
+       "type": "mega-menu3",
+       "name": "Product List",
+       "settings": [
+         {
+           "type": "text",
+           "id": "menu-name",
+           "label": "Menu Name"
+         },
+         {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        },
+         {
+          "type": "text",
+          "id": "allptext",
+          "label": "All product text"
+        },
+         {
+          "type": "image_picker",
+          "id": "allpimage",
+          "label": "All product image"
+        },
+         {
+          "type": "url",
+          "id": "allplink",
+          "label": "All products link"
+        },
+        {
+          "type": "header",
+          "content": "Slider settings"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "max": 12,
+          "min": 1,
+          "label": "Number of products to show",
+          "default": 6
+        },
+        {
+          "type": "range",
+          "id": "columns",
+          "max": 8,
+          "min": 1,
+          "default": 2,
+          "label": "Number of columns"
+        }
+       ]
+     },
+     {
+       "type": "mega-menu4",
+       "name": "Categories + Image",
+       "settings": [
+         {
+           "type": "text",
+           "id": "menu-name",
+           "label": "Menu Name"
+         },
+         {
+           "type": "link_list",
+           "id": "menu_list",
+           "label": "Category Menu"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "Image 1 link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+         {
+          "type": "url",
+          "id": "link2",
+          "label": "Image 2 link"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        }
+       ]
+     },
+     {
+       "type": "custom_html",
+       "name": "Custom HTML",
+       "settings": [
+         {
+           "type": "text",
+           "id": "menu-name",
+           "label": "Menu Name"
+         },
+        {
+          "type": "html",
+          "id": "html",
+          "label": "Custom HTML"
+        }
+       ]
+     }
+   ],
+  
+  "enabled_on": {
+    "groups": ["header"]
   }
+}
 {% endschema %}

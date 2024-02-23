@@ -18940,3 +18940,1397 @@ iframe#dummy-chat-button-iframe{
     font-size: calc(1.6rem * var(--FONT-ADJUST-HEADING)) !important;
   }
 }
+
+
+.tabs-section .tabs.ui-tabs .ui-tabs-nav {
+  justify-content: flex-start;
+}
+
+.tabs-section .tabs.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+  background: transparent;
+  border-radius: 0;
+  color: #000
+}
+
+.tabs-section .tabs.ui-tabs .ui-tabs-nav li {
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+}
+
+.tabs-section .tabs.ui-tabs .ui-tabs-nav li.ui-tabs-active,.tabs-section .tabs.ui-tabs .ui-tabs-nav li:hover {
+  border-bottom: 1px solid #000;
+  border-radius: 0;
+}
+.tabs-section .tabs.ui-tabs .ui-tabs-nav li a {
+  font-size: 26px;
+}
+
+.tabs-section .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.collection-grid .tabs-section .product-block {
+  width: 100%;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+}
+
+.cd-image-container {
+  position: relative;
+  width: 90%;
+  max-width: 768px;
+  margin: 0em auto;
+}
+.cd-image-container img {
+  display: block;
+}
+
+.cd-image-label {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #ffffff;
+  padding: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+  -moz-transform: translateY(20px);
+  -ms-transform: translateY(20px);
+  -o-transform: translateY(20px);
+  transform: translateY(20px);
+  -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+  -moz-transition: -moz-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+  transition: transform 0.3s 0.7s, opacity 0.3s 0.7s;
+}
+.cd-image-label.is-hidden {
+  visibility: hidden;
+}
+.is-visible .cd-image-label {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.cd-resize-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  /* Force Hardware Acceleration in WebKit */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cd-resize-img img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+.cd-resize-img .cd-image-label {
+  right: auto;
+  left: 0;
+}
+.is-visible .cd-resize-img {
+  width: 50%;
+  /* bounce in animation of the modified image */
+  -webkit-animation: cd-bounce-in 0.7s;
+  -moz-animation: cd-bounce-in 0.7s;
+  animation: cd-bounce-in 0.7s;
+}
+
+@-webkit-keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@-moz-keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+.cd-handle
+{
+  position: absolute;
+  height: 44px;
+  width: 61px;
+  left: 50%;
+  top: 50%;
+  margin-left: -32px;
+  margin-top: -22px;
+  border-radius: 50%;
+  background: url(/cdn/shop/files/chevrons.svg?v=1707195229) no-repeat center center;
+  cursor: move;
+  box-shadow: none;
+  opacity: 0;
+  -webkit-transform: translate3d(0,0,0) scale(0);
+  -moz-transform: translate3d(0,0,0) scale(0);
+  -ms-transform: translate3d(0,0,0) scale(0);
+  -o-transform: translate3d(0,0,0) scale(0);
+  transform: translateZ(0) scale(0);
+}
+.cd-handle.draggable {
+  /* change background color when element is active */
+  background-color: none;
+}
+.is-visible .cd-handle {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0) scale(1);
+  -moz-transform: translate3d(0, 0, 0) scale(1);
+  -ms-transform: translate3d(0, 0, 0) scale(1);
+  -o-transform: translate3d(0, 0, 0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
+  -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0s 0.7s;
+  -moz-transition: -moz-transform 0.3s 0.7s, opacity 0s 0.7s;
+  transition: transform 0.3s 0.7s, opacity 0s 0.7s;
+}
+#landing-page-2024 .icons-row--background {
+  padding: 15px 0 30px !important;
+}
+.custom-hero-slider.signup-section .sign-up-submit
+{
+  border-left: 0;
+}
+.custom-hero-slider.signup-section form
+{
+  width: 100%;
+}
+.custom-hero-slider.signup-section .sign-up-form
+{
+  width: 100%;
+}
+
+
+
+
+
+/* How To Use */
+
+.howtouse-section .skincare-steps-section {
+    text-align: center;
+    padding-bottom: 32px;
+    position: relative;
+}
+.howtouse-section .skincare-steps-section .title {
+    margin-bottom: 3px;
+    text-align: left;
+}
+
+.howtouse-section .skincare-steps-section .skincare-steps {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    list-style-type: none;
+    position: relative;
+    margin: 0 0 0 calc(25% - 10px);
+}
+.howtouse-section .skincare-steps-section .skincare-steps:before {
+    content: '';
+    background-color: rgba(22,22,22,.4);
+    position: absolute;
+    width: 1px;
+    height: calc(50% - 20px);
+    left: 10px;
+    top: 20px;
+    bottom: auto;
+}
+.howtouse-section .skincare-steps-section .skincare-steps:after {
+    content: '';
+    position: absolute;
+    border-left: 1px dotted rgba(22,22,22,.4);
+    border-bottom: none;
+    width: 1px;
+    height: calc(50% - 20px);
+    left: 10px;
+    bottom: 20px;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li img {
+    -ms-flex-order: 2;
+    order: 2;
+    margin-left: 20px;
+    -o-object-fit: scale-down;
+    object-fit: scale-down;
+    width: 20px;
+    max-height: 32px;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li .step-label {
+    display: inline-block;
+    margin: 0 0 0 15px;
+    -ms-flex-order: 3;
+    order: 3;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li .step-label a {
+    text-decoration: none;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li .step-number {
+    font-family: AvenirNextLTPro,Helvetica,Arial sans-serif;
+    font-size: 10px;
+    line-height: 20px;
+    display: inline-block;
+    background-color: #f8f4ed;
+    border-radius: 50%;
+    color: #161616;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    -ms-flex-order: 1;
+    order: 1;
+}
+.howtouse-section .application-tips-section {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.howtouse-section .application-tips-section .section-heading {
+    width: 100%;
+    margin: 30px 0 20px 0;
+    text-align: left;
+    font-family: AvenirNextLTProRegular,Helvetica,Arial sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+}
+.howtouse-section .application-tips-section .application-tip {
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+.howtouse-section .application-tips-section .application-tip .thumb-section {
+    margin-bottom: 13px;
+    margin-right: 16px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.howtouse-section .application-tips-section .application-tip .content-section {
+    width: calc(100% - 122px);
+}
+.howtouse-section .application-tips-section .application-tip .thumb-section img {
+    width: 106px;
+}
+.howtouse-section .application-tips-section .application-tip .content-section p {
+    margin-bottom: 0;
+  font-size: 14px;
+}
+.howtouse-section .application-tips-section .application-tip .content-section p.primary-text-bold {
+  font-weight: 900;
+  font-size: 16px;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li.active .step-number:before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #161616;
+    border-radius: 50%;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    background-color: #fff;
+    z-index: -1;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li.active .step-number:after {
+    content: '';
+    background-color: #f8f4ed;
+    width: 20px;
+    height: 20px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li.active .step-number {
+    position: relative;
+    z-index: 2;
+}
+.shopify-section-header
+{
+  position: relative;
+  z-index: 99999999999999;
+}
+
+/*----about us-----*/
+#about-us-miraco-beauty .banner__inner .page-title
+{
+  max-width: 625px;
+}
+#about-us-miraco-beauty .banner__inner .page-title p
+{
+  font-size: 17px;
+  line-height: 1.6;
+}
+#about-us-miraco-beauty .banner__inner .page-title ul li
+{
+  margin-bottom: 15px;
+}
+#about-us-miraco-beauty .banner__inner .page-title a
+{
+  background: #656464;
+  padding: 12px 40px;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-flex;
+}
+.cs-item-wrapper
+{
+  position: relative;
+}
+.cs-item-list
+{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  row-gap: 65px;
+}
+.cs-item-list .cs-items
+{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+.cs-item-cont
+{
+  display: flex;
+  flex-direction: column;
+  max-width: 345px;
+  text-align: center;
+  align-items: center;
+}
+.cs-item-list .cs-items:nth-child(odd)
+{
+  justify-content: flex-start;
+}
+.cs-item-list .cs-items:nth-child(even)
+{
+  justify-content: flex-end;
+}
+.cs-item-image
+{
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.cs-item-image .cs-main-image
+{
+  width: 100%;
+  padding: 0 450px;
+}
+.cs-item-cont .cs-item-img
+{
+  max-width: 96px;
+}
+.cs-item-cont .cs-item-img
+{
+  max-width: 96px;
+  margin-bottom: 15px;
+}
+.cs-item-cont h3
+{
+  font-size: 26px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.cs-item-list.col-5 .cs-items:last-child
+{
+  width: 100%;
+}
+.cs-item-list.col-5 .cs-items:last-child
+{
+  width: 100%;
+  justify-content: center;
+}
+.adj-5 .cs-main-image
+{
+  margin-bottom: 130px;
+}
+.custom-hero-slider .chs-wrapper
+{
+  position: relative;
+}
+.custom-hero-slider .chs-background
+{
+  width: 100%;
+}
+.custom-hero-slider .chs-background img
+{
+  width: 100%;
+}
+.chs-mob-img
+{
+  display: none;
+}
+.chs-content
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.chs-content-wrapper
+{
+  max-width: 465px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+.chs-cont-tit
+{
+  font-size: 50px;
+  line-height: 1.4em;
+  margin: 0;
+}
+.chs-cont-desc
+{
+  font-size: 17px;
+  line-height: 1.6em;
+  margin: 0;
+}
+.chs-cont-list
+{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chs-cont-button
+{
+  font-size: 17px;
+  background: #656464;
+  padding: 12px 40px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+.collection-series
+{
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  display: flex;
+  width: 100%;
+  padding: 15px 0 65px;
+}
+.custom-hero-slider .chs-background
+{
+  display: flex;
+  width: 100%;
+}
+.mob
+{
+  display: none;
+}
+.hopw-row
+{
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.hopw-cont .hopw-img
+{
+  width: 100%;
+  margin-bottom: 16px;
+}
+.hopw-cont
+{
+  width: 100%;
+  display: flow-root;
+  max-width: calc(25% - 15px);
+}
+.hopw-cont h3
+{
+  font-size: 26px;
+  line-height: 1.4em;
+  margin-bottom: 5px;
+  position: relative;
+  white-space: normal;
+}
+.hopw-cont p
+{
+  font-size: 17px;
+  line-height: 1.6em;
+}
+.hopw .page-title
+{
+  margin-top: 0;
+}
+.hopw
+{
+  background: #FAFAFA;
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+.sast
+{
+  padding: 65px 0;
+}
+.sast .page-title
+{
+  margin-top: 0;
+}
+.sast-wrapper .sast-row
+{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  row-gap: 20px;
+}
+.sast-wrapper .sast-row .sast-cont
+{
+  width: 100%;
+  max-width: 16.6667%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.sast-wrapper .sast-row .sast-cont h3
+{
+  margin: 0;
+  font-size: 17px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.sast-wrapper .sast-row .sast-cont .sast-img
+{
+  margin-bottom: 16px;
+}
+.lwmb
+{
+  padding: 65px 0;
+  background: #FAFAFA;
+  display: flex;
+  width: 100%;
+}
+.lwmb-row
+{
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+.lwmb-row .lwmb-col
+{
+  background: #fff;
+  width: 100%;
+  max-width: 50%;
+  padding: 40px 32px;
+}
+.lwmb-row .lwmb-col h3
+{
+  font-size: 26px;
+  margin-bottom: 40px;
+}
+.lwmb-row .lwmb-col .lwmb-list p
+{
+  margin: 0;
+  font-size: 17px;
+}
+.lwmb-row .lwmb-col .lwmb-list
+{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #B0B0B0;
+}
+.lwmb-row .lwmb-col .lwmb-list:last-child
+{
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border: 0;
+}
+
+.howtouse-wrapper .howtouse-tabs
+{
+  border: 0 !important;
+  padding: 0;
+}
+.howtouse .page-title
+{
+  margin-top: 0;
+}
+.howtouse
+{
+  padding: 65px 0;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu
+{
+  padding: 0;
+  background: transparent;
+  border: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu:before
+{
+  display: none;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu:after
+{
+  display: none;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li
+{
+  margin: 0 !important;
+  background: transparent;
+  border: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  max-width: 20%;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li a
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li a img
+{
+  width: auto;
+  max-height: 64px;
+  margin-bottom: 8px;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li a h5
+{
+  margin: 0;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li a .htu-step-number
+{
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAFA;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li::before
+{
+  display: flex;
+  width: 100%;
+  background: #B0B0B0;
+  content: "";
+  position: absolute;
+  height: 1px;
+  right: calc(-50% - 20px);
+  top: 28px;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li:last-child::before
+{
+  display: none;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li.ui-tabs-active.ui-state-active a .htu-step-number
+{
+  background: #656464;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-content
+{
+  padding: 0;
+  max-width: 1195px;
+  margin: auto;
+    margin-top: auto;
+  display: flex;
+  gap: 20px;
+  margin-top: 45px;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-content .htc-step-cont
+{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 25%;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-content .htc-step-cont img
+{
+  margin-bottom: 16px;
+  width: 100%;
+}.howtouse-wrapper .howtouse-tabs .howtouse-tabs-content .htc-step-cont h3
+{
+  font-size: 20px;
+  margin: 0;
+    margin-bottom: 0px;
+  margin-bottom: 8px;
+}
+.howtouse-wrapper .howtouse-tabs .howtouse-tabs-content .htc-step-cont p
+{
+  font-size: 17px;
+}
+.compare
+{
+  display: flex;
+  position: relative;
+  background: #FAFAFA;
+  padding: 95px 0;
+}
+.bfr-aft-block
+{
+  display: flex;
+  position: relative;
+}
+.compare-wrapper
+{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+.compare-wrapper > div
+{
+  width: 50%;
+}
+.compare-wrapper .bfr-aft-block .cd-image-container > img
+{
+  width: 100%;
+}
+.rslt-imgs
+{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+.compare-wrapper .bfr-aft-block .cd-image-container
+{
+  width: 100%;
+  max-width: 100%;
+}
+.rstimgs-img
+{
+  display: flex;
+  width: 100%;
+  max-width: 50%;
+  position: relative;
+}
+.rstimgs-img img
+{
+  width: 100%;
+}
+.rstimgs-img .bfr-aft-labl
+{
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 17px;
+  color: #fff;
+  text-transform: uppercase;
+  background: #656464;
+  padding: 8px 16px;
+}
+.results-det h3
+{
+  font-size: 38px;
+  margin: 0;
+  margin-bottom: 8px;
+}
+.results-det p
+{
+  font-size: 17px;
+  margin: 0;
+    margin-bottom: 0px;
+  line-height: 1.6em;
+  margin-bottom: 32px;
+}
+.compare-wrapper .cd-image-label
+{
+  font-size: 17px;
+  color: #fff;
+  text-transform: uppercase;
+  background: #656464;
+  padding: 8px 16px;
+  top: 0;
+  bottom: auto;
+}
+.signup-section .chs-cont-tit
+{
+  font-size: 38px;
+  color: #fff;
+}
+.signup-section .contact-form
+{
+  margin-top: 0;
+}
+.signup-section .contact-form .sign-up-form
+{
+  margin-top: 0;
+}
+.signup-section .contact-form .sign-up-form input.sign-up-input
+{
+  color: #fff;
+  border-color: #fff;
+}
+.signup-section .contact-form .sign-up-form .sign-up-submit
+{
+  color: #fff;
+  border-color: #fff;
+}
+.cd-resize-img
+{
+  border-right: 2px solid #fff;
+}
+.custom-hero-slider.signup-section
+{
+  margin-top: 48px;
+}
+#about-us-miraco-beauty .icons-row__title
+{
+  margin-bottom: 8px;
+  font-size: 21px;
+}
+#about-us-miraco-beauty p
+{
+  margin: 0;
+  font-size: 17px;
+}
+.signup-section .contact-form .sign-up-form input.sign-up-input::placeholder
+{
+  color: #fff;
+}
+.htc-step-cont p
+{
+  color: var(--COLOR-HEADING);
+}
+
+#landing-page-2024 .icons-row__item h3, #landing-page-2024 .icons-row__item p {
+  color: var(--COLOR-HEADING) !important;
+}
+
+
+
+
+
+@media only screen and (max-width: 1366px) {
+  .cs-item-cont
+{
+  max-width: 280px;
+}
+  .cs-item-image .cs-main-image
+{
+  width: 100%;
+  padding: 0 315px;
+}
+  .cs-item-list
+{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  row-gap: 25px;
+}
+}
+
+@media only screen and (max-width: 1200px) {
+.custom-hero-slider .container
+{
+  width: 100%;
+}
+}
+
+
+
+@media (min-width: 1024px) {
+.howtouse-section .skincare-steps-section .skincare-steps {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 100px;
+    margin: 0;
+}
+  .howtouse-section .skincare-steps-section .skincare-steps:before {
+    top: auto;
+    height: 1px;
+    width: calc(50% - 30px);
+    bottom: 9px;
+    left: 30px;
+}
+  .howtouse-section .skincare-steps-section .skincare-steps:after {
+    width: calc(50% - 30px);
+    height: 1px;
+    border-left: none;
+    border-bottom: 1px dotted rgba(22,22,22,.4);
+    bottom: 9px;
+    right: 30px;
+    left: auto;
+}
+  .howtouse-section .skincare-steps-section .skincare-steps li {
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    height: 100px;
+    margin-bottom: 0;
+}
+  .howtouse-section .skincare-steps-section .skincare-steps li img {
+    -ms-flex-order: 0;
+    order: 0;
+    margin-left: 0;
+    -o-object-fit: none;
+    object-fit: none;
+    width: auto;
+    max-height: none;
+}
+.howtouse-section .skincare-steps-section .skincare-steps li .step-label {
+    margin: 4px 0 20px;
+    -ms-flex-order: 0;
+    order: 0;
+}
+  .howtouse-section .skincare-steps-section .skincare-steps li .step-number {
+    -ms-flex-order: 0;
+    order: 0;
+}
+  .howtouse-section .application-tips-section {
+    gap: 0 12px;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+  .howtouse-section .application-tips-section .section-heading {
+    margin: 30px 0 20px 0px;
+}
+  .howtouse-section .application-tips-section .application-tip {
+    width: calc(25% - 9px);
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 58px;
+}
+  .howtouse-section .application-tips-section .application-tip .thumb-section {
+    margin-right: 0;
+    width: 100%;
+    height: 160px;
+}
+  .howtouse-section .application-tips-section .application-tip .content-section {
+    width: 100%;
+}
+  .howtouse-section .application-tips-section .application-tip .thumb-section img {
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+}
+
+
+.header--logo_center_links_left .logo, .header--logo_left_links_left .logo
+{
+    position: relative;
+    height: auto;
+    padding-bottom: 0;
+  }
+  .logo__image-link.visible-nav-link
+{
+  height: auto !important;
+}
+  .header--is-standard .nav-standard, .header__icons
+{
+  height: auto;
+}
+  .logo__image.image-wrapper img
+{
+  object-fit: contain;
+}
+  .header-fix-cont-inner
+{
+  height: auto;
+  justify-content: center;
+  display: flex;
+}
+  .header__icons
+{
+  position: absolute;
+  right: 0;
+  top: -45px;
+}
+  .site-header.header--has-scrolled
+{
+  height: auto;
+}
+}
+
+@media only screen and (max-width: 1024px) {
+  
+}
+
+
+@media only screen and (max-width: 990px) {
+  .cs-item-image
+{
+  position: relative;
+}
+  .cs-item-image .cs-main-image
+{
+  padding: 0;
+}
+  .cs-item-image
+{
+  margin-bottom: 30px;
+}
+  .chs-cont-tit
+{
+  font-size: 36px;
+}
+  .sast-wrapper .sast-row
+{
+  column-gap: 20px;
+}
+  .sast-wrapper .sast-row .sast-cont
+{
+    max-width: calc(33.3333% - 20px);
+  }
+  .lwmb-row
+{
+  flex-wrap: wrap;
+}
+  .lwmb-row .lwmb-col
+{
+  max-width: 100%;
+}
+  .compare-wrapper
+{
+  flex-wrap: wrap;
+}
+  .compare-wrapper > div
+{
+  width: 100%;
+}
+}
+
+
+@media only screen and (max-width: 767px) {
+  .tabs-section .tabs.ui-tabs .ui-tabs-nav li a {
+  font-size: 16px;
+  padding: 5px;
+}
+  .tabs-section .tabs.ui-tabs .ui-tabs-nav li {
+  width: 33%;
+  white-space: break-spaces;
+  text-align: center;
+}
+  .tabs-section .tabs.ui-tabs .ui-tabs-nav li {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+  .tabs-section button.slick-next, .tabs-section .slick-next.btn, .tabs-section .slick-next.shopify-payment-button__button--unbranded, .tabs-section button.slick-prev, .slick-prev.btn, .tabs-section .slick-prev.shopify-payment-button__button--unbranded {
+    display: block !important;
+    visibility: visible;
+  }
+  .howtouse-section .skincare-steps-section .skincare-steps {
+  margin-top: 30px;
+}
+  .chs-mob-img
+{
+  display: block;
+}
+  .chs-desk-img
+{
+  display: none;
+}
+  .mob
+{
+  display: block;
+}
+  .desk
+{
+  display: none;
+}
+  .chs-content
+{
+  align-items: flex-start;
+  margin-top: 48px;
+}
+  #about-us-miraco-beauty .body-wrap #MainContent
+{
+  padding-top: 60px;
+}
+  .cs-item-wrapper
+{
+  margin-top: 110px;
+}
+  .cs-item-image
+{
+  margin-bottom: 90px;
+}
+  .adj-5 .cs-main-image
+{
+  margin-bottom: 0;
+}
+  .csc-item-img
+{
+  max-width: 96px;
+  margin: auto;
+  margin-bottom: 16px;
+}
+  .csc-item-cont h3
+{
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+  .csc-item-cont p
+{
+  font-size: 17px;
+  text-align: center;
+}
+  .cs-carousel.csc-items .slick-list
+{
+  padding-left: 0 !important;
+}
+  .cs-carousel.csc-items .slick-list .csc-item-cont
+{
+  margin-right: 45px;
+}
+  .hopwc-cont
+{
+  margin-right: 10px;
+}
+  .hopw-carousel .slick-list
+{
+  padding-left: 0 !important;
+}
+  .hopwc-cont .hopwc-img
+{
+  margin-bottom: 16px;
+  width: 100%;
+}
+  .hopwc-cont h3
+{
+  margin: 0;
+    margin-bottom: 0px;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+  .hopwc-cont p
+{
+  font-size: 17px;
+  line-height: 1.4em;
+}
+  .sast
+{
+  padding: 48px 0;
+}
+  .hopw
+{
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+  .collection-series
+{
+  padding: 15px 0 48px;
+}
+  .lwmb-row .lwmb-col h3
+{
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+  .lwmb-row .lwmb-col .lwmb-list
+{
+  font-size: 17px;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+}
+  .lwmb-row .lwmb-col
+{
+  padding: 24px 24px;
+}
+  .lwmb
+{
+  padding: 48px 0;
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-content
+{
+  flex-wrap: wrap;
+  gap: 10px;
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-content .htc-step-cont
+{
+  max-width: calc(50% - 5px);
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-content .htc-step-cont h3
+{
+  font-size: 18px;
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-content .htc-step-cont p
+{
+  margin: 0;
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu
+{
+  overflow: scroll;
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li
+{
+  margin: 0 !important;
+  max-width: 30%;
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li a img
+{
+  max-height: 48px;
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li a .htu-step-number
+{
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+}
+  .howtouse-wrapper .howtouse-tabs .howtouse-tabs-menu li::before
+{
+  right: calc(-50% - 16px);
+  top: 24px;
+}
+  .howtouse
+{
+  padding: 48px 0;
+}
+  .compare
+{
+  padding: 48px 0;
+}
+  .rslt-imgs
+{
+  flex-wrap: wrap;
+}
+  .rstimgs-img
+{
+  max-width: 100%;
+}
+  .results-det h3
+{
+  font-size: 30px;
+}
+  .sast .page-title__heading
+{
+  font-size: 26px;
+}
+  .signup-section .chs-cont-tit
+{
+  text-align: center;
+  font-size: 30px;
+}
+  .signup-section .contact-form
+{
+  width: 100%;
+}
+  .signup-section .contact-form .sign-up-form
+{
+  width: 100%;
+}
+  #landing-page-2024 .main-content
+{
+  padding-top: 60px;
+}
+  .page-title h2
+{
+  font-size: 28px;
+}
+  .csc-item-list.mob
+{
+  margin-right: -20px;
+}
+  #landing-page-2024 p
+{
+  font-size: 17px !important;
+}
+  #landing-page-2024 .icons-row__title
+{
+  font-size: 20px !important;
+}
+  #landing-page-2024 .faq__item__question
+{
+  font-size: 22px;
+}
+ .hopw-ms .slick-slide
+{
+  margin-right: 10px;
+}
+  .cs-item-wrapper .slick-slide
+{
+  margin-right: 30px;
+}
+}
+
+
+
+@media only screen and (max-width: 430px) {
+  .product-block__info--center .product-block__title {
+      font-size: 12px;
+  }
+}
+

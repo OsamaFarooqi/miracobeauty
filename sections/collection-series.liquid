@@ -1,0 +1,103 @@
+<div style="background: url({{ section.settings.cs-bg-img | img_url: 'master' }})" class="collection-series">
+  <div class="container">
+    <div class="page-title">
+      {%- if section.settings.cs-title != blank -%}<h2 class="page-title__heading">{{ section.settings.cs-title }}</h2>{%- endif -%}
+      {%- if section.settings.cs-desc != blank -%}{{ section.settings.cs-desc }}{%- endif -%}
+    </div>
+    <div class="cs-item-wrapper adj-{{ section.settings.cs-items }}">   
+      <div class="cs-item-image">{%- if section.settings.cs-img != blank -%}<img class="cs-main-image" src="{{ section.settings.cs-img | img_url: 'master' }}">{%- endif -%}</div>    
+      <div class="cs-item-list desk col-{{ section.settings.cs-items }}">
+        {%  for block in section.blocks %}
+        <div class="cs-items">
+          <div class="cs-item-cont">
+          {%- if block.settings.img != blank -%}<img class="cs-item-img" src="{{ block.settings.img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.title != blank -%}<h3>{{ block.settings.title  }}</h3>{%- endif -%}
+          {%- if block.settings.description != blank -%}{{ block.settings.description }}{%- endif -%}
+          </div>
+        </div>
+        {%  endfor %} 
+      </div>    
+      <div class="csc-item-list mob">
+        <div class="cs-carousel csc-items">
+        {%  for block in section.blocks %}
+          <div class="csc-item-cont">
+          {%- if block.settings.img != blank -%}<img class="csc-item-img" src="{{ block.settings.img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.title != blank -%}<h3>{{ block.settings.title  }}</h3>{%- endif -%}
+          {%- if block.settings.description != blank -%}{{ block.settings.description }}{%- endif -%}
+          </div>   
+        {%  endfor %} 
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Collection Series",
+    "settings": [
+       {
+        "type": "image_picker",
+        "id": "cs-bg-img",
+        "label": "Background Image"
+       },
+       {
+        "type": "text",
+        "id": "cs-title",
+        "label": "Collection Title"
+       },
+       {
+        "type": "richtext",
+        "id": "cs-desc",
+        "label": "Collection Description"
+       },
+       {
+        "type": "image_picker",
+        "id": "cs-img",
+        "label": "Collection Image"
+       },
+       {
+        "type": "range",
+        "id": "cs-items",
+        "label": "Number of Items",
+        "min": 2,
+        "max": 6,
+        "default": 2
+       }
+    ],
+    "blocks": [
+    {
+      "type": "series-item",
+      "name": "Series Item",
+      "settings": [
+      {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Item Image"
+      },
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Item Name"
+      },
+      {
+          "type": "richtext",
+          "id": "description",
+          "label": "Item Description"
+      }
+    ]
+  
+    }
+  ],
+    "presets": [
+    {
+      "name": "Collection Series",
+      "blocks": []
+    }
+  ]
+  }
+{% endschema %}

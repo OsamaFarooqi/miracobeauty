@@ -164,6 +164,50 @@
 
   {% render 'qikify-apps' %}
   <meta name="google-site-verification" content="rjlTMleuuBWPeOfNVLZSK5bytrGDGHaWObN_8AXQcUE" />
+
+  {{- 'header-custom.css' | asset_url | stylesheet_tag -}}
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+  
+
+{{ 'jquery-2.1.1.js' | asset_url | script_tag }} 
+<script src="//code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+{{ 'slick.js' | asset_url | script_tag }}
+{{ 'header-custom.js' | asset_url | script_tag }}
+{{ 'jquery.mobile.custom.min.js' | asset_url | script_tag }}
+{{ 'main.js' | asset_url | script_tag }}
+<script>
+  $(document).ready(function() {
+    $( "#tabs-1" ).tabs();
+  } );
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.cs-carousel').slick({
+  arrows: false,  
+  centerMode: true,
+  centerPadding: '90px',
+  infinite: true,
+  speed: 300,
+  slidesToShow: 1,
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.hopw-carousel').slick({
+  arrows: false,  
+  centerMode: true,
+  centerPadding: '65px',
+  infinite: true,
+  speed: 300,
+  slidesToShow: 1,
+  });
+});
+</script>
 </head>
 
 {%- assign animations = false -%}
@@ -207,7 +251,7 @@
 
       {%- sections 'footer-group' -%}
     </div>{%- comment -%} END body-wrap {%- endcomment -%}
-  </div>{%- comment -%} END page-wrap {%- endcomment -%}
+  </div>{%- comment -%} END page-wrap {%- endcomment -%} 
 
   {%- comment -%} Swatches Template {%- endcomment -%}
   {%- render 'template-swatch' -%}
@@ -225,5 +269,7 @@
                                     {% comment %} do nothing {% endcomment %}
                                 {% else %}
                                     {% render 'tb-shopify' %}
-                                {% endif %}</body>
+                                {% endif %}
+
+</body>
 </html>

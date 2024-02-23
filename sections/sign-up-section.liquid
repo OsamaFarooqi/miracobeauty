@@ -1,0 +1,69 @@
+<div class="custom-hero-slider signup-section">
+  
+   <div class="chs-wrapper">
+    <div class="chs-background">
+      {%- if section.settings.desk-img != blank -%}<img class="chs-desk-img" src="{{ section.settings.desk-img | img_url: 'master' }}">{%- else -%}{%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%} {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+      {%- if section.settings.mob-img != blank -%}<img class="chs-mob-img" src="{{ section.settings.mob-img | img_url: 'master' }}">{%- else -%}{%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%} {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+    </div>
+    <div class="chs-content">
+     <div class="container">
+     <div class="chs-content-wrapper"> 
+      {%  for block in section.blocks %}
+        {% case block.type %}
+          {% when 'title' %}
+            {%- if block.settings.title != blank -%}<h2 class="chs-cont-tit">{{ block.settings.title }}</h2>{%- endif -%}        
+          {% when 'email' %}
+            {%- render 'newsletter' -%}
+        {% endcase %}
+      {%  endfor %} 
+     </div> 
+      </div> 
+    </div>
+   </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Sign Up Section",
+    "settings": [
+       {
+        "type": "image_picker",
+        "id": "desk-img",
+        "label": "Desktop Background Image"
+       },
+       {
+        "type": "image_picker",
+        "id": "mob-img",
+        "label": "Mobile Background Image"
+       }
+    ],
+    "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+      }
+    ]
+    },
+    {
+      "type": "email",
+      "name": "Email",
+      "settings": [
+ 
+    ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Sign Up Section",
+      "blocks": []
+    }
+  ]
+  }
+{% endschema %}

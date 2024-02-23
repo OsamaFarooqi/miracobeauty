@@ -1,531 +1,413 @@
 {% comment %} Site Navigation {% endcomment %}
 {%- liquid
-assign mobile_menu_behaviour = settings.mobile_menu_behaviour
-assign menuPrimary = section.settings.menu_list
-assign image_1 = section.settings.meganav_image_1
-assign image_heading_1 = section.settings.meganav_image_heading_1
-assign image_link_1 = section.settings.meganav_image_link_1
-assign image_aspect_ratio_1 = 1 | divided_by: section.settings.image_aspect_ratio_1
-assign image_2 = section.settings.meganav_image_2
-assign image_heading_2 = section.settings.meganav_image_heading_2
-assign image_link_2 = section.settings.meganav_image_link_2
-assign image_aspect_ratio_2 = 1 | divided_by: section.settings.image_aspect_ratio_2
-assign image_3 = section.settings.meganav_image_3
-assign image_heading_3 = section.settings.meganav_image_heading_3
-assign image_link_3 = section.settings.meganav_image_link_3
-assign image_aspect_ratio_3 = 1 | divided_by: section.settings.image_aspect_ratio_3
-assign image_4 = section.settings.meganav_image_4
-assign image_heading_4 = section.settings.meganav_image_heading_4
-assign image_link_4 = section.settings.meganav_image_link_4
-assign image_aspect_ratio_4 = 1 | divided_by: section.settings.image_aspect_ratio_4
-assign image_5 = section.settings.meganav_image_5
-assign image_heading_5 = section.settings.meganav_image_heading_5
-assign image_link_5 = section.settings.meganav_image_link_5
-assign image_aspect_ratio_5 = 1 | divided_by: section.settings.image_aspect_ratio_5
-assign image_6 = section.settings.meganav_image_6
-assign image_heading_6 = section.settings.meganav_image_heading_6
-assign image_link_6 = section.settings.meganav_image_link_6
-assign image_aspect_ratio_6 = 1 | divided_by: section.settings.image_aspect_ratio_6
+  assign mobile_menu_behaviour = settings.mobile_menu_behaviour
+  assign menuPrimary = section.settings.menu_list_mobile
+  assign image_1 = section.settings.meganav_image_1
+  assign image_heading_1 = section.settings.meganav_image_heading_1
+  assign image_link_1 = section.settings.meganav_image_link_1
+  assign image_aspect_ratio_1 = 1 | divided_by: section.settings.image_aspect_ratio_1
+    assign image_2 = section.settings.meganav_image_2
+  assign image_heading_2 = section.settings.meganav_image_heading_2
+  assign image_link_2 = section.settings.meganav_image_link_2
+  assign image_aspect_ratio_2 = 1 | divided_by: section.settings.image_aspect_ratio_2
+    assign image_3 = section.settings.meganav_image_3
+  assign image_heading_3 = section.settings.meganav_image_heading_3
+  assign image_link_3 = section.settings.meganav_image_link_3
+  assign image_aspect_ratio_3 = 1 | divided_by: section.settings.image_aspect_ratio_3
+  assign image_4 = section.settings.meganav_image_4
+  assign image_heading_4 = section.settings.meganav_image_heading_4
+  assign image_link_4 = section.settings.meganav_image_link_4
+  assign image_aspect_ratio_4 = 1 | divided_by: section.settings.image_aspect_ratio_4
+  assign image_5 = section.settings.meganav_image_5
+  assign image_heading_5 = section.settings.meganav_image_heading_5
+  assign image_link_5 = section.settings.meganav_image_link_5
+  assign image_aspect_ratio_5 = 1 | divided_by: section.settings.image_aspect_ratio_5
+  assign image_6 = section.settings.meganav_image_6
+  assign image_heading_6 = section.settings.meganav_image_heading_6
+  assign image_link_6 = section.settings.meganav_image_link_6
+  assign image_aspect_ratio_6 = 1 | divided_by: section.settings.image_aspect_ratio_6
+  assign widths = '280, 320, 360, 420, 480, 560, 720, 840, 960'
+  assign sizes = 'calc((100vw - 160px) * 0.29)'
+  assign has_meganav = false
 
-assign image_7 = section.settings.meganav_image_7
-assign image_heading_7 = section.settings.meganav_image_heading_7
-assign image_link_7 = section.settings.meganav_image_link_7
-assign image_aspect_ratio_7 = 1 | divided_by: section.settings.image_aspect_ratio_7
+  if linklists[menuPrimary].levels == 3 and is_hamburger_nav == false
+    assign has_meganav = true
+  endif
 
-assign image_8 = section.settings.meganav_image_8
-assign image_heading_8 = section.settings.meganav_image_heading_8
-assign image_link_8 = section.settings.meganav_image_link_8
-assign image_aspect_ratio_8 = 1 | divided_by: section.settings.image_aspect_ratio_8
-assign widths = '280, 320, 360, 420, 480, 560, 720, 840, 960'
-assign sizes = 'calc((100vw - 160px) * 0.29)'
-assign has_meganav = false
-
-if linklists[menuPrimary].levels == 3 and is_hamburger_nav == false
-assign has_meganav = true
-endif
-
-assign dropdown_id = 'NavDropdown'
-if is_hamburger_nav
-assign dropdown_id = 'NavMobileDropdown'
-endif
+  assign dropdown_id = 'NavDropdown'
+  if is_hamburger_nav
+    assign dropdown_id = 'NavMobileDropdown'
+  endif
 -%}
 
 {% capture megaMenuImage_1 %}
 {%- if image_1 != blank or image_heading_1 != blank -%}
-<div class="megamenu__image">
-  {%- if image_1 != blank -%}
-  {%- capture megamenu_image_1 -%}
-  {%- render 'image' image: image_1, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_1, modifier:
-  'megamenu__image-bg' -%}
-  {%- endcapture -%}
+              <div class="megamenu__image">
+                {%- if image_1 != blank -%}
+                  {%- capture megamenu_image_1 -%}
+                    {%- render 'image' image: image_1, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_1, modifier: 'megamenu__image-bg' -%}
+                  {%- endcapture -%}
 
-  {%- unless image_link_1 == blank -%}
-  <a href="{{ image_link_1 }}" class="megamenu__image-inner">
-    {{- megamenu_image_1 -}}
-  </a>
-  {%- else -%}
-  <div class="megamenu__image-inner">
-    {{- megamenu_image_1 -}}
-  </div>
-  {%- endunless -%}
-  {%- endif -%}
+                  {%- unless image_link_1 == blank -%}
+                    <a href="{{ image_link_1 }}" class="megamenu__image-inner">
+                      {{- megamenu_image_1 -}}
+                    </a>
+                  {%- else -%}
+                    <div class="megamenu__image-inner">
+                      {{- megamenu_image_1 -}}
+                    </div>
+                  {%- endunless -%}
+                {%- endif -%}
 
-  {%- unless image_heading_1 == blank -%}
-  <h4>
-    <span>
-      {%- if image_link_1 != blank -%}
-      <a href="{{ image_link_1 }}">{{ image_heading_1 }}</a>
-      {%- else -%}
-      {{- image_heading_1 -}}
-      {%- endif -%}
-    </span>
-  </h4>
-  {%- endunless -%}
-</div>
-{%- endif -%}
-{% endcapture %}
+                {%- unless image_heading_1 == blank -%}
+                  <h4>
+                    <span>
+                      {%- if image_link_1 != blank -%}
+                        <a href="{{ image_link_1 }}">{{ image_heading_1 }}</a>
+                      {%- else -%}
+                        {{- image_heading_1 -}}
+                      {%- endif -%}
+                    </span>
+                  </h4>
+                {%- endunless -%}
+              </div>
+            {%- endif -%}
+  {% endcapture %}
 
 {% capture megaMenuImage_2 %}
-{%- if image_2 != blank or image_heading_2 != blank -%}
-<div class="megamenu__image">
-  {%- if image_2 != blank -%}
-  {%- capture megamenu_image_2 -%}
-  {%- render 'image' image: image_2, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_2, modifier:
-  'megamenu__image-bg' -%}
-  {%- endcapture -%}
+   {%- if image_2 != blank or image_heading_2 != blank -%}
+              <div class="megamenu__image">
+                {%- if image_2 != blank -%}
+                  {%- capture megamenu_image_2 -%}
+                    {%- render 'image' image: image_2, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_2, modifier: 'megamenu__image-bg' -%}
+                  {%- endcapture -%}
 
-  {%- unless image_link_2 == blank -%}
-  <a href="{{ image_link_2 }}" class="megamenu__image-inner">
-    {{- megamenu_image_2 -}}
-  </a>
-  {%- else -%}
-  <div class="megamenu__image-inner">
-    {{- megamenu_image_2 -}}
-  </div>
-  {%- endunless -%}
-  {%- endif -%}
+                  {%- unless image_link_2 == blank -%}
+                    <a href="{{ image_link_2 }}" class="megamenu__image-inner">
+                      {{- megamenu_image_2 -}}
+                    </a>
+                  {%- else -%}
+                    <div class="megamenu__image-inner">
+                      {{- megamenu_image_2 -}}
+                    </div>
+                  {%- endunless -%}
+                {%- endif -%}
 
-  {%- unless image_heading_2 == blank -%}
-  <h4>
-    <span>
-      {%- if image_link_2 != blank -%}
-      <a href="{{ image_link_2 }}">{{ image_heading_2 }}</a>
-      {%- else -%}
-      {{- image_heading_2 -}}
-      {%- endif -%}
-    </span>
-  </h4>
-  {%- endunless -%}
-</div>
-{%- endif -%}
-{% endcapture %}
+                {%- unless image_heading_2 == blank -%}
+                  <h4>
+                    <span>
+                      {%- if image_link_2 != blank -%}
+                        <a href="{{ image_link_2 }}">{{ image_heading_2 }}</a>
+                      {%- else -%}
+                        {{- image_heading_2 -}}
+                      {%- endif -%}
+                    </span>
+                  </h4>
+                {%- endunless -%}
+              </div>
+            {%- endif -%}
+ {% endcapture %}
 
 
 {% capture megaMenuImage_3 %}
-{%- if image_3 != blank or image_heading_3 != blank -%}
-<div class="megamenu__image">
-  {%- if image_3 != blank -%}
-  {%- capture megamenu_image_3 -%}
-  {%- render 'image' image: image_3, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_3, modifier:
-  'megamenu__image-bg' -%}
-  {%- endcapture -%}
+ {%- if image_3 != blank or image_heading_3 != blank -%}
+              <div class="megamenu__image">
+                {%- if image_3 != blank -%}
+                  {%- capture megamenu_image_3 -%}
+                    {%- render 'image' image: image_3, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_3, modifier: 'megamenu__image-bg' -%}
+                  {%- endcapture -%}
 
-  {%- unless image_link_3 == blank -%}
-  <a href="{{ image_link_3 }}" class="megamenu__image-inner">
-    {{- megamenu_image_3 -}}
-  </a>
-  {%- else -%}
-  <div class="megamenu__image-inner">
-    {{- megamenu_image_3 -}}
-  </div>
-  {%- endunless -%}
-  {%- endif -%}
+                  {%- unless image_link_3 == blank -%}
+                    <a href="{{ image_link_3 }}" class="megamenu__image-inner">
+                      {{- megamenu_image_3 -}}
+                    </a>
+                  {%- else -%}
+                    <div class="megamenu__image-inner">
+                      {{- megamenu_image_3 -}}
+                    </div>
+                  {%- endunless -%}
+                {%- endif -%}
 
-  {%- unless image_heading_3 == blank -%}
-  <h4>
-    <span>
-      {%- if image_link_3 != blank -%}
-      <a href="{{ image_link_3 }}">{{ image_heading_3 }}</a>
-      {%- else -%}
-      {{- image_heading_3 -}}
-      {%- endif -%}
-    </span>
-  </h4>
-  {%- endunless -%}
-</div>
-{%- endif -%}
-{% endcapture %}
+                {%- unless image_heading_3 == blank -%}
+                  <h4>
+                    <span>
+                      {%- if image_link_3 != blank -%}
+                        <a href="{{ image_link_3 }}">{{ image_heading_3 }}</a>
+                      {%- else -%}
+                        {{- image_heading_3 -}}
+                      {%- endif -%}
+                    </span>
+                  </h4>
+                {%- endunless -%}
+              </div>
+            {%- endif -%}
+   {% endcapture %}
 
 {% capture megaMenuImage_4 %}
-{%- if image_4 != blank or image_heading_4 != blank -%}
-<div class="megamenu__image">
-  {%- if image_4 != blank -%}
-  {%- capture megamenu_image_4 -%}
-  {%- render 'image' image: image_4, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_3, modifier:
-  'megamenu__image-bg' -%}
-  {%- endcapture -%}
+   {%- if image_4 != blank or image_heading_4 != blank -%}
+              <div class="megamenu__image">
+                {%- if image_4 != blank -%}
+                  {%- capture megamenu_image_4 -%}
+                    {%- render 'image' image: image_4, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_3, modifier: 'megamenu__image-bg' -%}
+                  {%- endcapture -%}
 
-  {%- unless image_link_4 == blank -%}
-  <a href="{{ image_link_4 }}" class="megamenu__image-inner">
-    {{- megamenu_image_4 -}}
-  </a>
-  {%- else -%}
-  <div class="megamenu__image-inner">
-    {{- megamenu_image_4 -}}
-  </div>
-  {%- endunless -%}
-  {%- endif -%}
+                  {%- unless image_link_4 == blank -%}
+                    <a href="{{ image_link_4 }}" class="megamenu__image-inner">
+                      {{- megamenu_image_4 -}}
+                    </a>
+                  {%- else -%}
+                    <div class="megamenu__image-inner">
+                      {{- megamenu_image_4 -}}
+                    </div>
+                  {%- endunless -%}
+                {%- endif -%}
 
-  {%- unless image_heading_4 == blank -%}
-  <h4>
-    <span>
-      {%- if image_link_4 != blank -%}
-      <a href="{{ image_link_4 }}">{{ image_heading_4 }}</a>
-      {%- else -%}
-      {{- image_heading_4 -}}
-      {%- endif -%}
-    </span>
-  </h4>
-  {%- endunless -%}
-</div>
-{%- endif -%}
-{% endcapture %}
+                {%- unless image_heading_4 == blank -%}
+                  <h4>
+                    <span>
+                      {%- if image_link_4 != blank -%}
+                        <a href="{{ image_link_4 }}">{{ image_heading_4 }}</a>
+                      {%- else -%}
+                        {{- image_heading_4 -}}
+                      {%- endif -%}
+                    </span>
+                  </h4>
+                {%- endunless -%}
+              </div>
+            {%- endif -%}
+ {% endcapture %}
 
 {% capture megaMenuImage_5 %}
-{%- if image_5 != blank or image_heading_5 != blank -%}
-<div class="megamenu__image">
-  {%- if image_5 != blank -%}
-  {%- capture megamenu_image_5 -%}
-  {%- render 'image' image: image_5, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_2, modifier:
-  'megamenu__image-bg' -%}
-  {%- endcapture -%}
+   {%- if image_5 != blank or image_heading_5 != blank -%}
+              <div class="megamenu__image">
+                {%- if image_5 != blank -%}
+                  {%- capture megamenu_image_5 -%}
+                    {%- render 'image' image: image_5, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_2, modifier: 'megamenu__image-bg' -%}
+                  {%- endcapture -%}
 
-  {%- unless image_link_5 == blank -%}
-  <a href="{{ image_link_5 }}" class="megamenu__image-inner">
-    {{- megamenu_image_5 -}}
-  </a>
-  {%- else -%}
-  <div class="megamenu__image-inner">
-    {{- megamenu_image_5 -}}
-  </div>
-  {%- endunless -%}
-  {%- endif -%}
+                  {%- unless image_link_5 == blank -%}
+                    <a href="{{ image_link_5 }}" class="megamenu__image-inner">
+                      {{- megamenu_image_5 -}}
+                    </a>
+                  {%- else -%}
+                    <div class="megamenu__image-inner">
+                      {{- megamenu_image_5 -}}
+                    </div>
+                  {%- endunless -%}
+                {%- endif -%}
 
-  {%- unless image_heading_5 == blank -%}
-  <h4>
-    <span>
-      {%- if image_link_5 != blank -%}
-      <a href="{{ image_link_5 }}">{{ image_heading_5 }}</a>
-      {%- else -%}
-      {{- image_heading_5 -}}
-      {%- endif -%}
-    </span>
-  </h4>
-  {%- endunless -%}
-</div>
-{%- endif -%}
-{% endcapture %}
+                {%- unless image_heading_5 == blank -%}
+                  <h4>
+                    <span>
+                      {%- if image_link_5 != blank -%}
+                        <a href="{{ image_link_5 }}">{{ image_heading_5 }}</a>
+                      {%- else -%}
+                        {{- image_heading_5 -}}
+                      {%- endif -%}
+                    </span>
+                  </h4>
+                {%- endunless -%}
+              </div>
+            {%- endif -%}
+ {% endcapture %}
 
 {% capture megaMenuImage_6 %}
-{%- if image_6 != blank or image_heading_6 != blank -%}
-<div class="megamenu__image">
-  {%- if image_6 != blank -%}
-  {%- capture megamenu_image_6 -%}
-  {%- render 'image' image: image_6, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_2, modifier:
-  'megamenu__image-bg' -%}
-  {%- endcapture -%}
+   {%- if image_6 != blank or image_heading_6 != blank -%}
+              <div class="megamenu__image">
+                {%- if image_6 != blank -%}
+                  {%- capture megamenu_image_6 -%}
+                    {%- render 'image' image: image_6, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_2, modifier: 'megamenu__image-bg' -%}
+                  {%- endcapture -%}
 
-  {%- unless image_link_6 == blank -%}
-  <a href="{{ image_link_6 }}" class="megamenu__image-inner">
-    {{- megamenu_image_6 -}}
-  </a>
-  {%- else -%}
-  <div class="megamenu__image-inner">
-    {{- megamenu_image_6 -}}
-  </div>
-  {%- endunless -%}
-  {%- endif -%}
+                  {%- unless image_link_6 == blank -%}
+                    <a href="{{ image_link_6 }}" class="megamenu__image-inner">
+                      {{- megamenu_image_6 -}}
+                    </a>
+                  {%- else -%}
+                    <div class="megamenu__image-inner">
+                      {{- megamenu_image_6 -}}
+                    </div>
+                  {%- endunless -%}
+                {%- endif -%}
 
-  {%- unless image_heading_6 == blank -%}
-  <h4>
-    <span>
-      {%- if image_link_6 != blank -%}
-      <a href="{{ image_link_6 }}">{{ image_heading_6 }}</a>
-      {%- else -%}
-      {{- image_heading_6 -}}
-      {%- endif -%}
-    </span>
-  </h4>
-  {%- endunless -%}
-</div>
-{%- endif -%}
-{% endcapture %}
-
-{% capture megaMenuImage_7 %}
-{%- if image_7 != blank or image_heading_7 != blank -%}
-<div class="megamenu__image">
-  {%- if image_7 != blank -%}
-  {%- capture megamenu_image_7 -%}
-  {%- render 'image' image: image_7, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_2, modifier:
-  'megamenu__image-bg' -%}
-  {%- endcapture -%}
-
-  {%- unless image_link_7 == blank -%}
-  <a href="{{ image_link_7 }}" class="megamenu__image-inner">
-    {{- megamenu_image_7 -}}
-  </a>
-  {%- else -%}
-  <div class="megamenu__image-inner">
-    {{- megamenu_image_7 -}}
-  </div>
-  {%- endunless -%}
-  {%- endif -%}
-
-  {%- unless image_heading_7 == blank -%}
-  <h4>
-    <span>
-      {%- if image_link_7 != blank -%}
-      <a href="{{ image_link_7 }}">{{ image_heading_7 }}</a>
-      {%- else -%}
-      {{- image_heading_7 -}}
-      {%- endif -%}
-    </span>
-  </h4>
-  {%- endunless -%}
-</div>
-{%- endif -%}
-{% endcapture %}
-
-
-
-{% capture megaMenuImage_8 %}
-{%- if image_8 != blank or image_heading_8 != blank -%}
-<div class="megamenu__image">
-  {%- if image_8 != blank -%}
-  {%- capture megamenu_image_8 -%}
-  {%- render 'image' image: image_8, sizes: sizes, widths: widths, aspect_ratio: image_aspect_ratio_2, modifier:
-  'megamenu__image-bg' -%}
-  {%- endcapture -%}
-
-  {%- unless image_link_8 == blank -%}
-  <a href="{{ image_link_8 }}" class="megamenu__image-inner">
-    {{- megamenu_image_8 -}}
-  </a>
-  {%- else -%}
-  <div class="megamenu__image-inner">
-    {{- megamenu_image_8 -}}
-  </div>
-  {%- endunless -%}
-  {%- endif -%}
-
-  {%- unless image_heading_8 == blank -%}
-  <h4>
-    <span>
-      {%- if image_link_8 != blank -%}
-      <a href="{{ image_link_8 }}">{{ image_heading_8 }}</a>
-      {%- else -%}
-      {{- image_heading_8 -}}
-      {%- endif -%}
-    </span>
-  </h4>
-  {%- endunless -%}
-</div>
-{%- endif -%}
-{% endcapture %}
+                {%- unless image_heading_6 == blank -%}
+                  <h4>
+                    <span>
+                      {%- if image_link_6 != blank -%}
+                        <a href="{{ image_link_6 }}">{{ image_heading_6 }}</a>
+                      {%- else -%}
+                        {{- image_heading_6 -}}
+                      {%- endif -%}
+                    </span>
+                  </h4>
+                {%- endunless -%}
+              </div>
+            {%- endif -%}
+ {% endcapture %}
 
 
 {% assign megaImageIndex = 1 %}
 <ul class="menu {% if has_meganav %}menu--has-meganav{% endif %}">
   {% comment %}
-  Loop through the first link list.
+    Loop through the first link list.
   {% endcomment %}
   {%- if menuPrimary != blank -%}
-  {%- for link in linklists[menuPrimary].links -%}
-  {%- assign has_sub_menu = false -%}
+    {%- for link in linklists[menuPrimary].links -%}
+      {%- assign has_sub_menu = false -%}
 
-  {%- for sublink in link.links -%}
-  {%- if link.levels > 0 -%}
-  {%- assign has_sub_menu = true -%}
-  {%- endif -%}
-  {%- endfor -%}
+      {%- for sublink in link.links -%}
+        {%- if link.levels > 0 -%}
+          {%- assign has_sub_menu = true -%}
+        {%- endif -%}
+      {%- endfor -%}
 
-  {%- assign is_meganav = false -%}
-  {%- if link.levels == 2 and is_hamburger_nav == false -%}
-  {%- assign is_meganav = true -%}
-  {%- endif -%}
+      {%- assign is_meganav = false -%}
+      {%- if link.levels == 2 and is_hamburger_nav == false -%}
+        {%- assign is_meganav = true -%}
+      {%- endif -%}
 
-  {%- assign dropdown_trigger = false -%}
-  {%- if link.levels > 0 and is_hamburger_nav -%}
-  {%- if mobile_menu_behaviour == 'trigger' or link.url == '#' or link.url == '#!' -%}
-  {%- assign dropdown_trigger = true -%}
-  {%- endif -%}
-  {%- endif -%}
+      {%- assign dropdown_trigger = false -%}
+      {%- if link.levels > 0 and is_hamburger_nav -%}
+        {%- if mobile_menu_behaviour == 'trigger' or link.url == '#' or link.url == '#!' -%}
+          {%- assign dropdown_trigger = true -%}
+        {%- endif -%}
+      {%- endif -%}
 
-  <li
-    class="menu-item{% if has_sub_menu %} has-submenu{% endif %}{% if is_meganav %} menu-item--meganav{% elsif has_sub_menu %} menu-item--dropdown{% endif %}"
-    {% if has_sub_menu %} data-dropdown-parent{% endif %}>
-    <!-- LINKS -->
-    <a href="{{ link.url }}" class="menu-item__link" {% if dropdown_trigger %}
-      aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}" data-collapsible-trigger{% endif %}
-      data-menu-item-link>
-      {{- link.title | escape -}}
-    </a>
-    {%- if has_sub_menu and is_hamburger_nav == false -%}
-    <button class="toggle-submenu" aria-haspopup="true" aria-expanded="false" aria-label="{{ link.title | escape }}"
-      aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}" data-collapsible-trigger>
-      {%- render 'icon-arrow' -%}
-    </button>
-    {%- endif -%}
+      <li class="menu-item{% if has_sub_menu %} has-submenu{% endif %}{% if is_meganav %} menu-item--meganav{% elsif has_sub_menu %} menu-item--dropdown{% endif %}"{% if has_sub_menu %} data-dropdown-parent{% endif %}>
+        <!-- LINKS -->
+        <a href="{{ link.url }}" class="menu-item__link"{% if dropdown_trigger %} aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}" data-collapsible-trigger{% endif %} data-menu-item-link>
+          {{- link.title | escape -}}
+        </a>
+        {%- if has_sub_menu and is_hamburger_nav == false -%}
+          <button class="toggle-submenu" aria-haspopup="true" aria-expanded="false" aria-label="{{ link.title | escape }}" aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}" data-collapsible-trigger>
+            {%- render 'icon-arrow' -%}
+          </button>
+        {%- endif -%}
 
-    {%- if link.levels > 0 -%}
-    {%- if is_meganav -%}
-    <div class="megamenu-wrapper" id="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}">
-      <div class="megamenu-inner" data-collapsible-content>
-        <div class="container" style="display:flex;">
+        {%- if link.levels > 0 -%}
+          {%- if is_meganav -%}
+            <div class="megamenu-wrapper" id="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}">
+              <div class="megamenu-inner" data-collapsible-content>
+                <div class="container" style="display:flex;">
           {%- endif -%}
 
           {%- capture submenuClass -%}
-          {%- if is_meganav -%}
-          submenu--items-{{ link.links.size }}
-          {%- endif -%}
+            {%- if is_meganav -%}
+              submenu--items-{{ link.links.size }}
+            {%- endif -%}
           {%- endcapture -%}
 
-          {%- if link.levels > 0 and is_hamburger_nav -%}
-          <button class="dropdown-arrow" aria-expanded="false" aria-haspopup="true"
-            aria-label="{{ link.title | escape }}"
-            aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}" data-collapsible-trigger>
-            {%- render 'icon-arrow' -%}
-          </button>
+                  {%- if link.levels > 0 and is_hamburger_nav -%}
+            <button class="dropdown-arrow" aria-expanded="false" aria-haspopup="true" aria-label="{{ link.title | escape }}" aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}" data-collapsible-trigger>
+              {%- render 'icon-arrow' -%}
+            </button>
           {%- endif -%}
 
-          <div style="width:fit-content;"
-            class="submenu{% unless is_meganav %} submenu--dropdown{% endunless %} {{ submenuClass }}" {% unless
-            is_meganav %} id="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}" {% endunless %}>
+          <div style="width:fit-content;" class="submenu{% unless is_meganav %} submenu--dropdown{% endunless %} {{ submenuClass }}"{% unless is_meganav %} id="{{ dropdown_id }}--{{ link.handle }}-{{ forloop.index0 }}"{% endunless %}>
             <ul data-collapsible-content>
               {%- comment -%} SUBMENU LINKS {%- endcomment -%}
               {%- for sublink in link.links -%}
-              {%- assign dropdown_trigger = false -%}
-              {%- if sublink.levels > 0 and is_hamburger_nav -%}
-              {%- if mobile_menu_behaviour == 'trigger' or sublink.url == '#' or sublink.url == '#!' -%}
-              {%- assign dropdown_trigger = true -%}
-              {%- endif -%}
-              {%- endif -%}
-
-              <li data-levels="{{ sublink.levels }}"
-                class="submenu-item{% if sublink.levels > 0 %} has-submenu{% endif %}">
-                {%- comment -%} SUBLINK TITLE {%- endcomment -%}
-                <a class="submenu-item__link visible-nav-link{% if is_meganav %} submenu-item__title{% endif %}"
-                  href="{{ sublink.url }}" data-visible-link{% if has_sub_menu %} aria-expanded="false"
-                  aria-haspopup="true" {% endif %}{% if dropdown_trigger %}
-                  aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ sublink.handle }}-{{ forloop.index0 }}"
-                  data-collapsible-trigger{% endif %}>
-                  {{- sublink.title -}}
-                </a>
-
+                {%- assign dropdown_trigger = false -%}
                 {%- if sublink.levels > 0 and is_hamburger_nav -%}
-                <button class="dropdown-arrow" aria-expanded="false" aria-haspopup="true"
-                  aria-label="{{ sublink.title | escape }}"
-                  aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ sublink.handle }}-{{ forloop.index0 }}"
-                  data-collapsible-trigger>
-                  {%- render 'icon-arrow' -%}
-                </button>
+                  {%- if mobile_menu_behaviour == 'trigger' or sublink.url == '#' or sublink.url == '#!' -%}
+                    {%- assign dropdown_trigger = true -%}
+                  {%- endif -%}
                 {%- endif -%}
-                {%- if sublink.levels > 0 -%}
-                <div class="submenu" {% unless is_meganav %}
-                  id="{{ dropdown_id }}--{{ link.handle }}-{{ sublink.handle }}-{{ forloop.index0 }}" {% endunless %}>
-                  <ul data-collapsible-content>
-                    {%- comment -%} SUB-SUBMENU LINKS {%- endcomment -%}
-                    {%- for subsublink in sublink.links -%}
-                    <li class="submenu-item">
-                      <a href="{{ subsublink.url }}" class="submenu-item__link visible-nav-link" data-visible-link>{{
-                        subsublink.title }}</a>
-                    </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-                {%- endif -%}
-              </li>
-              {%- comment -%} END SUBSUBLINK {%- endcomment -%}
+                
+                <li data-levels = "{{ sublink.levels }}" class="submenu-item{% if sublink.levels > 0 %} has-submenu{% endif %}">
+                  {%- comment -%} SUBLINK TITLE {%- endcomment -%}
+                  <a class="submenu-item__link visible-nav-link{% if is_meganav %} submenu-item__title{% endif %}" href="{{ sublink.url }}" data-visible-link{% if has_sub_menu %} aria-expanded="false" aria-haspopup="true"{% endif %}{% if dropdown_trigger %} aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ sublink.handle }}-{{ forloop.index0 }}" data-collapsible-trigger{% endif %}>
+                    {{- sublink.title -}}
+                  </a>
+
+                  {%- if sublink.levels > 0 and is_hamburger_nav -%}
+                    <button class="dropdown-arrow" aria-expanded="false" aria-haspopup="true" aria-label="{{ sublink.title | escape }}" aria-controls="{{ dropdown_id }}--{{ link.handle }}-{{ sublink.handle }}-{{ forloop.index0 }}" data-collapsible-trigger>
+                      {%- render 'icon-arrow' -%}
+                    </button>
+                  {%- endif -%}
+                  {%- if sublink.levels > 0 -%}
+                  <div class="submenu"{% unless is_meganav %} id="{{ dropdown_id }}--{{ link.handle }}-{{ sublink.handle }}-{{ forloop.index0 }}"{% endunless %}>
+                    <ul data-collapsible-content>
+                      {%- comment -%} SUB-SUBMENU LINKS {%- endcomment -%}
+                      {%- for subsublink in sublink.links -%}
+                        <li class="submenu-item">
+                          <a href="{{ subsublink.url }}" class="submenu-item__link visible-nav-link" data-visible-link>{{ subsublink.title }}</a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                  {%- endif -%}
+                 </li>
+                {%- comment -%} END SUBSUBLINK {%- endcomment -%}
               {%- endfor -%}
             </ul>
           </div>
 
-
+          
           {%- comment -%} MEGAMENU IMAGE AND TEXT {%- endcomment -%}
-          {% if megaImageIndex == 1 %}
+           {% if megaImageIndex == 1 %}
           {%- if is_meganav -%}
-          {{- megaMenuImage_1 -}}
-          {{- megaMenuImage_2 -}}
+              {{- megaMenuImage_1 -}}
+             {{- megaMenuImage_2 -}}
           {%- endif -%}
-          {%- endif -%}
+             {%- endif -%}
           {%- comment -%} END MEGANAV IMAGE AND TEXT {%- endcomment -%}
 
 
 
-          {%- comment -%} MEGAMENU IMAGE AND TEXT {%- endcomment -%}
-          {% if megaImageIndex == 2 %}
+            {%- comment -%} MEGAMENU IMAGE AND TEXT {%- endcomment -%}
+           {% if megaImageIndex == 2 %}
           {%- if is_meganav -%}
-          {{- megaMenuImage_3 -}}
-          {{- megaMenuImage_4 -}}
+                    {{- megaMenuImage_3 -}}  
+                   {{- megaMenuImage_4 -}}  
           {%- endif -%}
-          {%- endif -%}
+             {%- endif -%}
           {%- comment -%} END MEGANAV IMAGE AND TEXT {%- endcomment -%}
 
-
-          {%- comment -%} MEGAMENU IMAGE AND TEXT {%- endcomment -%}
-          {% if megaImageIndex == 3 %}
+                  
+ {%- comment -%} MEGAMENU IMAGE AND TEXT {%- endcomment -%}
+           {% if megaImageIndex == 3 %}
           {%- if is_meganav -%}
-          {{- megaMenuImage_5 -}}
-          {{- megaMenuImage_6 -}}
+             {{- megaMenuImage_5 -}}  
+                   {{- megaMenuImage_6 -}}  
           {%- endif -%}
-          {%- endif -%}
-
-          {% if megaImageIndex == 4 %}
-          {%- if is_meganav -%}
-          {{- megaMenuImage_7 -}}
-          {{- megaMenuImage_8 -}}
-          {%- endif -%}
-          {%- endif -%}
+             {%- endif -%}
           {%- comment -%} END MEGANAV IMAGE AND TEXT {%- endcomment -%}
 
+                  
 
-
-
-
+              
+         
           {%- if is_meganav -%}
-        </div>
-      </div>
-    </div>
-    {%- comment -%} END MEGAMENU WRAPPER {%- endcomment -%}
-    {%- endif -%}
-    {%- endif -%}
-    {% assign megaImageIndex = megaImageIndex | plus : 1 %}
-
-  </li>
-  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+            {%- comment -%} END MEGAMENU WRAPPER {%- endcomment -%}
+          {%- endif -%}
+        {%- endif -%}
+     {% if has_sub_menu %}{% if is_meganav %} {% assign megaImageIndex = megaImageIndex | plus : 1 %}{%- endif -%} {%- endif -%}
+ 
+      </li>
+    {%- endfor -%}
   {%- endif -%}
 </ul>
 
 {%- if is_hamburger_nav -%}
-<div class="nav-user">
-  <ul>
-    {%- if shop.customer_accounts_enabled -%}
-    {%- if customer -%}
-    <li class="nav-user__item nav-user__item--account"><a href="{{ routes.account_url }}" class="nav-user__link">{{
-        'customer.link.my_account' | t }}</a></li>
-    {%- else -%}
-    <li class="nav-user__item nav-user__item--account"><a href="{{ routes.account_login_url }}"
-        class="nav-user__link">{{ 'customer.link.login' | t }}</a></li>
-    {%- endif -%}
-    {%- endif -%}
+  <div class="nav-user">
+    <ul>
+      {%- if shop.customer_accounts_enabled -%}
+        {%- if customer -%}
+          <li class="nav-user__item nav-user__item--account"><a href="{{ routes.account_url }}" class="nav-user__link">{{ 'customer.link.my_account' | t }}</a></li>
+        {%- else -%}
+          <li class="nav-user__item nav-user__item--account"><a href="{{ routes.account_login_url }}" class="nav-user__link">{{ 'customer.link.login' | t }}</a></li>
+        {%- endif -%}
+      {%- endif -%}
 
-    {%- if settings.show_search -%}
-    <li class="nav-user__item nav-user__item--search"><a href="{{ routes.search_url }}" class="nav-user__link">{{
-        'general.slide_out_navigation.search_label' | t }}</a></li>
-    {%- endif -%}
-  </ul>
-</div>
+      {%- if settings.show_search -%}
+        <li class="nav-user__item nav-user__item--search"><a href="{{ routes.search_url }}" class="nav-user__link">{{ 'general.slide_out_navigation.search_label' | t }}</a></li>
+      {%- endif -%}
+    </ul>
+  </div>
 
-{%- render 'social-links' social_class: 'nav-footer', social_inner_class: 'nav-social', social_list_class: 'social-links
-social-links--nav', last_focusable_element: true -%}
+  {%- render 'social-links' social_class: 'nav-footer', social_inner_class: 'nav-social', social_list_class: 'social-links social-links--nav', last_focusable_element: true -%}
 {%- endif -%}

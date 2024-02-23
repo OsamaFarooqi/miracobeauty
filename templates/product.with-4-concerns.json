@@ -19,7 +19,7 @@
           }
         },
         "53441f70-0164-42de-abb2-8fe3035cc222": {
-          "type": "shopify:\/\/apps\/loox-product-reviews-photos\/blocks\/loox-rating\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "type": "shopify:\/\/apps\/loox-reviews\/blocks\/loox-rating\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
           "settings": {
             "contentSize": 16,
             "pattern": "",
@@ -110,7 +110,7 @@
           "type": "item",
           "settings": {
             "title": "How to Use",
-            "answer": "<p>{{ product.metafields.custom.tab_how_to_use | metafield_tag }}<\/p>"
+            "answer": "{%- render 'how-to-use' -%}"
           }
         },
         "4201a137-f49b-432f-a106-9e8df5ec6a92": {
@@ -428,7 +428,7 @@
           }
         },
         "a7f9a18a-5f0b-4478-ab06-02b6f5c7ee6a": {
-          "type": "shopify:\/\/apps\/loox-product-reviews-photos\/blocks\/loox-dynamic-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "type": "shopify:\/\/apps\/loox-reviews\/blocks\/loox-dynamic-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
           "settings": {
             "only_photos": false,
             "aggregated": false,

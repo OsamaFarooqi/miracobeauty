@@ -1,0 +1,330 @@
+{%- liquid
+  assign mobile_menu_behaviour = settings.mobile_menu_behaviour
+  assign menuPrimary = section.settings.menu_list
+  assign image_1 = section.settings.meganav_image_1
+  assign image_heading_1 = section.settings.meganav_image_heading_1
+  assign image_link_1 = section.settings.meganav_image_link_1
+  assign image_aspect_ratio_1 = 1 | divided_by: section.settings.image_aspect_ratio_1
+    assign image_2 = section.settings.meganav_image_2
+  assign image_heading_2 = section.settings.meganav_image_heading_2
+  assign image_link_2 = section.settings.meganav_image_link_2
+  assign image_aspect_ratio_2 = 1 | divided_by: section.settings.image_aspect_ratio_2
+    assign image_3 = section.settings.meganav_image_3
+  assign image_heading_3 = section.settings.meganav_image_heading_3
+  assign image_link_3 = section.settings.meganav_image_link_3
+  assign image_aspect_ratio_3 = 1 | divided_by: section.settings.image_aspect_ratio_3
+  assign image_4 = section.settings.meganav_image_4
+  assign image_heading_4 = section.settings.meganav_image_heading_4
+  assign image_link_4 = section.settings.meganav_image_link_4
+  assign image_aspect_ratio_4 = 1 | divided_by: section.settings.image_aspect_ratio_4
+  assign image_5 = section.settings.meganav_image_5
+  assign image_heading_5 = section.settings.meganav_image_heading_5
+  assign image_link_5 = section.settings.meganav_image_link_5
+  assign image_aspect_ratio_5 = 1 | divided_by: section.settings.image_aspect_ratio_5
+  assign image_6 = section.settings.meganav_image_6
+  assign image_heading_6 = section.settings.meganav_image_heading_6
+  assign image_link_6 = section.settings.meganav_image_link_6
+  assign image_aspect_ratio_6 = 1 | divided_by: section.settings.image_aspect_ratio_6
+  assign widths = '280, 320, 360, 420, 480, 560, 720, 840, 960'
+  assign sizes = 'calc((100vw - 160px) * 0.29)'
+  assign has_meganav = false
+
+  if linklists[menuPrimary].levels == 3 and is_hamburger_nav == false
+    assign has_meganav = true
+  endif
+
+  assign dropdown_id = 'NavDropdown'
+  if is_hamburger_nav
+    assign dropdown_id = 'NavMobileDropdown'
+  endif
+-%}
+
+
+<div class="main_menu">
+    <ul>
+        {% for link in linklists[menuPrimary].links %}
+            {% liquid
+              assign three_level = false
+              assign li_class = 'sf-menu-item list-none'
+              assign box_size = 'block px-4 py-5'
+              assign is_mega = true
+              assign stretch_width = false
+      
+              if link.links != blank
+                  if link.levels == 2
+                      assign three_level = true
+                  endif
+              endif
+      
+              assign title_handle = link.title | handleize
+              assign has_mega_item = false
+            %}
+            {% for block in section.blocks %}
+                {% liquid
+                  assign menu_title = block.settings.menu-name | handleize
+    
+                  if menu_title == blank or menu_title != title_handle
+                      continue
+                  endif
+                %}
+                {% if menu_title == title_handle %}
+                    {% liquid
+                      assign has_mega_item = true
+                      if block.settings.container == 'inherit'
+                        assign dropdown_container = section.settings.container
+                      else
+                        assign dropdown_container = block.settings.container
+                      endif
+                    %}
+    
+                    {% case block.type %}
+                        {% when 'mega-menu1' %}
+                            {% capture block_type %}
+                                <div class="mega_menu_item column-width6">
+                                   {% if block.settings.collection_1_1 != blank %}<h3 class="collection-tit"><a href="{{ block.settings.collection_1_1 }}">{{ block.settings.collection_title1 }}</a></h3>{% endif %}
+                                   {% if block.settings.collection_1_2 != blank %}<a href="{{ block.settings.collection_1_2 }}">{{ block.settings.collection_1_2.title }}</a>{% endif %}
+                                   {% if block.settings.collection_1_3 != blank %}<a href="{{ block.settings.collection_1_3 }}">{{ block.settings.collection_1_3.title }}</a>{% endif %}
+                                   {% if block.settings.collection_1_4 != blank %}<a href="{{ block.settings.collection_1_4 }}">{{ block.settings.collection_1_4.title }}</a>{% endif %}
+                                   {% if block.settings.collection_1_5 != blank %}<a href="{{ block.settings.collection_1_5 }}">{{ block.settings.collection_1_5.title }}</a>{% endif %}
+                                   {% if block.settings.collection_1_6 != blank %}<a href="{{ block.settings.collection_1_6 }}">{{ block.settings.collection_1_6.title }}</a>{% endif %}
+                                   {% if block.settings.collection_1_7 != blank %}<a href="{{ block.settings.collection_1_7 }}">{{ block.settings.collection_1_7.title }}</a>{% endif %}
+                                   {% if block.settings.collection_1_8 != blank %}<a href="{{ block.settings.collection_1_8 }}">{{ block.settings.collection_1_8.title }}</a>{% endif %}
+                                   {% if block.settings.collection_1_9 != blank %}<a href="{{ block.settings.collection_1_9 }}">{{ block.settings.collection_1_9.title }}</a>{% endif %}
+                                </div>
+                                <div class="mega_menu_item column-width6">
+                                   {% if block.settings.collection_2_1 != blank %}<h3 class="collection-tit"><a href="{{ block.settings.collection_2_1 }}">{{ block.settings.collection_title2 }}</a></h3>{% endif %}
+                                   {% if block.settings.collection_2_2 != blank %}<a href="{{ block.settings.collection_2_2 }}">{{ block.settings.collection_2_2.title }}</a>{% endif %}
+                                   {% if block.settings.collection_2_3 != blank %}<a href="{{ block.settings.collection_2_3 }}">{{ block.settings.collection_2_3.title }}</a>{% endif %}
+                                   {% if block.settings.collection_2_4 != blank %}<a href="{{ block.settings.collection_2_4 }}">{{ block.settings.collection_2_4.title }}</a>{% endif %}
+                                   {% if block.settings.collection_2_5 != blank %}<a href="{{ block.settings.collection_2_5 }}">{{ block.settings.collection_2_5.title }}</a>{% endif %}
+                                   {% if block.settings.collection_2_6 != blank %}<a href="{{ block.settings.collection_2_6 }}">{{ block.settings.collection_2_6.title }}</a>{% endif %}
+                                   {% if block.settings.collection_2_7 != blank %}<a href="{{ block.settings.collection_2_7 }}">{{ block.settings.collection_2_7.title }}</a>{% endif %}
+                                   {% if block.settings.collection_2_8 != blank %}<a href="{{ block.settings.collection_2_8 }}">{{ block.settings.collection_2_8.title }}</a>{% endif %}
+                                   {% if block.settings.collection_2_9 != blank %}<a href="{{ block.settings.collection_2_9 }}">{{ block.settings.collection_2_9.title }}</a>{% endif %}
+                                </div>
+                                <div class="mega_menu_item column-width6">
+                                   {% if block.settings.collection_3_1 != blank %}<h3 class="collection-tit"><a href="{{ block.settings.collection_3_1 }}">{{ block.settings.collection_title3 }}</a></h3>{% endif %}
+                                   {% if block.settings.collection_3_2 != blank %}<a href="{{ block.settings.collection_3_2 }}">{{ block.settings.collection_3_2.title }}</a>{% endif %}
+                                   {% if block.settings.collection_3_3 != blank %}<a href="{{ block.settings.collection_3_3 }}">{{ block.settings.collection_3_3.title }}</a>{% endif %}
+                                   {% if block.settings.collection_3_4 != blank %}<a href="{{ block.settings.collection_3_4 }}">{{ block.settings.collection_3_4.title }}</a>{% endif %}
+                                   {% if block.settings.collection_3_5 != blank %}<a href="{{ block.settings.collection_3_5 }}">{{ block.settings.collection_3_5.title }}</a>{% endif %}
+                                   {% if block.settings.collection_3_6 != blank %}<a href="{{ block.settings.collection_3_6 }}">{{ block.settings.collection_3_6.title }}</a>{% endif %}
+                                   {% if block.settings.collection_3_7 != blank %}<a href="{{ block.settings.collection_3_7 }}">{{ block.settings.collection_3_7.title }}</a>{% endif %}
+                                   {% if block.settings.collection_3_8 != blank %}<a href="{{ block.settings.collection_3_8 }}">{{ block.settings.collection_3_8.title }}</a>{% endif %}
+                                   {% if block.settings.collection_3_9 != blank %}<a href="{{ block.settings.collection_3_9 }}">{{ block.settings.collection_3_9.title }}</a>{% endif %}
+                                </div>
+                                <div class="mega_menu_item column-width6">
+                                   {% if block.settings.collection_4_1 != blank %}<h3 class="collection-tit"><a href="{{ block.settings.collection_4_1 }}">{{ block.settings.collection_title4 }}</a></h3>{% endif %}
+                                   {% if block.settings.collection_4_2 != blank %}<a href="{{ block.settings.collection_4_2 }}">{{ block.settings.collection_4_2.title }}</a>{% endif %}
+                                   {% if block.settings.collection_4_3 != blank %}<a href="{{ block.settings.collection_4_3 }}">{{ block.settings.collection_4_3.title }}</a>{% endif %}
+                                   {% if block.settings.collection_4_4 != blank %}<a href="{{ block.settings.collection_4_4 }}">{{ block.settings.collection_4_4.title }}</a>{% endif %}
+                                   {% if block.settings.collection_4_5 != blank %}<a href="{{ block.settings.collection_4_5 }}">{{ block.settings.collection_4_5.title }}</a>{% endif %}
+                                   {% if block.settings.collection_4_6 != blank %}<a href="{{ block.settings.collection_4_6 }}">{{ block.settings.collection_4_6.title }}</a>{% endif %}
+                                   {% if block.settings.collection_4_7 != blank %}<a href="{{ block.settings.collection_4_7 }}">{{ block.settings.collection_4_7.title }}</a>{% endif %}
+                                   {% if block.settings.collection_4_8 != blank %}<a href="{{ block.settings.collection_4_8 }}">{{ block.settings.collection_4_8.title }}</a>{% endif %}
+                                   {% if block.settings.collection_4_9 != blank %}<a href="{{ block.settings.collection_4_9 }}">{{ block.settings.collection_4_9.title }}</a>{% endif %}
+                                </div>
+                                <div class="mega_menu_item column-width6">
+                                   {% if block.settings.collection_5_1 != blank %}<h3 class="collection-tit"><a href="{{ block.settings.collection_5_1 }}">{{ block.settings.collection_title5 }}</a></h3>{% endif %}
+                                   {% if block.settings.collection_5_2 != blank %}<a href="{{ block.settings.collection_5_2 }}">{{ block.settings.collection_5_2.title }}</a>{% endif %}
+                                   {% if block.settings.collection_5_3 != blank %}<a href="{{ block.settings.collection_5_3 }}">{{ block.settings.collection_5_3.title }}</a>{% endif %}
+                                   {% if block.settings.collection_5_4 != blank %}<a href="{{ block.settings.collection_5_4 }}">{{ block.settings.collection_5_4.title }}</a>{% endif %}
+                                   {% if block.settings.collection_5_5 != blank %}<a href="{{ block.settings.collection_5_5 }}">{{ block.settings.collection_5_5.title }}</a>{% endif %}
+                                   {% if block.settings.collection_5_6 != blank %}<a href="{{ block.settings.collection_5_6 }}">{{ block.settings.collection_5_6.title }}</a>{% endif %}
+                                   {% if block.settings.collection_5_7 != blank %}<a href="{{ block.settings.collection_5_7 }}">{{ block.settings.collection_5_7.title }}</a>{% endif %}
+                                   {% if block.settings.collection_5_8 != blank %}<a href="{{ block.settings.collection_5_8 }}">{{ block.settings.collection_5_8.title }}</a>{% endif %}
+                                   {% if block.settings.collection_5_9 != blank %}<a href="{{ block.settings.collection_5_9 }}">{{ block.settings.collection_5_9.title }}</a>{% endif %}
+                                </div>
+                                <div class="mega_menu_item column-width6">
+                                   {% if block.settings.collection_6_1 != blank %}<h3 class="collection-tit"><a href="{{ block.settings.collection_6_1 }}">{{ block.settings.collection_title6 }}</a></h3>{% endif %}
+                                   {% if block.settings.collection_6_2 != blank %}<a href="{{ block.settings.collection_6_2 }}">{{ block.settings.collection_6_2.title }}</a>{% endif %}
+                                   {% if block.settings.collection_6_3 != blank %}<a href="{{ block.settings.collection_6_3 }}">{{ block.settings.collection_6_3.title }}</a>{% endif %}
+                                   {% if block.settings.collection_6_4 != blank %}<a href="{{ block.settings.collection_6_4 }}">{{ block.settings.collection_6_4.title }}</a>{% endif %}
+                                   {% if block.settings.collection_6_5 != blank %}<a href="{{ block.settings.collection_6_5 }}">{{ block.settings.collection_6_5.title }}</a>{% endif %}
+                                   {% if block.settings.collection_6_6 != blank %}<a href="{{ block.settings.collection_6_6 }}">{{ block.settings.collection_6_6.title }}</a>{% endif %}
+                                   {% if block.settings.collection_6_7 != blank %}<a href="{{ block.settings.collection_6_7 }}">{{ block.settings.collection_6_7.title }}</a>{% endif %}
+                                   {% if block.settings.collection_6_8 != blank %}<a href="{{ block.settings.collection_6_8 }}">{{ block.settings.collection_6_8.title }}</a>{% endif %}
+                                   {% if block.settings.collection_6_9 != blank %}<a href="{{ block.settings.collection_6_9 }}">{{ block.settings.collection_6_9.title }}</a>{% endif %}
+                                </div>
+                            {% endcapture %}
+                        
+                        {% when 'mega-menu2' %}            
+                              {% capture block_type %}
+                                {% if block.settings.link1 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link1 }}"><img class="imgandtxt-img" src="{{ block.settings.image_1 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link1 }}">{% if block.settings.title1 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title1 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link2 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link2 }}"><img class="imgandtxt-img" src="{{ block.settings.image_2 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link2 }}">{% if block.settings.title2 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title2 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link3 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link3 }}"><img class="imgandtxt-img" src="{{ block.settings.image_3 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link3 }}">{% if block.settings.title3 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title3 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link4 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link4 }}"><img class="imgandtxt-img" src="{{ block.settings.image_4 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link4 }}">{% if block.settings.title4 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title4 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link5 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link5 }}"><img class="imgandtxt-img" src="{{ block.settings.image_5 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link5 }}">{% if block.settings.title5 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title5 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link6 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link6 }}"><img class="imgandtxt-img" src="{{ block.settings.image_6 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link6 }}">{% if block.settings.title6 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title6 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link7 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link7 }}"><img class="imgandtxt-img" src="{{ block.settings.image_7 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link7 }}">{% if block.settings.title7 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title7 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link8 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link8 }}"><img class="imgandtxt-img" src="{{ block.settings.image_8 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link8 }}">{% if block.settings.title8 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title8 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link9 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link9 }}"><img class="imgandtxt-img" src="{{ block.settings.image_9 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link9 }}">{% if block.settings.title9 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title9 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link10 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link10 }}"><img class="imgandtxt-img" src="{{ block.settings.image_10 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link10 }}">{% if block.settings.title10 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title10 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link11 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link11 }}"><img class="imgandtxt-img" src="{{ block.settings.image_11 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link11 }}">{% if block.settings.title11 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title11 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+
+                                {% if block.settings.link12 != blank %}<div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                  <a href="{{ block.settings.link12 }}"><img class="imgandtxt-img" src="{{ block.settings.image_12 | img_url: 'master' }}"></a>
+                                  <a href="{{ block.settings.link12 }}">{% if block.settings.title12 != blank %}<h3 class="imgandtxt-tit">{{ block.settings.title12 }}</h3>{% endif %}</a>
+                                </div>{% endif %} 
+                              {% endcapture %}
+                        {% when 'mega-menu3' %}
+                            {% capture block_type %}
+                              {%- assign collection = collections[block.settings.collection] -%}
+                               {% for product in collection.products limit: block.settings.limit %} 
+                                <div class="mega_menu_item column-width{{ block.settings.columns }}">
+                                        <a class="block" href="{{ product.url }}">
+                                      {%- render 'image' image: product.media[1].preview_image, widths: widths, sizes: sizes, modifier: image_hover_modifier -%}
+                                          <h3 class="featured-prod fp-title">
+                                             {{ product.title | default: 'homepage.onboarding.product_title' }}
+                                          </h3>       
+                                    </a>
+                                </div>                            
+                               {% endfor %}  
+                               <div class="mega_menu_item column-width{{ block.settings.columns }}"> 
+                                  <a class="block" href="{{ block.settings.allplink }}">
+                                      <img class="imgandtxt-img" src="{{ block.settings.allpimage | img_url: 'master' }}">
+                                          <h3 class="featured-prod fp-title">
+                                             {{ block.settings.allptext }}
+                                          </h3>       
+                                    </a>
+                               </div> 
+                            {% endcapture %}
+                        {% when 'mega-menu4' %}
+                            {% assign menuCategory = block.settings.menu_list %}
+                            {% capture block_type %}
+                             {% if block.settings.menu_list != blank %}
+                              <div class="mega_menu_item column-width6">
+                               <div class="cat-menu">
+                                 <ul>
+                                   {% for link in linklists[menuCategory].links %}
+                                       <li class="categy-link-list" data-index="{{ forloop.index0 }}">
+                                         <a href="{{ link.url }}" class="cll-link">{{ link.title }}</a>
+                                       </li>
+                                   {% endfor %}
+                                 </ul>
+                               </div>
+                               </div>                             
+                               <div class="mega_menu_item column-width6">
+                               <a href="{{ block.settings.link1 }}"><img class="imgandtxt-img" src="{{ block.settings.image_1 | img_url: 'master' }}"></a>
+                               </div>
+                               <div class="mega_menu_item column-width6">
+                               <a href="{{ block.settings.link2 }}"><img class="imgandtxt-img" src="{{ block.settings.image_2 | img_url: 'master' }}"></a>
+                               </div>
+                               <div class="mega_menu_item column-width6">
+                               </div>
+                               <div class="mega_menu_item column-width6">
+                               </div>
+                               <div class="mega_menu_item column-width6">
+                               </div>
+                               
+                              {% endif %}
+                            {% endcapture %}
+                        {% when 'custom_html' %}
+                            {% capture block_type %}
+                                {% if block.settings.html != blank %}
+                                    <div class="mega_menu_item full-wdith">
+                                        {{ block.settings.html }}
+                                    </div>
+                                {% endif %}
+                            {% endcapture %}
+                        {% else %}
+                            {% liquid
+                              capture block_type 
+                              endcapture
+                            %}
+                    {% endcase %}
+                {% endif %}
+            {% endfor %}
+    
+            {% if three_level != true and has_mega_item == false %}
+                {% assign li_class = li_class | append: ' sf-menu-item--no-mega' %}
+                {% assign is_mega = false %}
+            {% endif %}
+    
+            {% if link.links != blank %}
+                <li class="{{ li_class }} {% if is_mega %} has_dropdown{% endif %}" data-index="{{ forloop.index0 }}">
+                    <a href="{{ link.url }}" class="">{{ link.title }} {% if is_mega %}<i class="fas fa-angle-down"></i>{% endif %}{% if link.links != blank %}<i class="fas fa-angle-down"></i>{% endif %}</a>
+                    {% if link.links != blank %}
+                                        <ul class="sub_menu">
+                                            {% for childlink in link.links %}
+                                                <li class="has_dropdown">
+                                                    <a href="{{ childlink.url }}">{{ childlink.title }} {% if is_mega %}<i class="fas fa-angle-right"></i>{% endif %}</a>
+                                                    {% if childlink.links != blank %}
+                                                            <ul class="has_dropdown">
+                                                                {% for grandlink in childlink.links %}
+                                                                    <li>
+                                                                        <a href="{{ grandlink.url }}">
+                                                                            {{ grandlink.title }}
+                                                                        </a>
+                                                                    </li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                    {% endif %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% if has_mega_item == true and block_type != blank %}
+                                            <div class="sf-menu-submenu__addon pl-5{% if stretch_width == false %} w-1/3{% endif %}">
+                                                {{ block_type }}
+                                            </div>
+                                        {% endif %}
+                    {% endif %}
+                </li>
+            {% else %}
+                <li class="{{ li_class }} {% if is_mega %} mega_menu_dropdown{% endif %}" data-index="{{ forloop.index0 }}">
+                    <a href="{{ link.url }}">
+                        {{ link.title }} {% if is_mega %}<i class="fas fa-angle-down"></i>{% endif %}
+                    </a>
+                    {% if is_mega and block_type != blank %}
+                        <div class="mega_menu sub_menu">
+                                            {{ block_type }}
+                        </div>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,82 @@
+<div class="hopw">
+  <div class="container">
+    <div class="page-title">
+      {%- if section.settings.hopw-title != blank -%}<h2 class="page-title__heading">{{ section.settings.hopw-title }}</h2>{%- endif -%}
+      {%- if section.settings.hopw-desc != blank -%}{{ section.settings.hopw-desc }}{%- endif -%}
+    </div>
+    <div class="hopw-wrapper">     
+      <div class="hopw-row desk ">
+        {%  for block in section.blocks %}
+          <div class="hopw-cont">
+          {%- if block.settings.img != blank -%}<img class="hopw-img" src="{{ block.settings.img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.title != blank -%}<h3>{{ block.settings.title  }}</h3>{%- endif -%}
+          {%- if block.settings.description != blank -%}{{ block.settings.description }}{%- endif -%}
+          </div>
+        {%  endfor %} 
+      </div>    
+      <div class="hopw-ms mob">
+        <div class="hopw-carousel">
+        {%  for block in section.blocks %}
+          <div class="hopwc-cont">
+          {%- if block.settings.img != blank -%}<img class="hopwc-img" src="{{ block.settings.img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.title != blank -%}<h3>{{ block.settings.title  }}</h3>{%- endif -%}
+          {%- if block.settings.description != blank -%}{{ block.settings.description }}{%- endif -%}
+          </div>   
+        {%  endfor %} 
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "How our Products Works",
+    "settings": [
+       {
+        "type": "text",
+        "id": "hopw-title",
+        "label": "Title"
+       },
+       {
+        "type": "richtext",
+        "id": "hopw-desc",
+        "label": "Description"
+       }
+    ],
+    "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+      {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Item Image"
+      },
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Item Name"
+      },
+      {
+          "type": "richtext",
+          "id": "description",
+          "label": "Item Description"
+      }
+    ]
+  
+    }
+  ],
+    "presets": [
+    {
+      "name": "How our Products Works",
+      "blocks": []
+    }
+  ]
+  }
+{% endschema %}

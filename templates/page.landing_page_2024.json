@@ -1,0 +1,649 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true
+      }
+    },
+    "custom_hero_slider_i8VLjE": {
+      "type": "custom-hero-slider",
+      "blocks": {
+        "title_YyeUBj": {
+          "type": "title",
+          "settings": {
+            "title": "Goodbye,Skin Troubles!"
+          }
+        },
+        "description_HpPKyw": {
+          "type": "description",
+          "settings": {
+            "desc": "Delivering exceptional skincare solutions that nourish, rejuvenate, and elevate your skin health to new heights."
+          }
+        },
+        "list_4Gr66y": {
+          "type": "list",
+          "settings": {
+            "list-icon": "shopify:\/\/shop_images\/check-list.svg",
+            "list-txt": "Moisturizing  and  hydrating"
+          }
+        },
+        "list_mjphRM": {
+          "type": "list",
+          "settings": {
+            "list-icon": "shopify:\/\/shop_images\/check-list.svg",
+            "list-txt": "Anti-aging  and  wrinkle  reduction"
+          }
+        },
+        "list_CwPi6D": {
+          "type": "list",
+          "settings": {
+            "list-icon": "shopify:\/\/shop_images\/check-list.svg",
+            "list-txt": "Soothing  and  repairing"
+          }
+        },
+        "button_eCpTh9": {
+          "type": "button",
+          "settings": {
+            "butt-link": "#",
+            "butt-txt": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "title_YyeUBj",
+        "description_HpPKyw",
+        "list_4Gr66y",
+        "list_mjphRM",
+        "list_CwPi6D",
+        "button_eCpTh9"
+      ],
+      "settings": {
+        "desk-img": "shopify:\/\/shop_images\/Hero_Banner.jpg",
+        "mob-img": "shopify:\/\/shop_images\/Mobile-Hero-Banner-Final.jpg"
+      }
+    },
+    "collection_series_4TtYDe": {
+      "type": "collection-series",
+      "blocks": {
+        "series_item_N7gi6y": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Pseudoalteromonas.png",
+            "title": "Pseudoalteromonas",
+            "description": "<p>Derived from the cold Antarctic ocean, this powerful ingredient fights against extreme weather, signs of aging, and dryness with its marine-rich and natural bioactive properties.<\/p>"
+          }
+        },
+        "series_item_Uy6Mqb": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Neotive_Jellyfish.png",
+            "title": "Neotive Jellyfish",
+            "description": "<p>A collagen-rich protein enriched with essential micronutrients that effectively rejuvenates skin elasticity and delivers exceptional hydration.<\/p>"
+          }
+        },
+        "series_item_T7dLxC": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Kombuchka.png",
+            "title": "Kombuchka",
+            "description": "<p>An organic probiotic extracted from fermented tea, enhancing skin's glow, refining texture, and restoring density.<\/p>"
+          }
+        },
+        "series_item_wnY4Fj": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Trace_Minerals.png",
+            "title": "Trace Minerals",
+            "description": "<p>Skin-benefiting trace minerals (zinc, copper, magnesium, manganese) that combat signs of aging, enhance skin tone, and improve texture.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "series_item_N7gi6y",
+        "series_item_Uy6Mqb",
+        "series_item_T7dLxC",
+        "series_item_wnY4Fj"
+      ],
+      "settings": {
+        "cs-bg-img": "shopify:\/\/shop_images\/hydra-ngredient-background.jpg",
+        "cs-title": "Hydra+ Deep Hydration Ocean Series",
+        "cs-desc": "<p>Inspired by the Healing Magic of the Oceans. Dive into the freshest, purest, and deepest waters to unlock the power of ocean-sourced ingredients.<\/p>",
+        "cs-img": "shopify:\/\/shop_images\/Hydra_e81a7b59-723f-4100-ab13-8b73b515b2f4.png",
+        "cs-items": 4
+      }
+    },
+    "collection_series_xK7Pek": {
+      "type": "collection-series",
+      "blocks": {
+        "series_item_AijBir": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/9_Peptides.png",
+            "title": "9 Peptides",
+            "description": "<p>Advanced active ingredients that deeply penetrate the skin, offering anti-aging, brightening, smoothing, and refining effects. Enhances firmness and accelerates skin recovery.<\/p>"
+          }
+        },
+        "series_item_8QfhKp": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Ceramide_3.png",
+            "title": "Ceramide 3",
+            "description": "<p>Forms a protective shield to prevent moisture loss and maintain skin's barrier function, combating dryness and irritation while shielding against environmental stressors.<\/p>"
+          }
+        },
+        "series_item_kbgTfR": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Squalane.png",
+            "title": "Squalane",
+            "description": "<p>Sourced from olives, Squalane nourishes and softens the skin, enhances elasticity, prevents moisture loss, and indulges the skin with a luxurious feel.<\/p>"
+          }
+        },
+        "series_item_ckqNDr": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Rosa_Damascena.png",
+            "title": "Rosa Damascena Flower Oil",
+            "description": "<p>Strengthens the skin's immune function, enhances natural moisturization, and effectively balances the endocrine system. Ideal for mature, dry, and sensitive skin.<\/p>"
+          }
+        },
+        "series_item_E7wjAV": {
+          "type": "series-item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/EGF.png",
+            "title": "EGF",
+            "description": "<p>A reparative compound that activates cellular processes, promoting collagen and elastin production, diminishing dark spots, reducing under-eye puffiness, and combating the appearance of fine lines and wrinkles.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "series_item_AijBir",
+        "series_item_8QfhKp",
+        "series_item_kbgTfR",
+        "series_item_ckqNDr",
+        "series_item_E7wjAV"
+      ],
+      "settings": {
+        "cs-bg-img": "shopify:\/\/shop_images\/s-cell-ingredient-background.jpg",
+        "cs-title": "S-Cell Advanced Anti-aging Series",
+        "cs-desc": "<p>An unrivaled line of corrective, protective and replenishing skincare treatments that help to recover your skin, encourage collagen synthesis, restore skin radiance and other superior protection from environmental aggressors.<\/p>",
+        "cs-img": "shopify:\/\/shop_images\/S-Cell-Advanced-Anti-aging-Series.png",
+        "cs-items": 5
+      }
+    },
+    "how_product_works_ULngeg": {
+      "type": "how-product-works",
+      "blocks": {
+        "item_qmqPzW": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Gentle-Cleansing-for-Radiant-Skin.jpg",
+            "title": "Gentle Cleansing for Radiant Skin",
+            "description": "<p>Experience our luxurious 3-in-1 cleanser. Effortlessly removes oil, impurities, and makeup. Enriched with rejuvenating jellyfish extract and soothing allantoin. Leaves your skin irresistibly soft, nourished, and beautifully balanced.<\/p>"
+          }
+        },
+        "item_cYMAzX": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Moisturizing_and_Hydrating.jpg",
+            "title": "Moisturizing and hydrating",
+            "description": "<p>Shield your skin with our potent blend of Pseudomonas aeruginosa extract, collagen, hyaluronic acid, and trace minerals. PH-balancing and combatting dryness, dullness, inflammation, congestion, and fine lines.<\/p>"
+          }
+        },
+        "item_McNgDb": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Anti-aging-and-Wrinkle--Reduction.jpg",
+            "title": "Anti-aging and Wrinkle  Reduction",
+            "description": "<p>Elevate your skincare with our unique formula. Enriched with peptides, EGF, collagen, and ceramides, it smooths lines, restores radiance, and protects your skin. Maintain optimal moisture, even for delicate eyes.<\/p>"
+          }
+        },
+        "item_3TgFTw": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Soothing-and-Repairing.jpg",
+            "title": "Soothing and Repairing",
+            "description": "<p>Revive your skin with our moisturizers and peptides. Boost collagen, shrink pores, and leave no sticky feel. Marine-rich Pseudoalteromonas Ferment Extract and nutrient-packed ingredients protect against dryness and texture problems. Experience instant radiance, plumpness, and dewy skin.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_qmqPzW",
+        "item_cYMAzX",
+        "item_McNgDb",
+        "item_3TgFTw"
+      ],
+      "settings": {
+        "hopw-title": "How Our Product Works",
+        "hopw-desc": "<p>Explore the science behind your skin's transformation and elevate your beauty ritual with Miraco Beauty<\/p>"
+      }
+    },
+    "skin_types_icon_V33VLJ": {
+      "type": "skin-types-icon",
+      "blocks": {
+        "icon_4Bkigk": {
+          "type": "icon",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/noun-dry-skin-2131206.png",
+            "title": "Dry Skin",
+            "icon-size": "72px"
+          }
+        },
+        "icon_LXqgep": {
+          "type": "icon",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Oily-Skin.png",
+            "title": "Oil Skin",
+            "icon-size": "72px"
+          }
+        },
+        "icon_RQTcxh": {
+          "type": "icon",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/normal-skin.png",
+            "title": "Normal Skin",
+            "icon-size": "72px"
+          }
+        },
+        "icon_hctJKw": {
+          "type": "icon",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Mature-skin.png",
+            "title": "Mature Skin",
+            "icon-size": "72px"
+          }
+        },
+        "icon_3gM4XX": {
+          "type": "icon",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/sensitive-skin.png",
+            "title": "Sensitive Skin",
+            "icon-size": "72px"
+          }
+        },
+        "icon_H6RBb9": {
+          "type": "icon",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/Combinational-Skin.png",
+            "title": "Combination Skin",
+            "icon-size": "72px"
+          }
+        }
+      },
+      "block_order": [
+        "icon_4Bkigk",
+        "icon_LXqgep",
+        "icon_RQTcxh",
+        "icon_hctJKw",
+        "icon_3gM4XX",
+        "icon_H6RBb9"
+      ],
+      "settings": {
+        "sti-title": "Suitable for All Skin Types"
+      }
+    },
+    "miraco_beauty_life_WYKiFn": {
+      "type": "miraco-beauty-life",
+      "blocks": {
+        "life_with_mb_bDG4wE": {
+          "type": "life-with-mb",
+          "settings": {
+            "title": "Maintains skin hydration and prevents dryness"
+          }
+        },
+        "life_with_mb_H6ffmW": {
+          "type": "life-with-mb",
+          "settings": {
+            "title": "Reduces the appearance of fine lines, wrinkles, and age spots"
+          }
+        },
+        "life_with_mb_WLNkJd": {
+          "type": "life-with-mb",
+          "settings": {
+            "title": "Calms irritated skin and reduces redness"
+          }
+        },
+        "life_with_mb_UNaTEP": {
+          "type": "life-with-mb",
+          "settings": {
+            "title": "Fades dark spots and evens out skin tone"
+          }
+        },
+        "life_with_mb_zaRWLm": {
+          "type": "life-with-mb",
+          "settings": {
+            "title": "Helps repair damaged skin and promotes cell regeneration"
+          }
+        },
+        "life_without_mb_G3aLQn": {
+          "type": "life-without-mb",
+          "settings": {
+            "title": "Susceptible to fine lines and tightness"
+          }
+        },
+        "life_without_mb_jcjTt7": {
+          "type": "life-without-mb",
+          "settings": {
+            "title": "Results in clogged pores and acne breakouts"
+          }
+        },
+        "life_without_mb_BLfdYK": {
+          "type": "life-without-mb",
+          "settings": {
+            "title": "Accelerates skin aging, leading to wrinkles and spots"
+          }
+        },
+        "life_without_mb_Gw7aXh": {
+          "type": "life-without-mb",
+          "settings": {
+            "title": "Characterized by redness, swelling, and stinging"
+          }
+        },
+        "life_without_mb_gP8Tgh": {
+          "type": "life-without-mb",
+          "settings": {
+            "title": "The complexion is dull and lacks radiance"
+          }
+        }
+      },
+      "block_order": [
+        "life_with_mb_bDG4wE",
+        "life_with_mb_H6ffmW",
+        "life_with_mb_WLNkJd",
+        "life_with_mb_UNaTEP",
+        "life_with_mb_zaRWLm",
+        "life_without_mb_G3aLQn",
+        "life_without_mb_jcjTt7",
+        "life_without_mb_BLfdYK",
+        "life_without_mb_Gw7aXh",
+        "life_without_mb_gP8Tgh"
+      ],
+      "settings": {
+      }
+    },
+    "how_to_use_WaUgwg": {
+      "type": "how-to-use",
+      "blocks": {
+        "cleanser_eaDih4": {
+          "type": "cleanser",
+          "settings": {
+            "stp-img": "shopify:\/\/shop_images\/A_Little_Goes_A_Long_Way.jpg",
+            "stp-title": "A Little Goes A Long Way",
+            "stp-dsc": "Wet face flightly, then take a pearl-sized amount of cleanser onto palm."
+          }
+        },
+        "cleanser_RkM6RY": {
+          "type": "cleanser",
+          "settings": {
+            "stp-img": "shopify:\/\/shop_images\/A_Little_Goes_A_Long_Way_2.jpg",
+            "stp-title": "A Little Goes A Long Way",
+            "stp-dsc": "Work cleanser into a foamy lather with water."
+          }
+        },
+        "cleanser_JeEFeX": {
+          "type": "cleanser",
+          "settings": {
+            "stp-img": "shopify:\/\/shop_images\/Little_Goes_A_Long_Way.jpg",
+            "stp-title": "A Little Goes A Long Way",
+            "stp-dsc": "Gently cleanse face and neck, then rinse off with lukewarm water."
+          }
+        },
+        "cleanser_4cd4Hp": {
+          "type": "cleanser",
+          "settings": {
+            "stp-img": "shopify:\/\/shop_images\/Little_Goes_A_Long_Way_2.jpg",
+            "stp-title": "A Little Goes A Long Way",
+            "stp-dsc": "Lorem ipsum dolor sit amet consectur adipiscing elit"
+          }
+        },
+        "toner_gWQYzf": {
+          "type": "toner",
+          "settings": {
+            "stp-img": "shopify:\/\/shop_images\/Little_Goes_A_Long_Way_2.jpg",
+            "stp-title": "A Little Goes A Long Way",
+            "stp-dsc": "Lorem ipsum dolor sit amet consectur adipiscing elit"
+          }
+        },
+        "essence_3TNqDd": {
+          "type": "essence",
+          "settings": {
+            "stp-img": "shopify:\/\/shop_images\/A_Little_Goes_A_Long_Way_2.jpg",
+            "stp-title": "A Little Goes A Long Way",
+            "stp-dsc": "Lorem ipsum dolor sit amet consectur adipiscing elit"
+          }
+        },
+        "serum_fMbG6e": {
+          "type": "serum",
+          "settings": {
+            "stp-img": "shopify:\/\/shop_images\/A_Little_Goes_A_Long_Way.jpg",
+            "stp-title": "A Little Goes A Long Way",
+            "stp-dsc": "Lorem ipsum dolor sit amet consectur adipiscing elit"
+          }
+        },
+        "moisturizer_KEkPgL": {
+          "type": "moisturizer",
+          "settings": {
+            "stp-img": "shopify:\/\/shop_images\/Little_Goes_A_Long_Way_2.jpg",
+            "stp-title": "A Little Goes A Long Way",
+            "stp-dsc": "Lorem ipsum dolor sit amet consectur adipiscing elit"
+          }
+        }
+      },
+      "block_order": [
+        "cleanser_eaDih4",
+        "cleanser_RkM6RY",
+        "cleanser_JeEFeX",
+        "cleanser_4cd4Hp",
+        "toner_gWQYzf",
+        "essence_3TNqDd",
+        "serum_fMbG6e",
+        "moisturizer_KEkPgL"
+      ],
+      "settings": {
+        "htu-title": "How to Use & Comparison Pictures",
+        "cmp-bfr-img": "shopify:\/\/shop_images\/after.jpg",
+        "cmp-bfr-lbl": "Before",
+        "cmp-aft-img": "shopify:\/\/shop_images\/before.jpg",
+        "cmp-aft-lbl": "After 1 Month",
+        "cmp-rst-title": "Undeniable Results",
+        "cmp-rst-desc": "Witness the stunning transformations achieved by our skincare formulations. Realize the potential of your skin's transformation and embark on a journey where the mirror reflects the radiant beauty you deserve.",
+        "aft-rst-img1": "shopify:\/\/shop_images\/after2.png",
+        "aft-rst-lbl1": "After 2 Months",
+        "aft-rst-img2": "shopify:\/\/shop_images\/after6.png",
+        "aft-rst-lbl2": "After 6 Months"
+      }
+    },
+    "section_faq_wPUm9m": {
+      "type": "section-faq",
+      "blocks": {
+        "item_9YUxzy": {
+          "type": "item",
+          "settings": {
+            "title": "What Skin Types Are Your Products Suitable For?",
+            "answer": "<p>MIRACO Beauty is formulated with all skin types in mind, even sensitive. However, we understand that some people may have allergies to even natural ingredients therefore, we suggest checking our ingredient labels. As a rule of thumb, we recommend doing a patch test with any products before using them.<\/p>\n<p>If pregnant or breastfeeding, we recommend consulting with your doctor. Although we don't formulate with retinol, we use active ingredients (AHAs and BHAs in the S-Cell Super Cream). We include the full list of ingredients on every product page for full transparency.<\/p>\n<p>If further assistance is needed, do not hesitate to email any questions to inquiry@miracobeauty.com<\/p>"
+          }
+        },
+        "item_tGJLJx": {
+          "type": "item",
+          "settings": {
+            "title": "Pseudoalteromonas Ferment Extract Is Used In Most Of Your Products, Can You Explain Why?",
+            "answer": "<p>Use this answer block to discuss some commonly asked questions you've discovered from your customers interactions. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your product or collection. This section will appear across all products.<\/p>"
+          }
+        },
+        "item_wQ4YEN": {
+          "type": "item",
+          "settings": {
+            "title": "Do You Test On Animals?",
+            "answer": "<p>Use this answer block to discuss some commonly asked questions you've discovered from your customers interactions. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your product or collection. This section will appear across all products.<\/p>"
+          }
+        },
+        "item_UFM3Jr": {
+          "type": "item",
+          "settings": {
+            "title": "Are Your Products Vegan?",
+            "answer": "<p>Use this answer block to discuss some commonly asked questions you've discovered from your customers interactions. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your product or collection. This section will appear across all products.<\/p>"
+          }
+        },
+        "item_KLFhym": {
+          "type": "item",
+          "settings": {
+            "title": "Are MIRACO Beauty’s Products Gluten-Free?",
+            "answer": "<p>Use this answer block to discuss some commonly asked questions you've discovered from your customers interactions. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your product or collection. This section will appear across all products.<\/p>"
+          }
+        },
+        "item_rNxe7p": {
+          "type": "item",
+          "settings": {
+            "title": "Where Else Are MIRACO Beauty’s Products Sold?",
+            "answer": "<p>Use this answer block to discuss some commonly asked questions you've discovered from your customers interactions. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your product or collection. This section will appear across all products.<\/p>"
+          }
+        },
+        "item_cFyPBd": {
+          "type": "item",
+          "settings": {
+            "title": "Can I Sell MIRACO Beauty Products On My Own Site?",
+            "answer": "<p>Use this answer block to discuss some commonly asked questions you've discovered from your customers interactions. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your product or collection. This section will appear across all products.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_9YUxzy",
+        "item_tGJLJx",
+        "item_wQ4YEN",
+        "item_UFM3Jr",
+        "item_KLFhym",
+        "item_rNxe7p",
+        "item_cFyPBd"
+      ],
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subheading": "",
+        "layout_split": false
+      }
+    },
+    "section_custom_html_At7Yaj": {
+      "type": "section-custom-html",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "html": "<div style=\"margin-top: 50px; margin-bottom: -50px;\">\n<h2>Share Your Skincare Experience<\/h2>\n<\/div>"
+      }
+    },
+    "17066274484a5af393": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_w9Qjdn": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "alignment": "center",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_w9Qjdn"
+      ],
+      "settings": {
+      }
+    },
+    "sign_up_section_dhyqD9": {
+      "type": "sign-up-section",
+      "blocks": {
+        "title_DgrEd6": {
+          "type": "title",
+          "settings": {
+            "title": "Sign Up & Get 15% Off Your First Order"
+          }
+        },
+        "email_UCMpPj": {
+          "type": "email",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "title_DgrEd6",
+        "email_UCMpPj"
+      ],
+      "settings": {
+        "desk-img": "shopify:\/\/shop_images\/signup-desktop.jpg",
+        "mob-img": "shopify:\/\/shop_images\/signup-mobile.jpg"
+      }
+    },
+    "section_icons_row_c9Txg3": {
+      "type": "section-icons-row",
+      "blocks": {
+        "text_VrwaiR": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/noun-free-shipping-6110397.svg",
+            "title": "Free Shipping",
+            "text": "<p>Free shipping on orders $50 minimum<\/p>"
+          }
+        },
+        "text_MEH3VU": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/noun-return-parcel-4634453.svg",
+            "title": "Free Exchange or Returns",
+            "text": "<p>30 days free exchanges or returns.<\/p>"
+          }
+        },
+        "text_UFye44": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/noun-bottle-1213994.svg",
+            "title": "Free Samples",
+            "text": "<p>Add up to 2 free product samples<\/p>"
+          }
+        },
+        "text_hTAAGz": {
+          "type": "text",
+          "settings": {
+            "icon_name": "shop",
+            "icon_image": "shopify:\/\/shop_images\/icon-2.svg",
+            "title": "Upcycled Ingredients",
+            "text": "<p>Minimizing waste, protecting marine life.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_VrwaiR",
+        "text_MEH3VU",
+        "text_UFye44",
+        "text_hTAAGz"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "title": "",
+        "alignment": "center",
+        "color_icons_bg": "#ffffff",
+        "color_icons_text": "#333333"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_hero_slider_i8VLjE",
+    "collection_series_4TtYDe",
+    "collection_series_xK7Pek",
+    "how_product_works_ULngeg",
+    "skin_types_icon_V33VLJ",
+    "miraco_beauty_life_WYKiFn",
+    "how_to_use_WaUgwg",
+    "section_faq_wPUm9m",
+    "section_custom_html_At7Yaj",
+    "17066274484a5af393",
+    "sign_up_section_dhyqD9",
+    "section_icons_row_c9Txg3"
+  ]
+}

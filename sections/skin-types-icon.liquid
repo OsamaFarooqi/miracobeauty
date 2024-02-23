@@ -1,0 +1,63 @@
+<div class="sast">
+  <div class="container">
+    <div class="page-title">
+      {%- if section.settings.sti-title != blank -%}<h2 class="page-title__heading">{{ section.settings.sti-title }}</h2>{%- endif -%}
+    </div>
+    <div class="sast-wrapper">     
+      <div class="sast-row">
+        {%  for block in section.blocks %}
+          <div class="sast-cont">
+          {%- if block.settings.img != blank -%}<img class="sast-img" style="width:100%;max-width:{{ block.settings.icon-size }};" src="{{ block.settings.img | img_url: 'master' }}">{%- endif -%}
+          {%- if block.settings.title != blank -%}<h3>{{ block.settings.title  }}</h3>{%- endif -%}
+          </div>
+        {%  endfor %} 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Skin Types Icon",
+    "settings": [
+       {
+        "type": "text",
+        "id": "sti-title",
+        "label": "Title"
+       }
+    ],
+    "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+      {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Icon"
+      },
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Icon Title"
+      },
+      {
+          "type": "text",
+          "id": "icon-size",
+          "label": "Icon Size",
+          "default": "72px",
+          "info": "Icon size in px"
+      }
+    ]
+  
+    }
+  ],
+    "presets": [
+    {
+      "name": "Skin Types Icon",
+      "blocks": []
+    }
+  ]
+  }
+{% endschema %}

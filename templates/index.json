@@ -3,19 +3,39 @@
     "slideshow": {
       "type": "section-slideshow",
       "blocks": {
-        "62e4c988-1c55-4906-bf02-d1f406c9ad90": {
+        "e1aabde4-6331-4c8b-a50f-044cdd76bbc2": {
           "type": "image",
           "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/2023-12-18-full.jpg",
-            "image_mobile": "shopify:\/\/shop_images\/2023-12-18-mobile.jpg",
+            "image": "shopify:\/\/shop_images\/2024-2-26-full_a0a42713-45f9-41f7-adcd-931dc99d5459.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/2024-2-26-mobile_6f2465a7-fc8c-43f4-a53e-0928137b9aa0.jpg",
             "alignment": "left",
             "color_style": "white",
-            "subheading": "Limited Edition Value Sets",
-            "title": "Save Up to 30%",
-            "text": "<p>Enjoy your holiday shopping with our limited edition skincare sets.<\/p>",
+            "subheading": "President's Day Sale",
+            "title": "25% Off Starts Now",
+            "text": "<p>Savings at checkout, no code needed! <\/p><h6>Offer ends 2\/19 11:59pm PST. <em>Discount offers cannot be combined. Discount applied automatically. <\/em><\/h6>",
             "cta": "SHOP NOW",
-            "link": "shopify:\/\/collections\/bundles-sets",
+            "link": "shopify:\/\/collections\/all",
+            "cta_primary_btn_style": "secondary",
+            "cta_2": "",
+            "link_2": "",
+            "cta_secondary_btn_style": "secondary",
+            "overlay_color": "#f2f2f2",
+            "overlay_opacity": 0
+          }
+        },
+        "62e4c988-1c55-4906-bf02-d1f406c9ad90": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2024-2-26-full.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/2024-2-26-mobile.jpg",
+            "alignment": "left",
+            "color_style": "white",
+            "subheading": "Advanced Ingredients = Advanced Results",
+            "title": "S-Cell Super Serum & Super Cream",
+            "text": "<h5>Formulated with 9-highly effective peptides, EGF and marine collagen<\/h5>",
+            "cta": "SHOP HERE",
+            "link": "shopify:\/\/collections\/s-cell",
             "cta_primary_btn_style": "primary",
             "cta_2": "",
             "link_2": "",
@@ -46,6 +66,7 @@
         },
         "f6649f37-baa4-490c-b4e8-32ad98c2aace": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify:\/\/shop_images\/2023-11-27-BOGO-full.jpg",
             "image_mobile": "shopify:\/\/shop_images\/2023-11-27-BOGO-mobile.jpg",
@@ -57,27 +78,6 @@
             "cta": "SHOP NOW",
             "link": "shopify:\/\/collections\/holiday-bundles",
             "cta_primary_btn_style": "primary",
-            "cta_2": "",
-            "link_2": "",
-            "cta_secondary_btn_style": "secondary",
-            "overlay_color": "#f2f2f2",
-            "overlay_opacity": 0
-          }
-        },
-        "e1aabde4-6331-4c8b-a50f-044cdd76bbc2": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify:\/\/shop_images\/2023-11-24-blackfriday-full.jpg",
-            "image_mobile": "shopify:\/\/shop_images\/2023-11-24-blackfriday-mobile.jpg",
-            "alignment": "left",
-            "color_style": "white",
-            "subheading": "Black Friday Exclusive",
-            "title": "30% Off Sitewide",
-            "text": "<h4>Save on single priced items now!<\/h4><h4>Offer ends 11\/24 11:59pm PST. <\/h4><h6><em>Excludes limited edition, holiday bundles & value sets. <\/em><\/h6><h6><em>Discount offers cannot be combined.<\/em><\/h6><h6><em>Discount applied automatically. <\/em><\/h6>",
-            "cta": "SHOP NOW",
-            "link": "https:\/\/miracobeauty.com\/collections\/black-friday-cyber-monday-sale",
-            "cta_primary_btn_style": "secondary",
             "cta_2": "",
             "link_2": "",
             "cta_secondary_btn_style": "secondary",
@@ -127,10 +127,10 @@
         }
       },
       "block_order": [
+        "e1aabde4-6331-4c8b-a50f-044cdd76bbc2",
         "62e4c988-1c55-4906-bf02-d1f406c9ad90",
         "7eb5c4f2-1af5-489a-934f-f43f742f0c7e",
         "f6649f37-baa4-490c-b4e8-32ad98c2aace",
-        "e1aabde4-6331-4c8b-a50f-044cdd76bbc2",
         "slideshow-0",
         "19298211-f18d-45e3-99e1-fddaaee57904"
       ],
@@ -151,20 +151,50 @@
         "slide_height_mobile": "seven-fifty-height-hero--mobile"
       }
     },
-    "featured-collection": {
-      "type": "section-collection",
-      "custom_css": [
-        "{margin-bottom: 48px;}"
+    "4854105c-3331-4004-92da-225f586b1faf": {
+      "type": "collection-tab",
+      "blocks": {
+        "25b68265-a064-472f-9141-a801c34f5201": {
+          "type": "tab",
+          "settings": {
+            "collection": "all-products",
+            "title": "Best Sellers",
+            "viewall": true
+          }
+        },
+        "455b4629-168c-4503-968b-78cf94087e1b": {
+          "type": "tab",
+          "settings": {
+            "collection": "holiday-bundles",
+            "title": "Holiday Bundles",
+            "viewall": true
+          }
+        },
+        "74b8e31c-2697-4757-bee6-3c01a89347ef": {
+          "type": "tab",
+          "settings": {
+            "collection": "hydra",
+            "title": "Hydra+ Series",
+            "viewall": true
+          }
+        },
+        "ebcb2ac3-daca-4e13-bb53-242a3ea258ec": {
+          "type": "tab",
+          "settings": {
+            "collection": "s-cell",
+            "title": "S-Cell Series",
+            "viewall": true
+          }
+        }
+      },
+      "block_order": [
+        "25b68265-a064-472f-9141-a801c34f5201",
+        "455b4629-168c-4503-968b-78cf94087e1b",
+        "74b8e31c-2697-4757-bee6-3c01a89347ef",
+        "ebcb2ac3-daca-4e13-bb53-242a3ea258ec"
       ],
       "settings": {
-        "title": "Our Best Sellers",
-        "show_description": false,
-        "featured_collection": "best-sellers",
-        "products_layout": "grid",
-        "products_rows": 2,
-        "show_button": false,
-        "button_style": "primary",
-        "color_style": "white"
+        "useslider": true
       }
     },
     "36ee3262-24f9-4e7f-97dc-9591fefd0cff": {
@@ -197,7 +227,6 @@
         "b3526576-cf56-4f33-bac6-4b080aba6d4b": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/serum6vials-02-549618.jpg"
           }
         }
       },
@@ -591,7 +620,6 @@
           "type": "video",
           "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/lees.garcia_2022-02-22_03-58-50-969903.jpg",
             "link": "",
             "overlay_color": "#333333",
             "overlay_opacity": 0
@@ -861,7 +889,7 @@
   },
   "order": [
     "slideshow",
-    "featured-collection",
+    "4854105c-3331-4004-92da-225f586b1faf",
     "36ee3262-24f9-4e7f-97dc-9591fefd0cff",
     "dc2aeb99-bdc0-40ca-95e5-b6141c71af79",
     "daf7819d-5fde-49f1-8b93-ff1bd9a88754",

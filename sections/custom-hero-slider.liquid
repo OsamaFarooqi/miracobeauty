@@ -1,0 +1,109 @@
+<div class="custom-hero-slider">
+  
+   <div class="chs-wrapper">
+    <div class="chs-background">
+      {%- if section.settings.desk-img != blank -%}<img class="chs-desk-img" src="{{ section.settings.desk-img | img_url: 'master' }}">{%- else -%}{%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%} {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+      {%- if section.settings.mob-img != blank -%}<img class="chs-mob-img" src="{{ section.settings.mob-img | img_url: 'master' }}">{%- else -%}{%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%} {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+    </div>
+    <div class="chs-content">
+     <div class="container">
+     <div class="chs-content-wrapper"> 
+      {%  for block in section.blocks %}
+        {% case block.type %}
+          {% when 'title' %}
+            {%- if block.settings.title != blank -%}<h2 class="chs-cont-tit">{{ block.settings.title }}</h2>{%- endif -%}
+          {% when 'description' %}
+            {%- if block.settings.desc != blank -%}<p class="chs-cont-desc">{{ block.settings.desc }}</p>{%- endif -%}
+          {% when 'list' %}
+            {%- if block.settings.list-txt != blank -%}<div class="chs-cont-list">{%- if block.settings.list-icon != blank -%}<img class="chs-cont-list-icon" src="{{ block.settings.list-icon | img_url: 'master' }}">{%- endif -%}<span>{{ block.settings.list-txt }}</span></div>{%- endif -%}
+          {% when 'button' %}
+            {%- if block.settings.butt-txt != blank -%}<a href="{{ block.settings.butt-link }}" class="chs-cont-button">{{ block.settings.butt-txt }}</a>{%- endif -%}
+        {% endcase %}
+      {%  endfor %} 
+     </div> 
+      </div> 
+    </div>
+   </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Custom Hero Slider",
+    "settings": [
+       {
+        "type": "image_picker",
+        "id": "desk-img",
+        "label": "Desktop Background Image"
+       },
+       {
+        "type": "image_picker",
+        "id": "mob-img",
+        "label": "Mobile Background Image"
+       }
+    ],
+    "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+      }
+    ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+      {
+          "type": "text",
+          "id": "desc",
+          "label": "Description"
+      }
+    ]
+    },
+    {
+      "type": "list",
+      "name": "List",
+      "settings": [
+      {
+        "type": "image_picker",
+        "id": "list-icon",
+        "label": "Icon"
+      },
+      {
+          "type": "text",
+          "id": "list-txt",
+          "label": "List Text"
+      }
+    ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+      {
+          "type": "url",
+          "id": "butt-link",
+          "label": "Button Link"
+      },
+      {
+          "type": "text",
+          "id": "butt-txt",
+          "label": "Button Text"
+      }
+    ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Custom Hero Slider",
+      "blocks": []
+    }
+  ]
+  }
+{% endschema %}

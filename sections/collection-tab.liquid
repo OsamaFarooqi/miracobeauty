@@ -1,0 +1,178 @@
+<section class="featured-collection collection-grid container-wrap" id="collection-module-{{ section.id }}"
+  data-section-type="featured-collection"
+  data-section-id="{{ section.id }}"
+  data-show-quantity="{{ settings.show_quantity }}"
+  data-style="{{ color_style }}"
+  data-collection-products>
+
+{%  if section.blocks.size > 0 %}
+  <div class="tabs-section page-width">
+
+    <div id="tabs" class="tabs">
+      {%  assign tabContent = '' %}
+      <ul>
+      {%  for block in section.blocks %}
+       {%  assign collection = collections[block.settings.collection] %}
+        <li><a href="#tabs-{{ collection.id }}">{% if block.settings.title != blank %}{{ block.settings.title  }}{% else %}{{ collection.title  }}{% endif %}</a></li>
+        {%  capture content  %}
+            <div id="tabs-{{ collection.id }}">
+              <ul class="grid product-grid grid--2-col-tablet-down  grid--4-col-desktop">
+               {%- for product in block.settings.collection.products limit: 8 -%}
+               <li class="grid__item scroll-trigger animate--slide-in">
+                  {%- render 'product-grid-item', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index -%}
+               </li>
+              {%- endfor -%}
+              </ul>
+            </div>
+        {%  endcapture %}
+        {%  assign tabContent = tabContent | append: content %}
+      {%  endfor %}  
+      </ul>   
+      {{ tabContent }}
+    </div>  
+  </div> 
+    <script>
+  $( function() {
+    {%  if section.settings.useslider %}
+    function tabSlider(){
+          $('.tabs .product-grid.slick-initialized ').slick('unslick');
+          $('.tabs .product-grid ').slick({
+            dots: false,
+            arrows: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                  infinite: true
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+            
+            ]
+          });
+    }
+        {%  endif %}
+    $( "#tabs" ).tabs({
+      create: function( event, ui ) {
+         {%  if section.settings.useslider %}
+       tabSlider()
+            {%  endif %}
+      },
+      activate: function( event, ui ) {
+        {%  if section.settings.useslider %}
+       tabSlider()
+            {%  endif %}
+      }
+    });
+  
+  } );
+  </script>
+  <style>
+    .tabs .slick-track .grid__item  {
+      padding: 0 5px;
+    }
+    .tabs .slick-next {
+      right: 0;
+    }
+    .tabs .slick-prev {
+      left: 0;
+    }
+    .tabs .slick-next,.tabs .slick-prev {
+      transform: none;
+      top: -20px;
+    }
+    .tabs .slick-next::before,.tabs .slick-prev::before { color: #000;}
+    .tabs .slick-slider{ margin: 0 -5px;}
+    .tabs .collection__view-all  a{ color: white!important;}
+    .tabs { background: none!important;border: none!important}
+    .tabs.ui-tabs .ui-tabs-nav {
+      background: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      border: none;
+    }
+    .tabs-section h2 {
+      text-align: center;
+    }
+    .tabs.ui-tabs .ui-tabs-nav li {
+      border: none;
+      background: none;
+    }
+    .tabs.ui-tabs .ui-tabs-nav li  a{
+      color: #ddd;
+      padding: 5px 40px;
+      border-radius: 50px;
+    }
+    .tabs.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+      background: grey;
+    } 
+  </style>
+{%  endif %}  
+
+  </section>
+{% schema %}
+  {
+    "name": "Tabs",
+    "settings": [
+       {
+        "type": "checkbox",
+        "id": "useslider",
+        "label": "Use slider",
+        "default": true
+      }
+    ],
+    "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "limit": 5,
+    
+    "settings": [
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Tab Name"
+      },
+      {
+        "type": "checkbox",
+        "id": "viewall",
+        "label": "Show view all",
+        "default": true
+      }
+    ]
+  
+    }
+  ],
+    "presets": [
+    {
+      "name": "Tabs",
+      "blocks": []
+    }
+  ]
+  }
+{% endschema %}

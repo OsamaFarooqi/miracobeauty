@@ -1,0 +1,68 @@
+<div class="lwmb">
+  <div class="container">
+    <div class="lwmb-row">     
+      <div class="lwmb-col withoutmb">
+        <h3>Life without Miraco Beauty</h3>
+        {%  for block in section.blocks %}
+          {% if block.type == "life-without-mb" %}
+          <div class="lwmb-list">
+          <img class="lwmb-icon"  src="https://cdn.shopify.com/s/files/1/0588/0260/2167/files/close.svg?v=1706785146">
+          {%- if block.settings.title != blank -%}<p>{{ block.settings.title  }}</p>{%- endif -%}
+          </div>
+          {%- endif -%}
+        {%  endfor %} 
+      </div>
+      <div class="lwmb-col withmb">
+        <h3>Life with Miraco Beauty</h3>
+        {%  for block in section.blocks %}
+          {% if block.type == "life-with-mb" %}
+          <div class="lwmb-list">
+          <img class="lwmb-icon"  src="https://cdn.shopify.com/s/files/1/0588/0260/2167/files/check-list_3fbba99d-148d-4ecc-8ca3-2fe7bc084ad2.svg?v=1706785130">
+          {%- if block.settings.title != blank -%}<p>{{ block.settings.title  }}</p>{%- endif -%}
+          </div>
+        {%- endif -%}
+        {%  endfor %} 
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Miraco Beauty Life",
+    "settings": [
+    ],
+    "blocks": [
+    {
+      "type": "life-without-mb",
+      "name": "Life without MB",
+      "settings": [
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Icon Title"
+      }
+    ]
+  
+    },
+    {
+      "type": "life-with-mb",
+      "name": "Life with MB",
+      "settings": [
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+      }
+    ]
+  
+    }
+  ],
+    "presets": [
+    {
+      "name": "Miraco Beauty Life",
+      "blocks": []
+    }
+  ]
+  }
+{% endschema %}
